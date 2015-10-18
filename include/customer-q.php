@@ -41,13 +41,13 @@
 						/* populate unit type to unit dropdown list */
 						
 						$("#readButton").click(function() {
-							searchProducts(setProductsToTable);
+							searchCustomers(setCustomersToTable);
 						});
 
-						function searchProducts(callback) {
+						function searchCustomers(callback) {
 							$.blockUI();
 							var data = {
-								"action" : "searchProducts",
+								"action" : "searchCustomers",
 								"customer_name" : $("#customerName").val()
 							};
 							$.ajax({
@@ -59,7 +59,7 @@
 							});
 						}
 
-						function setProductsToTable(data, textStatus, xhr) {
+						function setCustomersToTable(data, textStatus, xhr) {
 							var dataSize = data.length;
 							var tbody = $('#tableCustomer').find('tbody');
 							tbody.empty();
@@ -73,25 +73,17 @@
 																.html(
 																		data[i]["customer_name"]))
 												.append(
-														$('<td align="right">')
+														$('<td>')
 																.html(
-																		data[i]["standard_price"]))
+																		data[i]["address"]))
 												.append(
-														$('<td align="right">')
+														$('<td>')
 																.html(
-																		data[i]["capital_price"]))
+																		data[i]["tel"]))
 												.append(
-														$('<td align="right">')
+														$('<td>')
 																.html(
-																		data[i]["s_price"]))
-												.append(
-														$('<td align="right">')
-																.html(
-																		data[i]["a_price"]))
-												.append(
-														$('<td align="right">')
-																.html(
-																		data[i]["b_price"]))
+																		data[i]["contact"]))
 												);
 							}
 							setEvent();

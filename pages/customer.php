@@ -14,7 +14,7 @@ require_once("../config.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Customer</title>
+    <title>จัดการลูกค้า</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -3,7 +3,7 @@ require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Customer.php';
 if(isset($_REQUEST['customer_id'])){
 	$conn = DataBaseConnection::createConnect();
-	$customerEdit = Product::get($conn, $_REQUEST['customer_id']);
+	$customerEdit =  Customer::get($conn, $_REQUEST['customer_id']);
 	$conn = null;
 }
 ?>
@@ -12,92 +12,55 @@ if(isset($_REQUEST['customer_id'])){
 			.ready(
 					function() {
           
-            /* populate unit name to unit dropdown list */
-						populateUnitTypes(setUnitNamesToDropdown);
+								$("#createtButton")
+								  .click(
+										function() {
+											if (isInvalidateForm()) {
+												openInvalidTab();
+											} else {                             
+												var form = $("#customerForm");
+												var action = "<?php echo ROOT."crud/create-customer.php" ?>";
+														
+												form.attr('action', action);
+												form.attr('target', '_self');
+												form.submit();
+											}
+										}
+								);
+								
+								$("#updateButton")
+								  .click(
+										function() {
+											if (isInvalidateForm()) {
+												openInvalidTab();
+											} else {                             
+												var form = $("#customerForm");
+												var action = "<?php echo ROOT."crud/update-customer.php" ?>";
+														
+												form.attr('action', action);
+												form.attr('target', '_self');
+												form.submit();
+											}
+										}
+								);
+								
+								$("#deleteButton")
+									.click(
+										function() {
+											var form = $("#customerForm");
+											var action = "<?php echo ROOT."crud/delete-customer.php" ?>";
 
-						function populateUnitTypes(callback) {
-							var data = {};
-							$
-									.ajax({
-										type : "POST",
-										dataType : "json",
-										url : "<?php echo ROOT.'ajax/ajax.unit.name.php' ?>", //Relative or absolute path
-										data : data,
-										success : callback
+											form.attr('action', action);
+											form.attr('target', '_self');
+											form.submit();
+										});
+								
+								function isInvalidateForm() {
+									$("#customerForm").validate({
+										ignore : ""
 									});
-						}
-
-						function setUnitNamesToDropdown(data, textStatus, xhr) {
-							$("#unitName").html("");
-              
-							for (i = 0; i < data.length; i++) {
-								$("#unitName").append(
-										'<option value="' + data[i].unit_name + '">'
-												+ data[i].unit_name
-												+ '</option>');
-							}
-							
-							populateSearchUnitName();
-						}
-						
-						function populateSearchUnitName(){
-							<?php
-								if(isset($customerEdit['unit_name'])){
-									echo '$("#unitName").val("'.$customerEdit['unit_name'].'");';
+									return !$("#customerForm").valid();
 								}
-							?>
-						}
-						/* populate unit type to unit dropdown list */
-          
-            $("#createtButton")
-              .click(
-              		function() {
-              			if (isInvalidateForm()) {
-              				openInvalidTab();
-              			} else {                             
-              				var form = $("#customerForm");
-              				var action = "<?php echo ROOT."crud/create-customer.php" ?>";
-                                    
-              				form.attr('action', action);
-              				form.attr('target', '_self');
-              				form.submit();
-              			}
-              		}
-            );
-			
-			$("#updateButton")
-              .click(
-              		function() {
-              			if (isInvalidateForm()) {
-              				openInvalidTab();
-              			} else {                             
-              				var form = $("#customerForm");
-              				var action = "<?php echo ROOT."crud/update-customer.php" ?>";
-                                    
-              				form.attr('action', action);
-              				form.attr('target', '_self');
-              				form.submit();
-              			}
-              		}
-            );
-			
-			$("#deleteButton")
-				.click(
-					function() {
-						var form = $("#customerForm");
-						var action = "<?php echo ROOT."crud/delete-customer.php" ?>";
-
-						form.attr('action', action);
-						form.attr('target', '_self');
-						form.submit();
-					});
-            
-            function isInvalidateForm() {
-							$("#customerForm").validate({
-								ignore : ""
-							});
-							return !$("#customerForm").valid();
-						}
             
           }
       );
@@ -157,6 +120,7 @@ if(isset($_REQUEST['customer_id'])){
   							type="text"
   							id="email" 
   							name="email"
+							email="true"
 							value="<?php echo isset($customerEdit) ? $customerEdit['email'] : ''?>"/>
   					</div>
   				</div>
