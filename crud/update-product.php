@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <html lang="en-US">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="<?php echo '3;url='.ROOT.'pages/product.php?MODE=S' ?>">
+        <meta http-equiv="refresh" content="<?php echo REFRESH_DELAY.';url='.ROOT.'pages/product.php?MODE=S' ?>">
         <title>Page Redirection</title>
     </head>
     <body>

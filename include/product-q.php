@@ -120,7 +120,8 @@
 						<input class="form-control" 
 							type="text"
 							id="productName" 
-							name="product_name"/>
+							name="product_name"
+							autofocus/>
 					</div>
 				</div>
 			</div>

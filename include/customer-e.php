@@ -1,6 +1,11 @@
 <?php
 require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Customer.php';
+
+if(isset($_REQUEST['MODE'])){
+	$screenMode = $_REQUEST['MODE'];
+}
+
 if(isset($_REQUEST['customer_id'])){
 	$conn = DataBaseConnection::createConnect();
 	$customerEdit =  Customer::get($conn, $_REQUEST['customer_id']);
@@ -8,11 +13,26 @@ if(isset($_REQUEST['customer_id'])){
 }
 ?>
 <script type="text/javascript">
+	$(document).keypress(function(event){
+	
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			<?php
+				if($screenMode === 'A'){
+					echo '$("#createButton").click();';
+				}else{
+					echo '$("#updateButton").click();';
+				}
+			?>
+		}
+		
+	});
+
 	$(document)
 			.ready(
 					function() {
           
-								$("#createtButton")
+								$("#createButton")
 								  .click(
 										function() {
 											if (isInvalidateForm()) {
@@ -79,7 +99,7 @@ if(isset($_REQUEST['customer_id'])){
   							id="customerName" 
   							name="customer_name"
 							required
-							<?php echo $_REQUEST['MODE'] !== 'A' ? 'readonly' : ''?>
+							autofocus
 							value="<?php echo isset($customerEdit) ? $customerEdit['customer_name'] : ''?>"/>
   					</div>
   				</div>
@@ -145,36 +165,32 @@ if(isset($_REQUEST['customer_id'])){
     <div class="row ">
   		<div class="col-md-2">
   			<?php
-          if(isset($_REQUEST['MODE'])){
-            if($_REQUEST['MODE'] === 'E') {
+				if($screenMode === 'E') {
       				echo '<button type="button" 
       								class="btn btn-default"
       								id="updateButton">
       								แก้ไข
       						</button>';
-      			}else if($_REQUEST['MODE'] === 'A') {
+      			}else if($screenMode === 'A') {
       				echo '<button type="button" 
       								class="btn btn-default"
-      								id="createtButton">
+      								id="createButton">
       								บักทึก
       						</button>';
       			}
-          }
     		?>
   		</div>
   		<div class="col-md-7"></div>
   		<div class="col-md-3">
 			<?php
-				if(isset($_REQUEST['MODE'])){
-					if($_REQUEST['MODE'] === 'E') {
-							echo '<button type="button" 
-											class="btn btn-default" 
-											data-toggle="modal" 
-											data-target="#confirmDeleteModel">
-											ลบ
-									</button>';
-						}
-				  }
+				if($screenMode === 'E') {
+						echo '<button type="button" 
+										class="btn btn-default" 
+										data-toggle="modal" 
+										data-target="#confirmDeleteModel">
+										ลบ
+								</button>';
+				}
 			?>
 			<a class="btn btn-default pull-right" href="customer.php?MODE=S">ย้อนกลับ</a>
 			<button type="button" 

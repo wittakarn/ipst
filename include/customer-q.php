@@ -112,7 +112,8 @@
 						<input class="form-control" 
 							type="text"
 							id="customerName" 
-							name="customer_name"/>
+							name="customer_name"
+							autofocus/>
 					</div>
 				</div>
 			</div>
