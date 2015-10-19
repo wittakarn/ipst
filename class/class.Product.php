@@ -26,8 +26,9 @@ class Product
 	}
 
 	public static function read($conn, $productName){
-		$query = "SELECT product_id, product_name, standard_price, capital_price, s_price, a_price, b_price FROM product WHERE product_name LIKE :product_name";
-		$stmt = $conn->prepare($query); 
+		$query = "SELECT product_id, product_name, standard_price, capital_price, s_price, a_price, b_price FROM product WHERE product_name LIKE :product_name ";
+    $order = "ORDER BY product_name ";
+		$stmt = $conn->prepare($query.$order); 
 		$stmt->bindValue(":product_name", '%'.$productName.'%', PDO::PARAM_STR);
 
 		$stmt->execute();
@@ -37,9 +38,10 @@ class Product
 	public function update(){
 		$params = $this->requests;
 		$db = $this->dbh;
-		$query = "UPDATE product SET unit_name=:unit_name,standard_price=:standard_price,capital_price=:capital_price,s_price=:s_price,a_price=:a_price,b_price=:b_price WHERE product_id=:product_id";
+		$query = "UPDATE product SET product_name=:product_name,unit_name=:unit_name,standard_price=:standard_price,capital_price=:capital_price,s_price=:s_price,a_price=:a_price,b_price=:b_price WHERE product_id=:product_id";
 		$stmt = $db->prepare($query);
-		$stmt->bindParam(":product_id", $params['product_id'], PDO::PARAM_INT); 
+		$stmt->bindParam(":product_id", $params['product_id'], PDO::PARAM_INT);
+    $stmt->bindParam(":product_name", $params['product_name'], PDO::PARAM_STR); 
 		$stmt->bindParam(":unit_name", $params['unit_name'], PDO::PARAM_STR);
 		$stmt->bindParam(":standard_price", $params['standard_price'], PDO::PARAM_STR);
 		$stmt->bindParam(":capital_price", $params['capital_price'], PDO::PARAM_STR);

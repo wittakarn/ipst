@@ -14,7 +14,7 @@ class Customer
 		$db = $this->dbh;
 		$query = "INSERT INTO customer(customer_name, address, tel, fax, email, contact) VALUES (:customer_name, :address, :tel, :fax, :email, :contact)";
 		$stmt = $db->prepare($query);
-		$stmt->bindParam(":customer_name", $params['customer_name'], PDO::PARAM_STR); ;
+		$stmt->bindParam(":customer_name", $params['customer_name'], PDO::PARAM_STR);
 		$stmt->bindParam(":address", $params['address'], PDO::PARAM_STR); 
 		$stmt->bindParam(":tel", $params['tel'], PDO::PARAM_STR); 
 		$stmt->bindParam(":fax", $params['fax'], PDO::PARAM_STR); 
@@ -25,8 +25,9 @@ class Customer
 	}
 
 	public static function read($conn, $customerName){
-		$query = "SELECT customer_id, customer_name, address, tel, contact FROM customer WHERE customer_name LIKE :customer_name";
-		$stmt = $conn->prepare($query); 
+		$query = "SELECT customer_id, customer_name, address, tel, contact FROM customer WHERE customer_name LIKE :customer_name ";
+    $order = "ORDER BY customer_name";
+		$stmt = $conn->prepare($query.$order); 
 		$stmt->bindValue(":customer_name", '%'.$customerName.'%', PDO::PARAM_STR);
 
 		$stmt->execute();

@@ -134,15 +134,15 @@
 					id="readButton">
 				ค้นหา</button>
 		</div>
-		<div class="col-md-8"></div>
-		<div class="col-md-2">
-			<button type="button" 
-					class="btn btn-default"
+		<div class="col-md-7"></div>
+		<div class="col-md-3">
+			<a class="btn btn-default pull-right" href="product.php?MODE=A">เพิ่มใหม่</a>
+      <button type="button" 
+					class="btn btn-default pull-right"
 					id="reloadPage" 
 					onclick="location.reload();">
 					เริ่มใหม่
 			</button>
-			<a class="btn btn-default pull-right" href="product.php?MODE=A">เพิ่มใหม่</a>
 		</div>
 	</div>
 	<div class="row">
