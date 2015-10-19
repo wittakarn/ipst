@@ -1,6 +1,6 @@
 <?php
 require_once DOCUMENT_ROOT.'/connection.php';
-require_once DOCUMENT_ROOT.'/class/class.Register.php';
+require_once DOCUMENT_ROOT.'/class/class.User.php';
 
 if(isset($_REQUEST['MODE'])){
 	$screenMode = $_REQUEST['MODE'];
@@ -31,6 +31,19 @@ if(isset($_REQUEST['user_id'])){
 	$(document)
 			.ready(
 					function() {
+						
+						$("#userForm").validate({
+						  rules: {
+							passwordConfirmation: {
+										equalTo: "#password"
+									}  
+						  },
+						  messages: {
+							passwordConfirmation: {
+										equalTo: "รหัสผ่านไม่ตรงกัน"
+									}  
+						  }  
+						});
           
 						$("#createButton")
 						  .click(
@@ -92,77 +105,56 @@ if(isset($_REQUEST['user_id'])){
   			<div class="panel-heading">เพิ่ม/แก้ไข ผู้ใช้งาน</div>
   			<div class="panel-body">
   				<div class="row">
-  					<div class="col-md-2">ชื่อสินค้า</div>
-  					<div class="col-md-6">
+  					<div class="col-md-2">รหัสผู้ใช้ (User ID)</div>
+  					<div class="col-md-4">
   						<input class="form-control" 
   							type="text"
-  							id="userName" 
-  							name="user_name"
+  							id="userId" 
+  							name="user_id"
 							required
 							autofocus
-							value="<?php echo isset($userEdit) ? $userEdit['user_name'] : ''?>"/>
+							value="<?php echo isset($userEdit) ? $userEdit['user_id'] : ''?>"/>
   					</div>
   				</div>
   				<div class="row">
-  					<div class="col-md-2">หน่วยสินค้า</div>
+  					<div class="col-md-2">รหัสผ่าน</div>
   					<div class="col-md-4">
-  						<select class="form-control" id="unitName" name="unit_name">
-  						</select>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">ราคาตั้ง</div>
-  					<div class="col-md-3">
   						<input class="form-control" 
-  							type="text"
-  							id="standardPrice" 
-  							name="standard_price"
-							number="true"
-							value="<?php echo isset($userEdit) ? $userEdit['standard_price'] : ''?>"/>
+  							type="password"
+  							id="password" 
+  							name="password"
+							required/>
   					</div>
   				</div>
 				<div class="row">
-  					<div class="col-md-2">ทุน</div>
-  					<div class="col-md-3">
+  					<div class="col-md-2">ยืนยันรหัสผ่าน</div>
+  					<div class="col-md-4">
   						<input class="form-control" 
-  							type="text"
-  							id="capitalPrice" 
-  							name="capital_price"
-							number="true"
-							value="<?php echo isset($userEdit) ? $userEdit['capital_price'] : ''?>"/>
+  							type="password"
+  							id="passwordConfirmation"
+							required/>
   					</div>
   				</div>
   				<div class="row">
-  					<div class="col-md-2">ราคาลูกค้าเกรด S</div>
+  					<div class="col-md-2">สิทธิ</div>
   					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="sPrice" 
-  							name="s_price"
-							number="true"
-							value="<?php echo isset($userEdit) ? $userEdit['s_price'] : ''?>"/>
+						<div class="radio">
+							<label><input type="radio" name="role" value="N" required>ผู้ใช้งานทั่วไป</label>
+						</div>
+						<div class="radio">
+							<label><input type="radio" name="role" value="A" required>ผู้ดูแลระบบ</label>
+						</div>
   					</div>
   				</div>
-          <div class="row">
-  					<div class="col-md-2">ราคาลูกค้าเกรด A</div>
+				<div class="row">
+  					<div class="col-md-2">จำนวนครั้งที่ใส่รหัสผ่านผิด</div>
   					<div class="col-md-3">
   						<input class="form-control" 
   							type="text"
-  							id="aPrice" 
-  							name="a_price"
+  							id="passwordIncCount" 
+  							name="password_inc_count"
 							number="true"
-							value="<?php echo isset($userEdit) ? $userEdit['a_price'] : ''?>"/>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">ราคาลูกค้าเกรด B</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="bPrice" 
-  							name="b_price"
-							number="true"
-							value="<?php echo isset($userEdit) ? $userEdit['b_price'] : ''?>"/>
+							value="<?php echo isset($userEdit) ? $userEdit['password_inc_count'] : ''?>"/>
   					</div>
   				</div>
   			</div>
