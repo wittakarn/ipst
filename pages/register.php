@@ -31,6 +31,7 @@ require_once("../config.php");
     <script src="<?php echo ROOT; ?>bootstrap/dist/js/bootstrap.min.js"></script>
     
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="<?php echo ROOT; ?>lib/jquery/additional-methods.min.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.custom.message.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
