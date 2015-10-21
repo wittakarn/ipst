@@ -34,9 +34,10 @@ class User
 	public function update(){
 		$params = $this->requests;
 		$db = $this->dbh;
-		$query = "UPDATE user SET role=:role,password_inc_count=:password_inc_count WHERE user_id=:user_id";
+		$query = "UPDATE user SET password=:password,role=:role,password_inc_count=:password_inc_count WHERE user_id=:user_id";
 		$stmt = $db->prepare($query);
 		$stmt->bindParam(":user_id", $params['user_id'], PDO::PARAM_STR);
+		$stmt->bindParam(":password", $params['password'], PDO::PARAM_STR);
 		$stmt->bindParam(":role", $params['role'], PDO::PARAM_STR); 
 		$stmt->bindParam(":password_inc_count", $params['password_inc_count'], PDO::PARAM_INT);
 	

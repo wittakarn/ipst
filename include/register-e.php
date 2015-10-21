@@ -108,7 +108,8 @@ if(isset($_REQUEST['user_id'])){
   							id="userId" 
   							name="user_id"
 							required
-							autofocus
+							<?php echo $screenMode === 'A' ? 'autofocus' : ''; ?>
+							<?php echo $screenMode === 'E' ? 'readonly' : ''; ?>
 							value="<?php echo isset($userEdit) ? $userEdit['user_id'] : ''?>"/>
   					</div>
   				</div>
@@ -119,6 +120,7 @@ if(isset($_REQUEST['user_id'])){
   							type="password"
   							id="password" 
   							name="password"
+							<?php echo $screenMode === 'E' ? 'autofocus' : ''; ?>
 							required/>
   					</div>
   				</div>
@@ -136,24 +138,29 @@ if(isset($_REQUEST['user_id'])){
   					<div class="col-md-2">สิทธิ</div>
   					<div class="col-md-3">
 						<div class="radio">
-							<label><input type="radio" name="role" value="N" required>ผู้ใช้งานทั่วไป</label>
+							<label><input type="radio" name="role" value="N" required <?php echo (isset($userEdit) && $userEdit['role'] === 'N') ? 'checked' : '';?> >ผู้ใช้งานทั่วไป</label>
 						</div>
 						<div class="radio">
-							<label><input type="radio" name="role" value="A" required>ผู้ดูแลระบบ</label>
+							<label><input type="radio" name="role" value="A" required <?php echo (isset($userEdit) && $userEdit['role'] === 'A') ? 'checked' : '';?> >ผู้ดูแลระบบ</label>
 						</div>
   					</div>
   				</div>
-				<div class="row">
-  					<div class="col-md-2">จำนวนครั้งที่ใส่รหัสผ่านผิด</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="passwordIncCount" 
-  							name="password_inc_count"
-							number="true"
-							value="<?php echo isset($userEdit) ? $userEdit['password_inc_count'] : ''?>"/>
-  					</div>
-  				</div>
+				<?php
+				if($screenMode === 'E'){
+					$editPasswordIncCount = isset($userEdit) ? $userEdit['password_inc_count'] : '';
+					echo '<div class="row">
+							<div class="col-md-2">จำนวนครั้งที่ใส่รหัสผ่านผิด</div>
+							<div class="col-md-3">
+								<input class="form-control" 
+									type="text"
+									id="passwordIncCount" 
+									name="password_inc_count"
+									number="true"
+									value="'.$editPasswordIncCount.'"/>
+							</div>
+						</div>';
+				}
+				?>
   			</div>
   		</div>
   	</div>
