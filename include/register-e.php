@@ -76,6 +76,7 @@ if(isset($_REQUEST['user_id'])){
 						$("#deleteButton")
 							.click(
 								function() {
+									$("#registerForm").validate().cancelSubmit = true;
 									var form = $("#registerForm");
 									var action = "<?php echo ROOT."crud/delete-user.php" ?>";
 
