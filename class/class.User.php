@@ -23,7 +23,7 @@ class User
 
 	public static function read($conn, $userId){
 		$query = "SELECT user_id, role, password_inc_count, lasted_login_datetime FROM user WHERE user_id LIKE :user_id ";
-		$order = "ORDER BY user_name ";
+		$order = "ORDER BY user_id ";
 		$stmt = $conn->prepare($query.$order); 
 		$stmt->bindValue(":user_id", '%'.$userId.'%', PDO::PARAM_STR);
 
@@ -38,6 +38,28 @@ class User
 		$stmt = $db->prepare($query);
 		$stmt->bindParam(":user_id", $params['user_id'], PDO::PARAM_STR);
 		$stmt->bindParam(":role", $params['role'], PDO::PARAM_STR); 
+		$stmt->bindParam(":password_inc_count", $params['password_inc_count'], PDO::PARAM_INT);
+	
+		$stmt->execute();
+	}
+	
+	public function updateLastLoginDatetime(){
+		$params = $this->requests;
+		$db = $this->dbh;
+		$query = "UPDATE user SET lasted_login_datetime=SYSDATE(),password_inc_count=:password_inc_count WHERE user_id=:user_id";
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(":user_id", $params['user_id'], PDO::PARAM_STR);
+		$stmt->bindValue(":password_inc_count", 0, PDO::PARAM_INT);
+	
+		$stmt->execute();
+	}
+	
+	public function updatePasswordCount(){
+		$params = $this->requests;
+		$db = $this->dbh;
+		$query = "UPDATE user SET password_inc_count=:password_inc_count WHERE user_id=:user_id";
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(":user_id", $params['user_id'], PDO::PARAM_STR);
 		$stmt->bindParam(":password_inc_count", $params['password_inc_count'], PDO::PARAM_INT);
 	
 		$stmt->execute();

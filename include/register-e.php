@@ -192,7 +192,7 @@ if(isset($_REQUEST['user_id'])){
 								</button>';
 				}
 			?>
-			<a class="btn btn-default pull-right" href="user.php?MODE=S">ย้อนกลับ</a>
+			<a class="btn btn-default pull-right" href="register.php?MODE=S">ย้อนกลับ</a>
 			<button type="button" 
   					class="btn btn-default pull-right"
   					id="reloadPage" 

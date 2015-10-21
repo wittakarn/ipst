@@ -4,57 +4,56 @@
 					function() {
 						
 						$("#readButton").click(function() {
-							searchProducts(setProductsToTable);
+							searchUsers(setUsersToTable);
 						});
 
-						function searchProducts(callback) {
+						function searchUsers(callback) {
 							$.blockUI();
 							var data = {
-								"action" : "searchProducts",
-								"product_name" : $("#productName").val()
+								"action" : "searchUsers",
+								"user_id" : $("#userId").val()
 							};
 							$.ajax({
 								type : "POST",
 								dataType : "json",
-								url : "<?php echo ROOT ?>ajax/ajax.search.product.php", //Relative or absolute path
+								url : "<?php echo ROOT ?>ajax/ajax.search.user.php", //Relative or absolute path
 								data : data,
 								success : callback
 							});
 						}
 
-						function setProductsToTable(data, textStatus, xhr) {
+						function setUsersToTable(data, textStatus, xhr) {
 							var dataSize = data.length;
-							var tbody = $('#tableProduct').find('tbody');
+							var tbody = $('#tableUser').find('tbody');
 							tbody.empty();
 							for (var i = 0; i < dataSize; i++) {
+								
+								$roleTitle = "ผู้ดูแลระบบ";
+								
+								if(data[i]["role"] === 'N'){
+									$roleTitle = "ผู้ใช้ทั่วไป";
+								}
+								
 								tbody
 										.append($(
-												'<tr style="cursor: pointer;" productId="' + data[i]["product_id"] + '">')
+												'<tr style="cursor: pointer;" userId="' + data[i]["user_id"] + '">')
 												.append($('<td>').html(i + 1))
 												.append(
 														$('<td>')
 																.html(
-																		data[i]["product_name"]))
+																		data[i]["user_id"]))
+												.append(
+														$('<td>')
+																.html(
+																		$roleTitle))
 												.append(
 														$('<td align="right">')
 																.html(
-																		data[i]["standard_price"]))
+																		data[i]["password_inc_count"]))
 												.append(
-														$('<td align="right">')
+														$('<td>')
 																.html(
-																		data[i]["capital_price"]))
-												.append(
-														$('<td align="right">')
-																.html(
-																		data[i]["s_price"]))
-												.append(
-														$('<td align="right">')
-																.html(
-																		data[i]["a_price"]))
-												.append(
-														$('<td align="right">')
-																.html(
-																		data[i]["b_price"]))
+																		data[i]["lasted_login_datetime"]))
 												);
 							}
 							setEvent();
@@ -62,11 +61,11 @@
 						}
 
 						function setEvent() {
-							$('#tableProduct tbody > tr').click(function() {
-								var productId = $(this).attr('productId');
+							$('#tableUser tbody > tr').click(function() {
+								var userId = $(this).attr('userId');
 
-								$('#editProductId').val(productId);
-								$('#searchProductForm').submit();
+								$('#editUserId').val(userId);
+								$('#searchUserForm').submit();
 							});
 						}
           }
@@ -75,15 +74,14 @@
 <div class="container">
 	<div class="row">
 		<div class="panel panel-primary">
-			<div class="panel-heading">ค้นหา รายการสินค้า</div>
+			<div class="panel-heading">ค้นหา ผู้ใช้งาน</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-2">ชื่อสินค้า</div>
+					<div class="col-md-2">รหัสผู้ใช้</div>
 					<div class="col-md-10">
 						<input class="form-control" 
 							type="text"
-							id="productName" 
-							name="product_name"
+							id="userId"
 							autofocus/>
 					</div>
 				</div>
@@ -99,7 +97,7 @@
 		</div>
 		<div class="col-md-7"></div>
 		<div class="col-md-3">
-			<a class="btn btn-default pull-right" href="product.php?MODE=A">เพิ่มใหม่</a>
+			<a class="btn btn-default pull-right" href="register.php?MODE=A">เพิ่มใหม่</a>
       <button type="button" 
 					class="btn btn-default pull-right"
 					id="reloadPage" 
@@ -114,23 +112,21 @@
 	  </div>
 	</div>
 	<div class="table-responsive">
-		<table id="tableProduct" class="table table-bordered table-hover">
+		<table id="tableUser" class="table table-bordered table-hover">
 			<thead>
 				<tr class="success">
 					<th>#</th>
-					<th>ชื่อสินค้า</th>
-					<th>ราคาตั้ง</th>
-					<th>ทุน</th>
-					<th>ราคาเกรด S</th>
-					<th>ราคาเกรด A</th>
-					<th>ราคาเกรด B</th>
+					<th>รหัสผู้ใช้</th>
+					<th>สิทธิ</th>
+					<th>จำนวนที่กรอกรหัสผิด</th>
+					<th>วันเวลาที่เข้าใช้ระบบครั้งล่าสุด</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
 		</table>
 	</div>
-	<form id="searchProductForm" method="get" target="_self">
-		<input type="hidden" id="editProductId" name="product_id"/>
+	<form id="searchUserForm" method="get" target="_self">
+		<input type="hidden" id="editUserId" name="user_id"/>
 		<input type="hidden" id="screenMode" name="MODE" value="E"/>
 	</form>
 </div>

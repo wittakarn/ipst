@@ -2,6 +2,7 @@
 ini_set('display_errors', 1); 
 error_reporting(E_ALL);
 require_once("config.php");
+include DOCUMENT_ROOT.'include/permission.php';
 ?>
 
 <!DOCTYPE html>
