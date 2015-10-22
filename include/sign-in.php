@@ -1,12 +1,36 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+          
+								$("#nigol")
+								  .click(
+										function() {
+											if (!isInvalidateForm()) {                        
+												$("#signInForm").submit();
+											}
+										}
+								);
+								
+								function isInvalidateForm() {
+									$("#nigol").validate({
+										ignore : ""
+									});
+									return !$("#nigol").valid();
+								}
+            
+          }
+      );
+</script>
 <div 
 id="sign-in-model"
 class="modal fade bs-example-modal-sm" 
 role="dialog"
-aria-labelledby="mySmallModalLabel" 
 aria-hidden="true">
   <div class="modal-dialog modal-sm">
 	<div class="modal-content">
-		<form class="form-signin" action="<?php echo ROOT.'security/credentials.php'?>" method="post">
+		<form id="signInForm" class="form-signin" action="<?php echo ROOT.'security/credentials.php'?>" method="post">
 			<div class="modal-header">
 				<h2 class="form-signin-heading">ลงชื่อเข้าใช้งาน</h2>
 			</div>
@@ -17,9 +41,13 @@ aria-hidden="true">
 					<label for="password" class="sr-only">รหัสผ่าน</label>
 					<input type="password" name="password" class="form-control" placeholder="รหัสผ่าน" required>
 				</div>
+				<div class="g-recaptcha" 
+					data-sitekey="6Lf6VQ8TAAAAACP8DHRvi33oZb7rbnCdUv8wKGDn"
+					style="transform:scale(0.88);-webkit-transform:scale(0.88);transform-origin:0 0;-webkit-transform-origin:0 0;">
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-primary btn-block" name="nigol" type="submit">เข้าสู่ระบบ</button>
+				<button class="btn btn-primary btn-block" name="nigol" id="nigol" type="button">เข้าสู่ระบบ</button>
 			</div>
 		  </form>
 	</div>

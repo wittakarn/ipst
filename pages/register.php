@@ -48,7 +48,7 @@ include DOCUMENT_ROOT.'include/permission.php';
                                   
     <?php
 	
-		if(isset($_REQUEST['MODE'])){
+		if(isset($_REQUEST['MODE']) && $userId != null){
 			if($_REQUEST['MODE'] !== 'S'){
 				include(DOCUMENT_ROOT."/include/register-e.php");
 			}else{

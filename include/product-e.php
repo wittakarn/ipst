@@ -72,9 +72,7 @@ if(isset($_REQUEST['product_id'])){
             $("#createButton")
               .click(
               		function() {
-              			if (isInvalidateForm()) {
-              				openInvalidTab();
-              			} else {                             
+              			if (!isInvalidateForm()) {                   
               				var form = $("#productForm");
               				var action = "<?php echo ROOT."crud/create-product.php" ?>";
                                     
@@ -88,9 +86,7 @@ if(isset($_REQUEST['product_id'])){
 			$("#updateButton")
               .click(
               		function() {
-              			if (isInvalidateForm()) {
-              				openInvalidTab();
-              			} else {                             
+              			if (!isInvalidateForm()) {                
               				var form = $("#productForm");
               				var action = "<?php echo ROOT."crud/update-product.php" ?>";
                                     

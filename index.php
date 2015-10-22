@@ -22,6 +22,19 @@ include DOCUMENT_ROOT.'include/permission.php';
 
     <!-- Custom styles for this template -->
     <link href="<?php echo ROOT; ?>/style/sticky-footer-navbar.css" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo ROOT; ?>style/error.message.css" />
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="<?php echo ROOT; ?>lib/jquery/jquery-1.11.3.min.js"></script>
+    <script src="<?php echo ROOT; ?>bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.custom.message.js" type="text/javascript"></script>
+    <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
+    <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
   </head>
 
   <body>
@@ -41,12 +54,5 @@ include DOCUMENT_ROOT.'include/permission.php';
     <?php
 		include DOCUMENT_ROOT.'include/footer.php';
 	?>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<?php echo ROOT; ?>lib/jquery/jquery-1.11.3.min.js"></script>
-    <script src="<?php echo ROOT; ?>bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

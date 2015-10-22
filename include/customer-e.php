@@ -35,9 +35,7 @@ if(isset($_REQUEST['customer_id'])){
 								$("#createButton")
 								  .click(
 										function() {
-											if (isInvalidateForm()) {
-												openInvalidTab();
-											} else {                             
+											if (!isInvalidateForm()) {
 												var form = $("#customerForm");
 												var action = "<?php echo ROOT."crud/create-customer.php" ?>";
 														
@@ -51,9 +49,7 @@ if(isset($_REQUEST['customer_id'])){
 								$("#updateButton")
 								  .click(
 										function() {
-											if (isInvalidateForm()) {
-												openInvalidTab();
-											} else {                             
+											if (!isInvalidateForm()) {     
 												var form = $("#customerForm");
 												var action = "<?php echo ROOT."crud/update-customer.php" ?>";
 														

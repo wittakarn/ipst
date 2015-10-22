@@ -83,7 +83,7 @@ $indexCustomer = strpos($requestUri, 'customer.php');
 							</li>';
 				}else{
 					echo '<a href="#" onclick="$(\'#sign-in-model\').modal(\'show\')">
-							<span class="glyphicon glyphicon-log-in"></span>เข้าสู่ระบบ
+							<span class="glyphicon glyphicon-log-in"></span> เข้าสู่ระบบ
 						</a>';
 				}
 			?>
