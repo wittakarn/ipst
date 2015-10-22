@@ -21,6 +21,7 @@ $indexCustomer = strpos($requestUri, 'customer.php');
 	<div id="navbar" class="collapse navbar-collapse">
 	  <ul class="nav navbar-nav">
 		<?php
+			$menuLink = "";
 			$registerLink = "";
 			$productLink = "";
 			$customerLink = "";
@@ -63,7 +64,12 @@ $indexCustomer = strpos($requestUri, 'customer.php');
 								</li>';
 			}
 			
-			echo $registerLink.$productLink.$customerLink;
+			if($role === 'A'){
+				$menuLink = $menuLink.$registerLink;
+			}
+			$menuLink = $menuLink.$productLink.$customerLink;
+			
+			echo $menuLink;
 		?>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
