@@ -9,7 +9,8 @@ if(isset($_COOKIE['token']) && !isset($_SESSION['user_id'])) {
 	require_once DOCUMENT_ROOT.'/class/class.User.php';
 	require_once DOCUMENT_ROOT.'/class/class.AuthTokens.php';
 	$conn = DataBaseConnection::createConnect();
-	$userCookie = AuthTokens::getUserByToken($conn, $_COOKIE['token']);
+	$escapeTokenString = mysql_real_escape_string($_COOKIE['token']);
+	$userCookie = AuthTokens::getUserByToken($conn, $escapeTokenString);
 	
 	if($userCookie != null){
 		$editUser = new User($conn, $userCookie);
