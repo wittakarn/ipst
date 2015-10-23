@@ -3,6 +3,7 @@ $requestUri = $_SERVER['REQUEST_URI'];
 $indexRegister = strpos($requestUri, 'register.php');
 $indexProduct = strpos($requestUri, 'product.php');
 $indexCustomer = strpos($requestUri, 'customer.php');
+$indexQuotation = strpos($requestUri, 'quotation.php');
 ?>
 
 <!-- Fixed navbar -->
@@ -26,40 +27,50 @@ $indexCustomer = strpos($requestUri, 'customer.php');
 			$productLink = "";
 			$customerLink = "";
 			if($userId != null){
-				$cssRegisterLink = ($indexRegister > 0) ? 'active' : '';
+				$hoverLink = ($indexRegister > 0) ? 'active' : '';
 				$hrefRegisterLink = WEB_ROOT.'pages/register.php?MODE=S';
 				
-				$registerLink = '<li class="dropdown">
+				$registerLink = '<li class="dropdown '.$hoverLink.'">
 								  <a href="#" class="dropdown-toggle" 
 								  data-toggle="dropdown" role="button" 
 								  aria-haspopup="true" aria-expanded="false">ลงทะเบียน
 								  <span class="caret"></span>
 								  </a>
 								  <ul class="dropdown-menu">
-									<li class="'.$cssRegisterLink.'"><a href="'.$hrefRegisterLink.'">จัดการผู้ใช้งาน</a></li>
+									<li class="'.$hoverLink.'"><a href="'.$hrefRegisterLink.'">จัดการผู้ใช้งาน</a></li>
 								  </ul>
 								</li>';
 								
-				$cssProductLink = ($indexProduct > 0) ? 'active' : '';
+				$hoverProductLink = ($indexProduct > 0) ? 'active' : '';
 				$hrefProductLink = WEB_ROOT.'pages/product.php?MODE=S';
 				
-				$productLink = '<li class="dropdown">
+				$productLink = '<li class="dropdown '.$hoverProductLink.'">
 								  <a href="#" class="dropdown-toggle" 
 								  data-toggle="dropdown" role="button" 
 								  aria-haspopup="true" aria-expanded="false">สินค้า
 								  <span class="caret"></span></a>
 								  <ul class="dropdown-menu">
-									<li class="'.$cssProductLink.'"><a href="'.$hrefProductLink.'">จัดการสินค้า</a></li>
+									<li class="'.$hoverProductLink.'"><a href="'.$hrefProductLink.'">จัดการสินค้า</a></li>
 								  </ul>
 								</li>';
 								
-				$cssCustomerLink = ($indexCustomer > 0) ? 'active' : '';
+				$hoverCustomerLink = ($indexCustomer > 0) ? 'active' : '';
 				$hrefCustomerLink = WEB_ROOT.'pages/customer.php?MODE=S';
 				
-				$customerLink = '<li class="dropdown">
+				$customerLink = '<li class="dropdown '.$hoverCustomerLink.'">
 								  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ลูกค้า<span class="caret"></span></a>
 								  <ul class="dropdown-menu">
-									<li class="'.$cssCustomerLink.'"><a href="'.$hrefCustomerLink.'">จัดการลูกค้า</a></li>
+									<li class="'.$hoverCustomerLink.'"><a href="'.$hrefCustomerLink.'">จัดการลูกค้า</a></li>
+								  </ul>
+								</li>';
+								
+				$hoverQuotationLink = ($indexQuotation > 0) ? 'active' : '';
+				$hrefQuotationLink = WEB_ROOT.'pages/quotation.php?MODE=C';
+				
+				$quotationLink = '<li class="dropdown '.$hoverQuotationLink.'">
+								  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ขายสินค้า<span class="caret"></span></a>
+								  <ul class="dropdown-menu">
+									<li class="'.$hoverQuotationLink.'"><a href="'.$hrefQuotationLink.'">ใบเสนอราคา</a></li>
 								  </ul>
 								</li>';
 			}
@@ -67,7 +78,7 @@ $indexCustomer = strpos($requestUri, 'customer.php');
 			if($role === 'A'){
 				$menuLink = $menuLink.$registerLink;
 			}
-			$menuLink = $menuLink.$productLink.$customerLink;
+			$menuLink = $menuLink.$productLink.$customerLink.$quotationLink;
 			
 			echo $menuLink;
 		?>

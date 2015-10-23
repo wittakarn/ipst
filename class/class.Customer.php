@@ -26,7 +26,17 @@ class Customer
 
 	public static function read($conn, $customerName){
 		$query = "SELECT customer_id, customer_name, address, tel, contact FROM customer WHERE customer_name LIKE :customer_name ";
-    $order = "ORDER BY customer_name";
+		$order = "ORDER BY customer_name";
+		$stmt = $conn->prepare($query.$order); 
+		$stmt->bindValue(":customer_name", '%'.$customerName.'%', PDO::PARAM_STR);
+
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	public static function suggestText($conn, $customerName){
+		$query = "SELECT customer_id, customer_name, address, tel, email, contact FROM customer WHERE customer_name LIKE :customer_name ";
+		$order = "ORDER BY customer_name";
 		$stmt = $conn->prepare($query.$order); 
 		$stmt->bindValue(":customer_name", '%'.$customerName.'%', PDO::PARAM_STR);
 

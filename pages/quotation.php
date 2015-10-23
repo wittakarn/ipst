@@ -15,13 +15,14 @@ include DOCUMENT_ROOT.'include/permission.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>จัดการสินค้า</title>
+    <title>ใบเสนอราคา</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
     <link href="<?php echo ROOT; ?>/style/sticky-footer-navbar.css" rel="stylesheet"/>
+	<link href="<?php echo ROOT; ?>/style/jquery-ui.min.css" rel="stylesheet"/>
     
     
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT; ?>style/error.message.css" />
@@ -29,6 +30,7 @@ include DOCUMENT_ROOT.'include/permission.php';
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="<?php echo ROOT; ?>lib/jquery/jquery-1.11.3.min.js"></script>
+	<script src="<?php echo ROOT; ?>lib/jquery/jquery-ui-1.11.3.min.js"></script>
     <script src="<?php echo ROOT; ?>bootstrap/dist/js/bootstrap.min.js"></script>
     
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.min.js" type="text/javascript"></script>
@@ -48,10 +50,10 @@ include DOCUMENT_ROOT.'include/permission.php';
     <?php
 	
 		if(isset($_REQUEST['MODE']) && $userId != null){
-			if($_REQUEST['MODE'] !== 'S'){
-				include(DOCUMENT_ROOT."/include/product-e.php");
+			if($_REQUEST['MODE'] === 'S'){
+				include(DOCUMENT_ROOT."/include/quotation-s.php");
 			}else{
-				include(DOCUMENT_ROOT."/include/product-q.php");
+				include(DOCUMENT_ROOT."/include/quotation-c.php");
 			}
 		}
 		

@@ -18,10 +18,10 @@ include DOCUMENT_ROOT.'include/permission.php';
     <title>จัดการผู้ใช้งาน</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo ROOT; ?>/style/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="<?php echo ROOT; ?>/style/sticky-footer-navbar.css" rel="stylesheet"/>
     
     
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT; ?>style/error.message.css" />
