@@ -55,6 +55,16 @@ class User
 		$stmt->execute();
 	}
 	
+	public function updateLastLoginDatetimeByToken(){
+		$params = $this->requests;
+		$db = $this->dbh;
+		$query = "UPDATE user SET lasted_login_datetime=SYSDATE() WHERE user_id=:user_id";
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(":user_id", $params['user_id'], PDO::PARAM_STR);
+	
+		$stmt->execute();
+	}
+	
 	public function updatePasswordCount(){
 		$params = $this->requests;
 		$db = $this->dbh;

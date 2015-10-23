@@ -2,7 +2,22 @@
 require_once "../config.php";
 
 session_start();
+
+if(isset($_COOKIE['token'])) {
+	require_once DOCUMENT_ROOT.'/connection.php';
+	require_once DOCUMENT_ROOT.'/class/class.AuthTokens.php';
+	$conn = DataBaseConnection::createConnect();
+
+	$deleteAuthTokens = array("token" => $_COOKIE['token']);
+	$authTokens = new AuthTokens($conn, $deleteAuthTokens);
+	$authTokens->delete();
+	
+	$conn = null;
+}
+
 session_destroy();
+
+setcookie('token', '', time() - COOKIES_ALIVE, MAIN_APP_ROOT);
 
 ?>
 <!DOCTYPE HTML>

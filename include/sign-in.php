@@ -40,6 +40,7 @@ aria-hidden="true">
 					<input type="text" name="user_id" class="form-control" placeholder="รหัสผู้ใช้" required autofocus>
 					<label for="password" class="sr-only">รหัสผ่าน</label>
 					<input type="password" name="password" class="form-control" placeholder="รหัสผ่าน" required>
+					<label class="checkbox-inline"><input type="checkbox" value="R" name="rememberme" checked>จดจำฉันไว้ในระบบ</label>
 				</div>
 				<div class="g-recaptcha" 
 					data-sitekey="6Lf6VQ8TAAAAACP8DHRvi33oZb7rbnCdUv8wKGDn"
