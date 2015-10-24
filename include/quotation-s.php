@@ -8,26 +8,11 @@ if(isset($_REQUEST['MODE'])){
 
 if(isset($_REQUEST['customer_id'])){
 	$conn = DataBaseConnection::createConnect();
-	$customerEdit =  Customer::get($conn, $_REQUEST['customer_id']);
+	$customerSelected =  Customer::get($conn, $_REQUEST['customer_id']);
 	$conn = null;
 }
 ?>
 <script type="text/javascript">
-	$(document).keypress(function(event){
-	
-		var keycode = (event.keyCode ? event.keyCode : event.which);
-		if(keycode == '13'){
-			<?php
-				if($screenMode === 'A'){
-					echo '$("#createButton").click();';
-				}else{
-					echo '$("#updateButton").click();';
-				}
-			?>
-		}
-		
-	});
-
 	$(document)
 			.ready(
 					function() {
@@ -84,74 +69,12 @@ if(isset($_REQUEST['customer_id'])){
 <div class="container">
   <form id="customerForm" method="post" enctype="multipart/form-data">
     <div class="row">
-  		<div class="panel panel-primary">
-  			<div class="panel-heading">เพิ่ม/แก้ไข ลูกค้า</div>
-  			<div class="panel-body">
-  				<div class="row">
-  					<div class="col-md-2">ชื่อลูกค้า</div>
-  					<div class="col-md-6">
-  						<input class="form-control" 
-  							type="text"
-  							id="customerName" 
-  							name="customer_name"
-							required
-							autofocus
-							value="<?php echo isset($customerEdit) ? $customerEdit['customer_name'] : ''?>"/>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">ที่อยู่</div>
-  					<div class="col-md-6">
-  						<input class="form-control" 
-  							type="text"
-  							id="address" 
-  							name="address"
-							value="<?php echo isset($customerEdit) ? $customerEdit['address'] : ''?>"/>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">เบอร์โทรศัพท์ (tel)</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="tel" 
-  							name="tel"
-							value="<?php echo isset($customerEdit) ? $customerEdit['tel'] : ''?>"/>
-  					</div>
-  				</div>
-				<div class="row">
-  					<div class="col-md-2">แฟกซ์ (fax)</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="fax" 
-  							name="fax"
-							value="<?php echo isset($customerEdit) ? $customerEdit['fax'] : ''?>"/>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">Email</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="email" 
-  							name="email"
-							email="true"
-							value="<?php echo isset($customerEdit) ? $customerEdit['email'] : ''?>"/>
-  					</div>
-  				</div>
-          <div class="row">
-  					<div class="col-md-2">ติดต่อ (contact)</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="contact" 
-  							name="contact"
-							value="<?php echo isset($customerEdit) ? $customerEdit['contact'] : ''?>"/>
-  					</div>
-  				</div>
-  			</div>
-  		</div>
+		<div class="col-md-6">
+			<?php include(DOCUMENT_ROOT."/include/quotation-detail-p.php"); ?>
+		</div>
+		<div class="col-md-6">
+			<?php include(DOCUMENT_ROOT."/include/quotation-detail-c.php"); ?>
+		</div>
   	</div>
     <div class="row">
       <div class="col-md-12">
@@ -197,7 +120,7 @@ if(isset($_REQUEST['customer_id'])){
   			</button>
   		</div>
   	</div>
-	<input type="hidden" name="customer_id" value="<?php echo isset($customerEdit) ? $customerEdit['customer_id'] : ''?>"/>
+	<input type="hidden" name="customer_id" value="<?php echo isset($customerSelected) ? $customerSelected['customer_id'] : ''?>"/>
   </form>
 </div>
 <div class="modal fade" id="confirmDeleteModel" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel">

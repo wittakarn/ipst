@@ -12,7 +12,7 @@ class Customer
 	public function create(){
 		$params = $this->requests;
 		$db = $this->dbh;
-		$query = "INSERT INTO customer(customer_name, address, tel, fax, email, contact) VALUES (:customer_name, :address, :tel, :fax, :email, :contact)";
+		$query = "INSERT INTO customer(customer_name, address, tel, fax, email, contact, grade) VALUES (:customer_name, :address, :tel, :fax, :email, :contact, :grade)";
 		$stmt = $db->prepare($query);
 		$stmt->bindParam(":customer_name", $params['customer_name'], PDO::PARAM_STR);
 		$stmt->bindParam(":address", $params['address'], PDO::PARAM_STR); 
@@ -20,12 +20,13 @@ class Customer
 		$stmt->bindParam(":fax", $params['fax'], PDO::PARAM_STR); 
 		$stmt->bindParam(":email", $params['email'], PDO::PARAM_STR);
 		$stmt->bindParam(":contact", $params['contact'], PDO::PARAM_STR); 
+		$stmt->bindParam(":grade", $params['grade'], PDO::PARAM_STR);
 	
 		$stmt->execute();
 	}
 
 	public static function read($conn, $customerName){
-		$query = "SELECT customer_id, customer_name, address, tel, contact FROM customer WHERE customer_name LIKE :customer_name ";
+		$query = "SELECT customer_id, customer_name, address, tel, contact, grade FROM customer WHERE customer_name LIKE :customer_name ";
 		$order = "ORDER BY customer_name";
 		$stmt = $conn->prepare($query.$order); 
 		$stmt->bindValue(":customer_name", '%'.$customerName.'%', PDO::PARAM_STR);
@@ -35,7 +36,7 @@ class Customer
 	}
 	
 	public static function suggestText($conn, $customerName){
-		$query = "SELECT customer_id, customer_name, address, tel, email, contact FROM customer WHERE customer_name LIKE :customer_name ";
+		$query = "SELECT customer_id, customer_name, address, tel, email, contact, grade FROM customer WHERE customer_name LIKE :customer_name ";
 		$order = "ORDER BY customer_name";
 		$stmt = $conn->prepare($query.$order); 
 		$stmt->bindValue(":customer_name", '%'.$customerName.'%', PDO::PARAM_STR);
@@ -47,7 +48,7 @@ class Customer
 	public function update(){
 		$params = $this->requests;
 		$db = $this->dbh;
-		$query = "UPDATE customer SET customer_name=:customer_name,address=:address,tel=:tel,fax=:fax,email=:email,contact=:contact WHERE customer_id=:customer_id";
+		$query = "UPDATE customer SET customer_name=:customer_name,address=:address,tel=:tel,fax=:fax,email=:email,contact=:contact,grade=:grade WHERE customer_id=:customer_id";
 		$stmt = $db->prepare($query);
 		$stmt->bindParam(":customer_id", $params['customer_id'], PDO::PARAM_INT); 
 		$stmt->bindParam(":customer_name", $params['customer_name'], PDO::PARAM_STR);
@@ -55,7 +56,8 @@ class Customer
 		$stmt->bindParam(":tel", $params['tel'], PDO::PARAM_STR); 
 		$stmt->bindParam(":fax", $params['fax'], PDO::PARAM_STR); 
 		$stmt->bindParam(":email", $params['email'], PDO::PARAM_STR);
-		$stmt->bindParam(":contact", $params['contact'], PDO::PARAM_STR);  
+		$stmt->bindParam(":contact", $params['contact'], PDO::PARAM_STR);
+		$stmt->bindParam(":grade", $params['grade'], PDO::PARAM_STR);
 	
 		$stmt->execute();
 	}

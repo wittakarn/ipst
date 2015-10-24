@@ -84,6 +84,10 @@
 														$('<td>')
 																.html(
 																		data[i]["contact"]))
+												.append(
+														$('<td>')
+																.html(
+																		data[i]["grade"]))
 												);
 							}
 							setEvent();
@@ -151,6 +155,7 @@
 					<th>ที่อยู่</th>
 					<th>เบอร์โทรศัพท์</th>
 					<th>ติดต่อ</th>
+					<th>ระดับ</th>
 				</tr>
 			</thead>
 			<tbody></tbody>

@@ -140,7 +140,7 @@ if(isset($_REQUEST['customer_id'])){
 							value="<?php echo isset($customerEdit) ? $customerEdit['email'] : ''?>"/>
   					</div>
   				</div>
-          <div class="row">
+				<div class="row">
   					<div class="col-md-2">ติดต่อ (contact)</div>
   					<div class="col-md-3">
   						<input class="form-control" 
@@ -148,6 +148,16 @@ if(isset($_REQUEST['customer_id'])){
   							id="contact" 
   							name="contact"
 							value="<?php echo isset($customerEdit) ? $customerEdit['contact'] : ''?>"/>
+  					</div>
+  				</div>
+				<div class="row">
+  					<div class="col-md-2">ระดับ</div>
+  					<div class="col-md-3">
+  						<select class="form-control" name="grade">
+							<option <?php echo (isset($customerEdit) && $customerEdit['grade'] ==='s') ? 'selected' : ''; ?>>s</option>
+							<option <?php echo (isset($customerEdit) && $customerEdit['grade'] ==='a') ? 'selected' : ''; ?>>a</option>
+							<option <?php echo (isset($customerEdit) && $customerEdit['grade'] ==='b') ? 'selected' : ''; ?>>b</option>
+						</select>
   					</div>
   				</div>
   			</div>

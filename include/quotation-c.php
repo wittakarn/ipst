@@ -11,19 +11,25 @@ if(isset($_REQUEST['MODE'])){
 $(document).keypress(function(event){
 
 	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if(keycode == '13'){
-		<?php
-			if($screenMode === 'A'){
-				echo '$("#createButton").click();';
-			}else{
-				echo '$("#updateButton").click();';
-			}
-		?>
+	var customerIdSelected = $( "#customerId" ).val();
+	
+	if(keycode == '13' && customerIdSelected != null || customerIdSelected != ""){
+		$("#confiemCompanyButton").click();
 	}
 	
 });
 
 $(document).ready(function() {
+	
+	$("#confiemCompanyButton").click(
+		function() {
+			if (!isInvalidateForm()) {                   
+				var form = $("#customerForm");
+				form.submit();
+			}
+		}
+	);
+	
 	$( "#customerName" ).autocomplete({
 		source: customersSuggestion,
 		minLength: 2,                            
@@ -51,6 +57,7 @@ $(document).ready(function() {
 		var tel = "";
 		var email = "";
 		var contact = "";
+		var grade = "";
 
 		var respObj = ui.item;
 		if(respObj != null){
@@ -60,9 +67,11 @@ $(document).ready(function() {
 			tel = respObj.tel;
 			email = respObj.email;
 			contact = respObj.contact;
+			grade = respObj.grade;
 		}
 
-		$( "#customerNameSummary" ).html(customerName);
+		$( "#customerId" ).val(customerId);
+		$( "#customerNameSummary" ).html(customerName.concat('<abbr title="ระดับของลูกค้า" class="text-uppercase">(').concat(grade).concat(')</abbr>'));
 		$( "#addressSummary" ).html(address);
 		$( "#telSummary" ).html(tel);
 		$( "#emailSummary" ).html(email);
@@ -78,10 +87,18 @@ $(document).ready(function() {
 				address: item.address,
 				tel: item.tel,
 				email: item.email,
-				contact: item.contact
+				contact: item.contact,
+				grade: item.grade
 			}
 		});
 		return response(responseArr);
+	}
+	
+	function isInvalidateForm() {
+		$("#customerForm").validate({
+			ignore : ""
+		});
+		return !$("#customerForm").valid();
 	}
 });
 </script>
@@ -89,7 +106,7 @@ $(document).ready(function() {
   <form id="customerForm" 
 		method="post" 
 		target="_self"
-		action="">
+		action="quotation.php?MODE=S">
     <div class="row">
   		<div class="panel panel-primary">
   			<div class="panel-heading">เลือกลูกค้า</div>
@@ -112,6 +129,7 @@ $(document).ready(function() {
 							<div class="row">
 								<div class="col-md-12">
 									<u>รายละเอียดลูกค้า</u>
+									<input type="hidden" name="customer_id" id="customerId" required/>
 								</div>
 							</div>
 							<div class="row">
@@ -159,6 +177,5 @@ $(document).ready(function() {
   			</button>
   		</div>
   	</div>
-	<input type="hidden" name="customer_id" value="<?php echo isset($customerEdit) ? $customerEdit['customer_id'] : ''?>"/>
   </form>
 </div>
