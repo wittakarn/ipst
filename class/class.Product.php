@@ -9,10 +9,10 @@ class Product
 		$this->dbh = $conn;
 	}
   
-	public function create(){
+	public function create($image){
 		$params = $this->requests;
 		$db = $this->dbh;
-		$query = "INSERT INTO product(product_name, unit_name, standard_price, capital_price, s_price, a_price, b_price) VALUES (:product_name, :unit_name, :standard_price, :capital_price, :s_price, :a_price, :b_price)";
+		$query = "INSERT INTO product(product_name, unit_name, standard_price, capital_price, s_price, a_price, b_price, image_blob) VALUES (:product_name, :unit_name, :standard_price, :capital_price, :s_price, :a_price, :b_price, :image_blob)";
 		$stmt = $db->prepare($query);
 		$stmt->bindParam(":product_name", $params['product_name'], PDO::PARAM_STR); 
 		$stmt->bindParam(":unit_name", $params['unit_name'], PDO::PARAM_STR);
@@ -21,6 +21,7 @@ class Product
 		$stmt->bindValue(":s_price", str_replace(",", "", $params['s_price']), PDO::PARAM_STR);
 		$stmt->bindValue(":a_price", str_replace(",", "", $params['a_price']), PDO::PARAM_STR); 
 		$stmt->bindValue(":b_price", str_replace(",", "", $params['b_price']), PDO::PARAM_STR);
+		$stmt->bindParam(":image_blob", $image, PDO::PARAM_LOB);
 	
 		$stmt->execute();
 	}
@@ -66,14 +67,25 @@ class Product
 		$query = "UPDATE product SET product_name=:product_name,unit_name=:unit_name,standard_price=:standard_price,capital_price=:capital_price,s_price=:s_price,a_price=:a_price,b_price=:b_price WHERE product_id=:product_id";
 		$stmt = $db->prepare($query);
 		$stmt->bindParam(":product_id", $params['product_id'], PDO::PARAM_INT);
-    $stmt->bindParam(":product_name", $params['product_name'], PDO::PARAM_STR); 
+		$stmt->bindParam(":product_name", $params['product_name'], PDO::PARAM_STR); 
 		$stmt->bindParam(":unit_name", $params['unit_name'], PDO::PARAM_STR);
 		$stmt->bindParam(":standard_price", $params['standard_price'], PDO::PARAM_STR);
 		$stmt->bindParam(":capital_price", $params['capital_price'], PDO::PARAM_STR);
 		$stmt->bindValue(":s_price", str_replace(",", "", $params['s_price']), PDO::PARAM_STR);
 		$stmt->bindValue(":a_price", str_replace(",", "", $params['a_price']), PDO::PARAM_STR); 
 		$stmt->bindValue(":b_price", str_replace(",", "", $params['b_price']), PDO::PARAM_STR); 
+		$stmt->execute();
+	}
 	
+	public function updateImage($image){
+		$params = $this->requests;
+		$db = $this->dbh;
+		
+		$query = "UPDATE product SET image_blob=:image_blob WHERE product_id=:product_id";
+		$stmt = $db->prepare($query);
+		$stmt->bindParam(":product_id", $params['product_id'], PDO::PARAM_INT);
+		$stmt->bindParam(":image_blob", $image, PDO::PARAM_LOB);
+		
 		$stmt->execute();
 	}
 	

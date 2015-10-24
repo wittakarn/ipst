@@ -39,10 +39,11 @@ $(document).ready(function() {
 			bPrice = respObj.bPrice;
 		}
 
-		$( "#productId" ).val(productId);
+		$( "#existProductId" ).val(productId);
 		$( "#productModifyName" ).val(productName);
 		$( "#productModifyPrice" ).val(<?php echo $customerSelected['grade'].'Price';?>);   
-		$( ".display-unit-name" ).html(unitName);		
+		$( ".label-unit-name" ).html(unitName);		
+		$( ".label-price-per-unit-name" ).html("บาท/".concat(unitName));
 	}
 	
 	function productsResponseSuggestion(response, data){
@@ -71,14 +72,7 @@ $(document).ready(function() {
 					type="text"
 					id="productSuggestName"
 					autofocus/>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-2">ชื่อแสดง</div>
-			<div class="col-md-10">
-				<input class="form-control" 
-					type="text"
-					id="productModifyName"/>
+				<input type="hidden" id="existProductId" required/>
 			</div>
 		</div>
 		<div class="row">
@@ -88,7 +82,9 @@ $(document).ready(function() {
 					type="text"
 					id="productModifyQuantity"/>
 			</div>
-			<div class="col-md-7"></div>
+			<div class="col-md-7">
+				<p class="label-unit-name"></p>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-2">ราคา</div>
@@ -97,7 +93,9 @@ $(document).ready(function() {
 					type="text"
 					id="productModifyPrice"/>
 			</div>
-			<div class="col-md-7"></div>
+			<div class="col-md-7">
+				<p class="label-price-per-unit-name"></p>
+			</div>
 		</div>
 	</div>
 </div>

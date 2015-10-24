@@ -72,7 +72,8 @@ if(isset($_REQUEST['product_id'])){
             $("#createButton")
               .click(
               		function() {
-              			if (!isInvalidateForm()) {                   
+              			if (!isInvalidateForm()) {
+							$.blockUI();
               				var form = $("#productForm");
               				var action = "<?php echo ROOT."crud/create-product.php" ?>";
                                     
@@ -86,7 +87,8 @@ if(isset($_REQUEST['product_id'])){
 			$("#updateButton")
               .click(
               		function() {
-              			if (!isInvalidateForm()) {                
+              			if (!isInvalidateForm()) {
+							$.blockUI();
               				var form = $("#productForm");
               				var action = "<?php echo ROOT."crud/update-product.php" ?>";
                                     
@@ -124,80 +126,96 @@ if(isset($_REQUEST['product_id'])){
   		<div class="panel panel-primary">
   			<div class="panel-heading">เพิ่ม/แก้ไข รายการสินค้า</div>
   			<div class="panel-body">
-  				<div class="row">
-  					<div class="col-md-2">ชื่อสินค้า</div>
-  					<div class="col-md-6">
-  						<input class="form-control" 
-  							type="text"
-  							id="productName" 
-  							name="product_name"
-							required
-							autofocus
-							value="<?php echo isset($productEdit) ? $productEdit['product_name'] : ''?>"/>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">หน่วยสินค้า</div>
-  					<div class="col-md-4">
-  						<select class="form-control" id="unitName" name="unit_name">
-  						</select>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">ราคาตั้ง</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="standardPrice" 
-  							name="standard_price"
-							number="true"
-							value="<?php echo isset($productEdit) ? $productEdit['standard_price'] : ''?>"/>
-  					</div>
-  				</div>
 				<div class="row">
-  					<div class="col-md-2">ทุน</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="capitalPrice" 
-  							name="capital_price"
-							number="true"
-							value="<?php echo isset($productEdit) ? $productEdit['capital_price'] : ''?>"/>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">ราคาลูกค้าเกรด S</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="sPrice" 
-  							name="s_price"
-							number="true"
-							value="<?php echo isset($productEdit) ? $productEdit['s_price'] : ''?>"/>
-  					</div>
-  				</div>
-          <div class="row">
-  					<div class="col-md-2">ราคาลูกค้าเกรด A</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="aPrice" 
-  							name="a_price"
-							number="true"
-							value="<?php echo isset($productEdit) ? $productEdit['a_price'] : ''?>"/>
-  					</div>
-  				</div>
-  				<div class="row">
-  					<div class="col-md-2">ราคาลูกค้าเกรด B</div>
-  					<div class="col-md-3">
-  						<input class="form-control" 
-  							type="text"
-  							id="bPrice" 
-  							name="b_price"
-							number="true"
-							value="<?php echo isset($productEdit) ? $productEdit['b_price'] : ''?>"/>
-  					</div>
-  				</div>
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-3">ชื่อสินค้า</div>
+							<div class="col-md-9">
+								<input class="form-control" 
+									type="text"
+									id="productName" 
+									name="product_name"
+									required
+									autofocus
+									value='<?php echo isset($productEdit) ? $productEdit["product_name"] : ""?>'/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">หน่วยสินค้า</div>
+							<div class="col-md-5">
+								<select class="form-control" id="unitName" name="unit_name">
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">ราคาตั้ง</div>
+							<div class="col-md-3">
+								<input class="form-control text-right" 
+									type="text"
+									id="standardPrice" 
+									name="standard_price"
+									number="true"
+									value="<?php echo isset($productEdit) ? $productEdit['standard_price'] : ''?>"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">ทุน</div>
+							<div class="col-md-3">
+								<input class="form-control text-right" 
+									type="text"
+									id="capitalPrice" 
+									name="capital_price"
+									number="true"
+									value="<?php echo isset($productEdit) ? $productEdit['capital_price'] : ''?>"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">ราคาลูกค้าเกรด S</div>
+							<div class="col-md-3">
+								<input class="form-control text-right" 
+									type="text"
+									id="sPrice" 
+									name="s_price"
+									number="true"
+									value="<?php echo isset($productEdit) ? $productEdit['s_price'] : ''?>"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">ราคาลูกค้าเกรด A</div>
+							<div class="col-md-3">
+								<input class="form-control text-right" 
+									type="text"
+									id="aPrice" 
+									name="a_price"
+									number="true"
+									value="<?php echo isset($productEdit) ? $productEdit['a_price'] : ''?>"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">ราคาลูกค้าเกรด B</div>
+							<div class="col-md-3">
+								<input class="form-control text-right" 
+									type="text"
+									id="bPrice" 
+									name="b_price"
+									number="true"
+									value="<?php echo isset($productEdit) ? $productEdit['b_price'] : ''?>"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">ไฟล์ภาพ</div>
+							<div class="col-md-9">
+								<input type="file" 
+									class="form-control" 
+									name="image_blob"
+									id="imageBlob"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<img src="data:image/jpeg;base64,<?php echo base64_encode($productEdit["image_blob"]); ?>" class="img-responsive">
+					</div>
+				</div>
   			</div>
   		</div>
   	</div>

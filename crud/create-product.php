@@ -16,8 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   
 		if(isset($_REQUEST['product_name'])){
 			$product = new Product($conn, $_REQUEST);
-      $product->create();
-    }
+			$fp = null;
+			if(isset($_FILES['image_blob']) && $_FILES['image_blob']['size'] > 0){ 
+				$tmpName = $_FILES['image_blob']['tmp_name'];
+				$fp = fopen($tmpName, 'rb'); // read binary
+			} 
+			$product->create($fp);
+		}
   
 		$conn->commit();
 	} catch (PDOException $e) {

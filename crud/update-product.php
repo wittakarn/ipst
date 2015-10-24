@@ -13,9 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   
 		if(isset($_REQUEST['product_id'])){
 			$product = new Product($conn, $_REQUEST);
+			
 			$product->update();
+			$fp = null;
+			if(isset($_FILES['image_blob']) && $_FILES['image_blob']['size'] > 0){ 
+				$tmpName = $_FILES['image_blob']['tmp_name'];
+				$fp = fopen($tmpName, 'rb'); // read binary
+			} 
+			if($fp != null){
+				$product->updateImage($fp);
+			}
+			
 		}
-
 		$conn->commit();
 	} catch (PDOException $e) {
 		$conn->rollBack();
