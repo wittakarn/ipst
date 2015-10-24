@@ -37,6 +37,15 @@ include DOCUMENT_ROOT.'include/permission.php';
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.custom.message.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
+	
+	<style>
+		.ui-autocomplete {
+			max-height: 300px;
+			overflow-y: auto;
+			/* prevent horizontal scrollbar */
+			overflow-x: hidden;
+		}
+	</style>
   </head>
 
   <body>

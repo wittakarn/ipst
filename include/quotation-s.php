@@ -12,60 +12,6 @@ if(isset($_REQUEST['customer_id'])){
 	$conn = null;
 }
 ?>
-<script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-          
-								$("#createButton")
-								  .click(
-										function() {
-											if (!isInvalidateForm()) {
-												var form = $("#customerForm");
-												var action = "<?php echo ROOT."crud/create-customer.php" ?>";
-														
-												form.attr('action', action);
-												form.attr('target', '_self');
-												form.submit();
-											}
-										}
-								);
-								
-								$("#updateButton")
-								  .click(
-										function() {
-											if (!isInvalidateForm()) {     
-												var form = $("#customerForm");
-												var action = "<?php echo ROOT."crud/update-customer.php" ?>";
-														
-												form.attr('action', action);
-												form.attr('target', '_self');
-												form.submit();
-											}
-										}
-								);
-								
-								$("#deleteButton")
-									.click(
-										function() {
-											var form = $("#customerForm");
-											var action = "<?php echo ROOT."crud/delete-customer.php" ?>";
-
-											form.attr('action', action);
-											form.attr('target', '_self');
-											form.submit();
-										});
-								
-								function isInvalidateForm() {
-									$("#customerForm").validate({
-										ignore : ""
-									});
-									return !$("#customerForm").valid();
-								}
-            
-          }
-      );
-</script>
 <div class="container">
   <form id="customerForm" method="post" enctype="multipart/form-data">
     <div class="row">
@@ -111,7 +57,7 @@ if(isset($_REQUEST['customer_id'])){
 								</button>';
 				}
 			?>
-			<a class="btn btn-default pull-right" href="customer.php?MODE=S">ย้อนกลับ</a>
+			<a class="btn btn-default pull-right" href="quotation.php?MODE=C">ย้อนกลับ</a>
 			<button type="button" 
   					class="btn btn-default pull-right"
   					id="reloadPage" 
