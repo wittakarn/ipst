@@ -22,6 +22,11 @@ if(isset($_REQUEST['customer_id'])){
 			<?php include(DOCUMENT_ROOT."/include/quotation-detail-c.php"); ?>
 		</div>
   	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<?php include(DOCUMENT_ROOT."/include/quotation-detail-t.php"); ?>
+		</div>
+  	</div>
     <div class="row">
       <div class="col-md-12">
         <hr/>
