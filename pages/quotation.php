@@ -23,6 +23,7 @@ include DOCUMENT_ROOT.'include/permission.php';
     <!-- Custom styles for this template -->
     <link href="<?php echo ROOT; ?>/style/sticky-footer-navbar.css" rel="stylesheet"/>
 	<link href="<?php echo ROOT; ?>/style/jquery-ui.min.css" rel="stylesheet"/>
+	<link href="<?php echo ROOT; ?>/style/bootstrap-table.css" rel="stylesheet"/>
     
     
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT; ?>style/error.message.css" />

@@ -15,10 +15,10 @@ if(isset($_REQUEST['customer_id'])){
 <div class="container">
   <form id="customerForm" method="post" enctype="multipart/form-data">
     <div class="row">
-		<div class="col-md-6">
+		<div class="col-md-7">
 			<?php include(DOCUMENT_ROOT."/include/quotation-detail-p.php"); ?>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-5">
 			<?php include(DOCUMENT_ROOT."/include/quotation-detail-c.php"); ?>
 		</div>
   	</div>

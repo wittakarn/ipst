@@ -133,55 +133,71 @@ $(document).ready(function() {
 	<div class="panel-heading">เพิ่มรายการสินค้า</div>
 	<div class="panel-body">
 		<div class="row">
-			<div class="col-md-2">ชื่อสินค้า</div>
-			<div class="col-md-10">
-				<input class="form-control" 
-					type="text"
-					id="productSuggestName"
-					autofocus/>
-				<input type="hidden" id="existProductId" required/>
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-md-2">ชื่อสินค้า</div>
+					<div class="col-md-10">
+						<input class="form-control" 
+							type="text"
+							id="productSuggestName"
+							autofocus/>
+						<input type="hidden" id="existProductId" required/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">จำนวน</div>
+					<div class="col-md-3">
+						<input class="form-control" 
+							type="text"
+							id="productModifyQuantity"
+							digit="true"/>
+					</div>
+					<div class="col-md-7">
+						<p class="label-unit-name"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">ราคา</div>
+					<div class="col-md-3">
+						<input class="form-control" 
+							type="text"
+							id="productModifyPrice"
+							number="true"/>
+					</div>
+					<div class="col-md-7">
+						<p class="label-price-per-unit-name"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">
+						<button type="button" 
+								class="btn btn-default"
+								id="addDateToTableButton">
+								เพิ่ม
+						</button>
+					</div>
+					<div class="col-md-8">
+					</div>
+					<div class="col-md-2">
+						<button type="button" 
+								class="btn btn-default"
+								id="resetButton">
+								ล้าง
+						</button>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-2">จำนวน</div>
 			<div class="col-md-3">
-				<input class="form-control" 
-					type="text"
-					id="productModifyQuantity"
-					digit="true"/>
-			</div>
-			<div class="col-md-7">
-				<p class="label-unit-name"></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-2">ราคา</div>
-			<div class="col-md-3">
-				<input class="form-control" 
-					type="text"
-					id="productModifyPrice"
-					number="true"/>
-			</div>
-			<div class="col-md-7">
-				<p class="label-price-per-unit-name"></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-				<button type="button" 
-						class="btn btn-default"
-						id="addDateToTableButton">
-						เพิ่ม
-				</button>
-			</div>
-			<div class="col-md-8">
-			</div>
-			<div class="col-md-2">
-				<button type="button" 
-						class="btn btn-default"
-						id="resetButton">
-						ล้าง
-				</button>
+				<table id="tableQuotationDetail" class="table table-fixed">
+					<thead>
+						<tr class="success">
+							<th class="col-md-6">วันที่</th>
+							<th class="col-md-6">ราคา</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
