@@ -98,8 +98,9 @@ $(document).ready(function() {
 					.append($('<td>').html(1))
 					.append(
 							$('<td>')
-									.html(
-											data["product_name"]))
+									.append($('<input type="text" class="form-control"/>')
+																		.attr("value", data["product_name"])
+																		.attr("name", "product_name[]")))
 					.append(
 							$('<td align="right">')
 									.html(
@@ -188,7 +189,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="col-md-3">
-				<table id="tableQuotationDetail" class="table table-fixed">
+				<table id="soldPrice" class="table table-fixed">
 					<thead>
 						<tr class="success">
 							<th class="col-md-6">วันที่</th>
