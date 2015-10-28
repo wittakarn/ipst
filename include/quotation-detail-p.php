@@ -94,8 +94,8 @@ $(document).ready(function() {
 		
 		tbody
 			.append($(
-					'<tr style="cursor: pointer;" productId="' + data["product_id"] + '">')
-					.append($('<td>').html(1))
+					'<tr productId="' + data["product_id"] + '">')
+					.append($('<td>').html(''))
 					.append(
 							$('<td>')
 									.append($('<input type="text" class="form-control"/>')
@@ -117,7 +117,49 @@ $(document).ready(function() {
 							$('<td align="right">')
 									.html(
 											data["summary"]))
+					.append(
+							$('<td>')
+									.html('<span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="cursor: pointer;" />'))
+					.append(
+							$('<td>')
+									.html('<span class="glyphicon glyphicon-arrow-down" aria-hidden="true" style="cursor: pointer;" />'))
+					.append(
+							$('<td>')
+									.html('<span class="glyphicon glyphicon-remove" aria-hidden="true" style="cursor: pointer;" />'))
 					);
+		addTableQuotationDetailEvent();
+	}
+	
+	function addTableQuotationDetailEvent(){
+		$(".glyphicon-arrow-up").unbind();
+		$(".glyphicon-arrow-down").unbind();
+		
+		$(".glyphicon-arrow-up")
+		.click(
+			function() {
+				var currentRow = $(this).parent().parent();
+				var previousRow = currentRow.prev();
+				previousRow.before(currentRow);
+			}
+		);
+		
+		$(".glyphicon-arrow-down")
+		.click(
+			function() {
+				var currentRow = $(this).parent().parent();
+				var nextRow = currentRow.next();
+				
+				nextRow.after(currentRow);
+			}
+		);
+		
+		$(".glyphicon-remove")
+		.click(
+			function() {
+				var currentRow = $(this).parent().parent();
+				currentRow.remove();
+			}
+		);
 	}
 	
 	function clearProductPanel(){
