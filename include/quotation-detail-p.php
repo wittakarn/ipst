@@ -95,7 +95,7 @@ $(document).ready(function() {
 		tbody
 			.append($(
 					'<tr productId="' + data["product_id"] + '">')
-					.append($('<td>').html(''))
+					.append($('<td class="tableSeq">').html(''))
 					.append(
 							$('<td>')
 									.append($('<input type="text" class="form-control"/>')
@@ -140,6 +140,7 @@ $(document).ready(function() {
 				var currentRow = $(this).parent().parent();
 				var previousRow = currentRow.prev();
 				previousRow.before(currentRow);
+				addTableQuotationDetailSqeuqnce();
 			}
 		);
 		
@@ -148,8 +149,8 @@ $(document).ready(function() {
 			function() {
 				var currentRow = $(this).parent().parent();
 				var nextRow = currentRow.next();
-				
 				nextRow.after(currentRow);
+				addTableQuotationDetailSqeuqnce();
 			}
 		);
 		
@@ -158,8 +159,21 @@ $(document).ready(function() {
 			function() {
 				var currentRow = $(this).parent().parent();
 				currentRow.remove();
+				addTableQuotationDetailSqeuqnce();
 			}
 		);
+		
+		addTableQuotationDetailSqeuqnce();
+	}
+	
+	function addTableQuotationDetailSqeuqnce(){
+		var rows = $('#tableQuotationDetail').find('tbody').children();
+		var rowCount = rows.size();
+		var seq = $( ".tableSeq" );
+		
+		rows.each(function( index ) {
+			$( this ).find(seq).html(index + 1);
+		});
 	}
 	
 	function clearProductPanel(){
