@@ -11,20 +11,22 @@ $(document).ready(function() {
 	$("#addDateToTableButton")
 	.click(
 		function() {
-			$.blockUI();
-			
-			var productData = [];
-			productData['product_id'] = $("#existProductId").val();
-			productData['product_name'] = $("#productSuggestName").val();
-			productData['unit_name'] = $(".label-unit-name").html();
-			productData['quantity'] = $("#productModifyQuantity").val();
-			productData['price'] = $("#productModifyPrice").val();
-			productData['summary'] = (productData['price'] * productData['quantity']).toFixed(2);
-			
-			addProductToTable(productData);
-			clearProductPanel();
-			
-			$.unblockUI();
+			if (!isInvalidateForm()) {
+				$.blockUI();
+				
+				var productData = [];
+				productData['product_id'] = $("#existProductId").val();
+				productData['product_name'] = $("#productSuggestName").val();
+				productData['unit_name'] = $(".label-unit-name").html();
+				productData['quantity'] = $("#productModifyQuantity").val();
+				productData['price'] = $("#productModifyPrice").val();
+				productData['summary'] = (productData['price'] * productData['quantity']).toFixed(2);
+				
+				addProductToTable(productData);
+				clearProductPanel();
+				
+				$.unblockUI();
+			}
 		}
 	);
 	
@@ -95,36 +97,44 @@ $(document).ready(function() {
 		tbody
 			.append($(
 					'<tr productId="' + data["product_id"] + '">')
-					.append($('<td class="tableSeq">').html(''))
+					.append($('<td class="col-md-1 tableSeq">').html(''))
 					.append(
-							$('<td>')
+							$('<td class="col-md-4">')
 									.append($('<input type="text" class="form-control"/>')
 																		.attr("value", data["product_name"])
 																		.attr("name", "product_name[]")))
 					.append(
-							$('<td align="right">')
-									.html(
-											data["quantity"]))
+							$('<td class="col-md-1">')
+									.append($('<p class="text-right">').html(data["quantity"]))
+									.append($('<input type="hidden"/>')
+																		.attr("value", data["quantity"])
+																		.attr("name", "quantity[]")))
 					.append(
-							$('<td>')
-									.html(
-											data["unit_name"]))
+							$('<td class="col-md-1">')
+									.append($('<p>').html(data["unit_name"]))
+									.append($('<input type="hidden"/>')
+																		.attr("value", data["unit_name"])
+																		.attr("name", "unit_name[]")))
 					.append(
-							$('<td align="right">')
-									.html(
-											data["price"]))
+							$('<td class="col-md-1">')
+									.append($('<p class="text-right">').html(data["price"]))
+									.append($('<input type="hidden"/>')
+																		.attr("value", data["price"])
+																		.attr("name", "price[]")))
 					.append(
-							$('<td align="right">')
-									.html(
-											data["summary"]))
+							$('<td class="col-md-1" align="right">')
+									.append($('<p class="text-right">').html(data["summary"]))
+									.append($('<input type="hidden"/>')
+																		.attr("value", data["summary"])
+																		.attr("name", "summary[]")))
 					.append(
-							$('<td>')
+							$('<td class="col-md-1" align="center">')
 									.html('<span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="cursor: pointer;" />'))
 					.append(
-							$('<td>')
+							$('<td class="col-md-1" align="center">')
 									.html('<span class="glyphicon glyphicon-arrow-down" aria-hidden="true" style="cursor: pointer;" />'))
 					.append(
-							$('<td>')
+							$('<td class="col-md-1" align="center">')
 									.html('<span class="glyphicon glyphicon-remove" aria-hidden="true" style="cursor: pointer;" />'))
 					);
 		addTableQuotationDetailEvent();
@@ -184,6 +194,13 @@ $(document).ready(function() {
 		$(".label-unit-name").html("");		
 		$(".label-price-per-unit-name").html("");
 	}
+	
+	function isInvalidateForm() {
+		$("#saleQuoteForm").validate({
+			ignore : ""
+		});
+		return !$("#saleQuoteForm").valid();
+	}
 });
 </script>
 <div class="panel panel-primary">
@@ -197,6 +214,7 @@ $(document).ready(function() {
 						<input class="form-control" 
 							type="text"
 							id="productSuggestName"
+							name="product_suggest_name"
 							autofocus/>
 						<input type="hidden" id="existProductId" required/>
 					</div>
@@ -207,7 +225,9 @@ $(document).ready(function() {
 						<input class="form-control" 
 							type="text"
 							id="productModifyQuantity"
-							digit="true"/>
+							name="product_modify_quantity"
+							required
+							digits="true"/>
 					</div>
 					<div class="col-md-7">
 						<p class="label-unit-name"></p>

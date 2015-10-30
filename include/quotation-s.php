@@ -13,7 +13,7 @@ if(isset($_REQUEST['customer_id'])){
 }
 ?>
 <div class="container">
-  <form id="customerForm" method="post" enctype="multipart/form-data">
+  <form id="saleQuoteForm" method="post" >
     <div class="row">
 		<div class="col-md-7">
 			<?php include(DOCUMENT_ROOT."/include/quotation-detail-p.php"); ?>
@@ -23,7 +23,7 @@ if(isset($_REQUEST['customer_id'])){
 		</div>
   	</div>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<?php include(DOCUMENT_ROOT."/include/quotation-detail-t.php"); ?>
 		</div>
   	</div>
