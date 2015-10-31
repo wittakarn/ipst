@@ -8,4 +8,6 @@ define('REFRESH_DELAY', 1);
 
 $tenDays = 60*60*24*10;
 define('COOKIES_ALIVE', $tenDays);
+
+define('THAI_VAT', 7);
 ?>

@@ -32,7 +32,7 @@ $(document).ready(function() {
 				} else {
 					addNewRow(existProductId);
 				}
-				
+				calculateTotalPrice();
 				clearProductPanel();
 				$.unblockUI();
 				
@@ -189,7 +189,7 @@ $(document).ready(function() {
 	
 	function addTableQuotationDetailSqeuqnce(){
 		var rows = $('#tableQuotationDetail').find('tbody').children();
-		var rowCount = rows.size();
+		//var rowCount = rows.size();
 		var seq = $( ".tableSeq" );
 		
 		rows.each(function( index ) {
@@ -208,7 +208,7 @@ $(document).ready(function() {
 		//productData['summary'] = Math.round(summary * 100)/100;
 		
 		var summary = (productData['price'] * productData['quantity']);
-		productData['summary'] = summary;
+		productData['summary'] = roundPrice(summary);
 		
 		addProductToTable(productData);
 	}
@@ -233,6 +233,7 @@ $(document).ready(function() {
 		pElement = columnSummary.find($("p"));
 		inputElement = columnSummary.find($(":input"));
 		var modifySummary = (modifyPrice * modifyQuantity);
+		modifySummary = roundPrice(modifySummary);
 		pElement.html(modifySummary);
 		inputElement.val(modifySummary);
 	}
@@ -248,6 +249,34 @@ $(document).ready(function() {
 		return duplicateRow;
 	}
 	
+	function calculateTotalPrice(){
+		var classSummary = $( ".summary" );
+		var elements = $('#tableQuotationDetail').find($( "input[name*='summary[]']" ));
+		
+		var totalPrice = 0;
+		elements.each(function( index ) {
+			totalPrice = totalPrice + Number($( this ).val());
+		});
+		totalPrice = roundPrice(totalPrice);
+		
+		var vatPrice = 0;
+		if(totalPrice > 0){
+			vatPrice = (<?php echo THAI_VAT;?> * totalPrice) / 100;
+		}
+		vatPrice = roundPrice(vatPrice);
+		
+		var netPrice = totalPrice + vatPrice;
+		netPrice = roundPrice(netPrice);
+		
+		$( "#pTotalPrice" ).html(totalPrice);
+		$( "#pVatPrice" ).html(vatPrice);
+		$( "#pNetPrice" ).html(netPrice);
+		
+		$( "#totalPrice" ).val(totalPrice);
+		$( "#vatPrice" ).val(vatPrice);
+		$( "#netPrice" ).val(netPrice);
+	}
+	
 	function clearProductPanel(){
 		$("#productSuggestName").val("");
 		$("#existProductId").val("");
@@ -255,6 +284,14 @@ $(document).ready(function() {
 		$("#productModifyPrice").val("");
 		$(".label-unit-name").html("");		
 		$(".label-price-per-unit-name").html("");
+	}
+	
+	function roundPrice(num){
+		var roundVal = 0;
+		if(num > 0){
+			roundVal = Math.round(num * 100)/100
+		}
+		return roundVal;
 	}
 	
 	function isInvalidateForm() {

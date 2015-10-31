@@ -12,6 +12,16 @@ if(isset($_REQUEST['customer_id'])){
 	$conn = null;
 }
 ?>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#createButton")
+	.click(
+		function() {
+			
+		}
+	);
+});
+</script>
 <div class="container">
   <form id="saleQuoteForm" method="post" >
     <div class="row">
@@ -26,6 +36,9 @@ if(isset($_REQUEST['customer_id'])){
 		<div class="col-md-9">
 			<?php include(DOCUMENT_ROOT."/include/quotation-detail-t.php"); ?>
 		</div>
+		<div class="col-md-3">
+			<?php include(DOCUMENT_ROOT."/include/quotation-detail-o.php"); ?>
+		</div>
   	</div>
     <div class="row">
       <div class="col-md-12">
@@ -34,21 +47,16 @@ if(isset($_REQUEST['customer_id'])){
     </div>
     <div class="row ">
   		<div class="col-md-2">
-  			<?php
-				if($screenMode === 'E') {
-      				echo '<button type="button" 
-      								class="btn btn-default"
-      								id="updateButton">
-      								แก้ไข
-      						</button>';
-      			}else if($screenMode === 'A') {
-      				echo '<button type="button" 
-      								class="btn btn-default"
-      								id="createButton">
-      								บักทึก
-      						</button>';
-      			}
-    		?>
+			<button type="button" 
+					class="btn btn-default"
+					id="createButton">
+					บักทึก
+			</button>
+			<button type="button" 
+					class="btn btn-default"
+					id="updateButton">
+					แก้ไข
+			</button>
   		</div>
   		<div class="col-md-7"></div>
   		<div class="col-md-3">
