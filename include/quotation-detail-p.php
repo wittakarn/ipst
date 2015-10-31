@@ -1,4 +1,13 @@
 <script type="text/javascript">
+$(document).keypress(function(event){
+
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	
+	if(keycode == '13'){
+		$("#addDateToTableButton").click();
+	}
+	
+});
 $(document).ready(function() {
 	
 	$("#resetButton")
@@ -14,18 +23,20 @@ $(document).ready(function() {
 			if (!isInvalidateForm()) {
 				$.blockUI();
 				
-				var productData = [];
-				productData['product_id'] = $("#existProductId").val();
-				productData['product_name'] = $("#productSuggestName").val();
-				productData['unit_name'] = $(".label-unit-name").html();
-				productData['quantity'] = $("#productModifyQuantity").val();
-				productData['price'] = $("#productModifyPrice").val();
-				productData['summary'] = (productData['price'] * productData['quantity']).toFixed(2);
+				var existProductId = $("#existProductId").val();
 				
-				addProductToTable(productData);
+				var duplicateRow = findDuplicateRowOfProductIdInProductDetailTable(existProductId);
+				
+				if(duplicateRow != null){
+					modifyExistRow(duplicateRow);
+				} else {
+					addNewRow(existProductId);
+				}
+				
 				clearProductPanel();
-				
 				$.unblockUI();
+				
+				$( "#productSuggestName" ).focus();
 			}
 		}
 	);
@@ -104,7 +115,7 @@ $(document).ready(function() {
 																		.attr("value", data["product_name"])
 																		.attr("name", "product_name[]")))
 					.append(
-							$('<td class="col-md-1">')
+							$('<td class="col-md-1 quantity">')
 									.append($('<p class="text-right">').html(data["quantity"]))
 									.append($('<input type="hidden"/>')
 																		.attr("value", data["quantity"])
@@ -116,13 +127,13 @@ $(document).ready(function() {
 																		.attr("value", data["unit_name"])
 																		.attr("name", "unit_name[]")))
 					.append(
-							$('<td class="col-md-1">')
+							$('<td class="col-md-1 price">')
 									.append($('<p class="text-right">').html(data["price"]))
 									.append($('<input type="hidden"/>')
 																		.attr("value", data["price"])
 																		.attr("name", "price[]")))
 					.append(
-							$('<td class="col-md-1" align="right">')
+							$('<td class="col-md-1 summary" align="right">')
 									.append($('<p class="text-right">').html(data["summary"]))
 									.append($('<input type="hidden"/>')
 																		.attr("value", data["summary"])
@@ -184,6 +195,57 @@ $(document).ready(function() {
 		rows.each(function( index ) {
 			$( this ).find(seq).html(index + 1);
 		});
+	}
+	
+	function addNewRow(existProductId){
+		var productData = [];
+		productData['product_id'] = existProductId;
+		productData['product_name'] = $("#productSuggestName").val();
+		productData['unit_name'] = $(".label-unit-name").html();
+		productData['quantity'] = $("#productModifyQuantity").val();
+		productData['price'] = $("#productModifyPrice").val();
+		//var summary = (productData['price'] * productData['quantity']);
+		//productData['summary'] = Math.round(summary * 100)/100;
+		
+		var summary = (productData['price'] * productData['quantity']);
+		productData['summary'] = summary;
+		
+		addProductToTable(productData);
+	}
+	
+	function modifyExistRow(duplicateRow){
+		var columnQuantity = duplicateRow.find($( ".quantity" ));
+		var columnPrice = duplicateRow.find($( ".price" ));
+		var columnSummary = duplicateRow.find($( ".summary" ));
+		
+		var pElement = columnQuantity.find($("p"));
+		var inputElement = columnQuantity.find($(":input"));
+		var modifyQuantity = Number($("#productModifyQuantity").val()) + Number(inputElement.val());
+		pElement.html(modifyQuantity);
+		inputElement.val(modifyQuantity);
+		
+		pElement = columnPrice.find($("p"));
+		inputElement = columnPrice.find($(":input"));
+		var modifyPrice = Number($("#productModifyPrice").val());
+		pElement.html(modifyPrice);
+		inputElement.val(modifyPrice);
+		
+		pElement = columnSummary.find($("p"));
+		inputElement = columnSummary.find($(":input"));
+		var modifySummary = (modifyPrice * modifyQuantity);
+		pElement.html(modifySummary);
+		inputElement.val(modifySummary);
+	}
+	
+	function findDuplicateRowOfProductIdInProductDetailTable(productId){
+		var rows = $("#tableQuotationDetail").find('tbody').children();
+		var duplicateRow = null;
+		rows.each(function( index ) {
+			if($( this ).attr("productId") == productId){
+				duplicateRow = $( this );
+			}
+		});
+		return duplicateRow;
 	}
 	
 	function clearProductPanel(){
