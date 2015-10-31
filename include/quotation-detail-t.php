@@ -14,6 +14,9 @@ $(document).ready(function() {
 		padding: 0 !important;
 	}
 </style>
+<div class="alert alert-danger fade in" id="emptyTableError" style="display:none;">
+	<p>ไม่พบรายการสินค้าในตาราง กรุณาเพิ่มสินค้า<p>
+</div>
 <div class="table-responsive">
 	<table id="tableQuotationDetail" class="table table-bordered table-hover">
 		<thead>

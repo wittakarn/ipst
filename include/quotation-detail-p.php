@@ -34,6 +34,7 @@ $(document).ready(function() {
 				}
 				calculateTotalPrice();
 				clearProductPanel();
+				$('#emptyTableError').hide();
 				$.unblockUI();
 				
 				$( "#productSuggestName" ).focus();
@@ -79,11 +80,14 @@ $(document).ready(function() {
 			bPrice = respObj.bPrice;
 		}
 
-		$( "#existProductId" ).val(productId);
-		$( "#productModifyPrice" ).val(<?php echo $customerSelected['grade'].'Price';?>);   
-		$( ".label-unit-name" ).html(unitName);		
-		$( ".label-price-per-unit-name" ).html("บาท/".concat(unitName));
 		
+		if(productId != ""){
+			$( "#existProductId" ).val(productId);
+			$( "#productModifyPrice" ).val(<?php echo $customerSelected['grade'].'Price';?>);   
+			$( ".label-unit-name" ).html(unitName);		
+			$( ".label-price-per-unit-name" ).html("บาท/".concat(unitName));
+			$( "#productModifyQuantity" ).val(1);
+		}
 	}
 	
 	function productsResponseSuggestion(response, data){
@@ -113,7 +117,10 @@ $(document).ready(function() {
 							$('<td class="col-md-4">')
 									.append($('<input type="text" class="form-control"/>')
 																		.attr("value", data["product_name"])
-																		.attr("name", "product_name[]")))
+																		.attr("name", "product_name[]"))
+									.append($('<input type="hidden" class="form-control"/>')
+																		.attr("value", data["product_id"])
+																		.attr("name", "product_id[]")))
 					.append(
 							$('<td class="col-md-1 quantity">')
 									.append($('<p class="text-right">').html(data["quantity"]))
@@ -181,6 +188,7 @@ $(document).ready(function() {
 				var currentRow = $(this).parent().parent();
 				currentRow.remove();
 				addTableQuotationDetailSqeuqnce();
+				calculateTotalPrice();
 			}
 		);
 		
@@ -189,11 +197,13 @@ $(document).ready(function() {
 	
 	function addTableQuotationDetailSqeuqnce(){
 		var rows = $('#tableQuotationDetail').find('tbody').children();
-		//var rowCount = rows.size();
-		var seq = $( ".tableSeq" );
-		
 		rows.each(function( index ) {
-			$( this ).find(seq).html(index + 1);
+			columns = $( this ).find($( ".tableSeq" ));
+			columns.empty();
+			columns.append($('<p>').html(index + 1))
+						.append($('<input type="hidden"/>')
+													.attr("value", index + 1)
+													.attr("name", "sequence[]"))
 		});
 	}
 	

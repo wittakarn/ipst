@@ -17,7 +17,20 @@ $(document).ready(function() {
 	$("#createButton")
 	.click(
 		function() {
-			
+			var rows = $('#tableQuotationDetail').find('tbody').children();
+
+			if(rows.length > 0){
+				$.blockUI();
+				var form = $("#saleQuoteForm");
+				var action = "<?php echo ROOT."crud/create-quotation.php" ?>";
+						
+				form.validate().cancelSubmit = true;
+				form.attr('action', action);
+				form.attr('target', '_self');
+				//form.submit();
+			}else{
+				$('#emptyTableError').show();
+			}
 		}
 	);
 });
@@ -48,7 +61,7 @@ $(document).ready(function() {
     <div class="row ">
   		<div class="col-md-2">
 			<button type="button" 
-					class="btn btn-default"
+					class="btn btn-default cancel"
 					id="createButton">
 					บักทึก
 			</button>
