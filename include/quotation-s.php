@@ -27,7 +27,7 @@ $(document).ready(function() {
 				form.validate().cancelSubmit = true;
 				form.attr('action', action);
 				form.attr('target', '_self');
-				//form.submit();
+				form.submit();
 			}else{
 				$('#emptyTableError').show();
 			}
@@ -92,7 +92,7 @@ $(document).ready(function() {
   			</button>
   		</div>
   	</div>
-	<input type="hidden" name="customer_id" value="<?php echo isset($customerSelected) ? $customerSelected['customer_id'] : ''?>"/>
+	<input type="hidden" id="customerId" name="customer_id" value="<?php echo isset($customerSelected) ? $customerSelected['customer_id'] : ''?>"/>
   </form>
 </div>
 <div class="modal fade" id="confirmDeleteModel" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel">

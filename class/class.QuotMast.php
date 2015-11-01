@@ -25,6 +25,27 @@ class QuotMast
 	
 		$stmt->execute();
 	}
+	
+	public static function getOldQuotations($conn, $customerId){
+		$query = "SELECT quot_no, date, net_price FROM quot_mast WHERE customer_id = :customer_id ";
+		$order = "ORDER BY year, sequence DESC";
+		$stmt = $conn->prepare($query.$order); 
+		$stmt->bindParam(":customer_id", $customerId, PDO::PARAM_INT);
+
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getOldprices($conn, $customerId, $productId){
+		$query = "SELECT a.date, b.price FROM quot_mast a, quot_detail b WHERE a.quot_no = b.quot_no AND a.customer_id = :customer_id AND b.product_id = :product_id ";
+		$order = "ORDER BY a.year, b.sequence DESC";
+		$stmt = $conn->prepare($query.$order); 
+		$stmt->bindParam(":customer_id", $customerId, PDO::PARAM_INT);
+		$stmt->bindParam(":product_id", $productId, PDO::PARAM_INT);
+
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 
 }
 

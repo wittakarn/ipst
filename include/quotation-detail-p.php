@@ -87,6 +87,8 @@ $(document).ready(function() {
 			$( ".label-unit-name" ).html(unitName);		
 			$( ".label-price-per-unit-name" ).html("บาท/".concat(unitName));
 			$( "#productModifyQuantity" ).val(1);
+			
+			loadOfferedPrice(productId);
 		}
 	}
 	
@@ -296,6 +298,45 @@ $(document).ready(function() {
 		$(".label-price-per-unit-name").html("");
 	}
 	
+	function loadOfferedPrice(productId){
+		$.ajax({
+			url : "<?php echo ROOT.'ajax/ajax.list.old.prices.php'; ?>",
+			dataType: "json",
+			data: {
+			"customer_id"  : $( "#customerId" ).val(),
+			"product_id"  : productId
+			},
+			success: setOfferedPriceToTable
+		});
+	}
+	
+	function setOfferedPriceToTable(data, textStatus, xhr) {
+		var dataSize = data.length;
+		var tbody = $('#tableOfferedPrice').find('tbody');
+		tbody.empty();
+		for (var i = 0; i < dataSize; i++) {
+			var tdDateElement = $('<td>');
+			tdDateElement.append($('<small>').html(formatThaiDate(data[i]["date"])));
+			
+			var tdPriceElement = $('<td class="text-right">');
+			tdPriceElement.append($('<small>').html(data[i]["price"]));
+			
+			tbody
+					.append($('<tr>')
+							.append(tdDateElement)
+							.append(tdPriceElement)
+							);
+		}
+		$.unblockUI();
+	}
+	
+	function isInvalidateForm() {
+		$("#saleQuoteForm").validate({
+			ignore : ""
+		});
+		return !$("#saleQuoteForm").valid();
+	}
+	
 	function roundPrice(num){
 		var roundVal = 0;
 		if(num > 0){
@@ -304,11 +345,22 @@ $(document).ready(function() {
 		return roundVal;
 	}
 	
-	function isInvalidateForm() {
-		$("#saleQuoteForm").validate({
-			ignore : ""
-		});
-		return !$("#saleQuoteForm").valid();
+	function formatThaiDate(strDate){
+		var thaiDate = "";
+		
+		if(strDate != null && strDate != ""){
+			var arrDmy = strDate.split("-");
+			if(arrDmy.length == 3){
+				var engYear = Number(arrDmy[0]);
+				var thaiYear = engYear;
+				if(thaiYear < 2400){
+					thaiYear = thaiYear + 543;
+				}
+				thaiDate = arrDmy[2].concat("/").concat(arrDmy[1]).concat("/").concat(thaiYear);
+			}
+		}
+		
+		return thaiDate;
 	}
 });
 </script>
@@ -373,12 +425,12 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<table id="soldPrice" class="table table-fixed">
+			<div class="col-md-3 table-responsive table-fixed">
+				<table id="tableOfferedPrice" class="table table-bordered">
 					<thead>
 						<tr class="success">
-							<th class="col-md-6">วันที่</th>
-							<th class="col-md-6">ราคา</th>
+							<th>วันที่</th>
+							<th class="text-right">ราคา</th>
 						</tr>
 					</thead>
 					<tbody>

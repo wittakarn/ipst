@@ -3,17 +3,6 @@ $(document).ready(function() {
 	
 });
 </script>
-<style>
-	tfoot tr, tfoot td{
-		border: none !important;
-		margin: 0 !important;
-		padding: 0 !important;
-	}
-	tfoot p{
-		margin: 0 !important;
-		padding: 0 !important;
-	}
-</style>
 <div class="alert alert-danger fade in" id="emptyTableError" style="display:none;">
 	<p>ไม่พบรายการสินค้าในตาราง กรุณาเพิ่มสินค้า<p>
 </div>

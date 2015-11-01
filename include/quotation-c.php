@@ -159,7 +159,7 @@ $(document).ready(function() {
         <hr/>
       </div>
     </div>
-    <div class="row ">
+    <div class="row">
   		<div class="col-md-2">
   			<button type="button" 
 					class="btn btn-default"

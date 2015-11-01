@@ -46,6 +46,20 @@ include DOCUMENT_ROOT.'include/permission.php';
 			/* prevent horizontal scrollbar */
 			overflow-x: hidden;
 		}
+		
+		tfoot tr, tfoot td{
+			border: none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+		tfoot p{
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+		
+		#tableOfferedPrice th, #tableOfferedPrice td{
+			padding: 0 !important;
+		}
 	</style>
   </head>
 
