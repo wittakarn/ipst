@@ -33,6 +33,26 @@ $(document).ready(function() {
 			}
 		}
 	);
+	
+	$("#updateButton")
+	.click(
+		function() {
+			var rows = $('#tableQuotationDetail').find('tbody').children();
+
+			if(rows.length > 0){
+				$.blockUI();
+				var form = $("#saleQuoteForm");
+				var action = "<?php echo ROOT."crud/update-quotation.php" ?>";
+						
+				form.validate().cancelSubmit = true;
+				form.attr('action', action);
+				form.attr('target', '_self');
+				form.submit();
+			}else{
+				$('#emptyTableError').show();
+			}
+		}
+	);
 });
 </script>
 <div class="container">
@@ -58,7 +78,7 @@ $(document).ready(function() {
         <hr/>
       </div>
     </div>
-    <div class="row ">
+    <div class="row">
   		<div class="col-md-2">
 			<button type="button" 
 					class="btn btn-default cancel"
@@ -67,7 +87,8 @@ $(document).ready(function() {
 			</button>
 			<button type="button" 
 					class="btn btn-default"
-					id="updateButton">
+					id="updateButton"
+					style="display: none;">
 					แก้ไข
 			</button>
   		</div>

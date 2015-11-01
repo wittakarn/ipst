@@ -1,13 +1,23 @@
-<script type="text/javascript">
-$(document).ready(function() {
-	
-});
-</script>
 <div class="alert alert-danger fade in" id="emptyTableError" style="display:none;">
 	<p>ไม่พบรายการสินค้าในตาราง กรุณาเพิ่มสินค้า<p>
 </div>
 <div class="table-responsive">
-	<table id="tableQuotationDetail" class="table table-bordered table-hover">
+	<div class="row quot-no" style="display:none;">
+		<div class="col-md-9"></div>
+		<div class="col-md-1"><small>เลขที่</small></div>
+		<div class="col-md-2 text-right">
+			<small id="pOfferedQuotNo"></small>
+			<input type="hidden" name="quot_no" id="offeredQuotNo"/>
+		</div>
+	</div>
+	<div class="row quot-no" style="display:none;">
+		<div class="col-md-9"></div>
+		<div class="col-md-1"><small>วันที่</small></div>
+		<div class="col-md-2 text-right">
+			<small id="pOfferedQuotationDate"></small>
+		</div>
+	</div>
+	<table id="tableQuotationDetail" class="table table-bordered">
 		<thead>
 			<tr class="success">
 				<th class="col-md-1">#</th>

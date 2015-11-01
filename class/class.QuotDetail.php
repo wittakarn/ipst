@@ -28,6 +28,26 @@ class QuotDetail
 			$stmt->execute();
 		}
 	}
+	
+	public function deleteByQuotNo(){
+		$params = $this->requests;
+		$db = $this->dbh;
+		$query = "DELETE FROM quot_detail WHERE quot_no = :quot_no";
+		$stmt = $db->prepare($query); 
+		$stmt->bindParam(":quot_no", $params['quot_no'], PDO::PARAM_STR); 
+
+		$stmt->execute();
+	}
+	
+	public static function getQuotationDetailByQuotNo($conn, $quotNo){
+		$query = "SELECT * FROM quot_detail WHERE quot_no = :quot_no ";
+		$order = "ORDER BY sequence ASC";
+		$stmt = $conn->prepare($query.$order); 
+		$stmt->bindParam(":quot_no", $quotNo, PDO::PARAM_STR);
+
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 
 }
 

@@ -10,6 +10,8 @@ $(document).keypress(function(event){
 });
 $(document).ready(function() {
 	
+	loadOldQuotation();
+	
 	$("#resetButton")
 	.click(
 		function() {
@@ -108,7 +110,6 @@ $(document).ready(function() {
 	}
 	
 	function addProductToTable(data) {
-		var dataSize = data.length;
 		var tbody = $('#tableQuotationDetail').find('tbody');
 		
 		tbody
@@ -280,6 +281,10 @@ $(document).ready(function() {
 		var netPrice = totalPrice + vatPrice;
 		netPrice = roundPrice(netPrice);
 		
+		setQuotationFooter(totalPrice, vatPrice, netPrice);
+	}
+	
+	function setQuotationFooter(totalPrice, vatPrice, netPrice){
 		$( "#pTotalPrice" ).html(totalPrice);
 		$( "#pVatPrice" ).html(vatPrice);
 		$( "#pNetPrice" ).html(netPrice);
@@ -328,6 +333,99 @@ $(document).ready(function() {
 							);
 		}
 		$.unblockUI();
+	}
+	
+	function loadOldQuotation(){
+		$.ajax({
+			url : "<?php echo ROOT.'ajax/ajax.list.old.quotations.php'; ?>",
+			dataType: "json",
+			data: {
+			"customer_id"  : $( "#customerId" ).val()
+			},
+			success: setOldQuotationsToTable
+		});
+	}
+	
+	function setOldQuotationsToTable(data, textStatus, xhr) {
+		var dataSize = data.length;
+		var tbody = $('#tableOldQuotationDetail').find('tbody');
+		tbody.empty();
+		for (var i = 0; i < dataSize; i++) {
+			tbody
+					.append($(
+							'<tr style="cursor: pointer;" quot_no="' + data[i]["quot_no"] + '">')
+							.append(
+									$('<td>')
+											.html(
+													data[i]["quot_no"]))
+							.append(
+									$('<td>')
+											.html(
+													formatThaiDate(data[i]["date"])))
+							.append(
+									$('<td align="right">')
+											.html(
+													data[i]["net_price"]))
+							.append(
+									$('<td align="center">')
+											.html('<span class="glyphicon glyphicon-file" aria-hidden="true" style="cursor: zoom-in;" />'))
+							);
+		}
+		setOldQuotationsRowEvent();
+		$.unblockUI();
+	}
+	
+	function setOldQuotationsRowEvent() {
+		$('#tableOldQuotationDetail tbody > tr').click(function() {
+			$.blockUI();
+			var quot_no = $(this).attr('quot_no');
+			getOfferedQuotation(quot_no);
+			getOfferedQuotationDetails(quot_no);
+			$( "#createButton" ).hide();
+			$( "#updateButton" ).show();
+			$( ".quot-no" ).show();
+			$.unblockUI();
+		});
+	}
+	
+	function getOfferedQuotation(quot_no){
+		$.ajax({
+			url : "<?php echo ROOT.'ajax/ajax.list.offered.quotation.php'; ?>",
+			dataType: "json",
+			data: {
+			"quot_no"  : quot_no
+			},
+			success: setOfferedQuotation
+		});
+	}
+	
+	function setOfferedQuotation(data, textStatus, xhr){
+		$( "#pOfferedQuotNo" ).html(data['quot_no']);
+		$( "#pOfferedQuotationDate" ).html(formatThaiDate(data['date']));
+		
+		$( "#offeredQuotNo" ).val(data['quot_no']);
+		setQuotationFooter(data['total_price'], data['vat_price'], data['net_price']);
+	}
+	
+	function getOfferedQuotationDetails(quot_no){
+		$.ajax({
+			url : "<?php echo ROOT.'ajax/ajax.list.offered.quotation.details.php'; ?>",
+			dataType: "json",
+			data: {
+			"quot_no"  : quot_no
+			},
+			success: setQuotationDetailsToTable
+		});
+	}
+	
+	function setQuotationDetailsToTable(data, textStatus, xhr){
+		var dataSize = data.length;
+		var tbody = $('#tableQuotationDetail').find('tbody');
+		tbody.empty();
+		for (var i = 0; i < dataSize; i++) {
+			data[i]["summary"] = data[i]["summary_price"];
+			addProductToTable(data[i]);
+		}
 	}
 	
 	function isInvalidateForm() {

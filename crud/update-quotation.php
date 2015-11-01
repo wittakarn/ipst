@@ -15,25 +15,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])){
 	try{
 		$conn->beginTransaction();
   
-		$quotNo = QuotNo::getMaxSequence($conn);
-		$year = $quotNo['year'];
-		$sequence = $quotNo['sequence'];
-  
 		$addition = [];
-		$addition['quot_no'] = $year.'/'.$sequence;
-		$addition['year'] = $year;
-		$addition['sequence'] = $sequence;
 		$addition['user_id'] = $_SESSION['user_id'];
+		$addition['quot_no'] = $_REQUEST['quot_no'];
 		
-		if(isset($_REQUEST['customer_id']) && isset($_REQUEST['sequence']) && count($_REQUEST['sequence']) > 0){
+		if(isset($_REQUEST['quot_no']) && isset($_REQUEST['sequence']) && count($_REQUEST['sequence']) > 0){
 			$quotMast = new QuotMast($conn, $_REQUEST);
-			$quotMast->create($addition);
+			$quotMast->update($addition);
 			
 			$quotDetail = new QuotDetail($conn, $_REQUEST);
+			$quotDetail->deleteByQuotNo($addition);
 			$quotDetail->create($addition);
 		}
-		
-		QuotNo::updateSequence($conn);
 		
 		$conn->commit();
 	} catch (PDOException $e) {
@@ -53,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])){
     </head>
     <body>
 		<H2>
-			บันทึกข้อมูลเรียบร้อยแล้ว หน้าจอจะทำการกลับไปหน้าก่อนหน้าโดยอัตโนมัติ
+			แก้ไขข้อมูลเรียบร้อยแล้ว หน้าจอจะทำการกลับไปหน้าค้นหาข้อมูลโดยอัตโนมัติ
 		</H2>
 		<H3>ท่านสามารถกลับหน้าจอด้วยตัวเองได้ ผ่าน  <a href="<?php echo ROOT.'pages/quotation.php?MODE=S&customer_id='.$_REQUEST['customer_id']; ?>">link</a><H3>
     </body>
