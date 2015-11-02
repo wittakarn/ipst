@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tcpdf_config.php
 // Begin       : 2004-06-11
@@ -63,7 +64,7 @@
  * Default images directory.
  * By default it is automatically set but you can also set it as a fixed string to improve performances.
  */
-//define ('K_PATH_IMAGES', '');
+define ('K_PATH_IMAGES', DOCUMENT_ROOT.'image/');
 
 /**
  * Deafult image logo used be the default Header() method.
@@ -104,7 +105,7 @@ define ('PDF_CREATOR', 'TCPDF');
 /**
  * Document author.
  */
-define ('PDF_AUTHOR', 'TCPDF');
+define ('PDF_AUTHOR', 'Wittakarn');
 
 /**
  * Header title.
@@ -114,7 +115,7 @@ define ('PDF_HEADER_TITLE', 'TCPDF Example');
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "by Nicola Asuni - Tecnick.com\nwww.tcpdf.org");
+define ('PDF_HEADER_STRING', "by Wittakarn Keeratichayakorn - http://wittakarn.blogspot.com");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
@@ -154,7 +155,7 @@ define ('PDF_MARGIN_RIGHT', 15);
 /**
  * Default main font name.
  */
-define ('PDF_FONT_NAME_MAIN', 'tahoma');
+define ('PDF_FONT_NAME_MAIN', 'thsarabun');
 
 /**
  * Default main font size.
@@ -164,7 +165,7 @@ define ('PDF_FONT_SIZE_MAIN', 10);
 /**
  * Default data font name.
  */
-define ('PDF_FONT_NAME_DATA', 'tahoma');
+define ('PDF_FONT_NAME_DATA', 'thsarabun');
 
 /**
  * Default data font size.
