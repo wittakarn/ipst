@@ -38,9 +38,10 @@ class MYPDF extends TCPDF {
         $image_file = K_PATH_IMAGES.'se-logo.png';
         $this->Image($image_file, 10, 10, 50, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
         // Set font
-        $this->SetFont('thsarabun', 'B', 20);
+        $this->SetFont('thsarabun', 'B', 30);
         // Title
-        $this->Cell(0, 15, 'ใบเสนอราคา', 0, 2, 'C', 0, '', 0, false, 'M', 'M');
+        //$this->Cell(0, 15, 'ใบเสนอราคา', 0, 2, 'C', 0, '', 0, false, 'M', 'M');
+		$this->MultiCell(0, 0, 'ใบเสนอราคา'."\n", 0, 'J', 0, 0, 90, 5, true, 0, false, true, 0, 'M', true);
     }
 
     // Page footer
