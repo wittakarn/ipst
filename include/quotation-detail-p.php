@@ -349,11 +349,23 @@ $(document).ready(function() {
 	function setOldQuotationsToTable(data, textStatus, xhr) {
 		var dataSize = data.length;
 		var tbody = $('#tableOldQuotationDetail').find('tbody');
+		var quot_no;
 		tbody.empty();
 		for (var i = 0; i < dataSize; i++) {
+			quot_no = data[i]["quot_no"];
+			
+			var tdPdfElement = $('<td class="center">');
+			var ahref = "<?php echo ROOT.'report/example-quotation-detail.php?quot_no='; ?>" + quot_no;
+			var aElement = $('<a>').attr("href", ahref)
+									.attr("target", "_blank");
+			aElement.append($('<span>').attr("class", "glyphicon glyphicon-file")
+										.attr("aria-hidden", "true")
+										.attr("style", "cursor: zoom-in;"));
+			tdPdfElement.append(aElement);
+			
 			tbody
 					.append($(
-							'<tr style="cursor: pointer;" quot_no="' + data[i]["quot_no"] + '">')
+							'<tr style="cursor: pointer;" quot_no="' + quot_no + '">')
 							.append(
 									$('<td>')
 											.html(
@@ -366,9 +378,7 @@ $(document).ready(function() {
 									$('<td align="right">')
 											.html(
 													data[i]["net_price"]))
-							.append(
-									$('<td align="center">')
-											.html('<span class="glyphicon glyphicon-file" aria-hidden="true" style="cursor: zoom-in;" />'))
+							.append(tdPdfElement)
 							);
 		}
 		setOldQuotationsRowEvent();
@@ -386,6 +396,10 @@ $(document).ready(function() {
 			$( ".quot-no" ).show();
 			$.unblockUI();
 		});
+		
+		$('#tableOldQuotationDetail tbody > tr .glyphicon-file').click(function(e){
+            e.stopPropagation(); 
+        });
 	}
 	
 	function getOfferedQuotation(quot_no){
