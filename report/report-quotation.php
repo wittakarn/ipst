@@ -54,10 +54,10 @@ if (isset($_SESSION['user_id'])){
 		// add a page
 		$pdf->AddPage();
 		
-		// add customer detail
-		$pdf->generateCustomer($customerResult);
+		// print quotation master
+		$pdf->generateQuotationMaster($customerResult, $masterResult);
 		
-		// print table
+		// print quotation detail table
 		$pdf->generateQuotationDetailTable($detailResults);
 		
 		// print table footer
