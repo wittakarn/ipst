@@ -355,7 +355,7 @@ $(document).ready(function() {
 			quot_no = data[i]["quot_no"];
 			
 			var tdPdfElement = $('<td class="center">');
-			var ahref = "<?php echo ROOT.'report/example-quotation-detail.php?quot_no='; ?>" + quot_no;
+			var ahref = "<?php echo ROOT.'report/report-quotation.php?quot_no='; ?>" + quot_no;
 			var aElement = $('<a>').attr("href", ahref)
 									.attr("target", "_blank");
 			aElement.append($('<span>').attr("class", "glyphicon glyphicon-file")

@@ -40,8 +40,8 @@ class MYPDF extends TCPDF {
         // Set font
         $this->SetFont('thsarabun', 'B', 30);
         // Title
-        //$this->Cell(0, 15, 'ใบเสนอราคา', 0, 2, 'C', 0, '', 0, false, 'M', 'M');
-		$this->MultiCell(0, 0, 'ใบเสนอราคา'."\n", 0, 'J', 0, 0, 90, 5, true, 0, false, true, 0, 'M', true);
+        //$this->Cell(0, 15, 'ใบเสนอราคา'."\n".'xxx', 0, 2, 'C', 0, '', 0, false, 'M', 'M');
+		$this->MultiCell(0, 0, 'ใบเสนอราคา'."\n".'xxx', 0, 'C', 0, 0, 0, 0, true, 0, false, true, 0, 'M', true);
     }
 
     // Page footer
