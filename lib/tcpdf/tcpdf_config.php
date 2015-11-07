@@ -80,7 +80,7 @@ define ('K_PATH_IMAGES', DOCUMENT_ROOT.'image/');
 /**
  * Cache directory for temporary files (full path).
  */
-//define ('K_PATH_CACHE', '/tmp/');
+define ('K_PATH_CACHE', DOCUMENT_ROOT.'image/tmp');
 
 /**
  * Generic name for a blank image.

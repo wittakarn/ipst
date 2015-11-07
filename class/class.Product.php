@@ -37,7 +37,7 @@ class Product
 	}
 	
 	public static function suggestText($conn, $productName){
-		$partialNames = explode(" ", $productName);
+		$partialNames = preg_split("/[\s,-]+/", $productName );//explode(" ", $productName);
 		$partialNamesSize = count($partialNames);
 		
 		$query = 'SELECT product_id, product_name, unit_name, s_price, a_price, b_price FROM product WHERE REPLACE(product_name, "-", "") LIKE :name0 ';
@@ -48,6 +48,8 @@ class Product
 		}
 		
 		$order = " ORDER BY product_name";
+		//echo $query.$order;
+		//print_r($partialNames);
 		$stmt = $conn->prepare($query.$order); 
 		$stmt->bindValue(":name0", '%'.$partialNames[0].'%', PDO::PARAM_STR);
 
@@ -101,6 +103,15 @@ class Product
 	
 	public static function get($conn, $id){
 		$query = "SELECT * FROM product WHERE product_id = :product_id";
+		$stmt = $conn->prepare($query); 
+		$stmt->bindParam(":product_id", $id, PDO::PARAM_INT);
+
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getBlobImage($conn, $id){
+		$query = "SELECT image_blob FROM product WHERE product_id = :product_id";
 		$stmt = $conn->prepare($query); 
 		$stmt->bindParam(":product_id", $id, PDO::PARAM_INT);
 

@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 require_once("../config.php");
 require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Customer.php';
+require_once DOCUMENT_ROOT.'/class/class.Product.php';
 require_once DOCUMENT_ROOT.'/class/class.QuotMast.php';
 require_once DOCUMENT_ROOT.'/class/class.QuotDetail.php';
 require_once DOCUMENT_ROOT.'/report/class.QuotDetailPDF.php';
@@ -62,6 +63,18 @@ if (isset($_SESSION['user_id'])){
 		
 		// print table footer
 		$pdf->generateQuotationDetailTableFooter($masterResult);
+		
+		// add a page
+		$pdf->AddPage();
+		
+		// print all product images.
+		foreach($detailResults as $details) {
+            $imageBlob = Product::getBlobImage($conn, $details['product_id']);
+			$decodeImage = $imageBlob['image_blob'];
+			if (!empty($decodeImage)){
+				$pdf->generateProductImage($details['product_name'], $decodeImage);
+			}
+        }
 		
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

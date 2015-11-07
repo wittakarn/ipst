@@ -27,7 +27,7 @@ class QuotDetailPDF extends TCPDF {
         // Set font
         $this->SetFont('', 'I', 8);
         // Page number
-        $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+        $this->Cell(0, 10, 'หน้า '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
     }
 	
 	public function generateQuotationMaster($customerData, $quotMast) {
@@ -221,6 +221,16 @@ class QuotDetailPDF extends TCPDF {
 		$this->MultiCell($this->columnWidth[2], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[3], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[4] + $this->columnWidth[5], $columnWidth, 'By : ', 0, 'L', 0, 0, '', '', true, 0);
+	}
+	
+	public function generateProductImage($productName, $imageData){
+		$imageWidth = 85;
+		$imageHeight = 76.4;
+		$this->MultiCell($imageWidth, $imageHeight, $productName, 0, 'L', 0, 0, '', '', true, 0);
+		$this->Image('@'.$imageData, '', '', $imageWidth, $imageHeight, '', '', 'T', false, 300, 'R', false, false, 0, false, false, false);
+		$this->Ln($imageHeight + 5, false);
+		$this->Cell(array_sum($this->columnWidth), 0, '', 'T');
+		$this->Ln();
 	}
 	
 	public function printRefAndDate($strDate, &$isAddYourRef, &$isAddDate, $customerDetailColumnHeight, $customerDetailBorder){
