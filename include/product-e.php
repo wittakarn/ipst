@@ -32,7 +32,7 @@ if(isset($_REQUEST['product_id'])){
 			.ready(
 					function() {
           
-            /* populate unit name to unit dropdown list */
+						/* populate unit name to unit dropdown list */
 						populateUnitTypes(setUnitNamesToDropdown);
 
 						function populateUnitTypes(callback) {
@@ -111,14 +111,14 @@ if(isset($_REQUEST['product_id'])){
 					});
             
             function isInvalidateForm() {
-							$("#productForm").validate({
-								ignore : ""
-							});
-							return !$("#productForm").valid();
-						}
+				$("#productForm").validate({
+					ignore : ""
+				});
+				return !$("#productForm").valid();
+			}
             
-          }
-      );
+		}
+	);
 </script>
 <div class="container">
   <form id="productForm" method="post" enctype="multipart/form-data">
