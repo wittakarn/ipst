@@ -64,18 +64,34 @@ if (isset($_SESSION['user_id'])){
 		// print table footer
 		$pdf->generateQuotationDetailTableFooter($masterResult);
 		
-		// add a page
-		$pdf->AddPage();
-		
 		// print all product images.
+		$imageCount = 0;
+		$paddingX = 0;
+		$paddingY = 0;
 		foreach($detailResults as $details) {
             $imageBlob = Product::getBlobImage($conn, $details['product_id']);
 			$decodeImage = $imageBlob['image_blob'];
 			if (!empty($decodeImage)){
-				$pdf->generateProductImage($details['product_name'], $decodeImage);
+				
+				if($imageCount % 16 == 0){
+					// add a page
+					$pdf->AddPage();
+					$imageCount = 0;
+					$paddingX = 0;
+					$paddingY = 0;
+				}
+				
+				if($imageCount > 0 && $imageCount % 4 == 0){
+					$paddingX = 0;
+					$paddingY += 64;
+					$pdf->Ln(64, false);
+				}
+				
+				$pdf->generateProductImage($decodeImage, $details['sequence'], $details['product_name'], $paddingX, $paddingY);
+				$paddingX += 46;
+				$imageCount++;
 			}
         }
-		
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');
 	} catch (PDOException $e) {

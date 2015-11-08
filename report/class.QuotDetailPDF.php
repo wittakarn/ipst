@@ -7,7 +7,7 @@ require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf.php');
 // extend TCPF columnWidthith custom functions
 class QuotDetailPDF extends TCPDF {
 
-	public $columnWidth = array(10, 80, 20, 15, 25, 30);
+	public $columnWidth = array(10, 97, 15, 10, 18, 30);
 
 	//Page header
     public function Header() {
@@ -50,14 +50,22 @@ class QuotDetailPDF extends TCPDF {
 		
 		$customerAddress = $customerData['address'];
 		if($customerAddress != null && $customerAddress != ''){
-			$this->MultiCell(30, $customerDetailColumnHeight, '', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
-			$this->MultiCell(100, $customerDetailColumnHeight, $customerAddress, $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
-			$customerDetailheight = $customerDetailheight + $customerDetailColumnHeight;
+			
+			$addressLength = strlen($customerAddress);
+			
+			$customerAddressHeight = $customerDetailColumnHeight;
+			
+			if($addressLength >= 150){
+				$customerAddressHeight = $customerAddressHeight * 2.5;
+			}
+			$this->MultiCell(30, $customerAddressHeight, '', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
+			$this->MultiCell(100, $customerAddressHeight, $customerAddress, $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
+			$customerDetailheight = $customerDetailheight + $customerAddressHeight;
 			
 			if(!$isAddYourRef){
-				$this->MultiCell(8, $customerDetailColumnHeight, '', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
-				$this->MultiCell(12, $customerDetailColumnHeight, 'อ้างถึง', $customerDetailBorder, 'R', 0, 0, '', '', true, 0);
-				$this->MultiCell(25, $customerDetailColumnHeight, '.........................', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
+				$this->MultiCell(8, $customerAddressHeight, '', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
+				$this->MultiCell(12, $customerAddressHeight, 'อ้างถึง', $customerDetailBorder, 'R', 0, 0, '', '', true, 0);
+				$this->MultiCell(25, $customerAddressHeight, '.........................', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
 				$isAddYourRef = true;
 			}
 			
@@ -65,21 +73,20 @@ class QuotDetailPDF extends TCPDF {
 		}
 		
 		$customerTel = $customerData['tel'];
-		$customerFax = $customerData['fax'];
-		$haveACustomerTel = ($customerTel != null && $customerTel != '');
-		$haveACustomerFax = ($customerFax != null && $customerFax != '');
-		if($haveACustomerTel || $haveACustomerFax){
-			
-			$textTelAndFax = "";
-			
-			if($haveACustomerTel)
-				$textTelAndFax = $textTelAndFax.'โทรศัพท์ : '.$customerTel.'  ';
-			
-			if($haveACustomerFax)
-				$textTelAndFax = $textTelAndFax.'โทรสาร : '.$customerFax;
-			
+		if($customerTel != null && $customerTel != ''){
 			$this->MultiCell(30, $customerDetailColumnHeight, '', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
-			$this->MultiCell(100, $customerDetailColumnHeight, $textTelAndFax, $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
+			$this->MultiCell(100, $customerDetailColumnHeight, 'โทรศัพท์ : '.$customerTel, $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
+			$customerDetailheight = $customerDetailheight + $customerDetailColumnHeight;
+			
+			$this->printRefAndDate($strDate, $isAddYourRef, $isAddDate, $customerDetailColumnHeight, $customerDetailBorder);
+			
+			$this->Ln();
+		}
+		
+		$customerFax = $customerData['fax'];
+		if($customerFax != null && $customerFax != ''){
+			$this->MultiCell(30, $customerDetailColumnHeight, '', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
+			$this->MultiCell(100, $customerDetailColumnHeight, 'โทรสาร : '.$customerFax, $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
 			$customerDetailheight = $customerDetailheight + $customerDetailColumnHeight;
 			
 			$this->printRefAndDate($strDate, $isAddYourRef, $isAddDate, $customerDetailColumnHeight, $customerDetailBorder);
@@ -117,7 +124,7 @@ class QuotDetailPDF extends TCPDF {
 
     // Colored table
     public function generateQuotationDetailTable($data) {
-		$rowLimit = 30;
+		$rowLimit = 28;
 		$columnWidth = 4;
         // Colors, line columnWidthidth and bold font
         //$this->SetFillColor(255, 0, 0);
@@ -143,10 +150,10 @@ class QuotDetailPDF extends TCPDF {
         // Data
         $fill = 0;
         foreach($data as $rocolumnWidth) {
-            $this->MultiCell($this->columnWidth[0], $columnWidth, $rocolumnWidth['sequence'], 'LRB', 'L', $fill, 0, '', '', true, 0);
+            $this->MultiCell($this->columnWidth[0], $columnWidth, $rocolumnWidth['sequence'], 'LRB', 'R', $fill, 0, '', '', true, 0);
             $this->MultiCell($this->columnWidth[1], $columnWidth, $rocolumnWidth['product_name'], 'LRB', 'L', $fill, 0, '', '', true, 0);
             $this->MultiCell($this->columnWidth[2], $columnWidth, number_format($rocolumnWidth['quantity'], 1), 'LRB', 'R', $fill, 0, '', '', true, 0);
-			$this->MultiCell($this->columnWidth[3], $columnWidth, $rocolumnWidth['unit_name'], 'LRB', 'L', $fill, 0, '', '', true, 0);
+			$this->MultiCell($this->columnWidth[3], $columnWidth, $rocolumnWidth['unit_name'], 'LRB', 'R', $fill, 0, '', '', true, 0);
             $this->MultiCell($this->columnWidth[4], $columnWidth, number_format($rocolumnWidth['price'], 2), 'LRB', 'R', $fill, 0, '', '', true, 0);
 			$this->MultiCell($this->columnWidth[5], $columnWidth, number_format($rocolumnWidth['summary_price'], 2), 'LRB', 'R', $fill, 0, '', '', true, 0);
             $this->Ln();
@@ -175,7 +182,7 @@ class QuotDetailPDF extends TCPDF {
 		$this->MultiCell($this->columnWidth[1], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[2], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[3], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
-		$this->MultiCell($this->columnWidth[4], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
+		$this->MultiCell($this->columnWidth[4], $columnWidth, 'จำนวนเงิน', 0, 'R', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[5], $columnWidth, number_format($footerData['total_price'], 2), 'LRB', 'R', 0, 0, '', '', true, 0);
 		$this->Ln();
 		
@@ -189,8 +196,7 @@ class QuotDetailPDF extends TCPDF {
 		$this->SetFont('', 'B', 15);
 		$this->MultiCell($this->columnWidth[0], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[1], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
-		$this->MultiCell($this->columnWidth[2], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
-		$this->MultiCell($this->columnWidth[3] + $this->columnWidth[4], $columnWidth, 'รวมจำนวนเงิน(บาท)', 0, 'R', 0, 0, '', '', true, 0);
+		$this->MultiCell($this->columnWidth[2] + $this->columnWidth[3] + $this->columnWidth[4], $columnWidth, 'รวมจำนวนเงิน(บาท)', 0, 'R', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[5], $columnWidth, number_format($footerData['net_price'], 2), 'LRB', 'R', 0, 0, '', '', true, 0);
 		$this->Ln();
 		
@@ -223,14 +229,15 @@ class QuotDetailPDF extends TCPDF {
 		$this->MultiCell($this->columnWidth[4] + $this->columnWidth[5], $columnWidth, 'By : ', 0, 'L', 0, 0, '', '', true, 0);
 	}
 	
-	public function generateProductImage($productName, $imageData){
-		$imageWidth = 85;
-		$imageHeight = 76.4;
-		$this->MultiCell($imageWidth, $imageHeight, $productName, 0, 'L', 0, 0, '', '', true, 0);
-		$this->Image('@'.$imageData, '', '', $imageWidth, $imageHeight, '', '', 'T', false, 300, 'R', false, false, 0, false, false, false);
-		$this->Ln($imageHeight + 5, false);
-		$this->Cell(array_sum($this->columnWidth), 0, '', 'T');
-		$this->Ln();
+	public function generateProductImage($img, $productSequence, $productName, $paddingX, $paddingY){
+		$imageSquareWidth = 44;
+		$descriptionHeight = 12;
+		$positionX = PDF_MARGIN_LEFT + $paddingX;
+		$positionY = PDF_MARGIN_TOP + $descriptionHeight + $paddingY;
+		$this->MultiCell($imageSquareWidth, $descriptionHeight, $productSequence.') '.$productName, 1, 'L', 0, 0, '', '', true, 0);
+		$this->MultiCell(2, $descriptionHeight, '', 0, 'L', 0, 0, '', '', true, 0);
+		//echo $positionX.'/'.$positionY.',';
+		$this->Image('@'.$img, $positionX, $positionY, $imageSquareWidth, $imageSquareWidth, '', '', '', false, 300, '', false, false, 0, false, false, false);
 	}
 	
 	public function printRefAndDate($strDate, &$isAddYourRef, &$isAddDate, $customerDetailColumnHeight, $customerDetailBorder){
