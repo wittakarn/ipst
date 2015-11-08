@@ -68,6 +68,8 @@ $(document).ready(function() {
 		var productId = "";
 		var productName = "";
 		var unitName = "";
+		var standardPrice = "";
+		var capitalPrice = "";
 		var sPrice = "";
 		var aPrice = "";
 		var bPrice = "";
@@ -77,6 +79,8 @@ $(document).ready(function() {
 			productId = respObj.productId;
 			productName = respObj.productName;
 			unitName = respObj.unitName;
+			standardPrice = respObj.standardPrice;
+			capitalPrice = respObj.capitalPrice;
 			sPrice = respObj.sPrice;
 			aPrice = respObj.aPrice;
 			bPrice = respObj.bPrice;
@@ -89,6 +93,8 @@ $(document).ready(function() {
 			$( ".label-unit-name" ).html(unitName);		
 			$( ".label-price-per-unit-name" ).html("บาท/".concat(unitName));
 			$( "#productModifyQuantity" ).val(1);
+			$( "#labelStandardAndCapitalPrice" ).html("<p style='color:gray;display:inline;'>ตั้ง:" + standardPrice + "</p>|<p style='color:red;display:inline;'>ทุน:" + capitalPrice + "</p>");
+			$( "#sabPrice" ).html("<p style='color:blue;display:inline;'>S:" + sPrice + "</p>|<p style='color:darkcyan;display:inline;'>A:" + aPrice + "</p>|<p style='color:green;display:inline;'>B:" + bPrice + "</p>");
 			
 			loadOfferedPrice(productId);
 		}
@@ -101,6 +107,8 @@ $(document).ready(function() {
 				productId: item.product_id,
 				productName: item.product_name,
 				unitName: item.unit_name,
+				standardPrice: item.standard_price,
+				capitalPrice: item.capital_price,
 				sPrice: item.s_price,
 				aPrice: item.a_price,
 				bPrice: item.b_price
@@ -502,8 +510,15 @@ $(document).ready(function() {
 							required
 							digits="true"/>
 					</div>
-					<div class="col-md-7">
+					<div class="col-md-2">
 						<p class="label-unit-name"></p>
+					</div>
+					<div class="col-md-5">
+						<?php
+						if($role === 'A'){
+							echo '<p id="labelStandardAndCapitalPrice" style="font-size:11px;"></p>';
+						}
+						?>
 					</div>
 				</div>
 				<div class="row">
@@ -514,8 +529,15 @@ $(document).ready(function() {
 							id="productModifyPrice"
 							number="true"/>
 					</div>
-					<div class="col-md-7">
+					<div class="col-md-2">
 						<p class="label-price-per-unit-name"></p>
+					</div>
+					<div class="col-md-5">
+						<?php
+						if($role === 'A'){
+							echo '<p id="sabPrice" style="font-size:11px;"></p>';
+						}
+						?>
 					</div>
 				</div>
 				<div class="row">

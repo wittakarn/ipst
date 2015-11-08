@@ -12,8 +12,6 @@
 						});
 
 						function searchProducts(callback) {
-							var tbody = $('#tableProduct').find('tbody');
-							tbody.empty();
 							
 							var productNameCriteria = $("#productName").val();
 							
@@ -29,13 +27,16 @@
 									data : data,
 									success : callback
 								});
+							}else{
+								var tbody = $('#tableProduct').find('tbody');
+								tbody.empty();
 							}
 						}
 
 						function setProductsToTable(data, textStatus, xhr) {
 							var dataSize = data.length;
 							var tbody = $('#tableProduct').find('tbody');
-							
+							tbody.empty();
 							for (var i = 0; i < dataSize; i++) {
 								tbody
 									.append($(

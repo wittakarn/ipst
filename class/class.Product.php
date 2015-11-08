@@ -40,7 +40,7 @@ class Product
 		$partialNames = explode(" ", $productName);
 		$partialNamesSize = count($partialNames);
 		
-		$query = 'SELECT product_id, product_name, unit_name, s_price, a_price, b_price FROM product WHERE product_name LIKE :name0 ';
+		$query = 'SELECT product_id, product_name, unit_name, standard_price, capital_price, s_price, a_price, b_price FROM product WHERE product_name LIKE :name0 ';
 		if($partialNamesSize > 1){
 			for ($i = 1; $i < $partialNamesSize; $i++) {
 				$query = $query.' AND product_name LIKE :name'.$i;

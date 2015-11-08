@@ -51,8 +51,7 @@ class QuotMast
 	
 	public static function getOldQuotations($conn, $customerId){
 		$query = "SELECT quot_no, date, net_price FROM quot_mast WHERE customer_id = :customer_id ";
-		$order = "ORDER BY year, sequence DESC ";
-		$limit = "LIMIT 10";
+		$order = "ORDER BY year DESC, sequence DESC ";
 		$stmt = $conn->prepare($query.$order); 
 		$stmt->bindParam(":customer_id", $customerId, PDO::PARAM_INT);
 
@@ -62,8 +61,9 @@ class QuotMast
 	
 	public static function getOldprices($conn, $customerId, $productId){
 		$query = "SELECT a.date, b.price FROM quot_mast a, quot_detail b WHERE a.quot_no = b.quot_no AND a.customer_id = :customer_id AND b.product_id = :product_id ";
-		$order = "ORDER BY a.year, b.sequence DESC";
-		$stmt = $conn->prepare($query.$order); 
+		$order = "ORDER BY a.year DESC, a.date DESC, a.sequence DESC ";
+		$limit = "LIMIT 10";
+		$stmt = $conn->prepare($query.$order.$limit); 
 		$stmt->bindParam(":customer_id", $customerId, PDO::PARAM_INT);
 		$stmt->bindParam(":product_id", $productId, PDO::PARAM_INT);
 
