@@ -82,6 +82,11 @@
       );
 </script>
 <div class="container">
+	<div class="row ">
+		<div class="col-md-12">
+			<a class="btn btn-default pull-right" href="product.php?MODE=A">เพิ่มใหม่</a>
+		</div>
+	</div>
 	<div class="table-responsive">
 		<table id="tableProduct" class="table table-bordered table-hover">
 			<thead>
