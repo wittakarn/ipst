@@ -100,7 +100,7 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 							  </ul>
 							</li>';
 				}else{
-					echo '<a href="#" onclick="$(\'#sign-in-model\').modal(\'show\')">
+					echo '<a href="'.WEB_ROOT.'pages/sign-in.php'.'">
 							<span class="glyphicon glyphicon-log-in"></span> เข้าสู่ระบบ
 						</a>';
 				}
@@ -110,7 +110,3 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 	</div><!--/.nav-collapse -->
   </div>
 </nav>
-
-<?php
-	include DOCUMENT_ROOT.'include/sign-in.php';
-?>

@@ -105,7 +105,7 @@ define ('PDF_CREATOR', 'TCPDF');
 /**
  * Document author.
  */
-define ('PDF_AUTHOR', 'Wittakarn');
+define ('PDF_AUTHOR', 'Wittakarn Keeratichayakorn');
 
 /**
  * Header title.
