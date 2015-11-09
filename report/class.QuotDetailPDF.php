@@ -12,12 +12,12 @@ class QuotDetailPDF extends TCPDF {
 	//Page header
     public function Header() {
         // Logo
-        $image_file = K_PATH_IMAGES.'se-logo.png';
-        $this->Image($image_file, 10, 10, 50, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        $image_file = K_PATH_IMAGES.'te-logo.jpg';
+        $this->Image($image_file, PDF_MARGIN_LEFT, 8, 115, '', 'JPEG', '', 'T', false, 300, '', false, false, 0, false, false, false);
         // Set font
         $this->SetFont('', 'B', 20);
         // Title
-        $this->Cell(0, 0, 'ใบเสนอราคา', 0, 2, 'R', 0, '', 0, false, 'M', 'M');
+        $this->Cell(0, 16, 'ใบเสนอราคา', 0, 2, 'R', 0, '', 0, false, 'M', 'B');
     }
 
     // Page footer
@@ -55,9 +55,7 @@ class QuotDetailPDF extends TCPDF {
 			
 			$customerAddressHeight = $customerDetailColumnHeight;
 			
-			if($addressLength >= 150){
-				$customerAddressHeight = $customerAddressHeight * 2.5;
-			}
+			$customerAddressHeight = $customerAddressHeight * 2.5;
 			$this->MultiCell(30, $customerAddressHeight, '', $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
 			$this->MultiCell(100, $customerAddressHeight, $customerAddress, $customerDetailBorder, 'L', 0, 0, '', '', true, 0);
 			$customerDetailheight = $customerDetailheight + $customerAddressHeight;

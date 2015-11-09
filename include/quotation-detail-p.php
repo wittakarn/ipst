@@ -94,15 +94,15 @@ $(document).ready(function() {
 			$( ".label-price-per-unit-name" ).html("บาท/".concat(unitName));
 			$( "#productModifyQuantity" ).val(1);
 			
-			var printProductPrice = "<p style='color:gray;display:inline;'>ตั้ง:";
+			var printProductPrice = "<p style='color:gray;display:inline;'>ตั้ง: ";
 			printProductPrice = printProductPrice.concat(standardPrice);
-			printProductPrice = printProductPrice.concat("</p>|<p style='color:red;display:inline;'>ทุน:");
+			printProductPrice = printProductPrice.concat("</p> | <p style='color:red;display:inline;'>ทุน: ");
 			printProductPrice = printProductPrice.concat(capitalPrice);
-			printProductPrice = printProductPrice.concat("</p>|<p style='color:blue;display:inline;'>S:");
+			printProductPrice = printProductPrice.concat("</p> | <p style='color:blue;display:inline;'>S: ");
 			printProductPrice = printProductPrice.concat(sPrice);
-			printProductPrice = printProductPrice.concat("</p>|<p style='color:darkcyan;display:inline;'>A:");
+			printProductPrice = printProductPrice.concat("</p> | <p style='color:darkcyan;display:inline;'>A: ");
 			printProductPrice = printProductPrice.concat(aPrice);
-			printProductPrice = printProductPrice.concat("</p>|<p style='color:green;display:inline;'>B:");
+			printProductPrice = printProductPrice.concat("</p> | <p style='color:green;display:inline;'>B: ");
 			printProductPrice = printProductPrice.concat(bPrice);
 			$( "#labelAllPrice" ).html(printProductPrice);
 
@@ -512,7 +512,7 @@ $(document).ready(function() {
 				</div>
 				<?php
 				if($role === 'A'){
-					echo '<div class="row"><div class="col-md-2"></div><div class="col-md-10"><p id="labelAllPrice"></p></div></div>';
+					echo '<div class="row"><div class="col-md-2"></div><div class="col-md-10"><p id="labelAllPrice" style="font-weight: bold;"></p></div></div>';
 				}
 				?>
 				<div class="row">
