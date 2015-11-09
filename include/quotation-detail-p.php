@@ -93,9 +93,19 @@ $(document).ready(function() {
 			$( ".label-unit-name" ).html(unitName);		
 			$( ".label-price-per-unit-name" ).html("บาท/".concat(unitName));
 			$( "#productModifyQuantity" ).val(1);
-			$( "#labelStandardAndCapitalPrice" ).html("<p style='color:gray;display:inline;'>ตั้ง:" + standardPrice + "</p>|<p style='color:red;display:inline;'>ทุน:" + capitalPrice + "</p>");
-			$( "#sabPrice" ).html("<p style='color:blue;display:inline;'>S:" + sPrice + "</p>|<p style='color:darkcyan;display:inline;'>A:" + aPrice + "</p>|<p style='color:green;display:inline;'>B:" + bPrice + "</p>");
 			
+			var printProductPrice = "<p style='color:gray;display:inline;'>ตั้ง:";
+			printProductPrice = printProductPrice.concat(standardPrice);
+			printProductPrice = printProductPrice.concat("</p>|<p style='color:red;display:inline;'>ทุน:");
+			printProductPrice = printProductPrice.concat(capitalPrice);
+			printProductPrice = printProductPrice.concat("</p>|<p style='color:blue;display:inline;'>S:");
+			printProductPrice = printProductPrice.concat(sPrice);
+			printProductPrice = printProductPrice.concat("</p>|<p style='color:darkcyan;display:inline;'>A:");
+			printProductPrice = printProductPrice.concat(aPrice);
+			printProductPrice = printProductPrice.concat("</p>|<p style='color:green;display:inline;'>B:");
+			printProductPrice = printProductPrice.concat(bPrice);
+			$( "#labelAllPrice" ).html(printProductPrice);
+
 			loadOfferedPrice(productId);
 		}
 	}
@@ -500,6 +510,11 @@ $(document).ready(function() {
 						<input type="hidden" id="existProductId" required/>
 					</div>
 				</div>
+				<?php
+				if($role === 'A'){
+					echo '<div class="row"><div class="col-md-2"></div><div class="col-md-10"><p id="labelAllPrice"></p></div></div>';
+				}
+				?>
 				<div class="row">
 					<div class="col-md-2">จำนวน</div>
 					<div class="col-md-3">
@@ -510,15 +525,8 @@ $(document).ready(function() {
 							required
 							digits="true"/>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-7">
 						<p class="label-unit-name"></p>
-					</div>
-					<div class="col-md-5">
-						<?php
-						if($role === 'A'){
-							echo '<p id="labelStandardAndCapitalPrice" style="font-size:11px;"></p>';
-						}
-						?>
 					</div>
 				</div>
 				<div class="row">
@@ -529,15 +537,8 @@ $(document).ready(function() {
 							id="productModifyPrice"
 							number="true"/>
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-7">
 						<p class="label-price-per-unit-name"></p>
-					</div>
-					<div class="col-md-5">
-						<?php
-						if($role === 'A'){
-							echo '<p id="sabPrice" style="font-size:11px;"></p>';
-						}
-						?>
 					</div>
 				</div>
 				<div class="row">
