@@ -133,9 +133,9 @@ $(document).ready(function() {
 		tbody
 			.append($(
 					'<tr productId="' + data["product_id"] + '">')
-					.append($('<td class="col-md-1 tableSeq">').html(''))
+					.append($('<td class="col-md-0 tableSeq">').html(''))
 					.append(
-							$('<td class="col-md-4">')
+							$('<td class="col-md-8">')
 									.append($('<input type="text" class="form-control"/>')
 																		.attr("value", data["product_name"])
 																		.attr("name", "product_name[]"))
@@ -167,13 +167,13 @@ $(document).ready(function() {
 																		.attr("value", data["summary"])
 																		.attr("name", "summary[]")))
 					.append(
-							$('<td class="col-md-1" align="center">')
+							$('<td class="col-md-0" align="center">')
 									.html('<span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="cursor: pointer;" />'))
 					.append(
-							$('<td class="col-md-1" align="center">')
+							$('<td class="col-md-0" align="center">')
 									.html('<span class="glyphicon glyphicon-arrow-down" aria-hidden="true" style="cursor: pointer;" />'))
 					.append(
-							$('<td class="col-md-1" align="center">')
+							$('<td class="col-md-0" align="center">')
 									.html('<span class="glyphicon glyphicon-remove" aria-hidden="true" style="cursor: pointer;" />'))
 					);
 		addTableQuotationDetailEvent();

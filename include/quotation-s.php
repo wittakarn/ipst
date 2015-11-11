@@ -55,7 +55,9 @@ $(document).ready(function() {
 	);
 });
 </script>
-<div class="container">
+<div class="container-fluid">
+<br/>
+<br/>
   <form id="saleQuoteForm" method="post" >
     <div class="row">
 		<div class="col-md-7">

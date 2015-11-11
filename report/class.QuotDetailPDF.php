@@ -7,7 +7,7 @@ require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf.php');
 // extend TCPF columnWidthith custom functions
 class QuotDetailPDF extends TCPDF {
 
-	public $columnWidth = array(10, 97, 15, 10, 18, 30);
+	public $columnWidth = array(9, 97, 17, 10, 18, 30);
 
 	//Page header
     public function Header() {
@@ -33,7 +33,7 @@ class QuotDetailPDF extends TCPDF {
 	public function generateQuotationMaster($customerData, $quotMast) {
 
 		$this->SetFont('', '', 14);
-		$customerDetailheight = 8;
+		$customerDetailheight = 3;
 		$customerDetailBorder = 0;
 		$customerDetailColumnHeight = 5;
 		$isAddYourRef = false;
@@ -114,7 +114,7 @@ class QuotDetailPDF extends TCPDF {
 			$this->Ln();
 		}
 		
-		$this->Ln();
+		//$this->Ln();
 
 		// add rectangle
 		$this->RoundedRect(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, 130, $customerDetailheight, 3.50, '1111');
@@ -129,7 +129,7 @@ class QuotDetailPDF extends TCPDF {
         //$this->SetTextColor(255);
         //$this->SetDracolumnWidthColor(128, 0, 0);
         $this->SetLineWidth(0.3);
-        $this->SetFont('', 'B', 11);
+        $this->SetFont('', 'B', 12);
 		
 		// Header
 		// MultiCell($columnWidth, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0)
@@ -144,7 +144,7 @@ class QuotDetailPDF extends TCPDF {
         // Color and font restoration
         //$this->SetFillColor(255, 255, 255);
         //$this->SetTextColor(0);
-        $this->SetFont('');
+		$this->SetFont('', '', 12.3);
         // Data
         $fill = 0;
         foreach($data as $rocolumnWidth) {
@@ -175,7 +175,7 @@ class QuotDetailPDF extends TCPDF {
 	
 	public function generateQuotationDetailTableFooter($footerData) {
 		$columnWidth = 5;
-		$this->SetFont('', 'B', 12);
+		$this->SetFont('', 'B', 11);
 		$this->MultiCell($this->columnWidth[0], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[1], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[2], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
@@ -206,7 +206,7 @@ class QuotDetailPDF extends TCPDF {
 		$this->MultiCell($this->columnWidth[0] + $this->columnWidth[1], $columnWidth, '............................................................................................................................', 0, 'L', 0, 0, '', '', true, 0);
 		$this->Ln();
 		$this->Cell(array_sum($this->columnWidth), 0, '', 'T');
-		$this->Ln();
+		$this->Ln(1, false);
 		$this->SetFont('', 'B', 13);
 		$this->MultiCell($this->columnWidth[0], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[1], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
