@@ -33,7 +33,7 @@ class QuotDetailPDF extends TCPDF {
 	public function generateQuotationMaster($customerData, $quotMast) {
 
 		$this->SetFont('', '', 14);
-		$customerDetailheight = 3;
+		$customerDetailheight = 4;
 		$customerDetailBorder = 0;
 		$customerDetailColumnHeight = 5;
 		$isAddYourRef = false;
@@ -206,7 +206,7 @@ class QuotDetailPDF extends TCPDF {
 		$this->MultiCell($this->columnWidth[0] + $this->columnWidth[1], $columnWidth, '............................................................................................................................', 0, 'L', 0, 0, '', '', true, 0);
 		$this->Ln();
 		$this->Cell(array_sum($this->columnWidth), 0, '', 'T');
-		$this->Ln(1, false);
+		$this->Ln(0.3, false);
 		$this->SetFont('', 'B', 13);
 		$this->MultiCell($this->columnWidth[0], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[1], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
@@ -224,7 +224,7 @@ class QuotDetailPDF extends TCPDF {
 		$this->MultiCell($this->columnWidth[1], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[2], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
 		$this->MultiCell($this->columnWidth[3], $columnWidth, '', 0, 'C', 0, 0, '', '', true, 0);
-		$this->MultiCell($this->columnWidth[4] + $this->columnWidth[5], $columnWidth, 'By : ', 0, 'L', 0, 0, '', '', true, 0);
+		//$this->MultiCell($this->columnWidth[4] + $this->columnWidth[5], $columnWidth, 'By : ', 0, 'L', 0, 0, '', '', true, 0);
 	}
 	
 	public function generateProductImage($img, $productSequence, $productName, $paddingX, $paddingY){
