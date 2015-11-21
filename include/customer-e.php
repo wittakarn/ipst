@@ -182,7 +182,7 @@ if(isset($_REQUEST['customer_id'])){
 					</div>
 					<div class="col-md-1">
 						<?php
-							if(is_array($fileBlob1)){
+							if(isset($fileBlob1) && is_array($fileBlob1)){
 								$hrefUrl = $viewerUrl.'1';
 								echo '<a href="'.$hrefUrl.'" target="_blank">
 											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
@@ -201,7 +201,7 @@ if(isset($_REQUEST['customer_id'])){
 					</div>
 					<div class="col-md-1">
 						<?php
-							if(is_array($fileBlob2)){
+							if(isset($fileBlob1) && is_array($fileBlob2)){
 								$hrefUrl = $viewerUrl.'2';
 								echo '<a href="'.$hrefUrl.'" target="_blank">
 											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>

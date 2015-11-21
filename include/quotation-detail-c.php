@@ -48,7 +48,7 @@
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="remarkLink">
 					<?php
-						if(is_array($fileBlob1)){
+						if(isset($fileBlob1) && is_array($fileBlob1)){
 							$hrefUrl = $viewerUrl.'1';
 							echo '<li>
 										<a href="'.$hrefUrl.'" target="_blank">
@@ -57,7 +57,7 @@
 									</li>';
 						}
 					
-						if(is_array($fileBlob2)){
+						if(isset($fileBlob2) && is_array($fileBlob2)){
 							$hrefUrl = $viewerUrl.'2';
 							echo '<li>
 										<a href="'.$hrefUrl.'" target="_blank">
