@@ -4,6 +4,8 @@ error_reporting(E_ALL);
 require_once("../config.php");
 require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Customer.php';
+require_once DOCUMENT_ROOT.'/class/class.FileStorage.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	
 	$conn = DataBaseConnection::createConnect();
@@ -14,6 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(isset($_REQUEST['customer_id'])){
 			$customer = new Customer($conn, $_REQUEST);
 			$customer->delete();
+			
+			$refTable = 'customer';
+			$fileStorage = new FileStorage($conn, null);
+			$fileStorage->delete($_REQUEST['customer_id'], $refTable);
 		}
 		$conn->commit();
 	} catch (PDOException $e) {

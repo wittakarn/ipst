@@ -1,6 +1,7 @@
 <?php
 require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Customer.php';
+require_once DOCUMENT_ROOT.'/class/class.FileStorage.php';
 
 if(isset($_REQUEST['MODE'])){
 	$screenMode = $_REQUEST['MODE'];
@@ -9,6 +10,11 @@ if(isset($_REQUEST['MODE'])){
 if(isset($_REQUEST['customer_id'])){
 	$conn = DataBaseConnection::createConnect();
 	$customerEdit =  Customer::get($conn, $_REQUEST['customer_id']);
+	
+	$refTable = 'customer';
+	$fileBlob1 = FileStorage::get($conn, $_REQUEST['customer_id'], $refTable, 1);
+	$fileBlob2 = FileStorage::get($conn, $_REQUEST['customer_id'], $refTable, 2);
+	
 	$conn = null;
 }
 ?>
@@ -44,42 +50,42 @@ if(isset($_REQUEST['customer_id'])){
 												form.submit();
 											}
 										}
-								);
+									);
 								
-								$("#updateButton")
-								  .click(
-										function() {
-											if (!isInvalidateForm()) {     
+									$("#updateButton")
+									  .click(
+											function() {
+												if (!isInvalidateForm()) {     
+													var form = $("#customerForm");
+													var action = "<?php echo ROOT."crud/update-customer.php" ?>";
+															
+													form.attr('action', action);
+													form.attr('target', '_self');
+													form.submit();
+												}
+											}
+									);
+									
+									$("#deleteButton")
+										.click(
+											function() {
 												var form = $("#customerForm");
-												var action = "<?php echo ROOT."crud/update-customer.php" ?>";
-														
+												var action = "<?php echo ROOT."crud/delete-customer.php" ?>";
+
 												form.attr('action', action);
 												form.attr('target', '_self');
 												form.submit();
-											}
-										}
-								);
-								
-								$("#deleteButton")
-									.click(
-										function() {
-											var form = $("#customerForm");
-											var action = "<?php echo ROOT."crud/delete-customer.php" ?>";
-
-											form.attr('action', action);
-											form.attr('target', '_self');
-											form.submit();
+											});
+									
+									function isInvalidateForm() {
+										$("#customerForm").validate({
+											ignore : ""
 										});
-								
-								function isInvalidateForm() {
-									$("#customerForm").validate({
-										ignore : ""
-									});
-									return !$("#customerForm").valid();
-								}
+										return !$("#customerForm").valid();
+									}
             
-          }
-      );
+								}
+    );
 </script>
 <div class="container">
   <form id="customerForm" method="post" enctype="multipart/form-data">
@@ -159,6 +165,42 @@ if(isset($_REQUEST['customer_id'])){
 							<option <?php echo (isset($customerEdit) && $customerEdit['grade'] ==='b') ? 'selected' : ''; ?>>b</option>
 						</select>
   					</div>
+  				</div>
+				<div class="row">
+  					<div class="col-md-2">ที่อยู่จัดส่ง</div>
+  					<div class="col-md-6">
+						<input type="file" 
+							class="form-control" 
+							name="file_blob[]"
+							id="deliverBlob"/>
+					</div>
+					<div class="col-md-1">
+						<?php
+							if(is_array($fileBlob1)){
+								echo '<a href="" target="_blank">
+											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										</a>';
+							}
+						?>
+					</div>
+  				</div>
+				<div class="row">
+  					<div class="col-md-2">รายละเอียดอื่นๆ</div>
+  					<div class="col-md-6">
+						<input type="file" 
+							class="form-control" 
+							name="file_blob[]"
+							id="remarkBlob"/>
+					</div>
+					<div class="col-md-1">
+						<?php
+							if(is_array($fileBlob2)){
+								echo '<a href="" target="_blank">
+											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										</a>';
+							}
+						?>
+					</div>
   				</div>
   			</div>
   		</div>

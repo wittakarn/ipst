@@ -23,6 +23,8 @@ class Customer
 		$stmt->bindParam(":grade", $params['grade'], PDO::PARAM_STR);
 	
 		$stmt->execute();
+		
+		return $db->lastInsertId();
 	}
 
 	public static function read($conn, $customerName){

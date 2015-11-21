@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 require_once("../config.php");
 require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Customer.php';
+require_once DOCUMENT_ROOT.'/class/class.FileStorage.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	
@@ -16,7 +17,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   
 		if(isset($_REQUEST['customer_name'])){
 			$customer = new Customer($conn, $_REQUEST);
-			$customer->create();
+			$customerId = $customer->create();
+			$refTable = 'customer';
+			
+			if(isset($_FILES['file_blob'])){
+				$fileStorage = new FileStorage($conn, null);
+				$fp = null;
+				$path_parts = null;
+				$fileType = '';
+				$fileName = '';
+				if($_FILES['file_blob']['size'][0] > 0){ 
+					$path_parts = pathinfo($_FILES['file_blob']['name'][0]);
+					$fileType = $path_parts['extension'];
+					
+					$tmpName = $_FILES['file_blob']['tmp_name'][0];
+					$fp = fopen($tmpName, 'rb'); // read binary
+					
+					$fileStorage->create($customerId, $refTable, 1, $fp, $fileType);
+				}
+				
+				if($_FILES['file_blob']['size'][1] > 0){ 
+					$path_parts = pathinfo($_FILES['file_blob']['name'][1]);
+					$fileType = $path_parts['extension'];
+				
+					$tmpName = $_FILES['file_blob']['tmp_name'][1];
+					$fp = fopen($tmpName, 'rb');
+					
+					$fileStorage->create($customerId, $refTable, 2, $fp, $fileType);
+				} 
+			}
 		}
   
 		$conn->commit();
