@@ -1,6 +1,7 @@
 <?php
 require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Customer.php';
+require_once DOCUMENT_ROOT.'/class/class.FileStorage.php';
 
 if(isset($_REQUEST['MODE'])){
 	$screenMode = $_REQUEST['MODE'];
@@ -9,6 +10,17 @@ if(isset($_REQUEST['MODE'])){
 if(isset($_REQUEST['customer_id'])){
 	$conn = DataBaseConnection::createConnect();
 	$customerSelected =  Customer::get($conn, $_REQUEST['customer_id']);
+	
+	$refTable = 'customer';
+	$fileBlob1 = FileStorage::get($conn, $_REQUEST['customer_id'], $refTable, 1);
+	$fileBlob2 = FileStorage::get($conn, $_REQUEST['customer_id'], $refTable, 2);
+	
+	$viewerUrl = ROOT.'downloader/file-viewer.php?customer_id=';
+	$viewerUrl = $viewerUrl.$_REQUEST['customer_id'];
+	$viewerUrl = $viewerUrl.'&ref_table=';
+	$viewerUrl = $viewerUrl.$refTable;
+	$viewerUrl = $viewerUrl.'&sequence=';
+	
 	$conn = null;
 }
 ?>
@@ -60,10 +72,10 @@ $(document).ready(function() {
 <br/>
   <form id="saleQuoteForm" method="post" >
     <div class="row">
-		<div class="col-md-7">
+		<div class="col-md-7 col-sm-7 col-xs-7">
 			<?php include(DOCUMENT_ROOT."/include/quotation-detail-p.php"); ?>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-5 col-sm-5 col-xs-5">
 			<?php include(DOCUMENT_ROOT."/include/quotation-detail-c.php"); ?>
 		</div>
   	</div>
@@ -81,7 +93,7 @@ $(document).ready(function() {
       </div>
     </div>
     <div class="row">
-  		<div class="col-md-2">
+  		<div class="col-md-2 col-sm-2 col-xs-2">
 			<button type="button" 
 					class="btn btn-default cancel"
 					id="createButton">
@@ -94,8 +106,8 @@ $(document).ready(function() {
 					แก้ไข
 			</button>
   		</div>
-  		<div class="col-md-7"></div>
-  		<div class="col-md-3">
+  		<div class="col-md-7 col-sm-5 col-xs-5"></div>
+  		<div class="col-md-3 col-sm-5 col-xs-5">
 			<?php
 				if($screenMode === 'E') {
 						echo '<button type="button" 

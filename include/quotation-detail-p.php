@@ -542,14 +542,14 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-md-2 col-sm-6 col-xs-6">
 						<button type="button" 
 								class="btn btn-default"
 								id="addDateToTableButton">
 								เพิ่ม
 						</button>
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-8 col-sm-6 col-xs-6">
 					</div>
 					<div class="col-md-2">
 						<button type="button" 

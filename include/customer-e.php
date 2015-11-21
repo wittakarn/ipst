@@ -16,6 +16,12 @@ if(isset($_REQUEST['customer_id'])){
 	$fileBlob2 = FileStorage::get($conn, $_REQUEST['customer_id'], $refTable, 2);
 	
 	$conn = null;
+	
+	$viewerUrl = ROOT.'downloader/file-viewer.php?customer_id=';
+	$viewerUrl = $viewerUrl.$_REQUEST['customer_id'];
+	$viewerUrl = $viewerUrl.'&ref_table=';
+	$viewerUrl = $viewerUrl.$refTable;
+	$viewerUrl = $viewerUrl.'&sequence=';
 }
 ?>
 <script type="text/javascript">
@@ -177,7 +183,8 @@ if(isset($_REQUEST['customer_id'])){
 					<div class="col-md-1">
 						<?php
 							if(is_array($fileBlob1)){
-								echo '<a href="" target="_blank">
+								$hrefUrl = $viewerUrl.'1';
+								echo '<a href="'.$hrefUrl.'" target="_blank">
 											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 										</a>';
 							}
@@ -195,7 +202,8 @@ if(isset($_REQUEST['customer_id'])){
 					<div class="col-md-1">
 						<?php
 							if(is_array($fileBlob2)){
-								echo '<a href="" target="_blank">
+								$hrefUrl = $viewerUrl.'2';
+								echo '<a href="'.$hrefUrl.'" target="_blank">
 											<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 										</a>';
 							}

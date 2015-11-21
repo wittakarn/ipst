@@ -11,6 +11,8 @@
 	$file = FileStorage::get($conn, $_REQUEST['customer_id'], $_REQUEST['ref_table'], $_REQUEST['sequence']);
 	//print_r($file);
 	if (is_array($file)) {
+		if (ob_get_level() == 0) ob_start(); 
+		
 		$fileType = strtolower($file['file_type']);
 		$fileName = 'download.'.$fileType;
 		
@@ -31,7 +33,8 @@
 		header('Cache-Control: no-cache, no-store, must-revalidate');
 		header('no-cache');
 		//header('Content-Length: ' . filesize($file));
-		flush();
+		ob_flush(); 
+		flush();  
 		echo $file['file_blob'];
 		exit;
 	}
