@@ -38,35 +38,44 @@
 				<p class="text-right"><strong>ติดต่อ</strong></p>
 			</div>
 			<div class="col-md-9 col-sm-7">
-				<?php echo isset($customerSelected) ? $customerSelected['address'] : ''?>
-				<button class="btn btn-default btn-xs dropdown-toggle" 
-						type="button" id="remarkLink" 
-						data-toggle="dropdown" 
-						aria-haspopup="true" 
-						aria-expanded="true">
-				เพิ่มเติม<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" aria-labelledby="remarkLink">
-					<?php
-						if(isset($fileBlob1) && is_array($fileBlob1)){
+				<?php 
+					echo isset($customerSelected) ? $customerSelected['contact'].' ' : '';
+					
+					$haveFileBlob1 = isset($fileBlob1) && is_array($fileBlob1);
+					$haveFileBlob2 = isset($fileBlob2) && is_array($fileBlob2);
+					
+					if($haveFileBlob1 || $haveFileBlob2){
+						$remarkDropdown = '<button class="btn btn-default btn-xs dropdown-toggle" 
+													type="button" id="remarkLink" 
+													data-toggle="dropdown" 
+													aria-haspopup="true" 
+													aria-expanded="true">
+											เพิ่มเติม<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" aria-labelledby="remarkLink">';
+						if($haveFileBlob1){
 							$hrefUrl = $viewerUrl.'1';
-							echo '<li>
-										<a href="'.$hrefUrl.'" target="_blank">
-											ที่อยู่จัดส่ง
-										</a>
-									</li>';
+							$remarkDropdown = $remarkDropdown.'<li>
+																	<a href="'.$hrefUrl.'" target="_blank">
+																		ที่อยู่จัดส่ง
+																	</a>
+																</li>';
 						}
 					
-						if(isset($fileBlob2) && is_array($fileBlob2)){
+						if($haveFileBlob2){
 							$hrefUrl = $viewerUrl.'2';
-							echo '<li>
-										<a href="'.$hrefUrl.'" target="_blank">
-											รายละเอียดอื่นๆ
-										</a>
-									</li>';
+							$remarkDropdown = $remarkDropdown.'<li>
+																	<a href="'.$hrefUrl.'" target="_blank">
+																		รายละเอียดอื่นๆ
+																	</a>
+																</li>';
 						}
-					?>
-				</ul>
+						
+						$remarkDropdown = $remarkDropdown.'</ul>';
+						
+						echo $remarkDropdown;
+					}
+				?>
 			</div>
 		</div>
 	</div>
