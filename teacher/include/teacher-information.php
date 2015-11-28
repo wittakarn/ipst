@@ -1,0 +1,574 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">ข้อมูลทั่วไปของผู้ตอบแบบสอบถาม</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<strong>1. เพศ</strong>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-sm-4">
+				<div class="radio">
+				  <label>
+					<input type="radio" name="r_sex" id="rSex" value="1" required/>
+					ชาย
+				  </label>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4">
+				<div class="radio">
+				  <label>
+					<input type="radio" name="r_sex" id="rSex" value="2" required/>
+					หญิง
+				  </label>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<strong>2. อายุ</strong>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-sm-4 col-xs-10">
+				<select class="form-control" name="s_age">
+					<?php
+						for($i=20;$i<=65;$i++){
+							echo '<option value="'.$i.'">'.$i.'</option>';
+						}
+					?>
+					<!--option value="1">20-30</option>
+					<option value="2">31-40</option>
+					<option value="3">41-50</option>
+					<option value="4">51-65</option-->
+				</select>
+			</div>
+			<div class="col-md-1 col-sm-1 col-xs-2">
+				<p>ปี</p>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<strong>3. วุฒิการศึกษาสูงสุด</strong>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-sm-4">
+				<div class="radio">
+				  <label>
+					<input type="radio" name="r_degree" value="1" required/>
+					ต่ำกว่าปริญญาตรี
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+					<input type="radio" name="r_degree" value="3" required/>
+					ปริญญาโท
+				  </label>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4">
+				<div class="radio">
+				  <label>
+					<input type="radio" name="r_degree" value="2" required/>
+					ปริญญาตรี
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+					<input type="radio" name="r_degree" value="4" required/>
+					ปริญญาเอก
+				  </label>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<strong>4. วิชาและระดับชั้นที่สอนในปีการศึกษา 2558(โปรดระบุทุกระดับชั้นและวิชาที่สอน)</strong>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="subject-selected subject-group" 
+							type="checkbox" 
+							id="scienceSubjectSelected" 
+							value="1" 
+							name="c_s"
+							ref="scienceSubjectSelectedCollapse"/>
+					วิทยาศาสตร์
+				  </label>
+				</div>
+				<div class="collapse" id="scienceSubjectSelectedCollapse">
+					<div class="well">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_1" value="1"/>
+									ประถมศึกษาปีที่ 1
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_2" value="1"/>
+									ประถมศึกษาปีที่ 2
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_3" value="1"/>
+									ประถมศึกษาปีที่ 3
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_4" value="1"/>
+									ประถมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_5" value="1"/>
+									ประถมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_6" value="1"/>
+									ประถมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_7" value="1"/>
+									มัธยมศึกษาปีที่ 1
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_8" value="1"/>
+									มัธยมศึกษาปีที่ 2
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_9" value="1"/>
+									มัธยมศึกษาปีที่ 3
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_10" value="1"/>
+									มัธยมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_11" value="1"/>
+									มัธยมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_s_12" value="1"/>
+									มัธยมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="subject-selected subject-group"
+							type="checkbox" 
+							id="mathematicSubjectSelected" 
+							value="1" 
+							name="c_m"
+							ref="mathematicSubjectSelectedCollapse"/>
+					คณิตศาสตร์
+				  </label>
+				</div>
+				<div class="collapse" id="mathematicSubjectSelectedCollapse">
+					<div class="well">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_1" value="1"/>
+									ประถมศึกษาปีที่ 1
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_2" value="1"/>
+									ประถมศึกษาปีที่ 2
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_3" value="1"/>
+									ประถมศึกษาปีที่ 3
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_4" value="1"/>
+									ประถมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_5" value="1"/>
+									ประถมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_6" value="1"/>
+									ประถมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_7" value="1"/>
+									มัธยมศึกษาปีที่ 1
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_8" value="1"/>
+									มัธยมศึกษาปีที่ 2
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_9" value="1"/>
+									มัธยมศึกษาปีที่ 3
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_10" value="1"/>
+									มัธยมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_11" value="1"/>
+									มัธยมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_m_12" value="1"/>
+									มัธยมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="subject-selected subject-group"
+							type="checkbox" 
+							id="technologySubjectSelected" 
+							value="1" 
+							name="c_t"
+							ref="technologySubjectSelectedCollapse"/>
+					เทคโนโลยีสารสนเทศและการสื่อสาร
+				  </label>
+				</div>
+				<div class="collapse" id="technologySubjectSelectedCollapse">
+					<div class="well">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_1" value="1"/>
+									ประถมศึกษาปีที่ 1
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_2" value="1"/>
+									ประถมศึกษาปีที่ 2
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_3" value="1"/>
+									ประถมศึกษาปีที่ 3
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_4" value="1"/>
+									ประถมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_5" value="1"/>
+									ประถมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_6" value="1"/>
+									ประถมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_7" value="1"/>
+									มัธยมศึกษาปีที่ 1
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_8" value="1"/>
+									มัธยมศึกษาปีที่ 2
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_9" value="1"/>
+									มัธยมศึกษาปีที่ 3
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_10" value="1"/>
+									มัธยมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_11" value="1"/>
+									มัธยมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_t_12" value="1"/>
+									มัธยมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="subject-selected subject-group"
+							type="checkbox" 
+							id="designSubjectSelected" 
+							value="1" 
+							name="c_d"
+							ref="designSubjectSelectedCollapse"/>
+					การออกแบบและเทคโนโลยี
+				  </label>
+				</div>
+				<div class="collapse" id="designSubjectSelectedCollapse">
+					<div class="well">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_1" value="1"/>
+									ประถมศึกษาปีที่ 1
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_2" value="1"/>
+									ประถมศึกษาปีที่ 2
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_3" value="1"/>
+									ประถมศึกษาปีที่ 3
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_4" value="1"/>
+									ประถมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_5" value="1"/>
+									ประถมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_6" value="1"/>
+									ประถมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_7" value="1"/>
+									มัธยมศึกษาปีที่ 1
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_8" value="1"/>
+									มัธยมศึกษาปีที่ 2
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_9" value="1"/>
+									มัธยมศึกษาปีที่ 3
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_10" value="1"/>
+									มัธยมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_11" value="1"/>
+									มัธยมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="degree" type="checkbox" name="c_d_12" value="1"/>
+									มัธยมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<strong>5. ประสบการณ์ในการสอนรวมทุกวิชาและทุกระดับชั้นปี(ระบุประสบการณ์)</strong>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-sm-4 col-xs-10">
+				<select class="form-control" name="s_">
+					<?php
+						for($i=0;$i<=40;$i++){
+							echo '<option value="'.$i.'">'.$i.'</option>';
+						}
+					?>
+					<!--option value="1">0-10</option>
+					<option value="2">11-20</option>
+					<option value="3">21-30</option>
+					<option value="4">31-40</option-->
+				</select>
+			</div>
+			<div class="col-md-1 col-sm-1 col-xs-2">
+				ปี
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<strong>6. สังกัดของโรงเรียน</strong>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="school-under-group" type="checkbox" name="c_school_under_1" value="1"/>
+					สำนักงานพื้นที่การศึกษาประถมศึกษา(สพป.)
+				  </label>
+				</div>
+				<div class="checkbox">
+				  <label>
+					<input class="school-under-group" type="checkbox" name="c_school_under_3" value="1"/>
+					สำนักงานคณะกรรมการส่งเสริมการศึกษาเอกชน(สช.)
+				  </label>
+				</div>
+				<div class="checkbox">
+				  <label>
+					<input class="school-under-group" type="checkbox" name="c_school_under_5" value="1"/>
+					สำนักการศึกษา กรุงเทพมหานคร
+				  </label>
+				</div>
+				<div class="checkbox">
+				  <label>
+					<input class="school-under-group" type="checkbox" name="c_school_under_7" value="1"/>
+					เทศบาล
+				  </label>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="school-under-group" type="checkbox" name="c_school_under_2" value="1"/>
+					สำนักงานพื้นที่การศึกษามัธยมศึกษา(สพม.)
+				  </label>
+				</div>
+				<div class="checkbox">
+				  <label>
+					<input class="school-under-group" type="checkbox" name="c_school_under_4" value="1"/>
+					สำนักงานคณะกรรมการการอุดมศึกษา(สกอ.)
+				  </label>
+				</div>
+				<div class="checkbox">
+				  <label>
+					<input class="school-under-group" type="checkbox" name="c_school_under_6" value="1"/>
+					องค์การบริหารส่วนจังหวัด(อบจ.)
+				  </label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1 col-sm-1">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="c_school_under_8" value="1"/>
+						อื่นๆ
+					</label>
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-5">
+				<input type="text" name="i_school_under_8" class="form-control school-under-group"/>
+			</div>
+		</div>
+	</div>
+	<nav>
+		<ul class="pager">
+			<li><a class="next-tab" href="#satisfaction">ต่อไป</a></li>
+		</ul>
+	</nav>
+</div>
