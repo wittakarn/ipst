@@ -42,13 +42,13 @@ session_start();
 	<script src="<?php echo ROOT; ?>lib/jquery/additional-methods.min.js"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
-	<script src="<?php echo ROOT; ?>teacher/script/questionaire.js" type="text/javascript"></script>
+	<script src="<?php echo ROOT; ?>teacher/script/questionnaire.js" type="text/javascript"></script>
   </head>
 
   <body>
 
 	<?php
-		include DOCUMENT_ROOT.'include/header-teacher.php';
+		include DOCUMENT_ROOT.'teacher/include/header.php';
 	?>
 	
 	<form id="questionForm">
@@ -56,22 +56,22 @@ session_start();
 		<div class="container">
 			<!-- Nav tabs -->
 			<ul class="nav nav-pills" role="tablist">
-				<li role="presentation" class="active"><a href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
-				<li role="presentation" class="disabled"><a href="#" ref="#satisfaction" aria-controls="satisfaction" role="tab" >ส่วนที่ 2</a></li>
-				<li role="presentation" class="disabled"><a href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 3</a></li>
-				<li role="presentation" class="disabled"><a href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 4</a></li>
+				<li role="presentation" class="active"><a class="section-tab" href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#satisfaction" aria-controls="satisfaction" role="tab" >ส่วนที่ 2</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 3</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 4</a></li>
 			</ul>
 			<br/>
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="generalInformation">
 					<?php
-						include DOCUMENT_ROOT.'teacher/include/teacher-information.php';
+						include DOCUMENT_ROOT.'teacher/include/information.php';
 					?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="satisfaction">
 					<?php
-						include DOCUMENT_ROOT.'teacher/include/teacher-satisfaction.php';
+						include DOCUMENT_ROOT.'teacher/include/satisfaction.php';
 					?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="booksSatisfaction">

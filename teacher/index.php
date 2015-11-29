@@ -46,7 +46,7 @@ session_start();
   <body>
 
 	<?php
-		include DOCUMENT_ROOT.'include/header-teacher.php';
+		include DOCUMENT_ROOT.'teacher/include/header.php';
 	?>
 
     <!-- Begin page content -->
@@ -63,7 +63,7 @@ session_start();
 			</h3>
 			<p class="text-center">
 				<a class="btn btn-primary btn-lg" 
-					href="<?php echo ROOT; ?>teacher/questionaire.php" 
+					href="<?php echo ROOT; ?>teacher/questionnaire.php" 
 					target="_blank"
 					role="button">
 					เริ่มทำแบบสอบถาม

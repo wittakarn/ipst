@@ -24,6 +24,22 @@ $(document)
 							}
 						});
 						
+						$('.section-tab').click(function (e) {
+							var li = $(this).parent();
+							var currentIndex = li.index();
+							var ul = li.parent();
+							
+							$(ul).find(".section-tab").each(function() {
+								var a = $(this);
+								li = $(this).parent();
+								if(li.index() > currentIndex){
+									li.addClass("disabled");
+									a.removeAttr("data-toggle");
+									a.attr("href", "#");
+								}
+							});
+						});
+						
 						$('.next-tab').click(function (e) {
 							if (isInvalidateForm()) {
 								openInvalidTab();
@@ -167,11 +183,9 @@ $(document)
 						});
 						
 						function isInvalidateForm() {
-							/*
 							$("#questionForm").validate({
 								ignore : ""
 							});
-							*/
 							return !$("#questionForm").valid();
 						}
 						
