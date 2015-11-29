@@ -43,6 +43,7 @@ session_start();
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
 	<script src="<?php echo ROOT; ?>student/script/questionnaire.js" type="text/javascript"></script>
+	<script src="<?php echo ROOT; ?>script/questionnaire.js" type="text/javascript"></script>
 	
 	<script type="text/javascript">
 	$(document)
@@ -78,7 +79,9 @@ session_start();
 					?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="booksSatisfaction">
-					xxx
+					<?php
+						include DOCUMENT_ROOT.'include/receiver-information.php';
+					?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="contribute">
 					yyy

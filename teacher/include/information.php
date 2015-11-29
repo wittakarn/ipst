@@ -10,7 +10,7 @@
 			<div class="col-md-2 col-sm-4">
 				<div class="radio">
 				  <label>
-					<input type="radio" name="r_sex" id="rSex" value="1" required/>
+					<input type="radio" name="r_sex" value="1" required/>
 					ชาย
 				  </label>
 				</div>
@@ -18,7 +18,7 @@
 			<div class="col-md-2 col-sm-4">
 				<div class="radio">
 				  <label>
-					<input type="radio" name="r_sex" id="rSex" value="2" required/>
+					<input type="radio" name="r_sex" value="2" required/>
 					หญิง
 				  </label>
 				</div>
