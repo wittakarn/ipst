@@ -18,10 +18,10 @@ session_start();
     <meta name="author" content="">
 
     <title>แบบสอบถามสื่อการเรียนรู้</title>
-
+	
 	<link rel='shortcut icon' href='<?php echo ROOT; ?>favicon.ico' type='image/x-icon'/ >
 	<link rel="icon" href="<?php echo ROOT; ?>favicon.ico" type="image/x-icon">
-	
+
     <!-- Bootstrap core CSS -->
     <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -39,39 +39,53 @@ session_start();
     
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.min.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.custom.message.js" type="text/javascript"></script>
+	<script src="<?php echo ROOT; ?>lib/jquery/additional-methods.min.js"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
+	<script src="<?php echo ROOT; ?>student/script/questionnaire.js" type="text/javascript"></script>
+	
+	<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$("#sProvince").load( "<?php echo ROOT; ?>student/include/province-select-data.php");
+					}
+				);
+	</script>
   </head>
 
   <body>
 
 	<?php
-		include DOCUMENT_ROOT.'include/header-teacher.php';
+		include DOCUMENT_ROOT.'student/include/header.php';
 	?>
-
-    <!-- Begin page content -->
-    <div class="container">
-		<div class="jumbotron">
-			<h2 class="text-center">คำชี้แจง</h2>
-			<h3 style="text-indent: 50px;">
-			     เนื่องด้วย สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.) มีความประสงค์จะสำรวจข้อมูลเกี่ยวกับการใช้สื่อการเรียนรู้วิชาวิทยาศาสตร์ คณิตศาสตร์ และเทคโนโลยี เพื่อนำไปใช้พัฒนา
-สื่อการเรียนรู้ของ สสวท. จึงขอความร่วมมือจากครูที่สอนวิชาวิทยาศาสตร์ คณิตศาสตร์ และเทคโนโลยี 
-ตอบแบบสอบถามฉบับนี้ให้ครบถ้วน ตรงกับความเป็นจริง
-			</h3>
-			<h3 style="text-indent: 50px;">
-				<strong>ข้อมูลที่ถูกต้อง ตรงตามสภาพความเป็นจริง มีคุณค่าอย่างยิ่งต่อการวางแผนดำเนินงานในอนาคต</strong>
-			</h3>
-			<p class="text-center">
-				<a class="btn btn-primary btn-lg" 
-					href="<?php echo ROOT; ?>teacher/questionaire.php" 
-					target="_blank"
-					role="button">
-					เริ่มทำแบบสอบถาม
-				</a>
-			</p>
+	
+	<form id="questionForm">
+		<!-- Begin page content -->
+		<div class="container">
+			<!-- Nav tabs -->
+			<ul class="nav nav-pills" role="tablist">
+				<li role="presentation" class="active"><a href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
+				<li role="presentation" class="disabled"><a href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 2</a></li>
+				<li role="presentation" class="disabled"><a href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 3</a></li>
+			</ul>
+			<br/>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="generalInformation">
+					<?php
+						include DOCUMENT_ROOT.'student/include/information.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="booksSatisfaction">
+					xxx
+				</div>
+				<div role="tabpanel" class="tab-pane" id="contribute">
+					yyy
+				</div>
+			</div>
 		</div>
-    </div>
-
+	</form>
     
   </body>
 </html>

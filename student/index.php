@@ -2,9 +2,6 @@
 ini_set('display_errors', 1); 
 error_reporting(E_ALL);
 require_once("../config.php");
-ini_set('session.gc_maxlifetime', SESSION_MAX_LIFE_TIME);
-session_set_cookie_params(SESSION_MAX_LIFE_TIME);
-session_start();
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +43,7 @@ session_start();
   <body>
 
 	<?php
-		include DOCUMENT_ROOT.'include/header-teacher.php';
+		include DOCUMENT_ROOT.'student/include/header.php';
 	?>
 
     <!-- Begin page content -->
@@ -63,7 +60,7 @@ session_start();
 			</h3>
 			<p class="text-center">
 				<a class="btn btn-primary btn-lg" 
-					href="<?php echo ROOT; ?>teacher/questionaire.php" 
+					href="<?php echo ROOT; ?>student/questionnaire.php" 
 					target="_blank"
 					role="button">
 					เริ่มทำแบบสอบถาม
