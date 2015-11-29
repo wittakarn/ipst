@@ -38,6 +38,25 @@ $(document)
 							}
 						});
 						
+						$(".group-other").change(function() {
+							var ref = $(this).attr("ref");
+							var href = "#" + ref;					
+							if ($(this).is(':checked')) {
+								$(href).attr("required", true);
+							} else {
+								$(href).removeAttr( "required" );
+								$(href).val("");
+								$(href+"-error").remove();
+							}
+						});
+						
+						$(".book-satisfy-group").change(function(){
+							if($("input.book-satisfy-group").filter(":checked").length == 3)
+								$("input.book-satisfy-group:not(:checked)").attr("disabled", "disabled");
+							else
+								$("input.book-satisfy-group").removeAttr("disabled");
+						});
+						
 						$( "#questionForm" ).validate({
 							rules: {
 								c_s: {
@@ -73,8 +92,23 @@ $(document)
 								c_school_under_7: {
 									require_from_group: [1, ".school-under-group"]
 								},
-								i_school_under_8: {
+								c_school_under_8: {
 									require_from_group: [1, ".school-under-group"]
+								},
+								c_book_satisfy_1: {
+									require_from_group: [1, ".book-satisfy-group"]
+								},
+								c_book_satisfy_2: {
+									require_from_group: [1, ".book-satisfy-group"]
+								},
+								c_book_satisfy_3: {
+									require_from_group: [1, ".book-satisfy-group"]
+								},
+								c_book_satisfy_4: {
+									require_from_group: [1, ".book-satisfy-group"]
+								},
+								c_book_satisfy_5: {
+									require_from_group: [1, ".book-satisfy-group"]
 								}
 							},
 							messages: {
@@ -111,16 +145,33 @@ $(document)
 								c_school_under_7: {
 									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
 								},
-								i_school_under_8: {
+								c_school_under_8: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_book_satisfy_1: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_book_satisfy_2: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_book_satisfy_3: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_book_satisfy_4: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_book_satisfy_5: {
 									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
 								}
 							}
 						});
 						
 						function isInvalidateForm() {
+							/*
 							$("#questionForm").validate({
 								ignore : ""
 							});
+							*/
 							return !$("#questionForm").valid();
 						}
 						

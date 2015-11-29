@@ -556,13 +556,17 @@
 			<div class="col-md-1 col-sm-1">
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="c_school_under_8" value="1"/>
+						<input class="school-under-group group-other" 
+								type="checkbox" 
+								name="c_school_under_8" 
+								value="1"
+								ref="iSchoolUnder8"/>
 						อื่นๆ
 					</label>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-5">
-				<input type="text" name="i_school_under_8" class="form-control school-under-group"/>
+				<input id="iSchoolUnder8" type="text" name="i_school_under_8" class="form-control"/>
 			</div>
 		</div>
 	</div>
