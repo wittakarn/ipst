@@ -2,6 +2,10 @@ $(document)
 		.ready(
 				function() {
 					
+						var cValidator = $( "#questionForm" ).validate();
+					
+						$("#sProvince").load( contextRoot + "student/include/province-select-data.php");
+					
 						$('.section-tab').click(function (e) {
 							var li = $(this).parent();
 							var currentIndex = li.index();
@@ -20,8 +24,14 @@ $(document)
 						
 						$('.next-tab').click(function (e) {
 							if (isInvalidateForm()) {
-								openInvalidTab();
+								focusInvalidComponent();
 							}else{
+								var populateBookQuestionnaire = $(this).attr("populateBookQuestionnaire") == "true";
+								
+								if(populateBookQuestionnaire){
+									loadBookQuestionnair();
+								}
+								
 								var href = $(this).attr("href");
 								e.preventDefault()
 								var tab = $('.nav-pills a[ref="' + href + '"]');
@@ -33,20 +43,25 @@ $(document)
 						});
 						
 						function isInvalidateForm() {
-							/*
 							$("#questionForm").validate({
 								ignore : ""
 							});
-							*/
 							return !$("#questionForm").valid();
 						}
 						
-						function openInvalidTab() {
+						function focusInvalidComponent() {
+							/*
 							var tabs = $(".form-control.error:enabled").parents(".tab-pane");
 							if (tabs != null && tabs.length >= 1) {
 								var invalidTabId = tabs[tabs.length - 1].id;
 								$('.nav-pills a[href="#' + invalidTabId + '"]').tab('show');
 							}
+							*/
+							cValidator.focusInvalid();
+						}
+						
+						function loadBookQuestionnair(){
+							$("#scienceDegree1").load(contextRoot + "include/science-degree-1.php");
 						}
 				}
 		);

@@ -42,6 +42,11 @@ session_start();
 	<script src="<?php echo ROOT; ?>lib/jquery/additional-methods.min.js"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
+	
+	<script language="javascript" type="text/javascript">
+		var contextRoot = "<?php echo ROOT; ?>";
+	</script>
+	
 	<script src="<?php echo ROOT; ?>teacher/script/questionnaire.js" type="text/javascript"></script>
 	<script src="<?php echo ROOT; ?>script/questionnaire.js" type="text/javascript"></script>
   </head>
@@ -77,11 +82,13 @@ session_start();
 				</div>
 				<div role="tabpanel" class="tab-pane" id="booksSatisfaction">
 					<?php
-						include DOCUMENT_ROOT.'include/receiver-information.php';
+						include DOCUMENT_ROOT.'include/book-satisfaction.php';
 					?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="contribute">
-					yyy
+					<?php
+						include DOCUMENT_ROOT.'include/receiver-information.php';
+					?>
 				</div>
 			</div>
 		</div>

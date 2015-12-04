@@ -74,7 +74,7 @@
 	</div>
 	<nav>
 		<ul class="pager">
-			<li><a class="next-tab" href="#booksSatisfaction">ต่อไป</a></li>
+			<li><a class="next-tab" href="#booksSatisfaction" populateBookQuestionnaire="true">ต่อไป</a></li>
 		</ul>
 	</nav>
 </div>

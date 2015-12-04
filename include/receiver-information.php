@@ -29,7 +29,7 @@
 							type="radio" 
 							name="r_receive_contribute_book" 
 							value="1"
-							ref="receiveBookSelectedCollapse"							
+							ref="receiveBookSelectedCollapse"					
 							required/>
 					ต้องการรับหนังสือ
 				  </label>
@@ -42,6 +42,7 @@
 							type="radio" 
 							name="r_receive_contribute_book" 
 							value="2" 
+							ref="receiveBookSelectedCollapse"
 							required/>
 					ไม่ต้องการรับหนังสือ
 				  </label>

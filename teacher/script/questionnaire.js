@@ -1,6 +1,7 @@
 $(document)
 		.ready(
 				function() {
+						//alert(contextRoot);
 						var cValidator = $( "#questionForm" ).validate({
 							groups: {
 								"subject-group": "c_s c_m c_t c_d",
@@ -161,6 +162,13 @@ $(document)
 							if (isInvalidateForm()) {
 								focusInvalidComponent();
 							}else{
+								
+								var populateBookQuestionnaire = $(this).attr("populateBookQuestionnaire") == "true";
+								
+								if(populateBookQuestionnaire){
+									loadBookQuestionnair();
+								}
+								
 								var href = $(this).attr("href");
 								e.preventDefault()
 								var tab = $('.nav-pills a[ref="' + href + '"]');
@@ -206,6 +214,10 @@ $(document)
 							}
 							*/
 							cValidator.focusInvalid();
+						}
+						
+						function loadBookQuestionnair(){
+							$("#scienceDegree1").load(contextRoot + "include/science-degree-1.php");
 						}
 				}
 		);
