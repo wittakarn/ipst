@@ -38,7 +38,7 @@ require_once("../config.php");
 			<div class="col-md-3">
 				<div class="radio">
 				  <label>
-					<input type="radio" name="r_s_1_1_1" value="1" required/>
+					<input type="radio" name="r_s_1_1_2" value="1" required/>
 					พึงพอใจ
 				  </label>
 				</div>
@@ -46,7 +46,7 @@ require_once("../config.php");
 			<div class="col-md-3">
 				<div class="radio">
 				  <label>
-					<input type="radio" name="r_s_1_1_1" value="2" required/>
+					<input type="radio" name="r_s_1_1_2" value="2" required/>
 					เฉยๆ
 				  </label>
 				</div>
@@ -54,7 +54,7 @@ require_once("../config.php");
 			<div class="col-md-3">
 				<div class="radio">
 				  <label>
-					<input type="radio" name="r_s_1_1_1" value="2" required/>
+					<input type="radio" name="r_s_1_1_2" value="2" required/>
 					ไม่พึงพอใจ
 				  </label>
 				</div>
@@ -65,10 +65,10 @@ require_once("../config.php");
 				ความคิดเห็นและข้อเสนอแนะเพื่อการปรับปรุง
 			</div>
 			<div class="col-md-8">
-				<textarea class="form-control" rows="2"></textarea>
+				<textarea name="t_s_1_1_3" class="form-control" rows="2"></textarea>
 			</div>
 			<div class="col-md-8">
-				<input type="file" name="i_receiver_postcode" class="form-control"/>
+				<input type="file" name="f_s_1_1_4" class="form-control"/>
 			</div>
 		</div>
 	</div>
@@ -89,3 +89,4 @@ require_once("../config.php");
 		</div>
 	</div>
 </div>
+<hr/>
