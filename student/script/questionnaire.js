@@ -61,7 +61,7 @@ $(document)
 						}
 						
 						function loadBookQuestionnair(){
-							$("#scienceBookSection").load(contextRoot + "include/science.php");
+							$("#scienceBookSection1").load(contextRoot + "include/science-1.php");
 						}
 				}
 		);
