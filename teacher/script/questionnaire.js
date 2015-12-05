@@ -217,7 +217,7 @@ $(document)
 						}
 						
 						function loadBookQuestionnair(){
-							$("#scienceDegree1").load(contextRoot + "include/science-degree-1.php");
+							$("#scienceBookSection").load(contextRoot + "include/science.php");
 						}
 				}
 		);

@@ -4,8 +4,8 @@ error_reporting(E_ALL);
 require_once("../config.php");
 ?>
 <div class="row">
-	<div class="col-md-2">
-		<a href="#" ref=popover class="thumbnail" data-toggle="modal" data-target=".m-s-1-1">
+	<div class="col-md-2 col-sm-3 col-xs-5">
+		<a href="#" class="thumbnail" data-toggle="modal" data-target=".m-s-1-1">
 			<img src="<?php echo ROOT;?>image/s/1/1.jpg" class="img-responsive"/>
 		</a>
 	</div>
@@ -20,7 +20,7 @@ require_once("../config.php");
 						<span class="glyphicon glyphicon-remove" aria-hidden="true">
 						</span>
 					</button>
-					<img src="<?php echo ROOT;?>image/s/1/1.jpg" class="img-responsive"/>
+					<img src="<?php echo ROOT;?>image/s/1/1.jpg" class="img-responsive center-block"/>
 				</div>
 			</div>
 		</div>

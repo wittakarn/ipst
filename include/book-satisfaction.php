@@ -9,13 +9,19 @@
 		</div>
 		<br/>
 		<div class="row">
-			<div id="scienceDegree1" class="col-md-12 col-sm-12 col-xs-12">
-				
+			<div id="scienceBookSection" class="col-md-12 col-sm-12 col-xs-12">
 			</div>
 		</div>
 		<div class="row">
-			<div id="scienceDegree2" class="col-md-12 col-sm-12 col-xs-12">
-				
+			<div id="mathBookSection" class="col-md-12 col-sm-12 col-xs-12">		
+			</div>
+		</div>
+		<div class="row">
+			<div id="technologyBookSection" class="col-md-12 col-sm-12 col-xs-12">		
+			</div>
+		</div>
+		<div class="row">
+			<div id="designBookSection" class="col-md-12 col-sm-12 col-xs-12">
 			</div>
 		</div>
 	</div>
