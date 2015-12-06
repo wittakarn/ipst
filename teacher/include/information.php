@@ -570,9 +570,11 @@
 			</div>
 		</div>
 	</div>
-	<nav>
-		<ul class="pager">
-			<li><a class="next-tab" href="#satisfaction">ต่อไป</a></li>
-		</ul>
-	</nav>
+	<p class="text-center">
+		<button type="button"
+				class="btn btn-primary" 
+				id="startQuestionnaire">
+				เริ่มทำแบบสอบถาม
+		</button>
+	</p>
 </div>

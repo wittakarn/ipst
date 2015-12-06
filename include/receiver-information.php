@@ -97,7 +97,7 @@
 	</div>
 	<nav>
 		<ul class="pager">
-			<li><a class="next-tab" href="#bookSelection">ต่อไป</a></li>
+			<li><a class="next-tab" href="#reCaptcha">ต่อไป</a></li>
 		</ul>
 	</nav>
 </div>

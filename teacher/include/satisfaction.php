@@ -10,25 +10,25 @@
 			<div class="col-md-12 col-sm-12">
 				<div class="checkbox">
 				  <label>
-					<input class="book-satisfy-group" type="checkbox" name="c_book_satisfy_1" value="1"/>
+					<input class="book-satisfy-group" type="checkbox" name="c_satisfy_group_1" value="1"/>
 					หนังสือเรียนมีคู่มือหรือคำแนะนำสำหรับครูในการจัดการเรียนรู้
 				  </label>
 				</div>
 				<div class="checkbox">
 				  <label>
-					<input class="book-satisfy-group" type="checkbox" name="c_book_satisfy_2" value="1"/>
+					<input class="book-satisfy-group" type="checkbox" name="c_satisfy_group_2" value="1"/>
 					หนังสือเรียนมีคำแนะนำสำหรับนักเรียนในการเรียนรู้ด้วยตนเอง
 				  </label>
 				</div>
 				<div class="checkbox">
 				  <label>
-					<input class="book-satisfy-group" type="checkbox" name="c_book_satisfy_3" value="1"/>
+					<input class="book-satisfy-group" type="checkbox" name="c_satisfy_group_3" value="1"/>
 					หนังสือเรียนช่วยสร้างความสนใจในการเรียนรู้ของนักเรียน
 				  </label>
 				</div>
 				<div class="checkbox">
 				  <label>
-					<input class="book-satisfy-group" type="checkbox" name="c_book_satisfy_4" value="1"/>
+					<input class="book-satisfy-group" type="checkbox" name="c_satisfy_group_4" value="1"/>
 					หนังสือเรียนมีเทคนิคและรูปแบบการนำเสนอที่น่าสนใจ
 				  </label>
 				</div>
@@ -40,21 +40,21 @@
 					<label>
 						<input class="book-satisfy-group group-other" 
 								type="checkbox" 
-								name="c_book_satisfy_5" 
+								name="c_satisfy_group_5" 
 								value="1"
-								ref="iBookSatisfy5"/>
+								ref="cSatisfyFroup5"/>
 						อื่นๆ
 					</label>
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-5">
-				<input id="iBookSatisfy5" type="text" name="i_book_satisfy_5" class="form-control"/>
+				<input id="cSatisfyFroup5" type="text" name="i_satisfy_group_5" class="form-control"/>
 			</div>
 		</div>
 	</div>
 	<nav>
 		<ul class="pager">
-			<li><a class="next-tab" href="#booksSatisfaction" populateBookQuestionnaire="true">ต่อไป</a></li>
+			<li><a class="next-tab">ต่อไป</a></li>
 		</ul>
 	</nav>
 </div>

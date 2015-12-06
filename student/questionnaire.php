@@ -5,6 +5,9 @@ require_once("../config.php");
 ini_set('session.gc_maxlifetime', SESSION_MAX_LIFE_TIME);
 session_set_cookie_params(SESSION_MAX_LIFE_TIME);
 session_start();
+
+$_SESSION['SUBMIT_INFORMATION'] = $_POST;
+
 ?>
 
 <!DOCTYPE html>
@@ -45,10 +48,15 @@ session_start();
 	
 	<script language="javascript" type="text/javascript">
 		var contextRoot = "<?php echo ROOT; ?>";
+		var RecaptchaOptions = {
+			theme : 'custom',
+			custom_theme_widget: 'recaptcha_widget'
+		};
 	</script>
 	
 	<script src="<?php echo ROOT; ?>student/script/questionnaire.js" type="text/javascript"></script>
-	<script src="<?php echo ROOT; ?>script/questionnaire.js" type="text/javascript"></script>
+	<script src="<?php echo ROOT; ?>script/book-satisfaction.js" type="text/javascript"></script>
+	<script src="<?php echo ROOT; ?>script/contribute.js" type="text/javascript"></script>
   </head>
 
   <body>
@@ -57,24 +65,19 @@ session_start();
 		include DOCUMENT_ROOT.'student/include/header.php';
 	?>
 	
-	<form id="questionForm">
+	<form id="questionForm" method="POST" enctype="multipart/form-data" action="<?php echo ROOT;?>student/submit-questionnaire.php">
 		<!-- Begin page content -->
 		<div class="container">
 			<!-- Nav tabs -->
 			<ul class="nav nav-pills" role="tablist">
-				<li role="presentation" class="active"><a href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
-				<li role="presentation" class="disabled"><a href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 2</a></li>
-				<li role="presentation" class="disabled"><a href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 3</a></li>
+				<li role="presentation" class="active"><a class="section-tab" href="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 2</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#reCaptcha" aria-controls="reCaptcha" role="tab" >ส่วนที่ 3</a></li>
 			</ul>
 			<br/>
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="generalInformation">
-					<?php
-						include DOCUMENT_ROOT.'student/include/information.php';
-					?>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="booksSatisfaction">
+				<div role="tabpanel" class="tab-pane active" id="booksSatisfaction">
 					<?php
 						include DOCUMENT_ROOT.'include/book-satisfaction.php';
 					?>
@@ -82,6 +85,11 @@ session_start();
 				<div role="tabpanel" class="tab-pane" id="contribute">
 					<?php
 						include DOCUMENT_ROOT.'include/receiver-information.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="reCaptcha">
+					<?php
+						include DOCUMENT_ROOT.'include/recaptcha.php';
 					?>
 				</div>
 			</div>

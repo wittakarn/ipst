@@ -1,13 +1,20 @@
 <?php
 ini_set('display_errors', 1); 
 error_reporting(E_ALL);
-require_once("../config.php");
+
+require_once('../config.php');
+require_once(DOCUMENT_ROOT.'lib/ReCaptchaPHP1.11/recaptchalib.php');
+
 ini_set('session.gc_maxlifetime', SESSION_MAX_LIFE_TIME);
 session_set_cookie_params(SESSION_MAX_LIFE_TIME);
 session_start();
 
-$_SESSION['SUBMIT_INFORMATION'] = $_POST;
-
+if(!isset($_SESSION['POST_QUESTION'])){
+	$_SESSION['POST_QUESTION'] = $_POST;
+}
+print_r($_SESSION['POST_QUESTION']);
+$privatekey = '6LcTdRITAAAAAJZo35cxJYRUuC40UWDqod3rbJT-';
+$resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
 ?>
 
 <!DOCTYPE html>
@@ -52,11 +59,20 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			theme : 'custom',
 			custom_theme_widget: 'recaptcha_widget'
 		};
+		$(document)
+					.ready(
+							function() {
+										$('#submitButton').click(function (e) {
+											var reCaptchaForm = $("#reCaptchaForm");
+											if (reCaptchaForm.valid()){
+												$.blockUI();
+												reCaptchaForm.submit();
+												$.unblockUI();
+											}
+										});
+							}
+					);
 	</script>
-	
-	<script src="<?php echo ROOT; ?>teacher/script/questionnaire.js" type="text/javascript"></script>
-	<script src="<?php echo ROOT; ?>script/book-satisfaction.js" type="text/javascript"></script>
-	<script src="<?php echo ROOT; ?>script/contribute.js" type="text/javascript"></script>
   </head>
 
   <body>
@@ -65,40 +81,17 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 		include DOCUMENT_ROOT.'teacher/include/header.php';
 	?>
 	
-	<form id="questionForm" method="POST" enctype="multipart/form-data" action="<?php echo ROOT;?>teacher/submit-questionnaire.php">
-		<!-- Begin page content -->
+	<form id="reCaptchaForm" method="POST">
 		<div class="container">
-			<!-- Nav tabs -->
-			<ul class="nav nav-pills" role="tablist">
-				<li role="presentation" class="active"><a class="section-tab" href="#satisfaction" aria-controls="satisfaction" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 2</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 3</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#reCaptcha" aria-controls="reCaptcha" role="tab" >ส่วนที่ 4</a></li>
-			</ul>
-			<br/>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="satisfaction">
-					<?php
-						include DOCUMENT_ROOT.'teacher/include/satisfaction.php';
-					?>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="booksSatisfaction">
-					<?php
-						include DOCUMENT_ROOT.'include/book-satisfaction.php';
-					?>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="contribute">
-					<?php
-						include DOCUMENT_ROOT.'include/receiver-information.php';
-					?>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="reCaptcha">
-					<?php
-						include DOCUMENT_ROOT.'include/recaptcha.php';
-					?>
-				</div>
-			</div>
+			<?php
+				if (!$resp->is_valid) {
+					// What happens when the CAPTCHA was entered incorrectly
+					include DOCUMENT_ROOT.'include/resubmit-recaptcha.php';
+				} else {
+					// Your code here to handle a successful verification
+					echo "Submittion complete";
+				}
+			?>
 		</div>
 	</form>
     

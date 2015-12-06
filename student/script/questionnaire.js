@@ -1,16 +1,13 @@
 $(document)
 		.ready(
 				function() {
-					
-						var cValidator = $( "#questionForm" ).validate();
-					
-						$("#sProvince").load( contextRoot + "student/include/province-select-data.php");
-					
+						var questionForm = $("#questionForm");
+						var cValidator = questionForm.validate();
+
 						$('.section-tab').click(function (e) {
 							var li = $(this).parent();
 							var currentIndex = li.index();
 							var ul = li.parent();
-							
 							$(ul).find(".section-tab").each(function() {
 								var a = $(this);
 								li = $(this).parent();
@@ -26,12 +23,6 @@ $(document)
 							if (isInvalidateForm()) {
 								focusInvalidComponent();
 							}else{
-								var populateBookQuestionnaire = $(this).attr("populateBookQuestionnaire") == "true";
-								
-								if(populateBookQuestionnaire){
-									loadBookQuestionnair();
-								}
-								
 								var href = $(this).attr("href");
 								e.preventDefault()
 								var tab = $('.nav-pills a[ref="' + href + '"]');
@@ -43,25 +34,43 @@ $(document)
 						});
 						
 						function isInvalidateForm() {
-							$("#questionForm").validate({
+							questionForm.validate({
 								ignore : ""
 							});
-							return !$("#questionForm").valid();
+							return !questionForm.valid();
 						}
 						
 						function focusInvalidComponent() {
-							/*
-							var tabs = $(".form-control.error:enabled").parents(".tab-pane");
-							if (tabs != null && tabs.length >= 1) {
-								var invalidTabId = tabs[tabs.length - 1].id;
-								$('.nav-pills a[href="#' + invalidTabId + '"]').tab('show');
-							}
-							*/
 							cValidator.focusInvalid();
 						}
 						
-						function loadBookQuestionnair(){
-							$("#scienceBookSection1").load(contextRoot + "include/science-1.php");
-						}
+						$(".book-usage-selected").click(function() {
+							var $this = $(this);
+							
+							var ref = $this.attr("ref");
+							var href = "#" + ref;
+							// $this will contain a reference to the checkbox
+							if ($this.filter(':checked').val() == '1') {
+								
+								$(href).collapse('show');
+							} else {
+								$(href).collapse('hide');
+							}
+						});
+						
+						$('#submitButton').click(function (e) {
+							if (isInvalidateForm()) {
+								focusInvalidComponent();
+							}else{
+								$.blockUI();
+								
+								questionForm.attr("action", contextRoot + "student/submit-questionnaire.php");
+								questionForm.attr("target", "_self");
+								
+								questionForm.submit();
+								
+								$.unblockUI();
+							}
+						});
 				}
 		);
