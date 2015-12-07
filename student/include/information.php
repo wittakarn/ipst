@@ -32,7 +32,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2 col-sm-4 col-xs-10">
-				<select id="sDegree" class="form-control" name="s_degree">
+				<select id="sDegree" class="form-control" name="s_degree" required>
+					<option value="">กรุณาระบุ</option>
 					<?php
 						for($i=1;$i<=6;$i++){
 							echo '<option value="'.$i.'">ประถมศึกษาปีที่ '.$i.'</option>';
@@ -62,21 +63,19 @@
 		<br/>
 		<div class="row">
 			<div class="col-md-12">
-				<strong>5. จังหวัดที่ตั้งของโรงเรียน</strong>
+				<strong>4. จังหวัดที่ตั้งของโรงเรียน</strong>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-2 col-sm-4 col-xs-10">
-				<select id="sProvince" class="form-control" name="s_province">
+				<select id="sProvince" class="form-control" name="s_province" required>
 				</select>
 			</div>
 		</div>
-		<p class="text-center">
-			<button type="button"
-					class="btn btn-primary" 
-					id="startQuestionnaire">
-					เริ่มทำแบบสอบถาม
-			</button>
-		</p>
 	</div>
+	<nav>
+		<ul class="pager">
+			<li><a class="next-tab" href="#booksSatisfaction">ต่อไป</a></li>
+		</ul>
+	</nav>
 </div>

@@ -32,7 +32,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2 col-sm-4 col-xs-10">
-				<select class="form-control" name="s_age">
+				<select class="form-control" name="s_age" required>
+					<option value="">กรุณาระบุ</option>
 					<?php
 						for($i=20;$i<=65;$i++){
 							echo '<option value="'.$i.'">'.$i.'</option>';
@@ -482,7 +483,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2 col-sm-4 col-xs-10">
-				<select class="form-control" name="s_">
+				<select class="form-control" name="s_experience" required>
+					<option value="">กรุณาระบุ</option>
 					<?php
 						for($i=0;$i<=40;$i++){
 							echo '<option value="'.$i.'">'.$i.'</option>';
@@ -570,11 +572,9 @@
 			</div>
 		</div>
 	</div>
-	<p class="text-center">
-		<button type="button"
-				class="btn btn-primary" 
-				id="startQuestionnaire">
-				เริ่มทำแบบสอบถาม
-		</button>
-	</p>
+	<nav>
+		<ul class="pager">
+			<li><a class="next-tab" href="#satisfaction">ต่อไป</a></li>
+		</ul>
+	</nav>
 </div>

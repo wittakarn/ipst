@@ -1,31 +1,19 @@
 $(document)
 		.ready(
 				function() {
-					var informationForm = $("#informationForm");
-					var cValidator = informationForm.validate();
-					
 					$("#sProvince").load( contextRoot + "student/include/province-select-data.php");
-					
-					function isInvalidateForm() {
-						informationForm.validate({
-							ignore : ""
-						});
-						return !informationForm.valid();
-					}
-					
-					function focusInvalidComponent() {
-						cValidator.focusInvalid();
-					}
-					
-					$('#startQuestionnaire').click(function (e) {
-						if (isInvalidateForm()) {
-							focusInvalidComponent();
-						}else{
-							$.blockUI();
-							informationForm.submit();
-							$.unblockUI();
-						}
+
+					$('#sDegree').change(function (e) {
+						loadBookQuestionnair($(this).val());
 					});
 					
+					function loadBookQuestionnair(degree){
+						var loadPage = contextRoot.concat("include/science-");
+						loadPage = loadPage.concat(degree);
+						loadPage = loadPage.concat(".php");
+						$("#scienceBookSection1").load(loadPage, function() {
+							setBookSatisfactionEvent();
+						});
+					}
 				}
 		);

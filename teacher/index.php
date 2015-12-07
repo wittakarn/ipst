@@ -60,20 +60,24 @@ session_destroy();
     <div class="container">
 		<div class="jumbotron">
 			<h2 class="text-center">คำชี้แจง</h2>
-			<h4 style="text-indent: 50px;">
+			<h3 style="text-indent: 50px;">
 			     เนื่องด้วย สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.) มีความประสงค์จะสำรวจข้อมูลเกี่ยวกับการใช้สื่อการเรียนรู้วิชาวิทยาศาสตร์ คณิตศาสตร์ และเทคโนโลยี เพื่อนำไปใช้พัฒนา
 สื่อการเรียนรู้ของ สสวท. จึงขอความร่วมมือจากครูที่สอนวิชาวิทยาศาสตร์ คณิตศาสตร์ และเทคโนโลยี 
 ตอบแบบสอบถามฉบับนี้ให้ครบถ้วน ตรงกับความเป็นจริง
-			</h4>
-			<h4 style="text-indent: 50px;">
+			</h3>
+			<h3 style="text-indent: 50px;">
 				<strong>ข้อมูลที่ถูกต้อง ตรงตามสภาพความเป็นจริง มีคุณค่าอย่างยิ่งต่อการวางแผนดำเนินงานในอนาคต</strong>
-			</h4>
+			</h3>
+			<br/>
+			<p class="text-center">
+				<a class="btn btn-primary btn-lg" 
+					href="<?php echo ROOT; ?>teacher/questionnaire.php" 
+					target="_blank"
+					role="button">
+					เริ่มทำแบบสอบถาม
+				</a>
+			</p>
 		</div>
-		<form id="informationForm" method="POST" action="<?php echo ROOT;?>teacher/questionnaire.php">
-			<?php
-				include DOCUMENT_ROOT.'teacher/include/information.php';
-			?>
-		</form>
     </div>
 
     

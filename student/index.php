@@ -2,10 +2,6 @@
 ini_set('display_errors', 1); 
 error_reporting(E_ALL);
 require_once("../config.php");
-ini_set('session.gc_maxlifetime', SESSION_MAX_LIFE_TIME);
-session_set_cookie_params(SESSION_MAX_LIFE_TIME);
-session_start();
-session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +39,6 @@ session_destroy();
 	<script src="<?php echo ROOT; ?>lib/jquery/additional-methods.min.js"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
-	
-	<script language="javascript" type="text/javascript">
-		var contextRoot = "<?php echo ROOT; ?>";
-	</script>
-	<script src="<?php echo ROOT; ?>student/script/information.js" type="text/javascript"></script>
   </head>
 
   <body>
@@ -60,20 +51,24 @@ session_destroy();
     <div class="container">
 		<div class="jumbotron">
 			<h2 class="text-center">คำชี้แจง</h2>
-			<h4 style="text-indent: 50px;">
+			<h3 style="text-indent: 50px;">
 			     เนื่องด้วย สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.) มีความประสงค์จะสำรวจข้อมูลเกี่ยวกับการใช้สื่อการเรียนรู้วิชาวิทยาศาสตร์ คณิตศาสตร์ และเทคโนโลยี เพื่อนำไปใช้พัฒนา
 สื่อการเรียนรู้ของ สสวท. จึงขอความร่วมมือจากครูที่สอนวิชาวิทยาศาสตร์ คณิตศาสตร์ และเทคโนโลยี 
 ตอบแบบสอบถามฉบับนี้ให้ครบถ้วน ตรงกับความเป็นจริง
-			</h4>
-			<h4 style="text-indent: 50px;">
+			</h3>
+			<h3 style="text-indent: 50px;">
 				<strong>ข้อมูลที่ถูกต้อง ตรงตามสภาพความเป็นจริง มีคุณค่าอย่างยิ่งต่อการวางแผนดำเนินงานในอนาคต</strong>
-			</h4>
+			</h3>
+			<br/>
+			<p class="text-center">
+				<a class="btn btn-primary btn-lg" 
+					href="<?php echo ROOT; ?>student/questionnaire.php" 
+					target="_blank"
+					role="button">
+					เริ่มทำแบบสอบถาม
+				</a>
+			</p>
 		</div>
-		<form id="informationForm" method="POST" action="<?php echo ROOT;?>student/questionnaire.php">
-			<?php
-				include DOCUMENT_ROOT.'student/include/information.php';
-			?>
-		</form>
     </div>
 
     

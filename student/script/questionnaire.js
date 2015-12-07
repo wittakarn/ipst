@@ -23,6 +23,7 @@ $(document)
 							if (isInvalidateForm()) {
 								focusInvalidComponent();
 							}else{
+								
 								var href = $(this).attr("href");
 								e.preventDefault()
 								var tab = $('.nav-pills a[ref="' + href + '"]');

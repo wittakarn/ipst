@@ -1,3 +1,4 @@
+<option value="">กรุณาระบุ</option>
 <option value="50">เชียงใหม่</option>
 <option value="57">เชียงราย</option>
 <option value="76">เพชรบุรี</option>
@@ -6,7 +7,7 @@
 <option value="54">แพร่</option>
 <option value="58">แม่ฮ่องสอน</option>
 <option value="81">กระบี่</option>
-<option value="10" selected="selected">กรุงเทพมหานคร</option>
+<option value="10">กรุงเทพมหานคร</option>
 <option value="71">กาญจนบุรี</option>
 <option value="46">กาฬสินธุ์</option>
 <option value="62">กำแพงเพชร</option>
