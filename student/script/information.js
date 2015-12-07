@@ -11,6 +11,9 @@ $(document)
 						var loadPage = contextRoot.concat("include/science-");
 						loadPage = loadPage.concat(degree);
 						loadPage = loadPage.concat(".php");
+						
+						$(".book-satisfaction-section").html("");
+						
 						$("#scienceBookSection1").load(loadPage, function() {
 							setBookSatisfactionEvent();
 						});
