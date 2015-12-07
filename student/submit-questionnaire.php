@@ -90,6 +90,8 @@ $resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["re
 				} else {
 					// Your code here to handle a successful verification
 					echo "Submittion complete";
+					
+					
 				}
 			?>
 		</div>

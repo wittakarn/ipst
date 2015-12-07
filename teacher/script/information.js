@@ -30,12 +30,14 @@ $(document)
 							var degree;
 							var splitArray;
 							var splitSize;
+							
+							$(".s-degree").html("");
+							
 							$.each( scienceDegrees, function( i ) {
 								fieldName = $(this).attr("name");
 								splitArray = fieldName.split("_");
 								splitSize = splitArray.length;
 								degree = splitArray[splitSize-1];
-								alert(degree);
 								loadScienceBookQuestionnair(degree);
 							});
 						});
@@ -44,7 +46,7 @@ $(document)
 							var loadPage = contextRoot.concat("include/science-");
 							loadPage = loadPage.concat(degree);
 							loadPage = loadPage.concat(".php");
-							$("#scienceBookSection1").load(loadPage, function() {
+							$("#scienceBookSection" + degree).load(loadPage, function() {
 								setBookSatisfactionEvent();
 							});
 						}
