@@ -148,7 +148,7 @@ require_once("../config.php");
 	</div>
 </div>
 <hr/>
-<!-- 2.หนังสือเรียน ฉบับปรับปรุง -->
+<!-- 2.แบบบันทึกกิจกรรม -->
 <div class="row">
 	<div class="col-md-2 col-sm-3 col-xs-5">
 		<a href="#" class="thumbnail" data-toggle="modal" data-target=".m-s-2-2">
@@ -174,7 +174,7 @@ require_once("../config.php");
 	<div class="col-md-10 col-sm-9 col-xs-7">
 		<div class="row">
 			<div class="col-md-12">
-				<strong>หนังสือเรียน ฉบับปรับปรุง</strong>
+				<strong>แบบบันทึกกิจกรรม</strong>
 			</div>
 		</div>
 		<div class="row">

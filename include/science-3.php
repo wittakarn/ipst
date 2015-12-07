@@ -4,16 +4,16 @@ error_reporting(E_ALL);
 require_once("../config.php");
 ?>
 
-<h4>ชั้นประถมศีกษาปีที่ 2</h4>
+<h4>ชั้นประถมศีกษาปีที่ 3</h4>
 <h4><u>วิทยาศาสตร์</u></h4>
 <!-- 1.หนังสือเรียน -->
 <div class="row">
 	<div class="col-md-2 col-sm-3 col-xs-5">
-		<a href="#" class="thumbnail" data-toggle="modal" data-target=".m-s-2-1">
-			<img src="<?php echo ROOT;?>image/s/2/1.jpg" class="img-responsive"/>
+		<a href="#" class="thumbnail" data-toggle="modal" data-target=".m-s-3-1">
+			<img src="<?php echo ROOT;?>image/s/3/1.jpg" class="img-responsive"/>
 		</a>
 	</div>
-	<div class="modal fade m-s-2-1" tabindex="-1" role="dialog">
+	<div class="modal fade m-s-3-1" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
@@ -24,7 +24,7 @@ require_once("../config.php");
 						<span class="glyphicon glyphicon-remove" aria-hidden="true">
 						</span>
 					</button>
-					<img src="<?php echo ROOT;?>image/s/2/1.jpg" class="img-responsive center-block"/>
+					<img src="<?php echo ROOT;?>image/s/3/1.jpg" class="img-responsive center-block"/>
 				</div>
 			</div>
 		</div>
@@ -41,10 +41,10 @@ require_once("../config.php");
 				  <label>
 					<input class="book-usage-selected" 
 							type="radio" 
-							name="r_s_2_1_1" 
+							name="r_s_3_1_1" 
 							value="1" 
 							required 
-							ref="mS21SelectedCollapse"/>
+							ref="mS31SelectedCollapse"/>
 					ได้ใช้
 				  </label>
 				</div>
@@ -54,10 +54,10 @@ require_once("../config.php");
 				  <label>
 					<input class="book-usage-selected" 
 							type="radio" 
-							name="r_s_2_1_1" 
+							name="r_s_3_1_1" 
 							value="2" 
 							required 
-							ref="mS21SelectedCollapse"/>
+							ref="mS31SelectedCollapse"/>
 					ไม่ได้ใช้
 				  </label>
 				</div>
@@ -65,7 +65,7 @@ require_once("../config.php");
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="collapse" id="mS21SelectedCollapse">
+				<div class="collapse" id="mS31SelectedCollapse">
 					<div class="well">
 						<div class="row">
 							<div class="col-md-12">
@@ -76,7 +76,7 @@ require_once("../config.php");
 							<div class="col-md-3 col-sm-4">
 								<div class="radio">
 								  <label>
-									<input type="radio" name="r_s_2_1_2" value="1" required/>
+									<input type="radio" name="r_s_3_1_2" value="1" required/>
 									พึงพอใจ
 								  </label>
 								</div>
@@ -84,7 +84,7 @@ require_once("../config.php");
 							<div class="col-md-3 col-sm-4">
 								<div class="radio">
 								  <label>
-									<input type="radio" name="r_s_2_1_2" value="2" required/>
+									<input type="radio" name="r_s_3_1_2" value="2" required/>
 									เฉยๆ
 								  </label>
 								</div>
@@ -92,7 +92,7 @@ require_once("../config.php");
 							<div class="col-md-3 col-sm-4">
 								<div class="radio">
 								  <label>
-									<input type="radio" name="r_s_2_1_2" value="3" required/>
+									<input type="radio" name="r_s_3_1_2" value="3" required/>
 									ไม่พึงพอใจ
 								  </label>
 								</div>
@@ -105,37 +105,37 @@ require_once("../config.php");
 						</div>
 						<div class="row">
 							<div class="col-md-8">
-								<textarea name="t_s_2_1_3" class="form-control" rows="2"></textarea>
+								<textarea name="t_s_3_1_3" class="form-control" rows="2"></textarea>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-8">
 								<input type="file" 
-										id="fS214" 
-										name="f_s_2_1_4" 
+										id="fS314" 
+										name="f_s_3_1_4" 
 										class="form-control"
-										target="iframe_fS214"/>
+										target="iframe_fS314"/>
 							</div>
 							<div class="col-md-4">
-								<p id="error_fS214" style="color:red;"></p>
-								<a id="link_fS214" 
+								<p id="error_fS314" style="color:red;"></p>
+								<a id="link_fS314" 
 									href="#" 
 									target="_blank"
 									style="display:none;">
 									<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 								</a>
 								<a class="remove-file" 
-										id="remove_fS214" 
-										for="fS214" 
+										id="remove_fS314" 
+										for="fS314" 
 										style="display:none;">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</a>
 								<input type="hidden" 
-										id="hidden_fS214"
-										name="h_s_2_1_4"
+										id="hidden_fS314"
+										name="h_s_3_1_4"
 										value=""/>
-								<iframe id="iframe_fS214" 
-									name="iframe_fS214" 
+								<iframe id="iframe_fS314" 
+									name="iframe_fS314" 
 									src="#" 
 									style="width:0;height:0;border:0px solid #fff;">
 								</iframe>  
@@ -148,14 +148,14 @@ require_once("../config.php");
 	</div>
 </div>
 <hr/>
-<!-- 2.หนังสือเรียน ฉบับปรับปรุง -->
+<!-- 2.แบบบันทึกกิจกรรม -->
 <div class="row">
 	<div class="col-md-2 col-sm-3 col-xs-5">
-		<a href="#" class="thumbnail" data-toggle="modal" data-target=".m-s-2-2">
-			<img src="<?php echo ROOT;?>image/s/2/2.jpg" class="img-responsive"/>
+		<a href="#" class="thumbnail" data-toggle="modal" data-target=".m-s-3-2">
+			<img src="<?php echo ROOT;?>image/s/3/2.jpg" class="img-responsive"/>
 		</a>
 	</div>
-	<div class="modal fade m-s-2-2" tabindex="-1" role="dialog">
+	<div class="modal fade m-s-3-2" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
@@ -166,7 +166,7 @@ require_once("../config.php");
 						<span class="glyphicon glyphicon-remove" aria-hidden="true">
 						</span>
 					</button>
-					<img src="<?php echo ROOT;?>image/s/2/2.jpg" class="img-responsive center-block"/>
+					<img src="<?php echo ROOT;?>image/s/3/2.jpg" class="img-responsive center-block"/>
 				</div>
 			</div>
 		</div>
@@ -174,7 +174,7 @@ require_once("../config.php");
 	<div class="col-md-10 col-sm-9 col-xs-7">
 		<div class="row">
 			<div class="col-md-12">
-				<strong>หนังสือเรียน ฉบับปรับปรุง</strong>
+				<strong>แบบบันทึกกิจกรรม</strong>
 			</div>
 		</div>
 		<div class="row">
@@ -183,10 +183,10 @@ require_once("../config.php");
 				  <label>
 					<input class="book-usage-selected" 
 							type="radio" 
-							name="r_s_2_2_1" 
+							name="r_s_3_2_1" 
 							value="1" 
 							required 
-							ref="mS22SelectedCollapse"/>
+							ref="mS32SelectedCollapse"/>
 					ได้ใช้
 				  </label>
 				</div>
@@ -196,10 +196,10 @@ require_once("../config.php");
 				  <label>
 					<input class="book-usage-selected" 
 							type="radio" 
-							name="r_s_2_2_1" 
+							name="r_s_3_2_1" 
 							value="2" 
 							required 
-							ref="mS22SelectedCollapse"/>
+							ref="mS32SelectedCollapse"/>
 					ไม่ได้ใช้
 				  </label>
 				</div>
@@ -207,7 +207,7 @@ require_once("../config.php");
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="collapse" id="mS22SelectedCollapse">
+				<div class="collapse" id="mS32SelectedCollapse">
 					<div class="well">
 						<div class="row">
 							<div class="col-md-12">
@@ -218,7 +218,7 @@ require_once("../config.php");
 							<div class="col-md-3 col-sm-4">
 								<div class="radio">
 								  <label>
-									<input type="radio" name="r_s_2_2_2" value="1" required/>
+									<input type="radio" name="r_s_3_2_2" value="1" required/>
 									พึงพอใจ
 								  </label>
 								</div>
@@ -226,7 +226,7 @@ require_once("../config.php");
 							<div class="col-md-3 col-sm-4">
 								<div class="radio">
 								  <label>
-									<input type="radio" name="r_s_2_2_2" value="2" required/>
+									<input type="radio" name="r_s_3_2_2" value="2" required/>
 									เฉยๆ
 								  </label>
 								</div>
@@ -234,7 +234,7 @@ require_once("../config.php");
 							<div class="col-md-3 col-sm-4">
 								<div class="radio">
 								  <label>
-									<input type="radio" name="r_s_2_2_2" value="3" required/>
+									<input type="radio" name="r_s_3_2_2" value="3" required/>
 									ไม่พึงพอใจ
 								  </label>
 								</div>
@@ -247,37 +247,37 @@ require_once("../config.php");
 						</div>
 						<div class="row">
 							<div class="col-md-8">
-								<textarea name="t_s_2_2_3" class="form-control" rows="2"></textarea>
+								<textarea name="t_s_3_2_3" class="form-control" rows="2"></textarea>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-8">
 								<input type="file" 
-										id="fS224" 
-										name="f_s_2_2_4" 
+										id="fS324" 
+										name="f_s_3_2_4" 
 										class="form-control"
-										target="iframe_fS224"/>
+										target="iframe_fS324"/>
 							</div>
 							<div class="col-md-4">
-								<p id="error_fS224" style="color:red;"></p>
-								<a id="link_fS224" 
+								<p id="error_fS324" style="color:red;"></p>
+								<a id="link_fS324" 
 									href="#" 
 									target="_blank"
 									style="display:none;">
 									<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 								</a>
 								<a class="remove-file" 
-										id="remove_fS224" 
-										for="fS224" 
+										id="remove_fS324" 
+										for="fS324" 
 										style="display:none;">
 									<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</a>
 								<input type="hidden" 
-										id="hidden_fS224"
-										name="h_s_2_2_4"
+										id="hidden_fS324"
+										name="h_s_3_2_4"
 										value=""/>
-								<iframe id="iframe_fS224" 
-									name="iframe_fS224" 
+								<iframe id="iframe_fS324" 
+									name="iframe_fS324" 
 									src="#" 
 									style="width:0;height:0;border:0px solid #fff;">
 								</iframe>  
