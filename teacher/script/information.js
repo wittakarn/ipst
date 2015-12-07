@@ -24,5 +24,29 @@ $(document)
 							}
 						});
 						
+						$(".s-degree").click(function (e) {
+							var scienceDegrees = $(this).filter(":checked");
+							var fieldName;
+							var degree;
+							var splitArray;
+							var splitSize;
+							$.each( scienceDegrees, function( i ) {
+								fieldName = $(this).attr("name");
+								splitArray = fieldName.split("_");
+								splitSize = splitArray.length;
+								degree = splitArray[splitSize-1];
+								alert(degree);
+								loadScienceBookQuestionnair(degree);
+							});
+						});
+						
+						function loadScienceBookQuestionnair(degree){
+							var loadPage = contextRoot.concat("include/science-");
+							loadPage = loadPage.concat(degree);
+							loadPage = loadPage.concat(".php");
+							$("#scienceBookSection1").load(loadPage, function() {
+								setBookSatisfactionEvent();
+							});
+						}
 				}
 		);
