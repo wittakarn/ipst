@@ -53,6 +53,18 @@
 			</div>
 		</div>
 		<div class="row">
+			<div id="mathBookSection2" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section">		
+			</div>
+		</div>
+		<div class="row">
+			<div id="mathBookSection3" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section">		
+			</div>
+		</div>
+		<div class="row">
+			<div id="mathBookSection4" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section">		
+			</div>
+		</div>
+		<div class="row">
 			<div id="technologyBookSection1" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section">		
 			</div>
 		</div>
