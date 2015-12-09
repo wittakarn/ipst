@@ -7,22 +7,18 @@ require_once("../config.php");
 <h4>ชั้นประถมศีกษาปีที่ 1</h4>
 <h4><u>คณิตศาสตร์</u></h4>
 <?php 
-	$modelClass = 'm-m-1-1';
-	$imagePath = 'image/m/1/1.jpg';
-	$bookName = 'หนังสือเรียน';
-	$nameOfComponent = array('r_m_1_1_1', 'r_m_1_1_2', 't_m_1_1_3', 'f_m_1_1_4', 'h_m_1_1_4');
-	$collapseSectionId = 'mM11SelectedCollapse';
-	$fileUploadId = 'fM114';
-	include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
+	$bookCount = 4;
+	$bookNames = array('หนังสือเรียน', 'แบบฝึกทักษะเตรียมความพร้อม', 'แบบฝึกทักษะ เล่ม 1', 'แบบฝึกทักษะ เล่ม 2');
+	for($i=1;$i<=$bookCount;$i++)
+	{
+		$modelClass = 'm-m-1-'.$i;
+		$imagePath = 'image/m/1/'.$i.'.jpg';
+		$bookName = $bookNames[($i - 1)];  /* --- ใช้ ($i-1) เพราะว่า array เริ่มต้นด้วย index ที่ 0 --- */
+		$nameOfComponent = array('r_m_1_'.$i.'_1', 'r_m_1_'.$i.'_2', 't_m_1_'.$i.'_3', 'f_m_1_'.$i.'_4', 'h_m_1_'.$i.'_4');
+		$collapseSectionId = 'mM1'.$i.'SelectedCollapse';
+		$fileUploadId = 'fM1'.$i.'4';
+		
+		include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
+		echo '<hr/>';
+	}
 ?>
-<hr/>
-<?php 
-	$modelClass = 'm-m-1-2';
-	$imagePath = 'image/m/1/2.jpg';
-	$bookName = 'หนังสือเรียน';
-	$nameOfComponent = array('r_m_1_2_1', 'r_m_1_2_2', 't_m_1_2_3', 'f_m_1_2_4', 'h_m_1_2_4');
-	$collapseSectionId = 'mM12SelectedCollapse';
-	$fileUploadId = 'fM124';
-	include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
-?>
-<hr/>
