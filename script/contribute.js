@@ -20,5 +20,20 @@ $(document)
 						}
 					});
 					
+					$(".radio-contribute-book").change(function() {
+						$("#contributeBookSelectedCollapse").collapse('show');
+						loadContributeBook($(this).val());
+					});
+					
+					function loadContributeBook(postfix){
+						var loadPage = contextRoot.concat("include/contribute-");
+						loadPage = loadPage.concat(postfix);
+						loadPage = loadPage.concat(".php");
+						$.blockUI();
+						$("#contributeBookSelectedSection").load(loadPage, function() {
+							$.unblockUI();
+						});
+					}
+					
 				}
 		);

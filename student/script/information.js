@@ -1,7 +1,10 @@
 $(document)
 		.ready(
 				function() {
-					$("#sProvince").load(contextRoot + "student/include/province-select-data.php");
+					$.blockUI();
+					$("#sProvince").load(contextRoot + "student/include/province-select-data.php", function() {
+						$.unblockUI();
+					});
 
 					$('#sDegree').change(function (e) {
 						$(".book-satisfaction-section").html("");

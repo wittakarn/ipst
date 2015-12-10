@@ -17,7 +17,8 @@
 		<br/>
 		<div class="row">
 			<div class="col-md-12">
-				<strong>ท่านต้องการรับสื่อเสริมการเรียนรู้ของ สสวท. หรือไม่</strong>
+				<strong>ท่านต้องการรับสื่อเสริมการเรียนรู้ของ สสวท. หรือไม่ </strong>
+				<span class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<br/>
@@ -58,9 +59,11 @@
 								<strong>โปรดระบุชื่อที่อยู่ในการจัดส่ง</strong>
 							</div>
 						</div>
+						<br/>
 						<div class="row">
 							<div class="col-md-12">
 								<strong>ชื่อ-สกุล</strong>
+								<span class="glyphicon glyphicon-asterisk"></span>
 							</div>
 						</div>
 						<div class="row">
@@ -72,6 +75,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<strong>ที่อยู่</strong>
+								<span class="glyphicon glyphicon-asterisk"></span>
 							</div>
 						</div>
 						<div class="row">
@@ -83,11 +87,111 @@
 						<div class="row">
 							<div class="col-md-12">
 								<strong>รหัสไปรษณีย์</strong>
+								<span class="glyphicon glyphicon-asterisk"></span>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-8">
 								<input type="text" name="i_receiver_postcode" class="form-control receive-information" digits="true"/>
+							</div>
+						</div>
+						<br/>
+						<div class="row">
+							<div class="col-md-12">
+								<strong>สื่อเสริมการเรียนรู้ของ สสวท. ที่ต้องการ</strong>
+								<span class="glyphicon glyphicon-asterisk"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="radio">
+								  <label>
+									<input type="radio" 
+											name="r_contribute_book_category_selected" 
+											value="1"
+											class="radio-contribute-book"
+											required>
+									ประถมศึกษา วิชาวิทยาศาสตร์
+								  </label>
+								</div>
+								<div class="radio">
+								  <label>
+									<input type="radio" 
+											name="r_contribute_book_category_selected" 
+											value="2"
+											class="radio-contribute-book"
+											required>
+									ประถมศึกษา วิชาคณิตศาสตร์
+								  </label>
+								</div>
+								<div class="radio">
+								  <label>
+									<input type="radio" 
+											name="r_contribute_book_category_selected" 
+											value="3"
+											class="radio-contribute-book"
+											required>
+									มัธยมศึกษาตอนต้น วิชาคณิตศาสตร์
+								  </label>
+								</div>
+								<div class="radio">
+								  <label>
+									<input type="radio" 
+											name="r_contribute_book_category_selected" 
+											value="4"
+											class="radio-contribute-book"
+											required>
+									มัธยมศึกษาตอนปลาย วิชาฟิสิกส์
+								  </label>
+								</div>
+								<div class="radio">
+								  <label>
+									<input type="radio" 
+											name="r_contribute_book_category_selected" 
+											value="5"
+											class="radio-contribute-book"
+											required>
+									มัธยมศึกษาตอนปลาย วิชาเคมี
+								  </label>
+								</div>
+								<div class="radio">
+								  <label>
+									<input type="radio" 
+											name="r_contribute_book_category_selected" 
+											value="6"
+											class="radio-contribute-book"
+											required>
+									มัธยมศึกษาตอนปลาย วิชาชีววิทยา
+								  </label>
+								</div>
+								<div class="radio">
+								  <label>
+									<input type="radio" 
+											name="r_contribute_book_category_selected" 
+											value="7"
+											class="radio-contribute-book"
+											required>
+									มัธยมศึกษาตอนปลาย วิชาโลก ดาราศาสตร์ และอวกาศ
+								  </label>
+								</div>
+								<div class="radio">
+								  <label>
+									<input type="radio" 
+											name="r_contribute_book_category_selected" 
+											value="8"
+											class="radio-contribute-book"
+											required>
+									มัธยมศึกษาตอนปลาย วิชาคณิตศาสตร์
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="collapse" id="contributeBookSelectedCollapse">
+					<div class="well">
+						<div class="row">
+							<div id="contributeBookSelectedSection" class="col-md-12 col-sm-12 col-xs-12">		
 							</div>
 						</div>
 					</div>

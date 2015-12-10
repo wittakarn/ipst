@@ -69,9 +69,9 @@ session_destroy();
 		<div class="container">
 			<!-- Nav tabs -->
 			<ul class="nav nav-pills" role="tablist">
-				<li role="presentation" class="active"><a href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
-				<li role="presentation" class="disabled"><a href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 2</a></li>
-				<li role="presentation" class="disabled"><a href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 3</a></li>
+				<li role="presentation" class="active"><a class="section-tab" href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 2</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 3</a></li>
 				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#reCaptcha" aria-controls="reCaptcha" role="tab" >ส่วนที่ 4</a></li>
 			</ul>
 			<br/>
