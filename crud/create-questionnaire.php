@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 require_once("../config.php");
 require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Participant.php';
+require_once DOCUMENT_ROOT.'/class/class.Contribution.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 	
@@ -14,7 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
 		if(isset($_REQUEST['type'])){
 			$participant = new Participant($conn, $_REQUEST);
-			$participant = $participant->create();
+			$createId = $participant->create();
+			
+			if(isset($_REQUEST['r_receive_contribute_book']) && $_REQUEST['r_receive_contribute_book'] == '1'){
+				$contribution = new Contribution($conn, $_REQUEST);
+				$contribution = $contribution->create($createId);
+			}
 		}
   
 		$conn->commit();
