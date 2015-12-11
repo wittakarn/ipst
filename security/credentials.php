@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$isMatch = false;
   
 		if(isset($_POST['user_id']) && isset($_POST['password']) && isset($_POST['g-recaptcha-response'])){
-			$secret = '6Lf6VQ8TAAAAAELhHjTWVSwqg_O0chfLKV0GgCW6';
+			$secret = SECRET_KEY;
 			$recaptcha = new \ReCaptcha\ReCaptcha($secret);
 			$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 

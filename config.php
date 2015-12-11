@@ -13,4 +13,8 @@ $tenDays = 60*60*24*10;
 define('COOKIES_ALIVE', $tenDays);
 
 define('THAI_VAT', 7);
+
+//reCAPTCHA Key
+define('SITE_KEY', '6LcTdRITAAAAAAUlDVsOdvuX5CGCw7ja8qPyptiv');
+define('SECRET_KEY', '6LcTdRITAAAAAJZo35cxJYRUuC40UWDqod3rbJT-');
 ?>

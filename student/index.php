@@ -71,6 +71,8 @@ require_once("../config.php");
 		</div>
     </div>
 
-    
+    <?php
+		include DOCUMENT_ROOT.'include/footer.php';
+	?>
   </body>
 </html>

@@ -17,12 +17,14 @@ include DOCUMENT_ROOT.'include/permission.php';
 
     <title>ลงชื่อเข้าใช้งาน</title>
 
+    <link rel='shortcut icon' href='<?php echo ROOT; ?>favicon.ico' type='image/x-icon'/ >
+	<link rel="icon" href="<?php echo ROOT; ?>favicon.ico" type="image/x-icon">
+	
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo ROOT; ?>style/sticky-footer-navbar.css" rel="stylesheet"/>
-    
+	<link href="<?php echo ROOT; ?>/style/template.css" rel="stylesheet">
     
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT; ?>style/error.message.css" />
     
@@ -32,8 +34,8 @@ include DOCUMENT_ROOT.'include/permission.php';
     <script src="<?php echo ROOT; ?>bootstrap/dist/js/bootstrap.min.js"></script>
     
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.min.js" type="text/javascript"></script>
-	<script src="<?php echo ROOT; ?>lib/jquery/additional-methods.min.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.validate.custom.message.js" type="text/javascript"></script>
+	<script src="<?php echo ROOT; ?>lib/jquery/additional-methods.min.js"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -92,7 +94,7 @@ include DOCUMENT_ROOT.'include/permission.php';
 							<label class="checkbox-inline"><input type="checkbox" value="R" name="rememberme" checked>จดจำฉันไว้ในระบบ</label>
 						</div>
 						<div class="g-recaptcha" 
-							data-sitekey="6Lf6VQ8TAAAAACP8DHRvi33oZb7rbnCdUv8wKGDn">
+							data-sitekey="<?php echo SITE_KEY;?>">
 						</div>
 						<br/>
 						<button class="btn btn-primary btn-block" name="nigol" id="nigol" type="button">เข้าสู่ระบบ</button>
@@ -102,10 +104,5 @@ include DOCUMENT_ROOT.'include/permission.php';
 			<div class="col-md-3"></div>
 		</div>
 	</div>
-
-    <?php
-		include DOCUMENT_ROOT.'include/footer.php';
-	?>
-  
   </body>
 </html>

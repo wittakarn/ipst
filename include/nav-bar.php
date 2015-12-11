@@ -1,7 +1,7 @@
 ﻿<?php
 $requestUri = $_SERVER['REQUEST_URI'];
 $indexRegister = strpos($requestUri, 'register.php');
-$indexProduct = strpos($requestUri, 'product.php');
+$indexManageQuestionnaire = strpos($requestUri, 'manage-questionnaire.php');
 $indexCustomer = strpos($requestUri, 'customer.php');
 $indexQuotation = strpos($requestUri, 'quotation.php');
 ?>
@@ -16,7 +16,7 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="<?php echo WEB_ROOT;?>index.php">SEQUOT System</a>
+	  <a class="navbar-brand" href="<?php echo WEB_ROOT;?>index.php">ระบบจัดการข้อมูลแบบสอบถาม</a>
 	</div>
 	
 	<div id="navbar" class="collapse navbar-collapse">
@@ -42,36 +42,17 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 								  </ul>
 								</li>';
 								
-				$hoverProductLink = ($indexProduct > 0) ? 'active' : '';
-				$hrefProductLink = WEB_ROOT.'pages/product.php?MODE=S';
+				$hoverQuestionnaireLink = ($indexManageQuestionnaire > 0) ? 'active' : '';
+				$hoverManageQuestionnaireLink = ($indexManageQuestionnaire > 0) ? 'active' : '';
+				$hrefManageQuestionnaireLink = WEB_ROOT.'pages/manage-questionnaire.php?MODE=S';
 				
-				$productLink = '<li class="dropdown '.$hoverProductLink.'">
+				$questionnaireLink = '<li class="dropdown '.$hoverQuestionnaireLink.'">
 								  <a href="#" class="dropdown-toggle" 
 								  data-toggle="dropdown" role="button" 
-								  aria-haspopup="true" aria-expanded="false">สินค้า
+								  aria-haspopup="true" aria-expanded="false">แบบสอบถาม
 								  <span class="caret"></span></a>
 								  <ul class="dropdown-menu">
-									<li class="'.$hoverProductLink.'"><a href="'.$hrefProductLink.'">จัดการสินค้า</a></li>
-								  </ul>
-								</li>';
-								
-				$hoverCustomerLink = ($indexCustomer > 0) ? 'active' : '';
-				$hrefCustomerLink = WEB_ROOT.'pages/customer.php?MODE=S';
-				
-				$customerLink = '<li class="dropdown '.$hoverCustomerLink.'">
-								  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ลูกค้า<span class="caret"></span></a>
-								  <ul class="dropdown-menu">
-									<li class="'.$hoverCustomerLink.'"><a href="'.$hrefCustomerLink.'">จัดการลูกค้า</a></li>
-								  </ul>
-								</li>';
-								
-				$hoverQuotationLink = ($indexQuotation > 0) ? 'active' : '';
-				$hrefQuotationLink = WEB_ROOT.'pages/quotation.php?MODE=C';
-				
-				$quotationLink = '<li class="dropdown '.$hoverQuotationLink.'">
-								  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ขายสินค้า<span class="caret"></span></a>
-								  <ul class="dropdown-menu">
-									<li class="'.$hoverQuotationLink.'"><a href="'.$hrefQuotationLink.'">ใบเสนอราคา</a></li>
+									<li class="'.$hoverManageQuestionnaireLink.'"><a href="'.$hrefManageQuestionnaireLink.'">จัดการข้อมูลแบบสอบถาม</a></li>
 								  </ul>
 								</li>';
 			}
@@ -79,7 +60,7 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 			if($role === 'A'){
 				$menuLink = $menuLink.$registerLink;
 			}
-			$menuLink = $menuLink.$productLink.$customerLink.$quotationLink;
+			$menuLink = $menuLink.$questionnaireLink;
 			
 			echo $menuLink;
 		?>

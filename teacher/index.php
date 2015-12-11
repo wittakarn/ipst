@@ -80,6 +80,8 @@ session_destroy();
 		</div>
     </div>
 
-    
+    <?php
+		include DOCUMENT_ROOT.'include/footer.php';
+	?>
   </body>
 </html>
