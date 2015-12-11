@@ -55,6 +55,71 @@ class Participant
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
+	
+	public static function read($conn, $params){
+		$firstCondition = true;
+		
+		$selectQuery = "SELECT id, type, status, DATE_FORMAT(create_date, '%d/%m/%Y') create_date, r_sex ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "";
+		
+		if(isset($params['participant_type']) && $params['participant_type'] !== ''){
+			if($firstCondition){
+				$whereQuery .= " WHERE ";
+				$firstCondition = false;
+			}else{
+				$whereQuery .= " AND ";
+			}
+			$whereQuery .= "type = '".$params['participant_type']."' ";
+		}
+		
+		if(isset($params['start_date']) && $params['start_date'] !== ''){
+			if($firstCondition){
+				$whereQuery .= " WHERE ";
+				$firstCondition = false;
+			}else{
+				$whereQuery .= " AND ";
+			}
+			$whereQuery .= "create_date >= STR_TO_DATE('".$params['start_date']."','%d/%m/%Y')";
+		}
+		
+		if(isset($params['end_date']) && $params['end_date'] !== ''){
+			if($firstCondition){
+				$whereQuery .= " WHERE ";
+				$firstCondition = false;
+			}else{
+				$whereQuery .= " AND ";
+			}
+			$whereQuery .= "create_date <= STR_TO_DATE('".$params['end_date']."','%d/%m/%Y')";
+		}
+		
+		if(isset($params['status']) && $params['status'] !== ''){
+			if($firstCondition){
+				$whereQuery .= " WHERE ";
+				$firstCondition = false;
+			}else{
+				$whereQuery .= " AND ";
+			}
+			$whereQuery .= "status = '".$params['status']."' ";
+		}
+
+		$orderQuery = " ORDER BY id ";
+		$limit = "";
+		if(isset($params['start_index']) && isset($params['count']) && $params['start_index'] !== '' && $params['count'] !== ''){
+			$limit .= " LIMIT ".$params['count'];
+			$offset = ($params['start_index'] - 1) > 0 ? ($params['start_index'] - 1) : 0;
+			$limit .= " OFFSET ".($offset);
+		}
+		
+		$query = $selectQuery.$fromQuery.$whereQuery.$orderQuery.$limit;
+
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+	}
+	
 }
 
 ?>
