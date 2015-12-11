@@ -10,6 +10,8 @@ $(document)
 						$(".book-satisfaction-section").html("");
 						loadScienceBookQuestionnair($(this).val());
 						loadMathBookQuestionnair($(this).val());
+						loadTechnologyBookQuestionnair($(this).val());
+						loadDesignBookQuestionnair($(this).val());
 					});
 					
 					function loadScienceBookQuestionnair(degree){
@@ -28,6 +30,26 @@ $(document)
 						loadPage = loadPage.concat(".php");
 						
 						$("#mathBookSection" + degree).load(loadPage, function() {
+							setBookSatisfactionEvent();
+						});
+					}
+					
+					function loadTechnologyBookQuestionnair(degree){
+						var loadPage = contextRoot.concat("include/technology-");
+						loadPage = loadPage.concat(degree);
+						loadPage = loadPage.concat(".php");
+						
+						$("#technologyBookSection" + degree).load(loadPage, function() {
+							setBookSatisfactionEvent();
+						});
+					}
+					
+					function loadDesignBookQuestionnair(degree){
+						var loadPage = contextRoot.concat("include/design-");
+						loadPage = loadPage.concat(degree);
+						loadPage = loadPage.concat(".php");
+						
+						$("#designBookSection" + degree).load(loadPage, function() {
 							setBookSatisfactionEvent();
 						});
 					}

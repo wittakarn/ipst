@@ -201,7 +201,13 @@
 	</div>
 	<nav>
 		<ul class="pager">
-			<li><a class="next-tab" href="#reCaptcha">ต่อไป</a></li>
+			<li>
+				<button type="button" 
+					class="btn btn-success"
+					id="submitButton">
+					ส่งแบบประเมิน
+				</button>
+			</li>
 		</ul>
 	</nav>
 </div>

@@ -75,7 +75,6 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#satisfaction" aria-controls="satisfaction" role="tab" >ส่วนที่ 2</a></li>
 				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 3</a></li>
 				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 4</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#reCaptcha" aria-controls="reCaptcha" role="tab" >ส่วนที่ 5</a></li>
 			</ul>
 			<br/>
 			<!-- Tab panes -->
@@ -100,13 +99,9 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						include DOCUMENT_ROOT.'include/receiver-information.php';
 					?>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="reCaptcha">
-					<?php
-						include DOCUMENT_ROOT.'include/recaptcha.php';
-					?>
-				</div>
 			</div>
 		</div>
+		<input type="hidden" name="type" value="t"/>
 	</form>
     
   </body>

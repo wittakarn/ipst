@@ -25,13 +25,13 @@ $(document)
 						});
 						
 						$(".s-degree").click(function (e) {
-							var scienceDegrees = $(this).filter(":checked");
+							var scienceDegrees = $(".s-degree").filter(":checked");
 							var fieldName;
 							var degree;
 							var splitArray;
 							var splitSize;
 							
-							$(".s-degree").html("");
+							$(".book-satisfaction-section").html("");
 							
 							$.each( scienceDegrees, function( i ) {
 								fieldName = $(this).attr("name");

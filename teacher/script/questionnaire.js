@@ -186,7 +186,7 @@ $(document)
 							}else{
 								$.blockUI();
 								
-								questionForm.attr("action", contextRoot + "teacher/submit-questionnaire.php");
+								questionForm.attr("action", contextRoot + "crud/create-questionnaire.php");
 								questionForm.attr("target", "_self");
 								
 								questionForm.submit();

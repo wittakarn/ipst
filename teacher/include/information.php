@@ -4,6 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>1. เพศ</strong>
+				<span class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -28,6 +29,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>2. อายุ</strong>
+				<span class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -53,6 +55,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>3. วุฒิการศึกษาสูงสุด</strong>
+				<span class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -89,6 +92,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>4. วิชาและระดับชั้นที่สอนในปีการศึกษา 2558(โปรดระบุทุกระดับชั้นและวิชาที่สอน)</strong>
+				<span class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -106,6 +110,7 @@
 				</div>
 				<div class="collapse" id="scienceSubjectSelectedCollapse">
 					<div class="well">
+						<span class="glyphicon glyphicon-asterisk"></span>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="checkbox">
@@ -201,6 +206,7 @@
 				</div>
 				<div class="collapse" id="mathematicSubjectSelectedCollapse">
 					<div class="well">
+						<span class="glyphicon glyphicon-asterisk"></span>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="checkbox">
@@ -298,6 +304,7 @@
 				</div>
 				<div class="collapse" id="technologySubjectSelectedCollapse">
 					<div class="well">
+						<span class="glyphicon glyphicon-asterisk"></span>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="checkbox">
@@ -393,6 +400,7 @@
 				</div>
 				<div class="collapse" id="designSubjectSelectedCollapse">
 					<div class="well">
+						<span class="glyphicon glyphicon-asterisk"></span>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="checkbox">
@@ -479,6 +487,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>5. ประสบการณ์ในการสอนรวมทุกวิชาและทุกระดับชั้นปี(ระบุประสบการณ์)</strong>
+				<span class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -504,6 +513,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>6. สังกัดของโรงเรียน</strong>
+				<span class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
