@@ -3,6 +3,7 @@ $(document)
 				function() {
 					$.blockUI();
 					$("#sProvince").load(contextRoot + "student/include/province-select-data.php", function() {
+						initialSection();
 						$.unblockUI();
 					});
 

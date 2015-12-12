@@ -62,7 +62,7 @@
 								
 								tbody
 										.append($(
-												'<tr style="cursor: pointer;" id="' + data[i]["id"] + '">')
+												'<tr style="cursor: pointer;" id="' + data[i]["id"] + '" type="' + data[i]["type"] + '">')
 												.append($('<td>').html(i + 1))
 												.append(
 														$('<td>')
@@ -85,8 +85,18 @@
 						function setEvent() {
 							$('#tableParticipant tbody > tr').click(function() {
 								var id = $(this).attr('id');
+								var type = $(this).attr('type');
+								var pageUrl = "<?php echo ROOT; ?>";
+								
+								if(type == 't'){
+									pageUrl += "teacher"
+								}else{
+									pageUrl += "student"
+								}
+								pageUrl += "/questionnaire.php";
 
 								$('#editId').val(id);
+								$('#searchParticipantForm').attr("action", pageUrl);
 								$('#searchParticipantForm').submit();
 							});
 						}
@@ -99,8 +109,16 @@
 			<div class="panel-heading">ข้อมูลแบบสอบถาม</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-2 col-sm-2 col-xs-6">แบบสอบถาม</div>
-					<div class="col-md-2 col-sm-4">
+					<div class="col-md-2 col-sm-2">แบบสอบถาม</div>
+					<div class="col-md-2 col-sm-3">
+						<div class="radio">
+						  <label>
+							<input type="radio" name="participant_type" value="" autofocus checked/>
+							ไม่ระบุ
+						  </label>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-3">
 						<div class="radio">
 						  <label>
 							<input type="radio" name="participant_type" value="t"/>
@@ -108,7 +126,7 @@
 						  </label>
 						</div>
 					</div>
-					<div class="col-md-2 col-sm-4">
+					<div class="col-md-2 col-sm-3">
 						<div class="radio">
 						  <label>
 							<input type="radio" name="participant_type" value="s"/>
@@ -118,8 +136,16 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-2 col-sm-2 col-xs-6">สถานะ</div>
-					<div class="col-md-2 col-sm-4">
+					<div class="col-md-2 col-sm-2">สถานะ</div>
+					<div class="col-md-2 col-sm-3">
+						<div class="radio">
+						  <label>
+							<input type="radio" name="status" value="" checked/>
+							ไม่ระบุ
+						  </label>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-3">
 						<div class="radio">
 						  <label>
 							<input type="radio" name="status" value="a"/>
@@ -127,7 +153,7 @@
 						  </label>
 						</div>
 					</div>
-					<div class="col-md-2 col-sm-4">
+					<div class="col-md-2 col-sm-3">
 						<div class="radio">
 						  <label>
 							<input type="radio" name="status" value="i"/>
@@ -156,8 +182,7 @@
 						<input class="form-control" 
 							type="text"
 							id="startIndex"
-							digits="true"
-							autofocus/>
+							digits="true"/>
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-6">จำนวน</div>
 					<div class="col-md-3 col-sm-3 col-xs-6">
@@ -207,8 +232,7 @@
 			<tbody></tbody>
 		</table>
 	</div>
-	<form id="searchParticipantForm" method="get" target="_self">
+	<form id="searchParticipantForm" method="get" target="_blank" >
 		<input type="hidden" id="editId" name="id"/>
-		<input type="hidden" id="screenMode" name="MODE" value="E"/>
 	</form>
 </div>

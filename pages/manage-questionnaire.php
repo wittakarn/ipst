@@ -50,12 +50,8 @@ include DOCUMENT_ROOT.'include/permission.php';
                                   
     <?php
 	
-		if(isset($_REQUEST['MODE']) && $userId != null){
-			if($_REQUEST['MODE'] !== 'S'){
-				include(DOCUMENT_ROOT."/include/manage-questionnaire-e.php");
-			}else{
-				include(DOCUMENT_ROOT."/include/manage-questionnaire-q.php");
-			}
+		if($userId != null){
+			include(DOCUMENT_ROOT."/include/manage-questionnaire-q.php");
 		}
 		
 	?>
