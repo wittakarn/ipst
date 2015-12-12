@@ -48,7 +48,8 @@ session_start();
 			custom_theme_widget: 'recaptcha_widget'
 		};
 		
-		function initialSection(){
+		function initialSection(){ 
+
 			<?php
 				$isEditMode = isset($_SESSION['user_id']) && $_SESSION['user_id'] != null && isset($_GET['id']) && $_GET['id'] !== '';
 				if($isEditMode){
@@ -65,18 +66,54 @@ session_start();
 							$contribution = Contribution::get($conn, $_GET['id']);
 							
 							echo '$("#receiveBookSelectedCollapse").collapse("show");';
-							echo 'var loadPage = "'.ROOT.'include/contribute-";';
-							echo 'loadPage = loadPage.concat('.$contribution['r_contribute_book_category_selected'].');';
-							echo 'loadPage = loadPage.concat(".php");';
-							echo '$("#contributeBookSelectedSection").load(loadPage, function() {initialSelectedQuestionnaire();});';
+							echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
+							echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
+							echo 'loadContributePage = loadContributePage.concat(".php");';
 							
 						}
 					}
+					
+					echo 'var loadSciencePage = "'.ROOT.'include/science-";';
+					echo 'loadSciencePage = loadSciencePage.concat('.$participant['s_degree'].');';
+					echo 'loadSciencePage = loadSciencePage.concat(".php");';
+					
+					echo 'var loadMathPage = "'.ROOT.'include/math-";';
+					echo 'loadMathPage = loadMathPage.concat('.$participant['s_degree'].');';
+					echo 'loadMathPage = loadMathPage.concat(".php");';
+					
+					echo 'var loadTechnologyPage = "'.ROOT.'include/technology-";';
+					echo 'loadTechnologyPage = loadTechnologyPage.concat('.$participant['s_degree'].');';
+					echo 'loadTechnologyPage = loadTechnologyPage.concat(".php");';
+					
+					echo 'var loadDesignPage = "'.ROOT.'include/design-";';
+					echo 'loadDesignPage = loadDesignPage.concat('.$participant['s_degree'].');';
+					echo 'loadDesignPage = loadDesignPage.concat(".php");';
+					
+					echo 'var scienceDef = $.Deferred();';
+					echo 'var mathDef = $.Deferred();';
+					echo 'var technologyDef = $.Deferred();';
+					echo 'var designDef = $.Deferred();';
+					echo 'var contributeDef = $.Deferred();';
+					
+					echo '$("#scienceBookSection'.$participant['s_degree'].'").load(loadSciencePage, function(){scienceDef.resolve()});';
+					echo '$("#mathBookSection'.$participant['s_degree'].'").load(loadMathPage, function(){mathDef.resolve()});';
+					echo '$("#technologyBookSection'.$participant['s_degree'].'").load(loadTechnologyPage, function(){technologyDef.resolve()});';
+					echo '$("#designBookSection'.$participant['s_degree'].'").load(loadDesignPage, function(){designDef.resolve()});';
+					if($participant['r_receive_contribute_book'] === '1'){
+						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){contributeDef.resolve()});';
+					}else{
+						echo 'contributeDef.resolve();';
+					}
+					
+					echo '$.when(scienceDef, mathDef, technologyDef, designDef, contributeDef)';
+					echo '.then(function(){initialSelectedQuestionnaire();setBookSatisfactionEvent();});';
+					
 				}
 			?>
 		}
 		
 		function initialSelectedQuestionnaire(){
+
 			<?php
 				if($isEditMode){
 					foreach($participant as $key=>$value){
