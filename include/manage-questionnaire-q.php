@@ -39,6 +39,7 @@
 							var type;
 							var sex;
 							var status;
+							var style;
 							tbody.empty();
 							for (var i = 0; i < dataSize; i++) {
 								
@@ -54,15 +55,17 @@
 									sex = "หญิง";
 								}
 								
+								style = "cursor: pointer;";
 								if(data[i]["status"] == "a"){
 									status = "ใช้งาน";
 								}else{
 									status = "ไม่ใช้งาน";
+									style = style.concat("background-color: gainsboro;");
 								}
 								
 								tbody
 										.append($(
-												'<tr style="cursor: pointer;" id="' + data[i]["id"] + '" type="' + data[i]["type"] + '">')
+												'<tr style="' + style + '" id="' + data[i]["id"] + '" type="' + data[i]["type"] + '">')
 												.append($('<td>').html(i + 1))
 												.append(
 														$('<td>')

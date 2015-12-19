@@ -43,13 +43,8 @@ session_start();
 	
 	<script language="javascript" type="text/javascript">
 		var contextRoot = "<?php echo ROOT; ?>";
-		var RecaptchaOptions = {
-			theme : 'custom',
-			custom_theme_widget: 'recaptcha_widget'
-		};
-		
-		function initialSection(){ 
 
+		function initialSection(){ 
 			<?php
 				$isEditMode = isset($_SESSION['user_id']) && $_SESSION['user_id'] != null && isset($_GET['id']) && $_GET['id'] !== '';
 				if($isEditMode){
@@ -89,6 +84,8 @@ session_start();
 					echo 'loadDesignPage = loadDesignPage.concat('.$participant['s_degree'].');';
 					echo 'loadDesignPage = loadDesignPage.concat(".php");';
 					
+					
+					
 					echo 'var scienceDef = $.Deferred();';
 					echo 'var mathDef = $.Deferred();';
 					echo 'var technologyDef = $.Deferred();';
@@ -100,6 +97,11 @@ session_start();
 					echo '$("#technologyBookSection'.$participant['s_degree'].'").load(loadTechnologyPage, function(){technologyDef.resolve()});';
 					echo '$("#designBookSection'.$participant['s_degree'].'").load(loadDesignPage, function(){designDef.resolve()});';
 					if($participant['r_receive_contribute_book'] === '1'){
+						echo '$("#contributeBookSelectedCollapse").collapse("show");';
+						echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
+						echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
+						echo 'loadContributePage = loadContributePage.concat(".php");';
+
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){contributeDef.resolve()});';
 					}else{
 						echo 'contributeDef.resolve();';
@@ -198,8 +200,42 @@ session_start();
 					?>
 				</div>
 			</div>
+			<nav>
+				<ul class="pager">
+					<li>
+						<?php
+							if($isEditMode){
+								echo '<button type="button" 
+											class="btn btn-warning"
+											data-toggle="modal" 
+											data-target="#myDisableModal">
+											ไม่นำมาประมวลผล
+										</button>';
+							}
+						?>
+					</li>
+				</ul>
+			</nav>
+			<div class="modal fade" id="myDisableModal" tabindex="-1" role="dialog" aria-labelledby="myDisableModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myDisableModalLabel">ยืนยันการไม่นำมาประมวลผล</h4>
+				</div>
+				<div class="modal-body">
+					ท่านยืนยันที่จะไม่นำแบบประเมินนี้มาประมวลผล ?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" id="disableButton">ตกลง</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+				</div>
+				</div>
+			</div>
+			</div>
 		</div>
 		<input type="hidden" name="type" value="s"/>
+		<input type="hidden" name="updateId" value="<?php echo $_REQUEST['id']?>"/>
 	</form>
     
   </body>

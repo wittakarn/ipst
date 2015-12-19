@@ -128,8 +128,7 @@
 										name="<?php echo $nameOfComponent[4]; ?>"
 										value=""/>
 								<iframe id="iframe_<?php echo $fileUploadId; ?>" 
-									name="iframe_<?php echo $fileUploadId; ?>" 
-									src="#" 
+									name="iframe_<?php echo $fileUploadId; ?>"
 									style="width:0;height:0;border:0px solid #fff;">
 								</iframe>  
 							</div>

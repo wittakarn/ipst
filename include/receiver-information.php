@@ -202,11 +202,21 @@
 	<nav>
 		<ul class="pager">
 			<li>
-				<button type="button" 
-					class="btn btn-success"
-					id="submitButton">
-					ส่งแบบประเมิน
-				</button>
+				<?php
+					if($isEditMode){
+						echo '<button type="button" 
+									class="btn btn-primary"
+									id="updateButton">
+									ปรับปรุงแบบประเมิน
+								</button>';
+					}else{
+						echo '<button type="button" 
+									class="btn btn-success"
+									id="submitButton">
+									ส่งแบบประเมิน
+								</button>';
+					}
+				?>
 			</li>
 		</ul>
 	</nav>

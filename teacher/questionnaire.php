@@ -102,6 +102,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			</div>
 		</div>
 		<input type="hidden" name="type" value="t"/>
+		<input type="hidden" name="updateId" value="<?php echo $_REQUEST['id']?>"/>
 	</form>
     
   </body>

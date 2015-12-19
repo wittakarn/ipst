@@ -21,7 +21,7 @@ $(document)
 					});
 					
 					$(".radio-contribute-book").change(function() {
-						$("#contributeBookSelectedCollapse").collapse('show');
+						$("#contributeBookSelectedCollapse").collapse("show");
 						loadContributeBook($(this).val());
 					});
 					

@@ -73,5 +73,31 @@ $(document)
 								$.unblockUI();
 							}
 						});
+						
+						$('#updateButton').click(function (e) {
+							if (isInvalidateForm()) {
+								focusInvalidComponent();
+							}else{
+								$.blockUI();
+								
+								questionForm.attr("action", contextRoot + "crud/update-questionnaire.php?status=a");
+								questionForm.attr("target", "_self");
+								
+								questionForm.submit();
+								
+								$.unblockUI();
+							}
+						});
+						
+						$('#disableButton').click(function (e) {
+							$.blockUI();
+							
+							questionForm.attr("action", contextRoot + "crud/update-questionnaire.php?status=i");
+							questionForm.attr("target", "_self");
+							
+							questionForm.submit();
+							
+							$.unblockUI();
+						});
 				}
 		);

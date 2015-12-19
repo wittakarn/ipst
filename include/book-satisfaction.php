@@ -152,7 +152,10 @@
 			<div id="technologyBookSection12" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section">		
 			</div>
 		</div>
-
+		<div class="row">
+			<div id="designBookSection1" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section">
+			</div>
+		</div>
 		<div class="row">
 			<div id="designBookSection2" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section">
 			</div>

@@ -47,6 +47,42 @@ class Participant
 		return $db->lastInsertId();
 	}
 	
+	public function update(){
+		$params = $this->requests;
+		$db = $this->dbh;
+		
+		$fields = array(
+						'type', 'status', 'r_sex', 's_degree', 'i_school_name', 's_province', 's_age', 'r_degree', 'c_s', 'c_s_1', 'c_s_2', 'c_s_3', 'c_s_4', 'c_s_5', 'c_s_6', 'c_s_7', 'c_s_8', 'c_s_9', 'c_s_10', 'c_s_11', 'c_s_12', 'c_m', 'c_m_1', 'c_m_2', 'c_m_3', 'c_m_4', 'c_m_5', 'c_m_6', 'c_m_7', 'c_m_8', 'c_m_9', 'c_m_10', 'c_m_11', 'c_m_12', 'c_t', 'c_t_1', 'c_t_2', 'c_t_3', 'c_t_4', 'c_t_5', 'c_t_6', 'c_t_7', 'c_t_8', 'c_t_9', 'c_t_10', 'c_t_11', 'c_t_12', 'c_d', 'c_d_1', 'c_d_2', 'c_d_3', 'c_d_4', 'c_d_5', 'c_d_6', 'c_d_7', 'c_d_8', 'c_d_9', 'c_d_10', 'c_d_11', 'c_d_12', 's_experience', 'c_school_under_1', 'c_school_under_2', 'c_school_under_3', 'c_school_under_4', 'c_school_under_5', 'c_school_under_6', 'c_school_under_7', 'c_school_under_8', 'i_school_under_8', 'r_receive_contribute_book'
+					);
+		
+		foreach ($fields as $field) {
+			if(!isset($params[$field])){
+				$params[$field] = null;
+			}
+		}
+		
+		$query = "UPDATE participant SET %s";
+
+		// make a list of named parameters: titulo=:titulo, titulo=:tipo_produto /*, etc. */
+		$updateFields = implode( ', ', array_map( function( $value ) { return $value . '=:' . $value; }, $fields ) );
+		
+		$query = sprintf( $query, $updateFields );
+		
+		$query .= " WHERE id=:id";
+		
+		//echo $query;
+		//print_r($params);
+		
+		$stmt = $db->prepare($query);
+		
+		foreach($fields as $field) {
+			$stmt -> bindValue( ':' . $field, $params[$field] );
+		}
+		$stmt -> bindParam( ':' . 'id', $params['updateId'], PDO::PARAM_INT );
+		
+		$stmt->execute();
+	}
+	
 	public static function get($conn, $id){
 		$query = "SELECT * FROM participant WHERE id = :id";
 		$stmt = $conn->prepare($query); 
