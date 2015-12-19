@@ -1,5 +1,10 @@
 function setBookSatisfactionEvent(){
 	
+	$(".book-usage-selected").unbind();
+	$("input:file").unbind();
+	$(".remove-file").unbind();
+	$(".remove-file").unbind();
+	
 	$(".book-usage-selected").click(function() {
 		var $this = $(this);
 		

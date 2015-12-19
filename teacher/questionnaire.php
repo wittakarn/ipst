@@ -48,10 +48,80 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 	
 	<script language="javascript" type="text/javascript">
 		var contextRoot = "<?php echo ROOT; ?>";
-		var RecaptchaOptions = {
-			theme : 'custom',
-			custom_theme_widget: 'recaptcha_widget'
-		};
+
+		function initialSection(){ 
+			<?php
+				$isEditMode = isset($_SESSION['user_id']) && $_SESSION['user_id'] != null && isset($_GET['id']) && $_GET['id'] !== '';
+				if($isEditMode){
+					require_once(DOCUMENT_ROOT.'/connection.php');
+					require_once(DOCUMENT_ROOT.'/class/class.Participant.php');
+					require_once(DOCUMENT_ROOT.'/class/class.Contribution.php');
+					
+					$conn = DataBaseConnection::createConnect();
+					$participant = Participant::get($conn, $_GET['id']);
+					
+					if(isset($participant)){
+						
+						if($participant['r_receive_contribute_book'] === '1'){
+							$contribution = Contribution::get($conn, $_GET['id']);
+							
+							echo '$("#receiveBookSelectedCollapse").collapse("show");';
+							echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
+							echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
+							echo 'loadContributePage = loadContributePage.concat(".php");';
+							
+						}
+					}
+					
+					
+				}
+			?>
+		}
+		
+		function initialSelectedQuestionnaire(){
+
+			<?php
+				if($isEditMode){
+					foreach($participant as $key=>$value){
+						if($value !== ''){
+							if(startsWith($key, 'i_') || startsWith($key, 't_') || startsWith($key, 'h_')){
+								echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+							}else if(startsWith($key, 'c_')){
+								if($value === '1'){
+									echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+								}
+							}if(startsWith($key, 'r_')){
+								echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+							}if(startsWith($key, 's_')){
+								echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+							}
+						}
+					}
+					
+					foreach($contribution as $key=>$value){
+						if($value !== ''){
+							if(startsWith($key, 'i_') || startsWith($key, 'h_')){
+								echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+							}else if(startsWith($key, 'c_')){
+								if($value === '1'){
+									echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+								}
+							}if(startsWith($key, 'r_')){
+								echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+							}if(startsWith($key, 's_')){
+								echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+							}if(startsWith($key, 't_')){
+								echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+							}
+						}
+					}
+				}
+				
+				function startsWith($pattern, $startWith) {
+					return $startWith === "" || strrpos($pattern, $startWith, -strlen($pattern)) !== FALSE;
+				}
+			?>
+		}
 	</script>
 	
 	<script src="<?php echo ROOT; ?>teacher/script/information.js" type="text/javascript"></script>
