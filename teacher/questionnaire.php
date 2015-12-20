@@ -133,8 +133,8 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
+					echo 'defs['.$defCount.'] = $.Deferred();';
 					if($participant['r_receive_contribute_book'] === '1'){
-						echo 'defs['.$defCount.'] = $.Deferred();';
 						echo '$("#contributeBookSelectedCollapse").collapse("show");';
 						echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
 						echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';

@@ -24,9 +24,7 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 		<?php
 			$menuLink = "";
 			$registerLink = "";
-			$productLink = "";
-			$customerLink = "";
-			$quotationLink = "";
+			$questionnaireLink = "";
 			if($userId != null){
 				$hoverLink = ($indexRegister > 0) ? 'active' : '';
 				$hrefRegisterLink = WEB_ROOT.'pages/register.php?MODE=S';
