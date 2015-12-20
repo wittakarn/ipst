@@ -134,20 +134,22 @@ session_start();
 						}
 					}
 					
-					foreach($contribution as $key=>$value){
-						if($value !== ''){
-							if(startsWith($key, 'i_') || startsWith($key, 'h_')){
-								echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
-							}else if(startsWith($key, 'c_')){
-								if($value === '1'){
-									echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+					if(isset($contribution)){
+						foreach($contribution as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_') || startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
 								}
-							}if(startsWith($key, 'r_')){
-								echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
-							}if(startsWith($key, 's_')){
-								echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
-							}if(startsWith($key, 't_')){
-								echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
 							}
 						}
 					}
@@ -217,21 +219,21 @@ session_start();
 				</ul>
 			</nav>
 			<div class="modal fade" id="myDisableModal" tabindex="-1" role="dialog" aria-labelledby="myDisableModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myDisableModalLabel">ยืนยันการไม่นำมาประมวลผล</h4>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myDisableModalLabel">ยืนยันการไม่นำมาประมวลผล</h4>
+					</div>
+					<div class="modal-body">
+						ท่านยืนยันที่จะไม่นำแบบประเมินนี้มาประมวลผล ?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" id="disableButton">ตกลง</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+					</div>
+					</div>
 				</div>
-				<div class="modal-body">
-					ท่านยืนยันที่จะไม่นำแบบประเมินนี้มาประมวลผล ?
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" id="disableButton">ตกลง</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-				</div>
-				</div>
-			</div>
 			</div>
 		</div>
 		<input type="hidden" name="type" value="s"/>

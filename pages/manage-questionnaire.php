@@ -16,6 +16,9 @@ include DOCUMENT_ROOT.'include/permission.php';
     <meta name="author" content="">
 
     <title>จัดการข้อมูลแบบสอบถาม</title>
+	
+	<link rel='shortcut icon' href='<?php echo ROOT; ?>favicon.ico' type='image/x-icon'/ >
+	<link rel="icon" href="<?php echo ROOT; ?>favicon.ico" type="image/x-icon">
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>

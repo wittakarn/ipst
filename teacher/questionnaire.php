@@ -73,7 +73,79 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
+					echo 'var defs = [];';
+					$defCount = 0;
 					
+					if(isset($participant['c_s']) && $participant['c_s'] === '1'){
+						echo '$("#scienceSubjectSelectedCollapse").collapse("show");';
+						for($i=1;$i<=12;$i++){
+							if(isset($participant['c_s_'.$i]) && $participant['c_s_'.$i] === '1'){
+								echo 'defs['.$defCount.'] = $.Deferred();';
+								echo 'var loadSciencePage = "'.ROOT.'include/science-";';
+								echo 'loadSciencePage = loadSciencePage.concat('.$i.');';
+								echo 'loadSciencePage = loadSciencePage.concat(".php");';
+								echo '$("#scienceBookSection'.$i.'").load(loadSciencePage, function(){defs['.$defCount.'].resolve()});';
+								$defCount++;
+							}
+						}
+						
+					}
+					
+					if(isset($participant['c_m']) && $participant['c_m'] === '1'){
+						echo '$("#mathSubjectSelectedCollapse").collapse("show");';
+						for($i=1;$i<=12;$i++){
+							if(isset($participant['c_m_'.$i]) && $participant['c_m_'.$i] === '1'){
+								echo 'defs['.$defCount.'] = $.Deferred();';
+								echo 'var loadMathPage = "'.ROOT.'include/math-";';
+								echo 'loadMathPage = loadMathPage.concat('.$i.');';
+								echo 'loadMathPage = loadMathPage.concat(".php");';
+								echo '$("#mathBookSection'.$i.'").load(loadMathPage, function(){defs['.$defCount.'].resolve()});';
+								$defCount++;
+							}
+						}
+					}
+					
+					if(isset($participant['c_t']) && $participant['c_t'] === '1'){
+						echo '$("#technologySubjectSelectedCollapse").collapse("show");';
+						for($i=1;$i<=12;$i++){
+							if(isset($participant['c_t_'.$i]) && $participant['c_t_'.$i] === '1'){
+								echo 'defs['.$defCount.'] = $.Deferred();';
+								echo 'var loadTechnologyPage = "'.ROOT.'include/technology-";';
+								echo 'loadTechnologyPage = loadTechnologyPage.concat('.$i.');';
+								echo 'loadTechnologyPage = loadTechnologyPage.concat(".php");';
+								echo '$("#technologyBookSection'.$i.'").load(loadTechnologyPage, function(){defs['.$defCount.'].resolve()});';
+								$defCount++;
+							}
+						}
+					}
+					
+					if(isset($participant['c_d']) && $participant['c_d'] === '1'){
+						echo '$("#designSubjectSelectedCollapse").collapse("show");';
+						for($i=1;$i<=12;$i++){
+							if(isset($participant['c_d_'.$i]) && $participant['c_d_'.$i] === '1'){
+								echo 'defs['.$defCount.'] = $.Deferred();';
+								echo 'var loadDesignPage = "'.ROOT.'include/design-";';
+								echo 'loadDesignPage = loadDesignPage.concat('.$i.');';
+								echo 'loadDesignPage = loadDesignPage.concat(".php");';
+								echo '$("#designBookSection'.$i.'").load(loadDesignPage, function(){defs['.$defCount.'].resolve()});';
+								$defCount++;
+							}
+						}
+					}
+					
+					if($participant['r_receive_contribute_book'] === '1'){
+						echo 'defs['.$defCount.'] = $.Deferred();';
+						echo '$("#contributeBookSelectedCollapse").collapse("show");';
+						echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
+						echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
+						echo 'loadContributePage = loadContributePage.concat(".php");';
+
+						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs['.$defCount.'].resolve()});';
+					}else{
+						echo 'defs['.$defCount.'].resolve();';
+					}
+					
+					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();setBookSatisfactionEvent();});';
 				}
 			?>
 		}
@@ -97,21 +169,22 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 							}
 						}
 					}
-					
-					foreach($contribution as $key=>$value){
-						if($value !== ''){
-							if(startsWith($key, 'i_') || startsWith($key, 'h_')){
-								echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
-							}else if(startsWith($key, 'c_')){
-								if($value === '1'){
-									echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+					if(isset($contribution)){
+						foreach($contribution as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_') || startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
 								}
-							}if(startsWith($key, 'r_')){
-								echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
-							}if(startsWith($key, 's_')){
-								echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
-							}if(startsWith($key, 't_')){
-								echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
 							}
 						}
 					}
@@ -168,6 +241,39 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 					<?php
 						include DOCUMENT_ROOT.'include/receiver-information.php';
 					?>
+				</div>
+			</div>
+			<nav>
+				<ul class="pager">
+					<li>
+						<?php
+							if($isEditMode){
+								echo '<button type="button" 
+											class="btn btn-warning"
+											data-toggle="modal" 
+											data-target="#myDisableModal">
+											ไม่นำมาประมวลผล
+										</button>';
+							}
+						?>
+					</li>
+				</ul>
+			</nav>
+			<div class="modal fade" id="myDisableModal" tabindex="-1" role="dialog" aria-labelledby="myDisableModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myDisableModalLabel">ยืนยันการไม่นำมาประมวลผล</h4>
+					</div>
+					<div class="modal-body">
+						ท่านยืนยันที่จะไม่นำแบบประเมินนี้มาประมวลผล ?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" id="disableButton">ตกลง</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+					</div>
+					</div>
 				</div>
 			</div>
 		</div>

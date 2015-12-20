@@ -43,11 +43,6 @@ session_destroy();
 	<script src="<?php echo ROOT; ?>lib/jquery/additional-methods.min.js"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
-	
-	<script language="javascript" type="text/javascript">
-		var contextRoot = "<?php echo ROOT; ?>";
-	</script>
-	<script src="<?php echo ROOT; ?>teacher/script/information.js" type="text/javascript"></script>
   </head>
 
   <body>
