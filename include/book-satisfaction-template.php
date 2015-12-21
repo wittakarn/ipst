@@ -93,7 +93,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<strong>ความคิดเห็นและข้อเสนอแนะเพื่อการปรับปรุง</strong>
+								<strong>ความคิดเห็นและข้อเสนอแนะเพื่อการปรับปรุง (สามารถแนบไฟล์รูปภาพหรือไฟล์อื่นๆ ขนาดไม่เกิน 1 Mb) </strong>
 							</div>
 						</div>
 						<div class="row">
@@ -105,7 +105,7 @@
 							<div class="col-md-8">
 								<input type="file" 
 										id="<?php echo $fileUploadId; ?>" 
-										name="<?php echo $nameOfComponent[3]; ?>" 
+										name="<?php echo $nameOfComponent[3]; ?>" จะใส
 										class="form-control"
 										target="iframe_<?php echo $fileUploadId; ?>"/>
 							</div>
