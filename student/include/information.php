@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>1. เพศ</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="r_sex" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">

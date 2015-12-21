@@ -2,8 +2,17 @@ $(document)
 		.ready(
 				function() {
 						var questionForm = $("#questionForm");
-						var cValidator = questionForm.validate();
-
+						var cValidator = questionForm.validate({
+																	errorPlacement: function(error, element) {
+																		// Append error within linked label
+																		$( element )
+																			.closest( "form" )
+																				.find( "span[for='" + element.attr( "name" ) + "']" )
+																					.append( error );
+																	},
+																	errorElement: "span"
+																});
+																
 						$('.section-tab').click(function (e) {
 							var li = $(this).parent();
 							var currentIndex = li.index();
