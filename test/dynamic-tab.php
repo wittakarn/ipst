@@ -46,20 +46,27 @@ require_once("../config.php");
 							function() {
 									
 									$(".subject-selected").click(function() {
-										if ($this.is(':checked')) {
+										var tabRef = $(this).attr("tabRef");
+										if ($(this).is(":checked")) {
 											var id = $(".nav-pills").children().length;
-											var tabId = "ส่วนที่" + id;
-										}else{
+											var tabName = "ส่วนที่" + (id + 1);
+											var id = $(".nav-pills").children().length;
+											var lastPill = $(".nav-pills").children().last();
 											
+											var liElement = $('<li>').attr("role", "presentation");
+											var aElement = $('<a>').attr("class", "section-tab")
+																	.attr("href", "#" + tabRef)
+																	.attr("aria-controls", tabRef)
+																	.attr("role", "tab")
+																	.attr("data-toggle", "pill");
+											aElement.text(tabName);
+											liElement.append(aElement);
+											lastPill.after(liElement);
+										}else{
+											$("a[aria-controls='" + tabRef + "']").parent().remove();
 										}
-										var id = $(".nav-pills").children().length;
-										var tabId = 'contact_' + id;
-										var lastPill = $(".nav-pills").children().last();
-										lastPill.after('<li><a href="#contact_' + id + '">New Tab</a> <span>x</span></li>');
-										$('.tab-content').append('<div class="tab-pane" id="' + tabId + '">Contact Form: New Contact ' + id + '</div>');
-
-										// add this
-										$('.nav-tabs li:nth-child(' + id + ') a').click();
+										
+										
 									});
 							
 							}
@@ -97,7 +104,8 @@ require_once("../config.php");
 												id="scienceSubjectSelected" 
 												value="1" 
 												name="c_s"
-												ref="scienceSubjectSelectedCollapse"/>
+												ref="scienceSubjectSelectedCollapse"
+												tabRef="scienceBook"/>
 										วิทยาศาสตร์
 									  </label>
 									</div>
@@ -110,7 +118,8 @@ require_once("../config.php");
 												id="mathematicSubjectSelected" 
 												value="1" 
 												name="c_m"
-												ref="mathematicSubjectSelectedCollapse"/>
+												ref="mathematicSubjectSelectedCollapse"
+												tabRef="mathBook"/>
 										คณิตศาสตร์
 									  </label>
 									</div>
@@ -125,7 +134,8 @@ require_once("../config.php");
 												id="technologySubjectSelected" 
 												value="1" 
 												name="c_t"
-												ref="technologySubjectSelectedCollapse"/>
+												ref="technologySubjectSelectedCollapse"
+												tabRef="technologyBook"/>
 										เทคโนโลยีสารสนเทศและการสื่อสาร
 									  </label>
 									</div>
@@ -138,7 +148,8 @@ require_once("../config.php");
 												id="designSubjectSelected" 
 												value="1" 
 												name="c_d"
-												ref="designSubjectSelectedCollapse"/>
+												ref="designSubjectSelectedCollapse"
+												tabRef="designBook"/>
 										การออกแบบและเทคโนโลยี
 									  </label>
 									</div>
