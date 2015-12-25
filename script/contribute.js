@@ -16,6 +16,7 @@ $(document)
 							});
 						} else {
 							$(href).collapse('hide');
+							$("#contributeBookSelectedCollapse").collapse('hide');
 							$(".receive-information").val("");
 						}
 					});
