@@ -43,7 +43,7 @@ session_start();
 	
 	<script language="javascript" type="text/javascript">
 		var contextRoot = "<?php echo ROOT; ?>";
-
+		
 		function initialSection(){ 
 			<?php
 				$isEditMode = isset($_SESSION['user_id']) && $_SESSION['user_id'] != null && isset($_GET['id']) && $_GET['id'] !== '';
@@ -179,9 +179,12 @@ session_start();
 		<div class="container">
 			<!-- Nav tabs -->
 			<ul class="nav nav-pills" role="tablist">
-				<li role="presentation" class="active"><a class="section-tab" href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 2</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 3</a></li>
+				<li role="presentation" class="active head-of-dynamic-tab"><a class="section-tab" href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#scienceBook" aria-controls="contribute" role="tab" >ส่วนที่ 2</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#mathBook" aria-controls="contribute" role="tab" >ส่วนที่ 3</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#technologyBook" aria-controls="contribute" role="tab" >ส่วนที่ 4</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#designBook" aria-controls="contribute" role="tab" >ส่วนที่ 5</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนสุดท้าย</a></li>
 			</ul>
 			<br/>
 			<!-- Tab panes -->
@@ -191,9 +194,24 @@ session_start();
 						include DOCUMENT_ROOT.'student/include/information.php';
 					?>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="booksSatisfaction">
+				<div role="tabpanel" class="tab-pane" id="scienceBook">
 					<?php
-						include DOCUMENT_ROOT.'include/book-satisfaction.php';
+						include DOCUMENT_ROOT.'include/science-book.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="mathBook">
+					<?php
+						include DOCUMENT_ROOT.'include/math-book.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="technologyBook">
+					<?php
+						include DOCUMENT_ROOT.'include/technology-book.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="designBook">
+					<?php
+						include DOCUMENT_ROOT.'include/design-book.php';
 					?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="contribute">

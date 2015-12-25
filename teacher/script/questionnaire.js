@@ -140,13 +140,15 @@ $(document)
 							if (isInvalidateForm()) {
 								focusInvalidComponent();
 							}else{
-								var href = $(this).attr("href");
-								e.preventDefault()
-								var tab = $('.nav-pills a[ref="' + href + '"]');
-								tab.parent().removeClass( "disabled" )
-								tab.attr("data-toggle", "pill");
-								tab.attr("href", href);
-								tab.tab('show');
+								$("html, body").animate({ scrollTop: 0 }, "slow");
+								var activeLi = $("li[role='presentation']").filter( ".active" );
+								var tab = activeLi.next();
+								var aElement = tab.children();
+								var href = aElement.attr("ref");
+								tab.removeClass( "disabled" );
+								aElement.attr("data-toggle", "pill");
+								aElement.attr("href", href);
+								aElement.tab('show');
 							}
 						});
 						

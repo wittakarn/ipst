@@ -48,6 +48,40 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 	
 	<script language="javascript" type="text/javascript">
 		var contextRoot = "<?php echo ROOT; ?>";
+		
+		function removeAllBookTab(){
+			$(".book-tab").remove();
+		}
+	
+		function populateBookTabs(){
+			var tabRef;
+			var liElement;
+			var checkboxs = $(".subject-selected").filter( ":checked" );
+			var length = $(".nav-pills").children().length;
+			var dynamicHead = $(".head-of-dynamic-tab");
+			checkboxs.each(function() {
+			  tabRef = $(this).attr("tabRef");
+			  liElement = createBookTab(length, "#" + tabRef);
+			  dynamicHead.after(liElement);
+			  dynamicHead = liElement;
+			  length++;
+			});
+		}
+	
+		function createBookTab(index, ref){
+			var tabName = "ส่วนที่" + index;
+			var liElement = $('<li>').attr("role", "presentation")
+										.attr("class", "disabled book-tab");
+			var aElement = $('<a>').attr("class", "section-tab")
+									.attr("href", "#")
+									.attr("ref", ref)
+									.attr("aria-controls", ref)
+									.attr("role", "tab");
+			aElement.text(tabName);
+			liElement.append(aElement);
+			
+			return liElement;
+		}
 
 		function initialSection(){ 
 			<?php
@@ -215,9 +249,8 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			<!-- Nav tabs -->
 			<ul class="nav nav-pills" role="tablist">
 				<li role="presentation" class="active"><a class="section-tab" href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#satisfaction" aria-controls="satisfaction" role="tab" >ส่วนที่ 2</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#booksSatisfaction" aria-controls="booksSatisfaction" role="tab" >ส่วนที่ 3</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนที่ 4</a></li>
+				<li role="presentation" class="disabled head-of-dynamic-tab"><a class="section-tab" href="#" ref="#satisfaction" aria-controls="satisfaction" role="tab" >ส่วนที่ 2</a></li>
+				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนสุดท้าย</a></li>
 			</ul>
 			<br/>
 			<!-- Tab panes -->
@@ -232,9 +265,24 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						include DOCUMENT_ROOT.'teacher/include/satisfaction.php';
 					?>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="booksSatisfaction">
+				<div role="tabpanel" class="tab-pane" id="scienceBook">
 					<?php
-						include DOCUMENT_ROOT.'include/book-satisfaction.php';
+						include DOCUMENT_ROOT.'include/science-book.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="mathBook">
+					<?php
+						include DOCUMENT_ROOT.'include/math-book.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="technologyBook">
+					<?php
+						include DOCUMENT_ROOT.'include/technology-book.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="designBook">
+					<?php
+						include DOCUMENT_ROOT.'include/design-book.php';
 					?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="contribute">

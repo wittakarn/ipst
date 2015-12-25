@@ -25,6 +25,9 @@ $(document)
 							} else {
 								$(href).collapse('hide');
 							}
+							
+							removeAllBookTab();
+							populateBookTabs();
 						});
 						
 						$(".s-degree").click(function (e) {

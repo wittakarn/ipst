@@ -41,32 +41,47 @@ require_once("../config.php");
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.js" type="text/javascript"></script>
     <script src="<?php echo ROOT; ?>lib/jquery/jquery.blockUI.custom.message.js" type="text/javascript"></script>
 	<script language="javascript" type="text/javascript">
+		function removeAllBookTab(){
+			$(".book-tab").remove();
+		}
+	
+		function populateBookTabs(){
+			var tabRef;
+			var liElement;
+			var checkboxs = $(".subject-selected").filter( ":checked" );
+			var length = $(".nav-pills").children().length;
+			var dynamicHead = $(".head-of-dynamic-tab");
+			checkboxs.each(function() {
+			  tabRef = $(this).attr("tabRef");
+			  liElement = createBookTab(length, tabRef);
+			  dynamicHead.after(liElement);
+			  dynamicHead = liElement;
+			  length++;
+			});
+		}
+	
+		function createBookTab(index, ref){
+			var tabName = "ส่วนที่" + index;
+			var liElement = $('<li>').attr("role", "presentation")
+										.attr("class", "book-tab");
+			var aElement = $('<a>').attr("class", "section-tab")
+									.attr("href", "#" + ref)
+									.attr("aria-controls", ref)
+									.attr("role", "tab")
+									.attr("data-toggle", "pill");
+			aElement.text(tabName);
+			liElement.append(aElement);
+			
+			return liElement;
+		}
+	
 		$(document)
 					.ready(
 							function() {
 									
 									$(".subject-selected").click(function() {
-										var tabRef = $(this).attr("tabRef");
-										if ($(this).is(":checked")) {
-											var id = $(".nav-pills").children().length;
-											var tabName = "ส่วนที่" + (id + 1);
-											var id = $(".nav-pills").children().length;
-											var lastPill = $(".nav-pills").children().last();
-											
-											var liElement = $('<li>').attr("role", "presentation");
-											var aElement = $('<a>').attr("class", "section-tab")
-																	.attr("href", "#" + tabRef)
-																	.attr("aria-controls", tabRef)
-																	.attr("role", "tab")
-																	.attr("data-toggle", "pill");
-											aElement.text(tabName);
-											liElement.append(aElement);
-											lastPill.after(liElement);
-										}else{
-											$("a[aria-controls='" + tabRef + "']").parent().remove();
-										}
-										
-										
+										removeAllBookTab();
+										populateBookTabs();
 									});
 							
 							}
@@ -86,7 +101,8 @@ require_once("../config.php");
 			<!-- Nav tabs -->
 			<ul class="nav nav-pills" role="tablist">
 				<li role="presentation" class="active"><a class="section-tab" href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
-				<li role="presentation" ><a class="section-tab" href="#satisfaction" aria-controls="satisfaction" role="tab" data-toggle="pill">ส่วนที่ 2</a></li>
+				<li class="head-of-dynamic-tab" role="presentation" ><a class="section-tab" href="#satisfaction" aria-controls="satisfaction" role="tab" data-toggle="pill">ส่วนที่ 2</a></li>
+				<li role="presentation" ><a class="section-tab" href="#contribute" aria-controls="contribute" role="tab" data-toggle="pill">ส่วนสุดท้าย</a></li>
 			</ul>
 			<br/>
 			<!-- Tab panes -->

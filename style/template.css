@@ -41,3 +41,7 @@ code {
 .glyphicon-asterisk{
 	color:red;
 }
+
+.next-tab{
+	cursor: pointer;
+}

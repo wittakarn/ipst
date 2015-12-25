@@ -104,7 +104,8 @@
 							id="scienceSubjectSelected" 
 							value="1" 
 							name="c_s"
-							ref="scienceSubjectSelectedCollapse"/>
+							ref="scienceSubjectSelectedCollapse"
+							tabRef="scienceBook"/>
 					วิทยาศาสตร์
 				  </label>
 				</div>
@@ -200,7 +201,8 @@
 							id="mathematicSubjectSelected" 
 							value="1" 
 							name="c_m"
-							ref="mathematicSubjectSelectedCollapse"/>
+							ref="mathematicSubjectSelectedCollapse"
+							tabRef="mathBook"/>
 					คณิตศาสตร์
 				  </label>
 				</div>
@@ -298,7 +300,8 @@
 							id="technologySubjectSelected" 
 							value="1" 
 							name="c_t"
-							ref="technologySubjectSelectedCollapse"/>
+							ref="technologySubjectSelectedCollapse"
+							tabRef="technologyBook"/>
 					เทคโนโลยีสารสนเทศและการสื่อสาร
 				  </label>
 				</div>
@@ -394,7 +397,8 @@
 							id="designSubjectSelected" 
 							value="1" 
 							name="c_d"
-							ref="designSubjectSelectedCollapse"/>
+							ref="designSubjectSelectedCollapse"
+							tabRef="designBook"/>
 					การออกแบบและเทคโนโลยี
 				  </label>
 				</div>
