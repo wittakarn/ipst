@@ -117,7 +117,15 @@ $(document)
 								c_satisfy_group_5: {
 									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
 								}
-							}
+							},
+							errorPlacement: function(error, element) {
+								// Append error within linked label
+								$( element )
+									.closest( "form" )
+										.find( "span[for='" + element.attr( "name" ) + "']" )
+											.append( error );
+							},
+							errorElement: "span"
 						});
 						
 						$('.section-tab').click(function (e) {

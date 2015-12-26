@@ -11,12 +11,12 @@ require_once("../config.php");
 	$bookNames = array('หนังสือเรียน รายวิชาพื้นฐาน เล่ม 1', 'หนังสือเรียน รายวิชาพื้นฐาน เล่ม 2', 'หนังสือเรียน รายวิชาพื้นฐาน เล่ม 3', 'หนังสือเรียน รายวิชาเพิ่มเติม เล่ม 1', 'หนังสือเรียน รายวิชาเพิ่มเติม เล่ม 2', 'หนังสือเรียน รายวิชาเพิ่มเติม เล่ม 3', 'หนังสือเรียน รายวิชาเพิ่มเติม เล่ม 4', 'หนังสือเรียน รายวิชาเพิ่มเติม เล่ม 5', 'หนังสือเรียน รายวิชาเพิ่มเติม เล่ม 6');
 	for($i=1;$i<=$bookCount;$i++)
 	{
-		$modelClass = 'm-m-10-'.$i;
-		$imagePath = 'image/m/10/'.$i.'.jpg';
+		$modelClass = 'm-m-101112-'.$i;
+		$imagePath = 'image/m/101112/'.$i.'.jpg';
 		$bookName = $bookNames[($i - 1)];  /* --- ใช้ ($i-1) เพราะว่า array เริ่มต้นด้วย index ที่ 0 --- */
-		$nameOfComponent = array('r_m_11_'.$i.'_1', 'r_m_11_'.$i.'_2', 't_m_11_'.$i.'_3', 'f_m_11_'.$i.'_4', 'h_m_11_'.$i.'_4');
-		$collapseSectionId = 'mM11'.$i.'SelectedCollapse';
-		$fileUploadId = 'fM11'.$i.'4';
+		$nameOfComponent = array('r_m_101112_'.$i.'_1', 'r_m_101112_'.$i.'_2', 't_m_101112_'.$i.'_3', 'f_m_101112_'.$i.'_4', 'h_m_101112_'.$i.'_4');
+		$collapseSectionId = 'mM101112'.$i.'SelectedCollapse';
+		$fileUploadId = 'fM101112'.$i.'4';
 		
 		include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
 		echo '<hr/>';

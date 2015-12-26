@@ -11,12 +11,12 @@ require_once("../config.php");
 	$bookNames = array('หนังสือเรียน รายวิชาพื้นฐาน', 'หนังสือเรียน รายวิชาเพิ่มเติม ไฟฟ้าและอิเล็กทรอนิกส์', 'หนังสือเสริมการเรียนรู้');
 	for($i=1;$i<=$bookCount;$i++)
 	{
-		$modelClass = 'm-d-10-'.$i;
-		$imagePath = 'image/d/10/'.$i.'.jpg';
+		$modelClass = 'm-d-101112-'.$i;
+		$imagePath = 'image/d/101112/'.$i.'.jpg';
 		$bookName = $bookNames[($i - 1)];  /* --- ใช้ ($i-1) เพราะว่า array เริ่มต้นด้วย index ที่ 0 --- */
-		$nameOfComponent = array('r_d_10_'.$i.'_1', 'r_d_10_'.$i.'_2', 't_d_10_'.$i.'_3', 'f_d_10_'.$i.'_4', 'h_d_10_'.$i.'_4');
-		$collapseSectionId = 'md10'.$i.'SelectedCollapse';
-		$fileUploadId = 'fd10'.$i.'4';
+		$nameOfComponent = array('r_d_101112_'.$i.'_1', 'r_d_101112_'.$i.'_2', 't_d_101112_'.$i.'_3', 'f_d_101112_'.$i.'_4', 'h_d_101112_'.$i.'_4');
+		$collapseSectionId = 'md101112'.$i.'SelectedCollapse';
+		$fileUploadId = 'fd101112'.$i.'4';
 		
 		include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
 		echo '<hr/>';

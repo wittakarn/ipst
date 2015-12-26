@@ -8,20 +8,31 @@ $(document)
 					});
 
 					$('#sDegree').change(function (e) {
-						$(".book-satisfaction-section").html("");
-						var scienceDef = $.Deferred();
-						var mathDef = $.Deferred();
-						var technologyDef = $.Deferred();
-						var designDef = $.Deferred();
 						
-						loadScienceBookQuestionnair($(this).val(), scienceDef);
-						loadMathBookQuestionnair($(this).val(), mathDef);
-						loadTechnologyBookQuestionnair($(this).val(), technologyDef);
-						loadDesignBookQuestionnair($(this).val(), designDef);
-						$.when(
-							scienceDef, mathDef, technologyDef, designDef
-						)
-						.done(function() {setBookSatisfactionEvent();});
+						$(".book-satisfaction-section").html("");
+						
+						var degree = $(this).val();
+						var defs = [];
+						
+						defs[0] = $.Deferred();
+						defs[1] = $.Deferred();
+						defs[2] = $.Deferred();
+						defs[3] = $.Deferred();
+						
+						loadScienceBookQuestionnair(degree, defs[0]);
+						loadMathBookQuestionnair(degree, defs[1]);
+						loadTechnologyBookQuestionnair(degree, defs[2]);
+						loadDesignBookQuestionnair(degree, defs[3]);
+						
+						if(degree > 6 && degree < 10){
+							defs[4] = $.Deferred();
+							loadScienceBookQuestionnair("789-additional", defs[4]);
+							
+							defs[5] = $.Deferred();
+							loadTechnologyBookQuestionnair("789-additional", defs[5]);
+						}
+						
+						$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
 					});
 					
 					function loadScienceBookQuestionnair(degree, def){

@@ -56,6 +56,10 @@
 			<div id="scienceBookSection12" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section science-book-category">
 			</div>
 		</div>
+		<div class="row">
+			<div id="scienceBookSection789-additional" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section science-book-category">
+			</div>
+		</div>
 	</div>
 	<nav>
 		<ul class="pager">
