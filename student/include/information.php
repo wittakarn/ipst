@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>2. ระดับชั้นที่นักเรียนศึกษาในปีการศึกษา 2558</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="s_degree" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -55,7 +55,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>3. โรงเรียน</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="i_school_name" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -67,7 +67,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>4. จังหวัดที่ตั้งของโรงเรียน</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="s_province" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">

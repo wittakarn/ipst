@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>ท่านต้องการรับสื่อเสริมการเรียนรู้ของ สสวท. หรือไม่ </strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="r_receive_contribute_book" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<br/>
@@ -63,7 +63,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<strong>ชื่อ-สกุล</strong>
-								<span class="glyphicon glyphicon-asterisk"></span>
+								<span for="i_receiver_fullname" class="glyphicon glyphicon-asterisk"></span>
 							</div>
 						</div>
 						<div class="row">
@@ -75,7 +75,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<strong>ที่อยู่</strong>
-								<span class="glyphicon glyphicon-asterisk"></span>
+								<span for="t_receiver_address" class="glyphicon glyphicon-asterisk"></span>
 							</div>
 						</div>
 						<div class="row">
@@ -87,7 +87,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<strong>รหัสไปรษณีย์</strong>
-								<span class="glyphicon glyphicon-asterisk"></span>
+								<span  for="i_receiver_postcode" class="glyphicon glyphicon-asterisk"></span>
 							</div>
 						</div>
 						<div class="row">
@@ -99,7 +99,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<strong>สื่อเสริมการเรียนรู้ของ สสวท. ที่ต้องการ</strong>
-								<span class="glyphicon glyphicon-asterisk"></span>
+								<span for="r_contribute_book_category_selected" class="glyphicon glyphicon-asterisk"></span>
 							</div>
 						</div>
 						<div class="row">

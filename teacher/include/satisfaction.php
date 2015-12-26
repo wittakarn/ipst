@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>ท่านคิดว่าปัจจัยใดบ้างที่ทำให้ท่านรู้สึกพึ่งพอใจในการใช้หนังสือเรียนในการจัดการเรียนรู้ได้มากที่สุด(เลือกได้ไม่เกิน 3 ข้อ)</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="c_satisfy_group_1" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">

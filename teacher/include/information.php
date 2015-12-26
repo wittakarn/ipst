@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>1. เพศ</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="r_sex" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>2. อายุ</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="s_age" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -55,7 +55,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>3. วุฒิการศึกษาสูงสุด</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="r_degree" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -92,7 +92,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>4. วิชาและระดับชั้นที่สอนในปีการศึกษา 2558(โปรดระบุทุกระดับชั้นและวิชาที่สอน)</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="c_s" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -491,7 +491,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>5. ประสบการณ์ในการสอนรวมทุกวิชาและทุกระดับชั้นปี(ระบุประสบการณ์)</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="s_experience" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
