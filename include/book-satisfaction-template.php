@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong><?php echo $bookName;?></strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="<?php echo $nameOfComponent[0]; ?>" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
@@ -62,7 +62,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<strong>ท่านรู้สึกอย่างไร (กรณีได้ใช้)</strong>
-								<span class="glyphicon glyphicon-asterisk"></span>
+								<span for="<?php echo $nameOfComponent[1]; ?>" class="glyphicon glyphicon-asterisk"></span>
 							</div>
 						</div>
 						<div class="row">

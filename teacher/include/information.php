@@ -517,7 +517,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<strong>6. สังกัดของโรงเรียน</strong>
-				<span class="glyphicon glyphicon-asterisk"></span>
+				<span for="c_school_under_1" class="glyphicon glyphicon-asterisk"></span>
 			</div>
 		</div>
 		<div class="row">
