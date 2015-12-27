@@ -87,7 +87,7 @@ $(document)
 						function loadScienceBookQuestionnair(degree, def){
 							var loadPage = contextRoot.concat("include/science-");
 							loadPage = loadPage.concat(degree);
-							loadPage = loadPage.concat(".php");
+							loadPage = loadPage.concat(".php?type=t");
 							$("#scienceBookSection" + degree).load(loadPage, function() {def.resolve()});
 						}
 						
@@ -130,7 +130,7 @@ $(document)
 						function loadMathBookQuestionnair(degree, def){
 							var loadPage = contextRoot.concat("include/math-");
 							loadPage = loadPage.concat(degree);
-							loadPage = loadPage.concat(".php");
+							loadPage = loadPage.concat(".php?type=t");
 							$("#mathBookSection" + degree).load(loadPage, function() {def.resolve()});
 						}
 						
@@ -182,7 +182,7 @@ $(document)
 						function loadTechnologyQuestionnair(degree, def){
 							var loadPage = contextRoot.concat("include/technology-");
 							loadPage = loadPage.concat(degree);
-							loadPage = loadPage.concat(".php");
+							loadPage = loadPage.concat(".php?type=t");
 							$("#technologyBookSection" + degree).load(loadPage, function() {def.resolve()});
 						}
 						
@@ -225,7 +225,7 @@ $(document)
 						function loadDesignQuestionnair(degree, def){
 							var loadPage = contextRoot.concat("include/design-");
 							loadPage = loadPage.concat(degree);
-							loadPage = loadPage.concat(".php");
+							loadPage = loadPage.concat(".php?type=t");
 							$("#designBookSection" + degree).load(loadPage, function() {def.resolve()});
 						}
 				}
