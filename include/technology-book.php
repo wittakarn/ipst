@@ -45,6 +45,10 @@
 			</div>
 		</div>
 		<div class="row">
+			<div id="technologyBookSection789-additional" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section technology-book-category">
+			</div>
+		</div>
+		<div class="row">
 			<div id="technologyBookSection10" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section technology-book-category">		
 			</div>
 		</div>
@@ -54,10 +58,6 @@
 		</div>
 		<div class="row">
 			<div id="technologyBookSection12" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section technology-book-category">		
-			</div>
-		</div>
-		<div class="row">
-			<div id="technologyBookSection789-additional" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section technology-book-category">
 			</div>
 		</div>
 	</div>

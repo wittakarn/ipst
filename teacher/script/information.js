@@ -1,6 +1,16 @@
 $(document)
 		.ready(
 				function() {
+						var isLoad101112Science;
+						var isLoad789ScienceAdditional;
+						
+						var isLoad101112Math;
+						
+						var isLoad101112Technology;
+						var isLoad789TechnologyAdditional;
+						
+						var isLoad101112Design;
+						
 						$.blockUI();
 						initialSection();
 						$.unblockUI();
@@ -37,16 +47,38 @@ $(document)
 							var splitArray;
 							var splitSize;
 							var defs = [];
+							var defsIndex = 0;
 							
+							isLoad101112Science = false;
+							isLoad789ScienceAdditional = false;
 							$(".science-book-category").html("");
 							
 							$.each( scienceDegrees, function( i ) {
-								defs[i] = $.Deferred();
 								fieldName = $(this).attr("name");
 								splitArray = fieldName.split("_");
 								splitSize = splitArray.length;
 								degree = splitArray[splitSize-1];
-								loadScienceBookQuestionnair(degree, defs[i]);
+								
+								if(degree <= 9){
+									defs[defsIndex] = $.Deferred();
+									loadScienceBookQuestionnair(degree, defs[defsIndex]);
+									defsIndex++;
+									
+									//load additional book.
+									if(degree > 6 && degree < 10 && !isLoad789ScienceAdditional){
+										defs[defsIndex] = $.Deferred();
+										loadScienceBookQuestionnair("789-additional", defs[defsIndex]);
+										isLoad789ScienceAdditional = true;
+										defsIndex++;
+									}
+								}else{
+									if(degree > 9 && !isLoad101112Science){
+										defs[defsIndex] = $.Deferred();
+										loadScienceBookQuestionnair(degree, defs[defsIndex]);
+										isLoad101112Science = true;
+										defsIndex++;
+									}
+								}
 							});
 							
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
@@ -66,16 +98,30 @@ $(document)
 							var splitArray;
 							var splitSize;
 							var defs = [];
+							var defsIndex = 0;
+							
+							isLoad101112Math = false;
 							
 							$(".math-book-category").html("");
 							
 							$.each( mathDegrees, function( i ) {
-								defs[i] = $.Deferred();
 								fieldName = $(this).attr("name");
 								splitArray = fieldName.split("_");
 								splitSize = splitArray.length;
 								degree = splitArray[splitSize-1];
-								loadMathBookQuestionnair(degree, defs[i]);
+								
+								if(degree <= 9){
+									defs[defsIndex] = $.Deferred();
+									loadMathBookQuestionnair(degree, defs[defsIndex]);
+									defsIndex++;
+								}else{
+									if(degree > 9 && !isLoad101112Math){
+										defs[defsIndex] = $.Deferred();
+										loadMathBookQuestionnair(degree, defs[defsIndex]);
+										isLoad101112Math = true;
+										defsIndex++;
+									}
+								}
 							});
 							
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
@@ -95,16 +141,39 @@ $(document)
 							var splitArray;
 							var splitSize;
 							var defs = [];
+							var defsIndex = 0;
+							
+							isLoad101112Technology = false;
+							isLoad789TechnologyAdditional = false;
 							
 							$(".technology-book-category").html("");
 							
 							$.each( technologyDegrees, function( i ) {
-								defs[i] = $.Deferred();
 								fieldName = $(this).attr("name");
 								splitArray = fieldName.split("_");
 								splitSize = splitArray.length;
 								degree = splitArray[splitSize-1];
-								loadTechnologyQuestionnair(degree, defs[i]);
+								
+								if(degree <= 9){
+									defs[defsIndex] = $.Deferred();
+									loadTechnologyQuestionnair(degree, defs[defsIndex]);
+									defsIndex++;
+									
+									//load additional book.
+									if(degree > 6 && degree < 10 && !isLoad789TechnologyAdditional){
+										defs[defsIndex] = $.Deferred();
+										loadTechnologyQuestionnair("789-additional", defs[defsIndex]);
+										isLoad789TechnologyAdditional = true;
+										defsIndex++;
+									}
+								}else{
+									if(degree > 9 && !isLoad101112Technology){
+										defs[defsIndex] = $.Deferred();
+										loadTechnologyQuestionnair(degree, defs[defsIndex]);
+										isLoad101112Technology = true;
+										defsIndex++;
+									}
+								}
 							});
 							
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
@@ -124,16 +193,30 @@ $(document)
 							var splitArray;
 							var splitSize;
 							var defs = [];
+							var defsIndex = 0;
+							
+							isLoad101112Design = false;
 							
 							$(".design-book-category").html("");
 							
 							$.each( designDegrees, function( i ) {
-								defs[i] = $.Deferred();
 								fieldName = $(this).attr("name");
 								splitArray = fieldName.split("_");
 								splitSize = splitArray.length;
 								degree = splitArray[splitSize-1];
-								loadDesignQuestionnair(degree, defs[i]);
+								
+								if(degree <= 9){
+									defs[defsIndex] = $.Deferred();
+									loadDesignQuestionnair(degree, defs[defsIndex]);
+									defsIndex++;
+								}else{
+									if(degree > 9 && !isLoad101112Design){
+										defs[defsIndex] = $.Deferred();
+										loadDesignQuestionnair(degree, defs[defsIndex]);
+										isLoad101112Design = true;
+										defsIndex++;
+									}
+								}
 							});
 							
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});

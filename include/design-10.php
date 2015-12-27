@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 require_once("../config.php");
 ?>
 
-<h4>ชั้นมัธยมศึกษาปีที่ 4</h4>
+<h4>ชั้นมัธยมศึกษาปีที่ 4-6</h4>
 <h4><u>การออกแบบและเทคโนโลยี</u></h4>
 <?php 
 	$bookCount = 3;
