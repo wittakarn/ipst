@@ -29,6 +29,15 @@ $(document)
 						});
 						
 						$('.next-tab').click(function (e) {
+							$.blockUI();
+							
+							setTimeout(function() { 
+								showNextTab();
+								$.unblockUI(); 
+							}, 1);
+						});
+						
+						function showNextTab(){
 							if (isInvalidateForm()) {
 								focusInvalidComponent();
 							}else{
@@ -42,7 +51,7 @@ $(document)
 								aElement.attr("href", href);
 								aElement.tab('show');
 							}
-						});
+						}
 						
 						function isInvalidateForm() {
 							questionForm.validate({

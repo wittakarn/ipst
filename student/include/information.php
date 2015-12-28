@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-2 col-sm-4 col-xs-10">
+			<div class="col-md-4 col-sm-6 col-xs-10">
 				<select id="sDegree" class="form-control" name="s_degree" required>
 					<option value="">กรุณาระบุ</option>
 					<?php

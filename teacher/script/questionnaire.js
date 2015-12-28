@@ -150,7 +150,7 @@ $(document)
 							setTimeout(function() { 
 								showNextTab();
 								$.unblockUI(); 
-							}, 1); 
+							}, 1);
 						});
 						
 						function showNextTab(){

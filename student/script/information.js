@@ -14,6 +14,9 @@ $(document)
 						var degree = $(this).val();
 						var defs = [];
 						
+						removeAllBookTab();
+						populateBookTabs(degree);
+						
 						defs[0] = $.Deferred();
 						defs[1] = $.Deferred();
 						defs[2] = $.Deferred();

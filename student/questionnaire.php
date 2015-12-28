@@ -44,6 +44,49 @@ session_start();
 	<script language="javascript" type="text/javascript">
 		var contextRoot = "<?php echo ROOT; ?>";
 		
+		function removeAllBookTab(){
+			$(".book-tab").remove();
+		}
+	
+		function populateBookTabs(degree){
+			var liElement;
+			var length = $(".nav-pills").children().length;
+			var dynamicHead = $(".head-of-dynamic-tab");
+			
+			liElement = createBookTab(length++, "#scienceBook");
+			dynamicHead.after(liElement);
+			dynamicHead = liElement;
+			
+			liElement = createBookTab(length++, "#mathBook");
+			dynamicHead.after(liElement);
+			dynamicHead = liElement;
+			
+			liElement = createBookTab(length++, "#technologyBook");
+			dynamicHead.after(liElement);
+			dynamicHead = liElement;
+			
+			if(degree != '1' && degree != '4' && degree != '7'){					
+				liElement = createBookTab(length++, "#designBook");
+				dynamicHead.after(liElement);
+				dynamicHead = liElement;
+			}
+		}
+	
+		function createBookTab(index, ref){
+			var tabName = "ส่วนที่" + index;
+			var liElement = $('<li>').attr("role", "presentation")
+										.attr("class", "disabled book-tab");
+			var aElement = $('<a>').attr("class", "section-tab")
+									.attr("href", "#")
+									.attr("ref", ref)
+									.attr("aria-controls", ref)
+									.attr("role", "tab");
+			aElement.text(tabName);
+			liElement.append(aElement);
+			
+			return liElement;
+		}
+		
 		function initialSection(){ 
 			<?php
 				$isEditMode = isset($_SESSION['user_id']) && $_SESSION['user_id'] != null && isset($_GET['id']) && $_GET['id'] !== '';
@@ -180,10 +223,7 @@ session_start();
 			<!-- Nav tabs -->
 			<ul class="nav nav-pills" role="tablist">
 				<li role="presentation" class="active head-of-dynamic-tab"><a class="section-tab" href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#scienceBook" aria-controls="contribute" role="tab" >ส่วนที่ 2</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#mathBook" aria-controls="contribute" role="tab" >ส่วนที่ 3</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#technologyBook" aria-controls="contribute" role="tab" >ส่วนที่ 4</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#designBook" aria-controls="contribute" role="tab" >ส่วนที่ 5</a></li>
+
 				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนสุดท้าย</a></li>
 			</ul>
 			<br/>
