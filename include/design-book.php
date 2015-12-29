@@ -45,6 +45,10 @@
 			</div>
 		</div>
 		<div class="row">
+			<div id="designBookSection89" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section design-book-category">
+			</div>
+		</div>
+		<div class="row">
 			<div id="designBookSection10" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section design-book-category">
 			</div>
 		</div>
@@ -54,6 +58,10 @@
 		</div>
 		<div class="row">
 			<div id="designBookSection12" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section design-book-category">
+			</div>
+		</div>
+		<div class="row">
+			<div id="designBookSectionall" class="col-md-12 col-sm-12 col-xs-12 book-satisfaction-section design-book-category">
 			</div>
 		</div>
 	</div>

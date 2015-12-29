@@ -33,6 +33,16 @@ $(document)
 							
 							defs[5] = $.Deferred();
 							loadTechnologyBookQuestionnair("789-additional", defs[5]);
+							
+							if(degree > 7 && degree < 10){
+								defs[6] = $.Deferred();
+								loadDesignBookQuestionnair("89", defs[6]);
+							}
+						}
+						
+						if(degree != 1 || degree != 4 || degree != 7){
+							defs[7] = $.Deferred();
+							loadDesignBookQuestionnair("all", defs[7]);
 						}
 						
 						$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});

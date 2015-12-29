@@ -7,8 +7,8 @@ require_once("../config.php");
 <h4>ชั้นประถมศีกษาปีที่ 5</h4>
 <h4><u>การออกแบบและเทคโนโลยี</u></h4>
 <?php 
-	$bookCount = 2;
-	$bookNames = array('หนังสือเรียน', 'หนังสือเสริมการเรียนรู้');
+	$bookCount = 1;
+	$bookNames = array('หนังสือเรียน');
 	for($i=1;$i<=$bookCount;$i++)
 	{
 		$modelClass = 'm-d-5-'.$i;

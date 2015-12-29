@@ -10,6 +10,8 @@ $(document)
 						var isLoad789TechnologyAdditional;
 						
 						var isLoad101112Design;
+						var isLoad89Design;
+						var isLoadAllDesign;
 						
 						$.blockUI();
 						initialSection();
@@ -33,6 +35,9 @@ $(document)
 									});
 								});
 							} else {
+								$(href).find("input").each(function() {
+									$( this ).rules('remove');
+								});
 								$(href).collapse('hide');
 							}
 							
@@ -196,6 +201,8 @@ $(document)
 							var defsIndex = 0;
 							
 							isLoad101112Design = false;
+							isLoad89Design = false;
+							isLoadAllDesign = false;
 							
 							$(".design-book-category").html("");
 							
@@ -209,6 +216,15 @@ $(document)
 									defs[defsIndex] = $.Deferred();
 									loadDesignQuestionnair(degree, defs[defsIndex]);
 									defsIndex++;
+									
+									if(degree == 8 || degree == 9){
+										if(!isLoad89Design){
+											defs[defsIndex] = $.Deferred();
+											loadDesignQuestionnair("89", defs[defsIndex]);
+											isLoad89Design = true;
+											defsIndex++;
+										}
+									}
 								}else{
 									if(degree > 9 && !isLoad101112Design){
 										defs[defsIndex] = $.Deferred();
@@ -216,6 +232,13 @@ $(document)
 										isLoad101112Design = true;
 										defsIndex++;
 									}
+								}
+								
+								if(degree != 1 || degree != 4 || degree != 7){
+									defs[defsIndex] = $.Deferred();
+									loadDesignQuestionnair("all", defs[defsIndex]);
+									isLoadAllDesign = true;
+									defsIndex++;
 								}
 							});
 							
