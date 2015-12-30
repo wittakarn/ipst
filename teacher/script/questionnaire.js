@@ -16,14 +16,161 @@ $(document)
 								c_s: {
 									require_from_group: [1, ".subject-group"]
 								},
+								c_s_1: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_2: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_3: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_4: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_5: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_6: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_7: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_8: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_9: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_10: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_11: {
+									require_from_group: [1, ".s-degree"]
+								},
+								c_s_12: {
+									require_from_group: [1, ".s-degree"]
+								},
 								c_m: {
 									require_from_group: [1, ".subject-group"]
+								},
+								c_m_1: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_2: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_3: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_4: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_5: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_6: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_7: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_8: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_9: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_10: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_11: {
+									require_from_group: [1, ".m-degree"]
+								},
+								c_m_12: {
+									require_from_group: [1, ".m-degree"]
 								},
 								c_t: {
 									require_from_group: [1, ".subject-group"]
 								},
+								c_t_1: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_2: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_3: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_4: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_5: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_6: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_7: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_8: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_9: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_10: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_11: {
+									require_from_group: [1, ".t-degree"]
+								},
+								c_t_12: {
+									require_from_group: [1, ".t-degree"]
+								},
 								c_d: {
 									require_from_group: [1, ".subject-group"]
+								},
+								c_d: {
+									require_from_group: [1, ".subject-group"]
+								},
+								c_d_1: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_2: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_3: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_4: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_5: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_6: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_7: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_8: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_9: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_10: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_11: {
+									require_from_group: [1, ".d-degree"]
+								},
+								c_d_12: {
+									require_from_group: [1, ".d-degree"]
 								},
 								c_school_under_1: {
 									require_from_group: [1, ".school-under-group"]
@@ -69,13 +216,157 @@ $(document)
 								c_s: {
 									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
 								},
+								c_s_1: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_2: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_3: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_4: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_5: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_6: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_7: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_8: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_9: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_10: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_11: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_s_12: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
 								c_m: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_1: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_2: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_3: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_4: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_5: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_6: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_7: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_8: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_9: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_10: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_11: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_m_12: {
 									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
 								},
 								c_t: {
 									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
 								},
+								c_t_1: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_2: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_3: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_4: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_5: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_6: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_7: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_8: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_9: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_10: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_11: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_t_12: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
 								c_d: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_1: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_2: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_3: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_4: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_5: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_6: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_7: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_8: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_9: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_10: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_11: {
+									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
+								},
+								c_d_12: {
 									require_from_group: "ข้อมูลต้องเลือกอย่างน้อย {0} ตัวเลือก"
 								},
 								c_school_under_1: {
