@@ -47,37 +47,5 @@ $(document)
 						
 						$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
 					});
-					
-					function loadScienceBookQuestionnair(degree, def){
-						var loadPage = contextRoot.concat("include/science-");
-						loadPage = loadPage.concat(degree);
-						loadPage = loadPage.concat(".php");
-						
-						$("#scienceBookSection" + degree).load(loadPage, function() {def.resolve()});
-					}
-					
-					function loadMathBookQuestionnair(degree, def){
-						var loadPage = contextRoot.concat("include/math-");
-						loadPage = loadPage.concat(degree);
-						loadPage = loadPage.concat(".php");
-						
-						$("#mathBookSection" + degree).load(loadPage, function() {def.resolve()});
-					}
-					
-					function loadTechnologyBookQuestionnair(degree, def){
-						var loadPage = contextRoot.concat("include/technology-");
-						loadPage = loadPage.concat(degree);
-						loadPage = loadPage.concat(".php");
-						
-						$("#technologyBookSection" + degree).load(loadPage, function() {def.resolve()});
-					}
-					
-					function loadDesignBookQuestionnair(degree, def){
-						var loadPage = contextRoot.concat("include/design-");
-						loadPage = loadPage.concat(degree);
-						loadPage = loadPage.concat(".php");
-						
-						$("#designBookSection" + degree).load(loadPage, function() {def.resolve()});
-					}
 				}
 		);
