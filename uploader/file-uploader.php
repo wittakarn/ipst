@@ -18,8 +18,11 @@
 			if(count($partNames) > 1){
 				$fileType = $partNames[count($partNames) - 1];
 			}
+			/*
 			$hostname = php_uname('n').'.';
 			$uid = uniqid($hostname, true);
+			*/
+			$uid = uniqid();
 			$fileName = $uid . '.' . $fileType;
 			echo $fileName; 
 			$uploadfile = $uploaddir . $fileName;
