@@ -87,7 +87,7 @@ session_start();
 			return liElement;
 		}
 		
-		function initialSection(){ 
+		function initialSection(){
 			<?php
 				$isEditMode = isset($_SESSION['user_id']) && $_SESSION['user_id'] != null && isset($_GET['id']) && $_GET['id'] !== '';
 				if($isEditMode){

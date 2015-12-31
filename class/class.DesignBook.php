@@ -1,5 +1,5 @@
 <?php
-class Contribution
+class DesignBook
 {
 	public $requests;
 	public $dbh;
@@ -14,7 +14,7 @@ class Contribution
 		$db = $this->dbh;
 		
 		$fields = array(
-						'id', 'i_receiver_fullname', 't_receiver_address', 'i_receiver_postcode', 'r_contribute_book_category_selected', 'r_contribute_book_selected'
+						'id', 'r_d_2_1_1', 'r_d_2_1_2', 't_d_2_1_3', 'h_d_2_1_4', 'r_d_3_1_1', 'r_d_3_1_2', 't_d_3_1_3', 'h_d_3_1_4', 'r_d_5_1_1', 'r_d_5_1_2', 't_d_5_1_3', 'h_d_5_1_4', 'r_d_6_1_1', 'r_d_6_1_2', 't_d_6_1_3', 'h_d_6_1_4', 'r_d_8_1_1', 'r_d_8_1_2', 't_d_8_1_3', 'h_d_8_1_4', 'r_d_9_1_1', 'r_d_9_1_2', 't_d_9_1_3', 'h_d_9_1_4', 'r_d_89_1_1', 'r_d_89_1_2', 't_d_89_1_3', 'h_d_89_1_4', 'r_d_101112_1_1', 'r_d_101112_1_2', 't_d_101112_1_3', 'h_d_101112_1_4', 'r_d_101112_2_1', 'r_d_101112_2_2', 't_d_101112_2_3', 'h_d_101112_2_4', 'r_d_all_1_1', 'r_d_all_1_2', 't_d_all_1_3', 'h_d_all_1_4'
 					);
 		$params['id'] = $createId;
 		
@@ -24,7 +24,7 @@ class Contribution
 			}
 		}
 		
-		$query = "INSERT INTO contribute( %s ) VALUES ( %s )";
+		$query = "INSERT INTO design_book( %s ) VALUES ( %s )";
 		// make a list of field names: titulo, tipo_produto /*, etc. */
 		$fieldsClause = implode( ', ', $fields );
 		// make a list of named parameters: :titulo, :tipo_produto /*, etc. */
@@ -49,7 +49,7 @@ class Contribution
 		$db = $this->dbh;
 		
 		$fields = array(
-						'i_receiver_fullname', 't_receiver_address', 'i_receiver_postcode', 'r_contribute_book_category_selected', 'r_contribute_book_selected'
+						'r_d_2_1_1', 'r_d_2_1_2', 't_d_2_1_3', 'h_d_2_1_4', 'r_d_3_1_1', 'r_d_3_1_2', 't_d_3_1_3', 'h_d_3_1_4', 'r_d_5_1_1', 'r_d_5_1_2', 't_d_5_1_3', 'h_d_5_1_4', 'r_d_6_1_1', 'r_d_6_1_2', 't_d_6_1_3', 'h_d_6_1_4', 'r_d_8_1_1', 'r_d_8_1_2', 't_d_8_1_3', 'h_d_8_1_4', 'r_d_9_1_1', 'r_d_9_1_2', 't_d_9_1_3', 'h_d_9_1_4', 'r_d_89_1_1', 'r_d_89_1_2', 't_d_89_1_3', 'h_d_89_1_4', 'r_d_101112_1_1', 'r_d_101112_1_2', 't_d_101112_1_3', 'h_d_101112_1_4', 'r_d_101112_2_1', 'r_d_101112_2_2', 't_d_101112_2_3', 'h_d_101112_2_4', 'r_d_all_1_1', 'r_d_all_1_2', 't_d_all_1_3', 'h_d_all_1_4'
 					);
 		
 		foreach ($fields as $field) {
@@ -58,11 +58,12 @@ class Contribution
 			}
 		}
 		
-		$query = "UPDATE contribute SET %s ";
-		// make a list of named parameters: titulo=:titulo, tipo_produto=:tipo_produto /*, etc. */
-		$fieldsClause = implode( ', ', array_map( function( $value ) { return $value . '=:' . $value; }, $fields ) );
+		$query = "UPDATE design_book SET %s";
+
+		// make a list of named parameters: titulo=:titulo, titulo=:tipo_produto /*, etc. */
+		$updateFields = implode( ', ', array_map( function( $value ) { return $value . '=:' . $value; }, $fields ) );
 		
-		$query = sprintf( $query, $fieldsClause);
+		$query = sprintf( $query, $updateFields );
 		
 		$query .= " WHERE id=:id";
 		
@@ -80,13 +81,14 @@ class Contribution
 	}
 	
 	public static function get($conn, $id){
-		$query = "SELECT * FROM contribute WHERE id = :id";
+		$query = "SELECT * FROM design_book WHERE id = :id";
 		$stmt = $conn->prepare($query); 
 		$stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
+	
 }
 
 ?>
