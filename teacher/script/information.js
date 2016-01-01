@@ -77,13 +77,6 @@ $(document)
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
 						});
 						
-						function loadScienceBookQuestionnair(degree, def){
-							var loadPage = contextRoot.concat("include/science-");
-							loadPage = loadPage.concat(degree);
-							loadPage = loadPage.concat(".php?type=t");
-							$("#scienceBookSection" + degree).load(loadPage, function() {def.resolve()});
-						}
-						
 						$(".m-degree").click(function (e) {
 							var mathDegrees = $(".m-degree").filter(":checked");
 							var fieldName;
@@ -119,13 +112,6 @@ $(document)
 							
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
 						});
-						
-						function loadMathBookQuestionnair(degree, def){
-							var loadPage = contextRoot.concat("include/math-");
-							loadPage = loadPage.concat(degree);
-							loadPage = loadPage.concat(".php?type=t");
-							$("#mathBookSection" + degree).load(loadPage, function() {def.resolve()});
-						}
 						
 						$(".t-degree").click(function (e) {
 							var technologyDegrees = $(".t-degree").filter(":checked");
@@ -172,13 +158,6 @@ $(document)
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
 						});
 						
-						function loadTechnologyQuestionnair(degree, def){
-							var loadPage = contextRoot.concat("include/technology-");
-							loadPage = loadPage.concat(degree);
-							loadPage = loadPage.concat(".php?type=t");
-							$("#technologyBookSection" + degree).load(loadPage, function() {def.resolve()});
-						}
-						
 						$(".d-degree").click(function (e) {
 							var designDegrees = $(".d-degree").filter(":checked");
 							var fieldName;
@@ -205,7 +184,7 @@ $(document)
 									loadDesignQuestionnair(degree, defs[defsIndex]);
 									defsIndex++;
 									
-									if(degree == 8 || degree == 9){
+									if((degree == 8 || degree == 9) && !isLoad89Design){
 										if(!isLoad89Design){
 											defs[defsIndex] = $.Deferred();
 											loadDesignQuestionnair("89", defs[defsIndex]);
@@ -222,7 +201,7 @@ $(document)
 									}
 								}
 								
-								if(degree != 1 || degree != 4 || degree != 7){
+								if((degree != 1 || degree != 4 || degree != 7) && !isLoadAllDesign){
 									defs[defsIndex] = $.Deferred();
 									loadDesignQuestionnair("all", defs[defsIndex]);
 									isLoadAllDesign = true;
@@ -232,12 +211,5 @@ $(document)
 							
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
 						});
-						
-						function loadDesignQuestionnair(degree, def){
-							var loadPage = contextRoot.concat("include/design-");
-							loadPage = loadPage.concat(degree);
-							loadPage = loadPage.concat(".php?type=t");
-							$("#designBookSection" + degree).load(loadPage, function() {def.resolve()});
-						}
 				}
 		);

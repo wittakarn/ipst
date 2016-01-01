@@ -82,19 +82,76 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			
 			return liElement;
 		}
+		
+		function loadScienceBookQuestionnair(degree, def){
+			var loadPage = contextRoot.concat("include/science-");
+			loadPage = loadPage.concat(degree);
+			loadPage = loadPage.concat(".php?type=t");
+			$("#scienceBookSection" + degree).load(loadPage, function() {def.resolve()});
+		}
+		
+		function loadMathBookQuestionnair(degree, def){
+			var loadPage = contextRoot.concat("include/math-");
+			loadPage = loadPage.concat(degree);
+			loadPage = loadPage.concat(".php?type=t");
+			$("#mathBookSection" + degree).load(loadPage, function() {def.resolve()});
+		}
+						
+		function loadTechnologyQuestionnair(degree, def){
+			var loadPage = contextRoot.concat("include/technology-");
+			loadPage = loadPage.concat(degree);
+			loadPage = loadPage.concat(".php?type=t");
+			$("#technologyBookSection" + degree).load(loadPage, function() {def.resolve()});
+		}
+		
+		function loadDesignQuestionnair(degree, def){
+			var loadPage = contextRoot.concat("include/design-");
+			loadPage = loadPage.concat(degree);
+			loadPage = loadPage.concat(".php?type=t");
+			$("#designBookSection" + degree).load(loadPage, function() {def.resolve()});
+		}
+		
+		function showWellOfBookUsageSelected(){
+			var ref;
+			var href;
+			var bookUsageSelecteds = $(".book-usage-selected").filter(":checked");
+			$.each(bookUsageSelecteds, function( i ) {
+				ref = $(this).attr("ref");
+				href = "#" + ref;
+				if ($(this).val() == '1') {
+					$(href).collapse('show');
+				}
+			});
+		}
 
 		function initialSection(){
 			<?php
 				$isEditMode = isset($_SESSION['user_id']) && $_SESSION['user_id'] != null && isset($_GET['id']) && $_GET['id'] !== '';
 				if($isEditMode){
-					require_once(DOCUMENT_ROOT.'/connection.php');
-					require_once(DOCUMENT_ROOT.'/class/class.Participant.php');
-					require_once(DOCUMENT_ROOT.'/class/class.Contribution.php');
+					require_once DOCUMENT_ROOT.'/connection.php';
+					require_once DOCUMENT_ROOT.'/class/class.Participant.php';
+					require_once DOCUMENT_ROOT.'/class/class.Contribution.php';
+					require_once DOCUMENT_ROOT.'/class/class.ScienceBook.php';
+					require_once DOCUMENT_ROOT.'/class/class.ScienceBookInstructor.php';
+					require_once DOCUMENT_ROOT.'/class/class.MathBook.php';
+					require_once DOCUMENT_ROOT.'/class/class.MathBookInstructor.php';
+					require_once DOCUMENT_ROOT.'/class/class.TechnologyBook.php';
+					require_once DOCUMENT_ROOT.'/class/class.TechnologyBookInstructor.php';
+					require_once DOCUMENT_ROOT.'/class/class.DesignBook.php';
+					require_once DOCUMENT_ROOT.'/class/class.DesignBookInstructor.php';
 					
 					$conn = DataBaseConnection::createConnect();
 					$participant = Participant::get($conn, $_GET['id']);
 					
 					if(isset($participant)){
+						$scienceBook = ScienceBook::get($conn, $_GET['id']);
+						$scienceBookInstructor = ScienceBookInstructor::get($conn, $_GET['id']);
+						$mathBook = MathBook::get($conn, $_GET['id']);
+						$mathBookInstructor = MathBookInstructor::get($conn, $_GET['id']);
+						$technologyBook = TechnologyBook::get($conn, $_GET['id']);
+						$technologyBookInstructor = TechnologyBookInstructor::get($conn, $_GET['id']);
+						$designBook = DesignBook::get($conn, $_GET['id']);
+						$designBookInstructor = DesignBookInstructor::get($conn, $_GET['id']);
 						
 						if($participant['r_receive_contribute_book'] === '1'){
 							$contribution = Contribution::get($conn, $_GET['id']);
@@ -112,74 +169,132 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 					
 					if(isset($participant['c_s']) && $participant['c_s'] === '1'){
 						echo '$("#scienceSubjectSelectedCollapse").collapse("show");';
+						$isLoad101112Science = false;
+						$isLoad789ScienceAdditional = false;
 						for($i=1;$i<=12;$i++){
 							if(isset($participant['c_s_'.$i]) && $participant['c_s_'.$i] === '1'){
-								echo 'defs['.$defCount.'] = $.Deferred();';
-								echo 'var loadSciencePage = "'.ROOT.'include/science-";';
-								echo 'loadSciencePage = loadSciencePage.concat('.$i.');';
-								echo 'loadSciencePage = loadSciencePage.concat(".php");';
-								echo '$("#scienceBookSection'.$i.'").load(loadSciencePage, function(){defs['.$defCount.'].resolve()});';
-								$defCount++;
+								if($i <= 9){
+									echo 'defs['.$defCount.'] = $.Deferred();';
+									echo 'loadScienceBookQuestionnair('.$i.', defs['.$defCount.']);';
+									$defCount++;
+									
+									if($i > 6 && $i < 10 && !$isLoad789ScienceAdditional){
+										echo 'defs['.$defCount.'] = $.Deferred();';
+										echo 'loadScienceBookQuestionnair("789-additional", defs['.$defCount.']);';
+										$isLoad789ScienceAdditional = true;
+										$defCount++;
+									}
+								}else{
+									if($i > 9 && !$isLoad101112Science){
+										echo 'defs['.$defCount.'] = $.Deferred();';
+										echo 'loadScienceBookQuestionnair('.$i.', defs['.$defCount.']);';
+										$isLoad101112Science = true;
+										$defCount++;
+									}
+								}
 							}
 						}
-						
 					}
 					
 					if(isset($participant['c_m']) && $participant['c_m'] === '1'){
 						echo '$("#mathSubjectSelectedCollapse").collapse("show");';
+						$isLoad101112Math = false;
 						for($i=1;$i<=12;$i++){
-							if(isset($participant['c_m_'.$i]) && $participant['c_m_'.$i] === '1'){
-								echo 'defs['.$defCount.'] = $.Deferred();';
-								echo 'var loadMathPage = "'.ROOT.'include/math-";';
-								echo 'loadMathPage = loadMathPage.concat('.$i.');';
-								echo 'loadMathPage = loadMathPage.concat(".php");';
-								echo '$("#mathBookSection'.$i.'").load(loadMathPage, function(){defs['.$defCount.'].resolve()});';
-								$defCount++;
+							if(isset($participant['c_s_'.$i]) && $participant['c_s_'.$i] === '1'){
+								if($i <= 9){
+									echo 'defs['.$defCount.'] = $.Deferred();';
+									echo 'loadMathBookQuestionnair('.$i.', defs['.$defCount.']);';
+									$defCount++;
+								}else{
+									if($i > 9 && !$isLoad101112Math){
+										echo 'defs['.$defCount.'] = $.Deferred();';
+										echo 'loadMathBookQuestionnair('.$i.', defs['.$defCount.']);';
+										$isLoad101112Math = true;
+										$defCount++;
+									}
+								}
 							}
 						}
 					}
 					
 					if(isset($participant['c_t']) && $participant['c_t'] === '1'){
 						echo '$("#technologySubjectSelectedCollapse").collapse("show");';
+						$isLoad101112Technology = false;
+						$isLoad789TechnologyAdditional = false;
 						for($i=1;$i<=12;$i++){
 							if(isset($participant['c_t_'.$i]) && $participant['c_t_'.$i] === '1'){
-								echo 'defs['.$defCount.'] = $.Deferred();';
-								echo 'var loadTechnologyPage = "'.ROOT.'include/technology-";';
-								echo 'loadTechnologyPage = loadTechnologyPage.concat('.$i.');';
-								echo 'loadTechnologyPage = loadTechnologyPage.concat(".php");';
-								echo '$("#technologyBookSection'.$i.'").load(loadTechnologyPage, function(){defs['.$defCount.'].resolve()});';
-								$defCount++;
+								if($i <= 9){
+									echo 'defs['.$defCount.'] = $.Deferred();';
+									echo 'loadTechnologyQuestionnair('.$i.', defs['.$defCount.']);';
+									$defCount++;
+									
+									if($i > 6 && $i < 10 && !$isLoad789TechnologyAdditional){
+										echo 'defs['.$defCount.'] = $.Deferred();';
+										echo 'loadTechnologyQuestionnair("789-additional", defs['.$defCount.']);';
+										$isLoad789TechnologyAdditional = true;
+										$defCount++;
+									}
+								}else{
+									if($i > 9 && !$isLoad101112Technology){
+										echo 'defs['.$defCount.'] = $.Deferred();';
+										echo 'loadTechnologyQuestionnair('.$i.', defs['.$defCount.']);';
+										$isLoad101112Technology = true;
+										$defCount++;
+									}
+								}
 							}
 						}
 					}
 					
 					if(isset($participant['c_d']) && $participant['c_d'] === '1'){
 						echo '$("#designSubjectSelectedCollapse").collapse("show");';
+						$isLoad101112Design = false;
+						$isLoad89Design = false;
+						$isLoadAllDesign = false;
 						for($i=1;$i<=12;$i++){
-							if(isset($participant['c_d_'.$i]) && $participant['c_d_'.$i] === '1'){
-								echo 'defs['.$defCount.'] = $.Deferred();';
-								echo 'var loadDesignPage = "'.ROOT.'include/design-";';
-								echo 'loadDesignPage = loadDesignPage.concat('.$i.');';
-								echo 'loadDesignPage = loadDesignPage.concat(".php");';
-								echo '$("#designBookSection'.$i.'").load(loadDesignPage, function(){defs['.$defCount.'].resolve()});';
-								$defCount++;
+							if(isset($participant['c_t_'.$i]) && $participant['c_t_'.$i] === '1'){
+								if($i <= 9){
+									echo 'defs['.$defCount.'] = $.Deferred();';
+									echo 'loadDesignQuestionnair('.$i.', defs['.$defCount.']);';
+									$defCount++;
+									
+									if(($i == 8 || $i == 9) && !$isLoad89Design){
+										echo 'defs['.$defCount.'] = $.Deferred();';
+										echo 'loadDesignQuestionnair("89", defs['.$defCount.']);';
+										$isLoad89Design = true;
+										$defCount++;
+									}
+								}else{
+									if($i > 9 && !$isLoad101112Design){
+										echo 'defs['.$defCount.'] = $.Deferred();';
+										echo 'loadDesignQuestionnair('.$i.', defs['.$defCount.']);';
+										$isLoad101112Design = true;
+										$defCount++;
+									}
+								}
+								
+								if(($i != 1 || $i != 4 || $i != 7) && !$isLoadAllDesign){
+									echo 'defs['.$defCount.'] = $.Deferred();';
+									echo 'loadDesignQuestionnair('.$i.', defs['.$defCount.']);';
+									$isLoadAllDesign = true;
+									$defCount++;
+								}
 							}
 						}
 					}
 					
-					echo 'defs['.$defCount.'] = $.Deferred();';
+					
 					if($participant['r_receive_contribute_book'] === '1'){
+						echo 'defs['.$defCount.'] = $.Deferred();';
 						echo '$("#contributeBookSelectedCollapse").collapse("show");';
 						echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
 						echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
-						echo 'loadContributePage = loadContributePage.concat(".php");';
+						echo 'loadContributePage = loadContributePage.concat(".php?type=t");';
 
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs['.$defCount.'].resolve()});';
-					}else{
-						echo 'defs['.$defCount.'].resolve();';
 					}
 					
-					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();setBookSatisfactionEvent();});';
+					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();setBookSatisfactionEvent();});';
 				}
 			?>
 		}
@@ -190,7 +305,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 				if($isEditMode){
 					foreach($participant as $key=>$value){
 						if($value !== ''){
-							if(startsWith($key, 'i_') || startsWith($key, 't_') || startsWith($key, 'h_')){
+							if(startsWith($key, 'i_') || startsWith($key, 'h_')){
 								echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
 							}else if(startsWith($key, 'c_')){
 								if($value === '1'){
@@ -200,9 +315,228 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 								echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
 							}if(startsWith($key, 's_')){
 								echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+							}if(startsWith($key, 't_')){
+								echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
 							}
 						}
 					}
+					
+					if(isset($scienceBook)){
+						foreach($scienceBook as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								}
+							}
+						}
+					}
+					
+					if(isset($scienceBookInstructor)){
+						foreach($scienceBookInstructor as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								}
+							}
+						}
+					}
+					
+					if(isset($mathBook)){
+						foreach($mathBook as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								}
+							}
+						}
+					}
+					
+					if(isset($mathBookInstructor)){
+						foreach($mathBookInstructor as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								}
+							}
+						}
+					}
+					
+					if(isset($technologyBook)){
+						foreach($technologyBook as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								}
+							}
+						}
+					}
+					
+					if(isset($technologyBookInstructor)){
+						foreach($technologyBookInstructor as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								}
+							}
+						}
+					}
+					
+					if(isset($designBook)){
+						foreach($designBook as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								}
+							}
+						}
+					}
+					
+					if(isset($designBookInstructor)){
+						foreach($designBookInstructor as $key=>$value){
+							if($value !== ''){
+								if(startsWith($key, 'i_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
+								}else if(startsWith($key, 'c_')){
+									if($value === '1'){
+										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
+									}
+								}if(startsWith($key, 'r_')){
+									echo '$("input[name=\''.$key,'\'][value=\''.$value,'\']").prop("checked", true);';
+								}if(startsWith($key, 's_')){
+									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
+								}if(startsWith($key, 't_')){
+									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								}
+							}
+						}
+					}
+					
 					if(isset($contribution)){
 						foreach($contribution as $key=>$value){
 							if($value !== ''){

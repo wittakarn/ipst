@@ -236,8 +236,15 @@ session_start();
 					if(isset($scienceBook)){
 						foreach($scienceBook as $key=>$value){
 							if($value !== ''){
-								if(startsWith($key, 'i_') || startsWith($key, 'h_')){
+								if(startsWith($key, 'i_')){
 									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
 								}else if(startsWith($key, 'c_')){
 									if($value === '1'){
 										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
@@ -256,8 +263,15 @@ session_start();
 					if(isset($mathBook)){
 						foreach($mathBook as $key=>$value){
 							if($value !== ''){
-								if(startsWith($key, 'i_') || startsWith($key, 'h_')){
+								if(startsWith($key, 'i_')){
 									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
 								}else if(startsWith($key, 'c_')){
 									if($value === '1'){
 										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
@@ -276,8 +290,15 @@ session_start();
 					if(isset($technologyBook)){
 						foreach($technologyBook as $key=>$value){
 							if($value !== ''){
-								if(startsWith($key, 'i_') || startsWith($key, 'h_')){
+								if(startsWith($key, 'i_')){
 									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
 								}else if(startsWith($key, 'c_')){
 									if($value === '1'){
 										echo '$("input[name=\''.$key,'\']").prop("checked", true);';
@@ -296,8 +317,15 @@ session_start();
 					if(isset($designBook)){
 						foreach($designBook as $key=>$value){
 							if($value !== ''){
-								if(startsWith($key, 'i_') || startsWith($key, 'h_')){
+								if(startsWith($key, 'i_')){
 									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+								}else if(startsWith($key, 'h_')){
+									echo '$("input[name=\''.$key,'\']").val("'.$value.'");';
+									echo 'var link = $("a[ref=\'link_ref_'.$key,'\']");';
+									echo 'var remover = $("a[ref=\'remove_ref_'.$key,'\']");';
+									echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$value."');";
+									echo "link.attr('style', 'display:inline;');";
+									echo "remover.attr('style', 'display:inline;');";
 								}else if(startsWith($key, 'c_')){
 									if($value === '1'){
 										echo '$("input[name=\''.$key,'\']").prop("checked", true);';

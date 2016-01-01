@@ -45,7 +45,7 @@
 			echo "var remover = $('#remove_".$_REQUEST['id']."', window.parent.document);";
 			echo "var errorMessage = $('#error_".$_REQUEST['id']."', window.parent.document);";
 			if(!$isOverlimit && $success){
-				echo "link.attr('href', '".ROOT."/downloader/file-viewer.php?file=".$fileName."');";
+				echo "link.attr('href', '".ROOT."downloader/file-viewer.php?file=".$fileName."');";
 				echo "link.attr('style', 'display:inline;');";
 				echo "hidden.val('".$fileName."');";
 				echo "remover.attr('style', 'display:inline;');";

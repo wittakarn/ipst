@@ -11,6 +11,7 @@ $(document)
 						if ($this.filter(':checked').val() == '1') {
 							
 							$(href).collapse('show');
+							$(".radio-contribute-book").removeAttr('checked');
 							$(href).find(".receive-information").each(function() {
 								$( this ).attr("required", true);
 							});

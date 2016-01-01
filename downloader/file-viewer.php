@@ -11,6 +11,7 @@
 		if(!empty($dotPosition)){
 			$fileNameLength = strlen($fileName);
 			$fileType = substr($fileName, $dotPosition + 1, $fileNameLength);
+			$fileType = strtolower($fileType);
 		}
 		
 		if($fileType == "pdf"){

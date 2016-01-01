@@ -111,13 +111,15 @@
 							</div>
 							<div class="col-md-4">
 								<p id="error_<?php echo $fileUploadId; ?>" style="color:red;"></p>
-								<a id="link_<?php echo $fileUploadId; ?>" 
+								<a id="link_<?php echo $fileUploadId; ?>"
+									ref="link_ref_<?php echo $nameOfComponent[4]; ?>"
 									href="#" 
 									target="_blank"
 									style="display:none;">
 									<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 								</a>
-								<a class="remove-file" 
+								<a class="remove-file"
+										ref="remove_ref_<?php echo $nameOfComponent[4]; ?>"
 										id="remove_<?php echo $fileUploadId; ?>" 
 										for="<?php echo $fileUploadId; ?>" 
 										style="display:none;">
