@@ -125,6 +125,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 		}
 
 		function initialSection(){
+			$(".explanation").html("ในปีการศึกษา 2558 ท่านได้ใช้หนังสือเรียนหรือสื่อการเรียนรู้ต่าง ๆ ต่อไปนี้ของ สสวท. ในการจัดการเรียนรู้หรือไม่ ถ้าท่านได้ใช้ ท่านรู้สึกอย่างไร โปรดแสดงความคิดเห็นและข้อเสนอแนะเพื่อการปรับปรุง");
 			<?php
 				$isEditMode = isset($_SESSION['user_id']) && $_SESSION['user_id'] != null && isset($_GET['id']) && $_GET['id'] !== '';
 				if($isEditMode){

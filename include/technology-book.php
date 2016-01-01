@@ -3,8 +3,7 @@
 	<div class="panel-body">
 		<h4><u>คำชี้แจง</u></h4>
 		<div class="row">
-			<div class="col-md-12">
-				ในปีการศึกษา 2558 นักเรียนได้ใช้หนังสือเรียน ..............................................
+			<div class="col-md-12 explanation">
 			</div>
 		</div>
 		<br/>
