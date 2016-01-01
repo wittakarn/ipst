@@ -156,6 +156,78 @@ class Participant
 		
 	}
 	
+	
+	public static function searchQuestionnaireHistory($conn, $params){
+		$firstCondition = true;
+		
+		$selectQuery = "SELECT * ";
+		$fromQuery = "FROM participant a ";
+		$fromQuery .= "LEFT JOIN science_book b ON a.id = b.id ";
+		$fromQuery .= "LEFT JOIN science_book_instructor c ON a.id = c.id ";
+		$fromQuery .= "LEFT JOIN math_book d ON a.id = d.id ";
+		$fromQuery .= "LEFT JOIN math_book_instructor e ON a.id = e.id ";
+		$fromQuery .= "LEFT JOIN technology_book f ON a.id = f.id ";
+		$fromQuery .= "LEFT JOIN technology_book_instructor g ON a.id = g.id ";
+		$fromQuery .= "LEFT JOIN design_book h ON a.id = h.id ";
+		$fromQuery .= "LEFT JOIN design_book_instructor i ON a.id = i.id ";
+		$whereQuery = "";
+		
+		if(isset($params['participant_type']) && $params['participant_type'] !== ''){
+			if($firstCondition){
+				$whereQuery .= " WHERE ";
+				$firstCondition = false;
+			}else{
+				$whereQuery .= " AND ";
+			}
+			$whereQuery .= "a.type = '".$params['participant_type']."' ";
+		}
+		
+		if(isset($params['start_date']) && $params['start_date'] !== ''){
+			if($firstCondition){
+				$whereQuery .= " WHERE ";
+				$firstCondition = false;
+			}else{
+				$whereQuery .= " AND ";
+			}
+			$whereQuery .= "a.create_date >= STR_TO_DATE('".$params['start_date']."','%d/%m/%Y')";
+		}
+		
+		if(isset($params['end_date']) && $params['end_date'] !== ''){
+			if($firstCondition){
+				$whereQuery .= " WHERE ";
+				$firstCondition = false;
+			}else{
+				$whereQuery .= " AND ";
+			}
+			$whereQuery .= "a.create_date <= STR_TO_DATE('".$params['end_date']."','%d/%m/%Y')";
+		}
+		
+		if(isset($params['status']) && $params['status'] !== ''){
+			if($firstCondition){
+				$whereQuery .= " WHERE ";
+				$firstCondition = false;
+			}else{
+				$whereQuery .= " AND ";
+			}
+			$whereQuery .= "a.status = '".$params['status']."' ";
+		}
+
+		$orderQuery = " ORDER BY a.id ";
+		$limit = "";
+		if(isset($params['start_index']) && isset($params['count']) && $params['start_index'] !== '' && $params['count'] !== ''){
+			$limit .= " LIMIT ".$params['count'];
+			$offset = ($params['start_index'] - 1) > 0 ? ($params['start_index'] - 1) : 0;
+			$limit .= " OFFSET ".($offset);
+		}
+		
+		$query = $selectQuery.$fromQuery.$whereQuery.$orderQuery.$limit;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+	}
 }
 
 ?>

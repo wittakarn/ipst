@@ -103,6 +103,15 @@
 								$('#searchParticipantForm').submit();
 							});
 						}
+						
+						$('#csvButton').click(function() {
+							var insId = $(this).attr('insId');
+							
+							var cvsUrl = '<?php echo ROOT; ?>/report/questionnaire-history.php';
+							$('#historyForm').attr('action', cvsUrl);
+							$('#historyForm').attr('target', '_self');
+							$('#historyForm').submit();
+						});
           }
       );
 </script>
@@ -111,90 +120,96 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">ข้อมูลแบบสอบถาม</div>
 			<div class="panel-body">
-				<div class="row">
-					<div class="col-md-2 col-sm-2">แบบสอบถาม</div>
-					<div class="col-md-2 col-sm-3">
-						<div class="radio">
-						  <label>
-							<input type="radio" name="participant_type" value="" autofocus checked/>
-							ไม่ระบุ
-						  </label>
+				<form id="historyForm" method="post">
+					<div class="row">
+						<div class="col-md-2 col-sm-2">แบบสอบถาม</div>
+						<div class="col-md-2 col-sm-3">
+							<div class="radio">
+							  <label>
+								<input type="radio" name="participant_type" value="" autofocus checked/>
+								ไม่ระบุ
+							  </label>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-3">
+							<div class="radio">
+							  <label>
+								<input type="radio" name="participant_type" value="t"/>
+								ครู
+							  </label>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-3">
+							<div class="radio">
+							  <label>
+								<input type="radio" name="participant_type" value="s"/>
+								นักเรียน
+							  </label>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-2 col-sm-3">
-						<div class="radio">
-						  <label>
-							<input type="radio" name="participant_type" value="t"/>
-							ครู
-						  </label>
+					<div class="row">
+						<div class="col-md-2 col-sm-2">สถานะ</div>
+						<div class="col-md-2 col-sm-3">
+							<div class="radio">
+							  <label>
+								<input type="radio" name="status" value="" checked/>
+								ไม่ระบุ
+							  </label>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-3">
+							<div class="radio">
+							  <label>
+								<input type="radio" name="status" value="a"/>
+								ใช้งาน
+							  </label>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-3">
+							<div class="radio">
+							  <label>
+								<input type="radio" name="status" value="i"/>
+								ไม่ใช้งาน
+							  </label>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-2 col-sm-3">
-						<div class="radio">
-						  <label>
-							<input type="radio" name="participant_type" value="s"/>
-							นักเรียน
-						  </label>
+					<div class="row">
+						<div class="col-md-2 col-sm-2 col-xs-6">ตั้งแต่วันที่</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<input class="form-control datepicker" 
+								type="text"
+								id="startDate"
+								name="start_date"/>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-6">ถึงวันที่</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<input class="form-control datepicker" 
+								type="text"
+								id="endDate"
+								name="end_date"/>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-2 col-sm-2">สถานะ</div>
-					<div class="col-md-2 col-sm-3">
-						<div class="radio">
-						  <label>
-							<input type="radio" name="status" value="" checked/>
-							ไม่ระบุ
-						  </label>
+					<div class="row">
+						<div class="col-md-2 col-sm-2 col-xs-6">ตั้งแต่ลำดับที่</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<input class="form-control" 
+								type="text"
+								id="startIndex"
+								name="start_index"
+								digits="true"/>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-6">จำนวน</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<input class="form-control" 
+								type="text"
+								id="count"
+								name="count"
+								digits="true"/>
 						</div>
 					</div>
-					<div class="col-md-2 col-sm-3">
-						<div class="radio">
-						  <label>
-							<input type="radio" name="status" value="a"/>
-							ใช้งาน
-						  </label>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-3">
-						<div class="radio">
-						  <label>
-							<input type="radio" name="status" value="i"/>
-							ไม่ใช้งาน
-						  </label>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-2 col-sm-2 col-xs-6">ตั้งแต่วันที่</div>
-					<div class="col-md-3 col-sm-3 col-xs-6">
-						<input class="form-control datepicker" 
-							type="text"
-							id="startDate"/>
-					</div>
-					<div class="col-md-2 col-sm-2 col-xs-6">ถึงวันที่</div>
-					<div class="col-md-3 col-sm-3 col-xs-6">
-						<input class="form-control datepicker" 
-							type="text"
-							id="endDate"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-2 col-sm-2 col-xs-6">ตั้งแต่ลำดับที่</div>
-					<div class="col-md-3 col-sm-3 col-xs-6">
-						<input class="form-control" 
-							type="text"
-							id="startIndex"
-							digits="true"/>
-					</div>
-					<div class="col-md-2 col-sm-2 col-xs-6">จำนวน</div>
-					<div class="col-md-3 col-sm-3 col-xs-6">
-						<input class="form-control" 
-							type="text"
-							id="count"
-							digits="true"/>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -220,6 +235,13 @@
 	  <div class="col-md-12">
 		<hr/>
 	  </div>
+	</div>
+	<div class="row ">
+		<div class="col-md-12">
+			<a role="button" id="csvButton" class="pull-right">
+				 <strong><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>CSV</strong>
+			</a>
+		</div>
 	</div>
 	<div class="table-responsive">
 		<table id="tableParticipant" class="table table-bordered table-hover">
