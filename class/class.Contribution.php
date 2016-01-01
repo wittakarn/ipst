@@ -87,6 +87,42 @@ class Contribution
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
+	
+	public static function searchControbutionBook($conn, $params){
+		$firstCondition = true;
+		
+		$selectQuery = "SELECT a.*, c.name book_name ";
+		$fromQuery = "FROM contribute a ";
+		$fromQuery .= "INNER JOIN participant b ON a.id = b.id ";
+		$fromQuery .= "INNER JOIN contribute_list c ON a.r_contribute_book_selected = c.id ";
+		$whereQuery = "WHERE b.status = 'a' ";
+		$whereQuery .= "AND b.type = '".$params['participant_type']."' ";
+		
+		if(isset($params['category'])){
+			$whereQuery .= "AND a.r_contribute_book_category_selected = '".$params['category']."' ";
+		}
+		
+		if(isset($params['contribute_selected'])){
+			$whereQuery .= "AND a.r_contribute_book_selected = '".$params['contribute_selected']."' ";
+		}
+
+		$orderQuery = " ORDER BY a.id ";
+		
+		$limit = "";
+		if(isset($params['start_index']) && isset($params['count']) && $params['start_index'] !== '' && $params['count'] !== ''){
+			$limit .= " LIMIT ".$params['count'];
+			$offset = ($params['start_index'] - 1) > 0 ? ($params['start_index'] - 1) : 0;
+			$limit .= " OFFSET ".($offset);
+		}
+		
+		$query = $selectQuery.$fromQuery.$whereQuery.$orderQuery.$limit;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+	}
 }
 
 ?>

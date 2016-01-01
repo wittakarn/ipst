@@ -4,8 +4,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 require_once("../config.php");
 require_once DOCUMENT_ROOT.'/connection.php';
-require_once DOCUMENT_ROOT.'/class/class.QuotDetail.php';
-require_once DOCUMENT_ROOT.'/report/class.QuotDetailPDF.php';
+require_once DOCUMENT_ROOT.'/class/class.Contribution.php';
+require_once DOCUMENT_ROOT.'/report/class.ReceiverContributeInfoPDF.php';
 require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf_config.php');
 require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf.php');
 
@@ -14,9 +14,10 @@ if (isset($_SESSION['user_id'])){
 	$conn = DataBaseConnection::createConnect();
 	
 	try{
-  
-		$results = QuotDetail::getQuotationDetailByQuotNo($conn, $_REQUEST['quot_no']);
-		
+		$params['participant_type'] = 's';
+		$results = Contribution::searchControbutionBook($conn, $params);
+		print_r($results);
+		/*
 		// create new PDF document
 		$pdf = new QuotDetailPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -57,6 +58,7 @@ if (isset($_SESSION['user_id'])){
 
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');
+		*/
 	} catch (PDOException $e) {
 		echo "Failed: " . $e->getMessage();
 	}
