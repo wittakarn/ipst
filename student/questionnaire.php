@@ -200,7 +200,7 @@ session_start();
 						echo '$("#contributeBookSelectedCollapse").collapse("show");';
 						echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
 						echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
-						echo 'loadContributePage = loadContributePage.concat(".php");';
+						echo 'loadContributePage = loadContributePage.concat(".php?type=s");';
   
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs[8].resolve()});';
 					}
@@ -458,7 +458,7 @@ session_start();
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="type" value="s"/>
+		<input id="pType" type="hidden" name="type" value="s"/>
 		<input type="hidden" name="updateId" value="<?php echo $_REQUEST['id']?>"/>
 	</form>
     

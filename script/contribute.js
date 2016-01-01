@@ -28,9 +28,12 @@ $(document)
 					});
 					
 					function loadContributeBook(postfix){
+						var ptype = $("#pType").val();
 						var loadPage = contextRoot.concat("include/contribute-");
 						loadPage = loadPage.concat(postfix);
 						loadPage = loadPage.concat(".php");
+                        loadPage = loadPage.concat("?type=").concat(ptype);
+						
 						$.blockUI();
 						$("#contributeBookSelectedSection").load(loadPage, function() {
 							$.unblockUI();

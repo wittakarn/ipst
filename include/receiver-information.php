@@ -110,6 +110,7 @@
 											name="r_contribute_book_category_selected" 
 											value="1"
 											class="radio-contribute-book"
+											ptype="<?php echo (isset($_REQUEST['type'])) ? $_GET('type') : '' ?>"
 											required>
 									ประถมศึกษา วิชาวิทยาศาสตร์
 								  </label>
@@ -120,6 +121,7 @@
 											name="r_contribute_book_category_selected" 
 											value="2"
 											class="radio-contribute-book"
+											ptype="<?php echo (isset($_REQUEST['type'])) ? $_GET('type') : '' ?>"
 											required>
 									ประถมศึกษา วิชาคณิตศาสตร์
 								  </label>

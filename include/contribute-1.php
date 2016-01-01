@@ -20,20 +20,21 @@ require_once("../config.php");
 		include DOCUMENT_ROOT.'include/contribute-template.php';
 		echo '<hr/>';
 	}
-?>
-<h4><u>วีดิทัศน์ (DVD) ประกอบการเรียนรู้ </u></h4>
-<?php 
-	$startBook = 6;
-	$endBook = 11;
-	$bookNames = array('วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 1', 'วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 2', 'วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 3', 'วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 4','วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 5', 'วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 6');
-	for($i=$startBook;$i<=$endBook;$i++)
-	{
-		$modelClass = 'm-c-'.$i;
-		$imagePath = 'image/c/'.$i.'.jpg';
-		$bookName = $bookNames[($i - $startBook)];
-		$radioValue = $i;
-		
-		include DOCUMENT_ROOT.'include/contribute-template.php';
-		echo '<hr/>';
+
+	if(isset($_REQUEST['type']) && $_REQUEST['type'] === 't'){
+		echo '<h4><u>วีดิทัศน์ (DVD) ประกอบการเรียนรู้ </u></h4>';
+		$startBook = 6;
+		$endBook = 11;
+		$bookNames = array('วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 1', 'วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 2', 'วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 3', 'วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 4','วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 5', 'วีดิทัศน์ (DVD) ประกอบการเรียนรู้  ชั้นประถมศึกษาปีที่ 6');
+		for($i=$startBook;$i<=$endBook;$i++)
+		{
+			$modelClass = 'm-c-'.$i;
+			$imagePath = 'image/c/'.$i.'.jpg';
+			$bookName = $bookNames[($i - $startBook)];
+			$radioValue = $i;
+			
+			include DOCUMENT_ROOT.'include/contribute-template.php';
+			echo '<hr/>';
+		}
 	}
 ?>
