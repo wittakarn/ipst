@@ -39,7 +39,7 @@
 <div class="container">
 	<div class="row">
 		<div class="panel panel-primary">
-			<div class="panel-heading">ข้อมูลแบบสอบถาม</div>
+			<div class="panel-heading">ข้อมูลหนังสือ</div>
 			<div class="panel-body">
 				<form id="contributeForm" method="post">
 					<div class="row">
@@ -48,7 +48,7 @@
 							<div class="radio">
 							  <label>
 								<input type="radio" name="participant_type" value="" autofocus checked/>
-								ไม่ระบุ
+								ทั้งหมด
 							  </label>
 							</div>
 						</div>
@@ -85,7 +85,7 @@
 								name="start_index"
 								digits="true"/>
 						</div>
-						<div class="col-md-2 col-sm-2 col-xs-6">จำนวน</div>
+						<div class="col-md-2 col-sm-2 col-xs-6">ถึงลำดับที่</div>
 						<div class="col-md-3 col-sm-3 col-xs-6">
 							<input class="form-control" 
 								type="text"

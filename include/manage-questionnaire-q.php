@@ -127,7 +127,7 @@
 							<div class="radio">
 							  <label>
 								<input type="radio" name="participant_type" value="" autofocus checked/>
-								ไม่ระบุ
+								ทั้งหมด
 							  </label>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 							<div class="radio">
 							  <label>
 								<input type="radio" name="status" value="" checked/>
-								ไม่ระบุ
+								ทั้งหมด
 							  </label>
 							</div>
 						</div>
@@ -200,7 +200,7 @@
 								name="start_index"
 								digits="true"/>
 						</div>
-						<div class="col-md-2 col-sm-2 col-xs-6">จำนวน</div>
+						<div class="col-md-2 col-sm-2 col-xs-6">ถึงลำดับที่</div>
 						<div class="col-md-3 col-sm-3 col-xs-6">
 							<input class="form-control" 
 								type="text"
