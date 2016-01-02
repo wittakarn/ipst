@@ -3,8 +3,8 @@ $requestUri = $_SERVER['REQUEST_URI'];
 $indexRegister = strpos($requestUri, 'register.php');
 $indexManageQuestionnaire = strpos($requestUri, 'manage-questionnaire.php');
 $indexExportContributeInfo = strpos($requestUri, 'export-contribute-info.php');
-$indexCustomer = strpos($requestUri, 'customer.php');
-$indexQuotation = strpos($requestUri, 'quotation.php');
+$indexTeacherStatistic = strpos($requestUri, 'teacher-statistic.php');
+$indexStudentStatistic = strpos($requestUri, 'student-statistic.php');
 ?>
 
 <!-- Fixed navbar -->
@@ -56,9 +56,15 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 								  </ul>
 								</li>';
 								
-				$hoverReportLink = ($indexExportContributeInfo > 0) ? 'active' : '';
+				$hoverReportLink = ($indexTeacherStatistic > 0 || $indexStudentStatistic > 0 || $indexExportContributeInfo > 0) ? 'active' : '';
 				$hoverExportContributeInfo = ($indexExportContributeInfo > 0) ? 'active' : '';
 				$hrefExportContributeInfo = WEB_ROOT.'pages/export-contribute-info.php';
+				
+				$hoverTeacherStatistic = ($indexTeacherStatistic > 0) ? 'active' : '';
+				$hrefTeacherStatistic = WEB_ROOT.'report/teacher-statistic.php';
+				
+				$hoverStudentStatistic = ($indexStudentStatistic > 0) ? 'active' : '';
+				$hrefStudentStatistic = WEB_ROOT.'report/student-statistic.php';
 				
 				$reportLink = '<li class="dropdown '.$hoverReportLink.'">
 								  <a href="#" class="dropdown-toggle" 
@@ -67,6 +73,8 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 								  <span class="caret"></span></a>
 								  <ul class="dropdown-menu">
 									<li class="'.$hoverExportContributeInfo.'"><a href="'.$hrefExportContributeInfo.'">พิมพ์รายการแจกหนังสือ</a></li>
+									<li class="'.$hoverTeacherStatistic.'"><a href="'.$hrefTeacherStatistic.'" target="_blank">สถิติแบบประเมินฯของครู</a></li>
+									<li class="'.$hoverStudentStatistic.'"><a href="'.$hrefStudentStatistic.'" target="_blank">สถิติแบบประเมินฯของนักเรียน</a></li>
 								  </ul>
 								</li>';
 			}

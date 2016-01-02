@@ -19,7 +19,7 @@ if (isset($_SESSION['user_id'])){
 		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-		$pdf->titleHeader = 'สถิติจากการประเมินของนักเรียน';
+		$pdf->titleHeader = 'สถิติจากแบบประเมินฯของนักเรียน';
 
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
