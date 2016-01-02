@@ -229,10 +229,39 @@ class Participant
 		
 	}
 	
-	public static function getParticipantStatisticType($conn){
-		$selectQuery = "SELECT SUM(type = 't') AS t_count, SUM(type = 's') AS s_count, count(id) AS all_count ";
+	public static function getSexOfParticipantStatistic($conn, $type){
+		$selectQuery = "SELECT SUM(r_sex = '1') AS male_count, SUM(r_sex = '2') AS female_count, count(id) AS all_count ";
 		$fromQuery = "FROM participant ";
-		$whereQuery = "WHERE type = 't' OR type = 's'";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = '".$type."' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getTeacherDegreeStatistic($conn){
+		$selectQuery = "SELECT SUM(r_degree = '1') AS 1_count, SUM(r_degree = '2') AS 2_count, SUM(r_degree = '3') AS 3_count, SUM(r_degree = '4') AS 4_count, count(id) AS all_count ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = 't' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getTeacherSubjectStatistic($conn){
+		$selectQuery = "SELECT SUM(c_s = '1') AS s_count, SUM(c_m = '1') AS m_count, SUM(c_t = '1') AS t_count, SUM(c_d = '1') AS d_count, count(id) AS all_count ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = 't' ";
 		
 		$query = $selectQuery.$fromQuery.$whereQuery;
 		

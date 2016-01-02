@@ -198,10 +198,10 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 					}
 					
 					if(isset($participant['c_m']) && $participant['c_m'] === '1'){
-						echo '$("#mathSubjectSelectedCollapse").collapse("show");';
+						echo '$("#mathematicSubjectSelectedCollapse").collapse("show");';
 						$isLoad101112Math = false;
 						for($i=1;$i<=12;$i++){
-							if(isset($participant['c_s_'.$i]) && $participant['c_s_'.$i] === '1'){
+							if(isset($participant['c_m_'.$i]) && $participant['c_m_'.$i] === '1'){
 								if($i <= 9){
 									echo 'defs['.$defCount.'] = $.Deferred();';
 									echo 'loadMathBookQuestionnair('.$i.', defs['.$defCount.']);';
@@ -253,7 +253,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						$isLoad89Design = false;
 						$isLoadAllDesign = false;
 						for($i=1;$i<=12;$i++){
-							if(isset($participant['c_t_'.$i]) && $participant['c_t_'.$i] === '1'){
+							if(isset($participant['c_d_'.$i]) && $participant['c_d_'.$i] === '1'){
 								if($i <= 9){
 									echo 'defs['.$defCount.'] = $.Deferred();';
 									echo 'loadDesignQuestionnair('.$i.', defs['.$defCount.']);';
@@ -274,7 +274,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 									}
 								}
 								
-								if(($i != 1 || $i != 4 || $i != 7) && !$isLoadAllDesign){
+								if($i != 1 && $i != 4 && $i != 7 && !$isLoadAllDesign){
 									echo 'defs['.$defCount.'] = $.Deferred();';
 									echo 'loadDesignQuestionnair('.$i.', defs['.$defCount.']);';
 									$isLoadAllDesign = true;
@@ -322,7 +322,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($scienceBook)){
+					if(isset($scienceBook) && $scienceBook != null){
 						foreach($scienceBook as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -349,7 +349,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($scienceBookInstructor)){
+					if(isset($scienceBookInstructor) && $scienceBookInstructor != null){
 						foreach($scienceBookInstructor as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -376,7 +376,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($mathBook)){
+					if(isset($mathBook) && $mathBook != null){
 						foreach($mathBook as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -403,7 +403,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($mathBookInstructor)){
+					if(isset($mathBookInstructor) && $mathBookInstructor != null){
 						foreach($mathBookInstructor as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -430,7 +430,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($technologyBook)){
+					if(isset($technologyBook) && $technologyBook != null){
 						foreach($technologyBook as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -457,7 +457,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($technologyBookInstructor)){
+					if(isset($technologyBookInstructor) && $technologyBookInstructor != null){
 						foreach($technologyBookInstructor as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -484,7 +484,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($designBook)){
+					if(isset($designBook) && $designBook != null){
 						foreach($designBook as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -511,7 +511,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($designBookInstructor)){
+					if(isset($designBookInstructor) && $designBookInstructor != null){
 						foreach($designBookInstructor as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -538,7 +538,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						}
 					}
 					
-					if(isset($contribution)){
+					if(isset($contribution) && $contribution != null){
 						foreach($contribution as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_') || startsWith($key, 'h_')){

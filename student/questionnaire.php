@@ -234,7 +234,7 @@ session_start();
 						}
 					}
 					
-					if(isset($scienceBook)){
+					if(isset($scienceBook) && $scienceBook != null){
 						foreach($scienceBook as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -261,7 +261,7 @@ session_start();
 						}
 					}
 					
-					if(isset($mathBook)){
+					if(isset($mathBook) && $mathBook != null){
 						foreach($mathBook as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -288,7 +288,7 @@ session_start();
 						}
 					}
 					
-					if(isset($technologyBook)){
+					if(isset($technologyBook) && $technologyBook != null){
 						foreach($technologyBook as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -315,7 +315,7 @@ session_start();
 						}
 					}
 					
-					if(isset($designBook)){
+					if(isset($designBook) && $designBook != null){
 						foreach($designBook as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_')){
@@ -342,7 +342,7 @@ session_start();
 						}
 					}
 					
-					if(isset($contribution)){
+					if(isset($contribution) && $contribution != null){
 						foreach($contribution as $key=>$value){
 							if($value !== ''){
 								if(startsWith($key, 'i_') || startsWith($key, 'h_')){

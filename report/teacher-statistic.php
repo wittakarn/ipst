@@ -15,11 +15,13 @@ if (isset($_SESSION['user_id'])){
 	$type = null;
 	
 	try{
-
-		$participantStatistic = Participant::getParticipantStatisticType($conn);
+		$sexStatistic = Participant::getSexOfParticipantStatistic($conn, 't');
+		$degreeStatistic = Participant::getTeacherDegreeStatistic($conn);
+		$subjectStatistic = Participant::getTeacherSubjectStatistic($conn);
 		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$pdf->titleHeader = 'สถิติจากการประเมินของครู';
 
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
@@ -51,7 +53,11 @@ if (isset($_SESSION['user_id'])){
 		// add a page
 		$pdf->AddPage();
 
-		$pdf->generateParticipantStatistic($participantStatistic);
+		$pdf->generateSexOfParticipantStatistic($sexStatistic, 50);
+		
+		$pdf->generateTeacherDegreeStatistic($degreeStatistic, 130);
+		
+		$pdf->generateTeacherSubjectStatistic($subjectStatistic, 210);
 	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

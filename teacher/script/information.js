@@ -201,7 +201,7 @@ $(document)
 									}
 								}
 								
-								if((degree != 1 || degree != 4 || degree != 7) && !isLoadAllDesign){
+								if(degree != 1 && degree != 4 && degree != 7 && !isLoadAllDesign){
 									defs[defsIndex] = $.Deferred();
 									loadDesignQuestionnair("all", defs[defsIndex]);
 									isLoadAllDesign = true;

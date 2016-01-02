@@ -59,13 +59,23 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-2 col-sm-4">
+			<div class="col-md-2 col-sm-3">
 				<div class="radio">
 				  <label>
 					<input type="radio" name="r_degree" value="1" required/>
 					ต่ำกว่าปริญญาตรี
 				  </label>
 				</div>
+			</div>
+			<div class="col-md-2 col-sm-3">
+				<div class="radio">
+				  <label>
+					<input type="radio" name="r_degree" value="2" required/>
+					ปริญญาตรี
+				  </label>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-3">
 				<div class="radio">
 				  <label>
 					<input type="radio" name="r_degree" value="3" required/>
@@ -73,13 +83,7 @@
 				  </label>
 				</div>
 			</div>
-			<div class="col-md-2 col-sm-4">
-				<div class="radio">
-				  <label>
-					<input type="radio" name="r_degree" value="2" required/>
-					ปริญญาตรี
-				  </label>
-				</div>
+			<div class="col-md-2 col-sm-3">
 				<div class="radio">
 				  <label>
 					<input type="radio" name="r_degree" value="4" required/>
