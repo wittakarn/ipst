@@ -191,7 +191,7 @@ session_start();
 					echo '}';
 					echo '}';
 					
-					echo 'if(degree != 1 || degree != 4 || degree != 7){';
+					echo 'if(degree != 1 && degree != 4 && degree != 7){';
 					echo 'defs[7] = $.Deferred();';
 					echo 'loadDesignBookQuestionnair("all", defs[7]);';
 					echo '}';
