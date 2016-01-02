@@ -2,6 +2,7 @@
 $requestUri = $_SERVER['REQUEST_URI'];
 $indexRegister = strpos($requestUri, 'register.php');
 $indexManageQuestionnaire = strpos($requestUri, 'manage-questionnaire.php');
+$indexExportContributeInfo = strpos($requestUri, 'export-contribute-info.php');
 $indexCustomer = strpos($requestUri, 'customer.php');
 $indexQuotation = strpos($requestUri, 'quotation.php');
 ?>
@@ -40,9 +41,13 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 								  </ul>
 								</li>';
 								
-				$hoverQuestionnaireLink = ($indexManageQuestionnaire > 0) ? 'active' : '';
+				$hoverQuestionnaireLink = ($indexManageQuestionnaire > 0 || $indexExportContributeInfo > 0) ? 'active' : '';
+				
 				$hoverManageQuestionnaireLink = ($indexManageQuestionnaire > 0) ? 'active' : '';
+				$hoverExportContributeInfo = ($indexExportContributeInfo > 0) ? 'active' : '';
+				
 				$hrefManageQuestionnaireLink = WEB_ROOT.'pages/manage-questionnaire.php?MODE=S';
+				$hrefExportContributeInfo = WEB_ROOT.'pages/export-contribute-info.php';
 				
 				$questionnaireLink = '<li class="dropdown '.$hoverQuestionnaireLink.'">
 								  <a href="#" class="dropdown-toggle" 
@@ -51,6 +56,7 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 								  <span class="caret"></span></a>
 								  <ul class="dropdown-menu">
 									<li class="'.$hoverManageQuestionnaireLink.'"><a href="'.$hrefManageQuestionnaireLink.'">จัดการข้อมูลแบบสอบถาม</a></li>
+									<li class="'.$hoverExportContributeInfo.'"><a href="'.$hrefExportContributeInfo.'">พิมพ์รายการแจกหนังสือ</a></li>
 								  </ul>
 								</li>';
 			}

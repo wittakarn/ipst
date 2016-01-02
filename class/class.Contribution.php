@@ -96,7 +96,10 @@ class Contribution
 		$fromQuery .= "INNER JOIN participant b ON a.id = b.id ";
 		$fromQuery .= "INNER JOIN contribute_list c ON a.r_contribute_book_selected = c.id ";
 		$whereQuery = "WHERE b.status = 'a' ";
-		$whereQuery .= "AND b.type = '".$params['participant_type']."' ";
+		
+		if(isset($params['participant_type']) && $params['participant_type'] !== ''){
+			$whereQuery .= "AND b.type = '".$params['participant_type']."' ";
+		}
 		
 		if(isset($params['category'])){
 			$whereQuery .= "AND a.r_contribute_book_category_selected = '".$params['category']."' ";

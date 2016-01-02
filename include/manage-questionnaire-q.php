@@ -109,7 +109,7 @@
 							
 							var cvsUrl = '<?php echo ROOT; ?>/report/questionnaire-history.php';
 							$('#historyForm').attr('action', cvsUrl);
-							$('#historyForm').attr('target', '_self');
+							$('#historyForm').attr('target', '_blank');
 							$('#historyForm').submit();
 						});
           }

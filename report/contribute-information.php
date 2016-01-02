@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 require_once("../config.php");
 require_once DOCUMENT_ROOT.'/connection.php';
 require_once DOCUMENT_ROOT.'/class/class.Contribution.php';
+require_once DOCUMENT_ROOT.'/class/class.ContributionList.php';
 require_once DOCUMENT_ROOT.'/report/class.ReceiverContributeInfoPDF.php';
 require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf_config.php');
 require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf.php');
@@ -12,20 +13,23 @@ require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf.php');
 if (isset($_SESSION['user_id'])){
 	
 	$conn = DataBaseConnection::createConnect();
+	$type = null;
 	
 	try{
-		$params['participant_type'] = 's';
-		$results = Contribution::searchControbutionBook($conn, $params);
-		print_r($results);
-		/*
+		if(isset($_REQUEST['participant_type']))
+			$type = $_REQUEST['participant_type'];
+			
+		$contributionInfo = ContributionList::get($conn, $_REQUEST['contribute_selected']);
+		$results = Contribution::searchControbutionBook($conn, $_REQUEST);
+		
 		// create new PDF document
-		$pdf = new QuotDetailPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$pdf = new ReceiverContributeInfoPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
 		$pdf->SetAuthor('Wittakarn Keeratichayakorn');
-		$pdf->SetTitle('Quotation detail');
-		$pdf->SetSubject('Quotation');
+		$pdf->SetTitle('Contribute information');
+		$pdf->SetSubject('Contribution');
 
 		// set default header data
 		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -51,14 +55,14 @@ if (isset($_SESSION['user_id'])){
 		// add a page
 		$pdf->AddPage();
 
-		// print colored table
-		$pdf->generateQuotationDetailTable($results);
-
-		// ---------------------------------------------------------
-
+		// print quotation master
+		$pdf->generateContributeInfo($contributionInfo, $type);
+		
+		// print quotation detail table
+		$pdf->generateReceiverInfo($results);
+	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');
-		*/
 	} catch (PDOException $e) {
 		echo "Failed: " . $e->getMessage();
 	}
