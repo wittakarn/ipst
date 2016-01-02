@@ -26,6 +26,7 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 			$menuLink = "";
 			$registerLink = "";
 			$questionnaireLink = "";
+			$reportLink = "";
 			if($userId != null){
 				$hoverLink = ($indexRegister > 0) ? 'active' : '';
 				$hrefRegisterLink = WEB_ROOT.'pages/register.php?MODE=S';
@@ -41,13 +42,9 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 								  </ul>
 								</li>';
 								
-				$hoverQuestionnaireLink = ($indexManageQuestionnaire > 0 || $indexExportContributeInfo > 0) ? 'active' : '';
-				
+				$hoverQuestionnaireLink = ($indexManageQuestionnaire > 0) ? 'active' : '';
 				$hoverManageQuestionnaireLink = ($indexManageQuestionnaire > 0) ? 'active' : '';
-				$hoverExportContributeInfo = ($indexExportContributeInfo > 0) ? 'active' : '';
-				
 				$hrefManageQuestionnaireLink = WEB_ROOT.'pages/manage-questionnaire.php?MODE=S';
-				$hrefExportContributeInfo = WEB_ROOT.'pages/export-contribute-info.php';
 				
 				$questionnaireLink = '<li class="dropdown '.$hoverQuestionnaireLink.'">
 								  <a href="#" class="dropdown-toggle" 
@@ -56,15 +53,29 @@ $indexQuotation = strpos($requestUri, 'quotation.php');
 								  <span class="caret"></span></a>
 								  <ul class="dropdown-menu">
 									<li class="'.$hoverManageQuestionnaireLink.'"><a href="'.$hrefManageQuestionnaireLink.'">จัดการข้อมูลแบบสอบถาม</a></li>
+								  </ul>
+								</li>';
+								
+				$hoverReportLink = ($indexExportContributeInfo > 0) ? 'active' : '';
+				$hoverExportContributeInfo = ($indexExportContributeInfo > 0) ? 'active' : '';
+				$hrefExportContributeInfo = WEB_ROOT.'pages/export-contribute-info.php';
+				
+				$reportLink = '<li class="dropdown '.$hoverReportLink.'">
+								  <a href="#" class="dropdown-toggle" 
+								  data-toggle="dropdown" role="button" 
+								  aria-haspopup="true" aria-expanded="false">รายงาน
+								  <span class="caret"></span></a>
+								  <ul class="dropdown-menu">
 									<li class="'.$hoverExportContributeInfo.'"><a href="'.$hrefExportContributeInfo.'">พิมพ์รายการแจกหนังสือ</a></li>
 								  </ul>
 								</li>';
 			}
 			
 			if($role === 'A'){
-				$menuLink = $menuLink.$registerLink;
+				$menuLink = $menuLink.$registerLink.$questionnaireLink.$reportLink;
+			}else{
+				$menuLink = $menuLink.$questionnaireLink.$reportLink;  
 			}
-			$menuLink = $menuLink.$questionnaireLink;
 			
 			echo $menuLink;
 		?>
