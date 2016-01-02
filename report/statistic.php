@@ -4,9 +4,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 require_once("../config.php");
 require_once DOCUMENT_ROOT.'/connection.php';
-require_once DOCUMENT_ROOT.'/class/class.Contribution.php';
-require_once DOCUMENT_ROOT.'/class/class.ContributionList.php';
-require_once DOCUMENT_ROOT.'/report/class.ReceiverContributeInfoPDF.php';
+require_once DOCUMENT_ROOT.'/class/class.Participant.php';
+require_once DOCUMENT_ROOT.'/report/class.StatisticPDF.php';
 require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf_config.php');
 require_once(DOCUMENT_ROOT.'lib/tcpdf/tcpdf.php');
 
@@ -16,20 +15,17 @@ if (isset($_SESSION['user_id'])){
 	$type = null;
 	
 	try{
-		if(isset($_REQUEST['participant_type']))
-			$type = $_REQUEST['participant_type'];
-			
-		$contributionInfo = ContributionList::get($conn, $_REQUEST['contribute_selected']);
-		$results = Contribution::searchControbutionBook($conn, $_REQUEST);
+
+		$participantStatistic = Participant::getParticipantStatisticType($conn);
 		
 		// create new PDF document
-		$pdf = new ReceiverContributeInfoPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
 		$pdf->SetAuthor('Wittakarn Keeratichayakorn');
-		$pdf->SetTitle('Contribute information');
-		$pdf->SetSubject('Contribution');
+		$pdf->SetTitle('Statistic');
+		$pdf->SetSubject('Statistic');
 
 		// set default header data
 		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
@@ -55,11 +51,7 @@ if (isset($_SESSION['user_id'])){
 		// add a page
 		$pdf->AddPage();
 
-		// print book information
-		$pdf->generateContributeInfo($contributionInfo, $type);
-		
-		// print recever information
-		$pdf->generateReceiverInfo($results);
+		$pdf->generateParticipantStatistic($participantStatistic);
 	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

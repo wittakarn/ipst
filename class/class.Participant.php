@@ -228,6 +228,19 @@ class Participant
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		
 	}
+	
+	public static function getParticipantStatisticType($conn){
+		$selectQuery = "SELECT SUM(type = 't') AS t_count, SUM(type = 's') AS s_count, count(id) AS all_count ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE type = 't' OR type = 's'";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
 }
 
 ?>
