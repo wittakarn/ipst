@@ -45,7 +45,7 @@ $(document)
 							loadDesignBookQuestionnair("all", defs[7]);
 						}
 						
-						$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
+						$.when.apply($,defs).done(function() {reBindingTabEvent();setBookSatisfactionEvent();});
 					});
 				}
 		);

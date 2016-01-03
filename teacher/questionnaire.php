@@ -104,6 +104,24 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 				designTab.parent().remove();
 			}
 		}
+		
+		function reBindingTabEvent() {
+            $(".remove-file").unbind();
+			$('.section-tab').click(function (e) {
+				var li = $(this).parent();
+				var currentIndex = li.index();
+				var ul = li.parent();
+				$(ul).find(".section-tab").each(function() {
+					var a = $(this);
+					li = $(this).parent();
+					if(li.index() > currentIndex){
+						li.addClass("disabled");
+						a.removeAttr("data-toggle");
+						a.attr("href", "#");
+					}
+				});
+			});
+        }
 	
 		function createBookTab(index, ref){
 			var tabName = "ส่วนที่" + index;
@@ -332,7 +350,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs['.$defCount.'].resolve()});';
 					}
 					
-					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();reRenderDesignBookTabs();setBookSatisfactionEvent();});';
+					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();reRenderDesignBookTabs();reBindingTabEvent();setBookSatisfactionEvent();});';
 				}
 			?>
 		}

@@ -32,6 +32,7 @@ $(document)
 							
 							removeAllBookTab();
 							populateBookTabs();
+                            reBindingTabEvent();
 						});
 						
 						$(".s-degree").click(function (e) {
@@ -212,7 +213,7 @@ $(document)
 							
                             reRenderDesignBookTabs();
                             
-							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
+							$.when.apply($,defs).done(function() {reBindingTabEvent();setBookSatisfactionEvent();});
 						});
 				}
 		);

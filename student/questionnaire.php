@@ -87,6 +87,24 @@ session_start();
 			return liElement;
 		}
 		
+		function reBindingTabEvent() {
+            $(".remove-file").unbind();
+			$('.section-tab').click(function (e) {
+				var li = $(this).parent();
+				var currentIndex = li.index();
+				var ul = li.parent();
+				$(ul).find(".section-tab").each(function() {
+					var a = $(this);
+					li = $(this).parent();
+					if(li.index() > currentIndex){
+						li.addClass("disabled");
+						a.removeAttr("data-toggle");
+						a.attr("href", "#");
+					}
+				});
+			});
+        }
+		
 		function loadScienceBookQuestionnair(degree, def){
 			var loadPage = contextRoot.concat("include/science-");
 			loadPage = loadPage.concat(degree);
@@ -206,7 +224,7 @@ session_start();
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs[8].resolve()});';
 					}
 					
-					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();showWellOfBookUsageSelected();setBookSatisfactionEvent();});';
+					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();showWellOfBookUsageSelected();reBindingTabEvent();setBookSatisfactionEvent();});';
 					
 				}
 			?>
