@@ -16,6 +16,7 @@ if (isset($_SESSION['user_id'])){
 	
 	try{
 		$sexStatistic = Participant::getSexOfParticipantStatistic($conn, 's');
+		$degreeStatistic = Participant::getStudentDegreeStatistic($conn);
 		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -52,6 +53,8 @@ if (isset($_SESSION['user_id'])){
 		$pdf->AddPage();
 
 		$pdf->generateSexOfParticipantStatistic($sexStatistic, 50);
+		
+		$pdf->generateStudentDegreeStatistic($degreeStatistic, 140);
 	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

@@ -18,6 +18,8 @@ if (isset($_SESSION['user_id'])){
 		$sexStatistic = Participant::getSexOfParticipantStatistic($conn, 't');
 		$degreeStatistic = Participant::getTeacherDegreeStatistic($conn);
 		$subjectStatistic = Participant::getTeacherSubjectStatistic($conn);
+		$schoolUnderStatistic = Participant::getTeacherSchoolUnderStatistic($conn);
+		$satisfyStatistic = Participant::getSatisfyStatistic($conn);
 		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -57,7 +59,14 @@ if (isset($_SESSION['user_id'])){
 		
 		$pdf->generateTeacherDegreeStatistic($degreeStatistic, 130);
 		
-		$pdf->generateTeacherSubjectStatistic($subjectStatistic, 210);
+		$pdf->generateTeacherSubjectStatistic($subjectStatistic, 220);
+		
+		// add a page
+		$pdf->AddPage();
+		
+		$pdf->generateTeacherSchoolUnderStatistic($schoolUnderStatistic, 70);
+		
+		$pdf->generateSatisfyStatistic($satisfyStatistic, 170);
 	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

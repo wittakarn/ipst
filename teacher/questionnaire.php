@@ -60,12 +60,49 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			var length = $(".nav-pills").children().length;
 			var dynamicHead = $(".head-of-dynamic-tab");
 			checkboxs.each(function() {
-			  tabRef = $(this).attr("tabRef");
-			  liElement = createBookTab(length, "#" + tabRef);
-			  dynamicHead.after(liElement);
-			  dynamicHead = liElement;
-			  length++;
+				tabRef = $(this).attr("tabRef");
+				if (tabRef != "designBook") {
+					liElement = createBookTab(length, "#" + tabRef);
+					dynamicHead.after(liElement);
+					dynamicHead = liElement;
+					length++;
+				}else{
+					reRenderDesignBookTabs();
+				}
 			});
+		}
+		
+		function reRenderDesignBookTabs(){
+			var renderTab = false;
+			var tabRef = "#designBook";
+			var designTab = $("a[ref='#designBook']");
+			var liElement;
+			var checkboxs = $(".d-degree").filter( ":checked" );
+			var length = $(".nav-pills").children().length;
+			var dynamicTail = $(".tail-of-dynamic-tab");
+			var fieldName;
+			var splitArray;
+			var splitSize;
+			var degree;
+			checkboxs.each(function() {
+				fieldName = $(this).attr("name");
+				splitArray = fieldName.split("_");
+				splitSize = splitArray.length;
+				degree = splitArray[splitSize-1];
+				if (degree != 1 && degree != 4 && degree != 7) {
+                    renderTab = true;
+                }
+			});
+			if (renderTab) {
+				
+				if (designTab.length == 0) {
+                    liElement = createBookTab(length, tabRef);
+					dynamicTail.before(liElement);
+					dynamicTail = liElement;
+                }
+            }else{
+				designTab.parent().remove();
+			}
 		}
 	
 		function createBookTab(index, ref){
@@ -276,7 +313,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 								
 								if($i != 1 && $i != 4 && $i != 7 && !$isLoadAllDesign){
 									echo 'defs['.$defCount.'] = $.Deferred();';
-									echo 'loadDesignQuestionnair('.$i.', defs['.$defCount.']);';
+									echo 'loadDesignQuestionnair("all", defs['.$defCount.']);';
 									$isLoadAllDesign = true;
 									$defCount++;
 								}
@@ -295,7 +332,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs['.$defCount.'].resolve()});';
 					}
 					
-					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();setBookSatisfactionEvent();});';
+					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();reRenderDesignBookTabs();setBookSatisfactionEvent();});';
 				}
 			?>
 		}
@@ -585,7 +622,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			<ul class="nav nav-pills" role="tablist">
 				<li role="presentation" class="active"><a class="section-tab" href="#generalInformation" aria-controls="generalInformation" role="tab" data-toggle="pill">ส่วนที่ 1</a></li>
 				<li role="presentation" class="disabled head-of-dynamic-tab"><a class="section-tab" href="#" ref="#satisfaction" aria-controls="satisfaction" role="tab" >ส่วนที่ 2</a></li>
-				<li role="presentation" class="disabled"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนสุดท้าย</a></li>
+				<li role="presentation" class="disabled tail-of-dynamic-tab"><a class="section-tab" href="#" ref="#contribute" aria-controls="contribute" role="tab" >ส่วนสุดท้าย</a></li>
 			</ul>
 			<br/>
 			<!-- Tab panes -->

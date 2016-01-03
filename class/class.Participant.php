@@ -257,8 +257,75 @@ class Participant
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 	
+	public static function getStudentDegreeStatistic($conn){
+		$selectQuery = "SELECT SUM(s_degree = 1) AS 1_count, 
+						SUM(s_degree = 2) AS 2_count, 
+						SUM(s_degree = 3) AS 3_count, 
+						SUM(s_degree = 4) AS 4_count, 
+						SUM(s_degree = 5) AS 5_count, 
+						SUM(s_degree = 6) AS 6_count, 
+						SUM(s_degree = 7) AS 7_count, 
+						SUM(s_degree = 8) AS 8_count, 
+						SUM(s_degree = 9) AS 9_count, 
+						SUM(s_degree = 10) AS 10_count, 
+						SUM(s_degree = 11) AS 11_count, 
+						SUM(s_degree = 12) AS 12_count, 
+						count(id) AS all_count ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = 's' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
 	public static function getTeacherSubjectStatistic($conn){
 		$selectQuery = "SELECT SUM(c_s = '1') AS s_count, SUM(c_m = '1') AS m_count, SUM(c_t = '1') AS t_count, SUM(c_d = '1') AS d_count, count(id) AS all_count ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = 't' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getTeacherSchoolUnderStatistic($conn){
+		$selectQuery = "SELECT SUM(c_school_under_1 = 1) AS 1_count, 
+						SUM(c_school_under_2 = 1) AS 2_count, 
+						SUM(c_school_under_3 = 1) AS 3_count, 
+						SUM(c_school_under_4 = 1) AS 4_count, 
+						SUM(c_school_under_5 = 1) AS 5_count, 
+						SUM(c_school_under_6 = 1) AS 6_count, 
+						SUM(c_school_under_7 = 1) AS 7_count, 
+						SUM(c_school_under_8 = 1) AS 8_count, 
+						count(id) AS all_count ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = 't' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getSatisfyStatistic($conn){
+		$selectQuery = "SELECT SUM(c_satisfy_group_1 = 1) AS 1_count, 
+						SUM(c_satisfy_group_2 = 1) AS 2_count, 
+						SUM(c_satisfy_group_3 = 1) AS 3_count, 
+						SUM(c_satisfy_group_4 = 1) AS 4_count, 
+						SUM(c_satisfy_group_5 = 1) AS 5_count, 
+						count(id) AS all_count ";
 		$fromQuery = "FROM participant ";
 		$whereQuery = "WHERE status = 'a' ";
 		$whereQuery .= "AND type = 't' ";

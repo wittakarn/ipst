@@ -18,7 +18,7 @@ class ContributionList
 	}
 	
 	public static function getAll($conn){
-		$query = "SELECT * FROM contribute_list";
+		$query = "SELECT * FROM contribute_list ORDER BY category, id";
 		$stmt = $conn->prepare($query); 
 
 		$stmt->execute();

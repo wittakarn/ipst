@@ -1,6 +1,7 @@
 $(document)
 		.ready(
 				function() {
+                        var tempDesignTab;
 						var isLoad101112Science;
 						var isLoad789ScienceAdditional;
 						
@@ -209,6 +210,8 @@ $(document)
 								}
 							});
 							
+                            reRenderDesignBookTabs();
+                            
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
 						});
 				}
