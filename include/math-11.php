@@ -21,4 +21,21 @@ require_once("../config.php");
 		include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
 		echo '<hr/>';
 	}
+	
+		if(isset($_REQUEST['type']) && $_REQUEST['type'] === 't'){
+		$bookCount = 9;
+		$bookNames = array('คู่มือครู รายวิชาพื้นฐาน เล่ม 1', 'คู่มือครู รายวิชาพื้นฐาน เล่ม 2', 'คู่มือครู รายวิชาพื้นฐาน เล่ม 3', 'คู่มือครู รายวิชาเพิ่มเติม เล่ม 1', 'คู่มือครู รายวิชาเพิ่มเติม เล่ม 2', 'คู่มือครู รายวิชาเพิ่มเติม เล่ม 3', 'คู่มือครู รายวิชาเพิ่มเติม เล่ม 4', 'คู่มือครู รายวิชาเพิ่มเติม เล่ม 5', 'คู่มือครู รายวิชาเพิ่มเติม เล่ม 6');
+		for($i=1;$i<=$bookCount;$i++)
+		{
+			$modelClass = 'm-m-ins-101112-'.$i;
+			$imagePath = 'image/m/instructor/101112/'.$i.'.jpg';
+			$bookName = $bookNames[($i - 1)];  /* --- ใช้ ($i-1) เพราะว่า array เริ่มต้นด้วย index ที่ 0 --- */
+			$nameOfComponent = array('r_m_ins_101112_'.$i.'_1', 'r_m_ins_101112_'.$i.'_2', 't_m_ins_101112_'.$i.'_3', 'f_m_ins_101112_'.$i.'_4', 'h_m_ins_101112_'.$i.'_4');
+			$collapseSectionId = 'mMIns101112'.$i.'SelectedCollapse';
+			$fileUploadId = 'fMIns101112'.$i.'4';
+			
+			include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
+			echo '<hr/>';
+		}
+	}
 ?>

@@ -20,4 +20,21 @@ require_once("../config.php");
 		include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
 		echo '<hr/>';
 	}
+	
+	if(isset($_REQUEST['type']) && $_REQUEST['type'] === 't'){
+		$bookCount = 5;
+		$bookNames = array('คู่มือครู เชื้อเพลิงเพื่อการคมนาคม', 'คู่มือครู ของเล่นเชิงวิทยาศาสตร์', 'คู่มือครู วิทยาศาสตร์กับความงาม', 'คู่มือครู สนุกกับโครงงานวิทยาศาสตร์', 'คู่มือครู พลังงานทดแทนกับการใช้ประโยชน์');
+		for($i=1;$i<=$bookCount;$i++)
+		{
+			$modelClass = 'm-s-ins-789-'.$i;
+			$imagePath = 'image/s/instructor/789/'.$i.'.jpg';
+			$bookName = $bookNames[($i - 1)];  /* --- ใช้ ($i-1) เพราะว่า array เริ่มต้นด้วย index ที่ 0 --- */
+			$nameOfComponent = array('r_s_ins_789_'.$i.'_1', 'r_s_ins_789_'.$i.'_2', 't_s_ins_789_'.$i.'_3', 'f_s_ins_789_'.$i.'_4', 'h_s_ins_789_'.$i.'_4');
+			$collapseSectionId = 'msIns789'.$i.'SelectedCollapse';
+			$fileUploadId = 'fsIns789'.$i.'4';
+			
+			include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
+			echo '<hr/>';
+		}
+	}
 ?>

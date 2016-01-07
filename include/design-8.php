@@ -21,4 +21,21 @@ require_once("../config.php");
 		include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
 		echo '<hr/>';
 	}
+	
+	if(isset($_REQUEST['type']) && $_REQUEST['type'] === 't'){
+		$bookCount = 1;
+		$bookNames = array('คู่มือครู รายวิชาพื้นฐาน');
+		for($i=1;$i<=$bookCount;$i++)
+		{
+			$modelClass = 'm-d-ins-8-'.$i;
+			$imagePath = 'image/d/instructor/8/'.$i.'.jpg';
+			$bookName = $bookNames[($i - 1)];  /* --- ใช้ ($i-1) เพราะว่า array เริ่มต้นด้วย index ที่ 0 --- */
+			$nameOfComponent = array('r_d_ins_8_'.$i.'_1', 'r_d_ins_8_'.$i.'_2', 't_d_ins_8_'.$i.'_3', 'f_d_ins_8_'.$i.'_4', 'h_d_ins_8_'.$i.'_4');
+			$collapseSectionId = 'mdIns8'.$i.'SelectedCollapse';
+			$fileUploadId = 'fdIns8'.$i.'4';
+			
+			include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
+			echo '<hr/>';
+		}
+	}
 ?>

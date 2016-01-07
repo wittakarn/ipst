@@ -7,7 +7,7 @@ require_once("../config.php");
 <h4><u>หนังสือรายวิชาเพิ่มเติม</u></h4>
 <?php 
 	$bookCount = 1;
-	$bookNames = array('หนังสือรายวิชาเพิ่มเติม');
+	$bookNames = array('หนังสือรายวิชาเพิ่มเติม พลังงานหมุนเวียน');
 	for($i=1;$i<=$bookCount;$i++)
 	{
 		$modelClass = 'm-d-89-'.$i;
@@ -20,4 +20,6 @@ require_once("../config.php");
 		include DOCUMENT_ROOT.'include/book-satisfaction-template.php';
 		echo '<hr/>';
 	}
+	
+
 ?>
