@@ -478,7 +478,7 @@ session_start();
 			</div>
 		</div>
 		<input id="pType" type="hidden" name="type" value="s"/>
-		<input type="hidden" name="updateId" value="<?php echo $_REQUEST['id']?>"/>
+		<input type="hidden" name="updateId" value="<?php echo isset($_REQUEST['id']) ? $_REQUEST['id'] : ''; ?>"/>
 	</form>
     
   </body>
