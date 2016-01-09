@@ -178,6 +178,13 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 				}
 			});
 		}
+		
+		function disableBookSatisfyGroup() {
+            if($("input.book-satisfy-group").filter(":checked").length == 3)
+				$("input.book-satisfy-group:not(:checked)").attr("disabled", "disabled");
+			else
+				$("input.book-satisfy-group").removeAttr("disabled");
+        }
 
 		function initialSection(){
 			$(".explanation").html("ในปีการศึกษา 2558 ท่านได้ใช้หนังสือเรียนหรือสื่อการเรียนรู้ต่าง ๆ ต่อไปนี้ของ สสวท. ในการจัดการเรียนรู้หรือไม่ ถ้าท่านได้ใช้ ท่านรู้สึกอย่างไร โปรดแสดงความคิดเห็นและข้อเสนอแนะเพื่อการปรับปรุง");
@@ -350,7 +357,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs['.$defCount.'].resolve()});';
 					}
 					
-					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();reRenderDesignBookTabs();reBindingTabEvent();setBookSatisfactionEvent();});';
+					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();reRenderDesignBookTabs();reBindingTabEvent();disableBookSatisfyGroup();setBookSatisfactionEvent();});';
 				}
 			?>
 		}

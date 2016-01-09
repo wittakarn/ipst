@@ -473,10 +473,7 @@ $(document)
 						});
 						
 						$(".book-satisfy-group").change(function(){
-							if($("input.book-satisfy-group").filter(":checked").length == 3)
-								$("input.book-satisfy-group:not(:checked)").attr("disabled", "disabled");
-							else
-								$("input.book-satisfy-group").removeAttr("disabled");
+							disableBookSatisfyGroup();
 						});
 						
 						function isInvalidateForm() {
