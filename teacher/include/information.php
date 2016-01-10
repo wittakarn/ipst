@@ -115,7 +115,7 @@
 				</div>
 				<div class="collapse" id="scienceSubjectSelectedCollapse">
 					<div class="well">
-						<span class="glyphicon glyphicon-asterisk"></span>
+						<span for="c_s_1" class="glyphicon glyphicon-asterisk"></span>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="checkbox">
@@ -212,7 +212,7 @@
 				</div>
 				<div class="collapse" id="mathematicSubjectSelectedCollapse">
 					<div class="well">
-						<span class="glyphicon glyphicon-asterisk"></span>
+						<span for="c_m_1" class="glyphicon glyphicon-asterisk"></span>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="checkbox">
@@ -311,7 +311,7 @@
 				</div>
 				<div class="collapse" id="technologySubjectSelectedCollapse">
 					<div class="well">
-						<span class="glyphicon glyphicon-asterisk"></span>
+						<span for="c_t_1" class="glyphicon glyphicon-asterisk"></span>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="checkbox">

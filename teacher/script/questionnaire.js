@@ -477,9 +477,6 @@ $(document)
 						});
 						
 						function isInvalidateForm() {
-							questionForm.validate({
-								ignore : ""
-							});
 							return !questionForm.valid();
 						}
 						
