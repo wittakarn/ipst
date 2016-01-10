@@ -105,7 +105,7 @@
 							<div class="col-md-8">
 								<input type="file" 
 										id="<?php echo $fileUploadId; ?>" 
-										name="<?php echo $nameOfComponent[3]; ?>" จะใส
+										name="<?php echo $nameOfComponent[3]; ?>"
 										class="form-control"
 										target="iframe_<?php echo $fileUploadId; ?>"/>
 							</div>
