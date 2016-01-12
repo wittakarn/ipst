@@ -448,12 +448,20 @@ session_start();
 					<li>
 						<?php
 							if($isEditMode){
-								echo '<button type="button" 
-											class="btn btn-warning"
-											data-toggle="modal" 
-											data-target="#myDisableModal">
-											ไม่นำมาประมวลผล
-										</button>';
+								if($participant['status'] === 'a'){
+									echo '<button type="button" 
+											  class="btn btn-warning"
+											  data-toggle="modal" 
+											  data-target="#myDisableModal">
+											  ไม่นำมาประมวลผล
+										  </button>';
+								}else{
+									echo '<button type="button"
+											  id="enableButton"
+											  class="btn btn-success">
+											  นำกลับมาประมวลผล
+										  </button>'; 
+								}
 							}
 						?>
 					</li>

@@ -96,7 +96,7 @@ $(document)
 							}else{
 								$.blockUI();
 								
-								questionForm.attr("action", contextRoot + "crud/update-questionnaire.php?status=a");
+								questionForm.attr("action", contextRoot + "crud/update-questionnaire.php");
 								questionForm.attr("target", "_self");
 								
 								questionForm.submit();
@@ -108,7 +108,18 @@ $(document)
 						$('#disableButton').click(function (e) {
 							$.blockUI();
 							
-							questionForm.attr("action", contextRoot + "crud/update-questionnaire.php?status=i");
+							questionForm.attr("action", contextRoot + "crud/update-questionnaire-status.php?status=i");
+							questionForm.attr("target", "_self");
+							
+							questionForm.submit();
+							
+							$.unblockUI();
+						});
+                        
+                        $('#enableButton').click(function (e) {
+							$.blockUI();
+							
+							questionForm.attr("action", contextRoot + "crud/update-questionnaire-status.php?status=a");
 							questionForm.attr("target", "_self");
 							
 							questionForm.submit();
