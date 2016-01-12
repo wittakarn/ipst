@@ -106,6 +106,8 @@ $(document)
 						});
 						
 						$('#disableButton').click(function (e) {
+                            questionForm.validate().cancelSubmit = true;
+                        
 							$.blockUI();
 							
 							questionForm.attr("action", contextRoot + "crud/update-questionnaire-status.php?status=i");
@@ -117,6 +119,8 @@ $(document)
 						});
                         
                         $('#enableButton').click(function (e) {
+                            questionForm.validate().cancelSubmit = true;
+                                
 							$.blockUI();
 							
 							questionForm.attr("action", contextRoot + "crud/update-questionnaire-status.php?status=a");
