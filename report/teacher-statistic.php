@@ -20,6 +20,10 @@ if (isset($_SESSION['user_id'])){
 		$subjectStatistic = Participant::getTeacherSubjectStatistic($conn);
 		$schoolUnderStatistic = Participant::getTeacherSchoolUnderStatistic($conn);
 		$satisfyStatistic = Participant::getSatisfyStatistic($conn);
+		$scienceStatistic = Participant::getScienceBookStatistic($conn, 't');
+		$scienceInstructorStatistic = Participant::getScienceBookInstructorStatistic($conn);
+		$mathStatistic = Participant::getMathBookStatistic($conn, 't');
+		$mathInstructorStatistic = Participant::getMathBookInstructorStatistic($conn);
 		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -67,6 +71,22 @@ if (isset($_SESSION['user_id'])){
 		$pdf->generateTeacherSchoolUnderStatistic($schoolUnderStatistic, 70);
 		
 		$pdf->generateSatisfyStatistic($satisfyStatistic, 170);
+		
+		// add a page
+		$pdf->AddPage();
+		
+		// column titles
+		$tableHeader = array('รายชื่อหนังสือ', 'ได้ใช้', 'ไม่ได้ใช้', 'พึงพอใจ', 'เฉยๆ', 'ไม่พึงพอใจ');
+		$pdf->statisticTable($tableHeader, $scienceStatistic);
+		
+		$pdf->Ln();
+		$pdf->statisticTable($tableHeader, $scienceInstructorStatistic);
+		
+		$pdf->Ln();
+		$pdf->statisticTable($tableHeader, $mathStatistic);
+		
+		$pdf->Ln();
+		$pdf->statisticTable($tableHeader, $mathInstructorStatistic);
 	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

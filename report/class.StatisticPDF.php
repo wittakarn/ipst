@@ -706,12 +706,111 @@ class StatisticPDF extends TCPDF {
 		}
 	}
 	
+	// Colored table
+    public function statisticTable($header,$data) {
+        // Colors, line width and bold font
+        $this->SetFillColor(255, 0, 0);
+        $this->SetTextColor(255);
+        $this->SetDrawColor(128, 0, 0);
+        $this->SetLineWidth(0.3);
+        $this->SetFont('', 'B');
+        // Header
+        $w = array(80, 20, 20, 20, 20, 20);
+        $num_headers = count($header);
+        for($i = 0; $i < $num_headers; ++$i) {
+            $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+        }
+		
+        // Color and font restoration
+        $this->SetFillColor(224, 235, 255);
+        $this->SetTextColor(0);
+        $this->SetFont('');
+        // Data
+        $fill = 0;
+		
+		$bookName;
+		$participantBookUsage;
+		$participantBookSatisfy;
+		$usage;
+		$notUsage;
+		$like;
+		$indifferent;
+		$dislike;
+		$pos = 0;
+		
+		$bookName = array_keys($data);
+		
+		$this->Ln();
+		
+		$fill=!$fill;
+		$this->Cell($w[0], 6, substr($bookName[0], 11), 'LR', 0, 'L', $fill);
+		
+        foreach($data as $key => $value) {
+			
+			if($pos > 0 && $pos % 5 == 0){
+				
+				$usage = self::convertNullToZero($temp[0]);
+				$notUsage = self::convertNullToZero($temp[1]);
+				$like = self::convertNullToZero($temp[2]);
+				$indifferent = self::convertNullToZero($temp[3]);
+				$dislike = self::convertNullToZero($temp[4]);
+				
+				$participantBookUsage = $usage + $notUsage;
+				$participantBookSatisfy = $like + $indifferent + $dislike;
+				
+				$this->Cell($w[1], 6, $usage . ':' . $participantBookUsage . ' = ' . self::generatePercent($usage, $participantBookUsage).'%', 'LR', 0, 'R', $fill);
+				$this->Cell($w[2], 6, $notUsage . ':' . $participantBookUsage . ' = ' . self::generatePercent($notUsage, $participantBookUsage).'%', 'LR', 0, 'R', $fill);
+				$this->Cell($w[3], 6, $like . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($like, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
+				$this->Cell($w[4], 6, $indifferent . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($indifferent, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
+				$this->Cell($w[5], 6, $dislike . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($dislike, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
+				
+				$this->Ln();
+				$fill=!$fill;
+				$this->Cell($w[0], 6, substr($key, 11), 'LR', 0, 'L', $fill);
+			}
+            
+            $temp[$pos % 5] = $value;
+			
+			$pos++;
+        }
+		
+		$usage = self::convertNullToZero($temp[0]);
+		$notUsage = self::convertNullToZero($temp[1]);
+		$like = self::convertNullToZero($temp[2]);
+		$indifferent = self::convertNullToZero($temp[3]);
+		$dislike = self::convertNullToZero($temp[4]);
+		
+		$participantBookUsage = $usage + $notUsage;
+		$participantBookSatisfy = $like + $indifferent + $dislike;
+		
+		$this->Cell($w[1], 6, $usage . ':' . $participantBookUsage . ' = ' . self::generatePercent($usage, $participantBookUsage).'%', 'LR', 0, 'R', $fill);
+		$this->Cell($w[2], 6, $notUsage . ':' . $participantBookUsage . ' = ' . self::generatePercent($notUsage, $participantBookUsage).'%', 'LR', 0, 'R', $fill);
+		$this->Cell($w[3], 6, $like . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($like, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
+		$this->Cell($w[4], 6, $indifferent . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($indifferent, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
+		$this->Cell($w[5], 6, $dislike . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($dislike, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
+		
+		$this->Ln();
+		$fill=!$fill;
+    }
+	
 	public static function generatePercent($count, $total){
-		return round(($count * 100) / $total, 2);
+		$percent = 0;
+		
+		if($total > 0){
+			$percent = round(($count * 100) / $total, 2);
+		}
+		
+		return $percent;
 	}
 	
 	public static function generateDegree($count, $total){
-		return round(($count * 360) / $total, 2);
+		$degree = 0;
+		
+		if($total > 0){
+			$degree = round(($count * 360) / $total, 2);
+		}
+		
+		return $degree;
 	}
 	
 	public static function getRemainResult($total, $theRest){
