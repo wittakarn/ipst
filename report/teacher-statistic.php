@@ -24,6 +24,10 @@ if (isset($_SESSION['user_id'])){
 		$scienceInstructorStatistic = Participant::getScienceBookInstructorStatistic($conn);
 		$mathStatistic = Participant::getMathBookStatistic($conn, 't');
 		$mathInstructorStatistic = Participant::getMathBookInstructorStatistic($conn);
+		$technologyStatistic = Participant::getTechnologyBookStatistic($conn, 't');
+		$technologyInstructorStatistic = Participant::getTechnologyBookInstructorStatistic($conn);
+		$designStatistic = Participant::getDesignBookStatistic($conn, 't');
+		$designInstructorStatistic = Participant::getDesignBookInstructorStatistic($conn);
 		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -77,16 +81,28 @@ if (isset($_SESSION['user_id'])){
 		
 		// column titles
 		$tableHeader = array('รายชื่อหนังสือ', 'ได้ใช้', 'ไม่ได้ใช้', 'พึงพอใจ', 'เฉยๆ', 'ไม่พึงพอใจ');
-		$pdf->statisticTable($tableHeader, $scienceStatistic);
+		$pdf->statisticTable("วิชาวิทยาศาสตร์", $tableHeader, $scienceStatistic);
 		
-		$pdf->Ln();
-		$pdf->statisticTable($tableHeader, $scienceInstructorStatistic);
+		$pdf->Ln(20);
+		$pdf->statisticTable("คู่มือครูวิชาวิทยาศาสตร์", $tableHeader, $scienceInstructorStatistic);
 		
-		$pdf->Ln();
-		$pdf->statisticTable($tableHeader, $mathStatistic);
+		$pdf->Ln(20);
+		$pdf->statisticTable("วิชาคณิตศาสตร์", $tableHeader, $mathStatistic);
 		
-		$pdf->Ln();
-		$pdf->statisticTable($tableHeader, $mathInstructorStatistic);
+		$pdf->Ln(20);
+		$pdf->statisticTable("คู่มือครูวิชาคณิตศาสตร์", $tableHeader, $mathInstructorStatistic);
+		
+		$pdf->Ln(20);
+		$pdf->statisticTable("วิชาเทคโนโลยี", $tableHeader, $technologyStatistic);
+		
+		$pdf->Ln(20);
+		$pdf->statisticTable("คู่มือครูวิชาเทคโนโลยี", $tableHeader, $technologyInstructorStatistic);
+		
+		$pdf->Ln(20);
+		$pdf->statisticTable("วิชาออกแบบ", $tableHeader, $designStatistic);
+		
+		$pdf->Ln(20);
+		$pdf->statisticTable("คู่มือครูวิชาออกแบบ", $tableHeader, $designInstructorStatistic);
 	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

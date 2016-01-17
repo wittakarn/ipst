@@ -17,6 +17,10 @@ if (isset($_SESSION['user_id'])){
 	try{
 		$sexStatistic = Participant::getSexOfParticipantStatistic($conn, 's');
 		$degreeStatistic = Participant::getStudentDegreeStatistic($conn);
+		$scienceStatistic = Participant::getScienceBookStatistic($conn, 's');
+		$mathStatistic = Participant::getMathBookStatistic($conn, 's');
+		$technologyStatistic = Participant::getTechnologyBookStatistic($conn, 's');
+		$designStatistic = Participant::getDesignBookStatistic($conn, 's');
 		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -55,6 +59,22 @@ if (isset($_SESSION['user_id'])){
 		$pdf->generateSexOfParticipantStatistic($sexStatistic, 50);
 		
 		$pdf->generateStudentDegreeStatistic($degreeStatistic, 140);
+		
+		// add a page
+		$pdf->AddPage();
+		
+		// column titles
+		$tableHeader = array('รายชื่อหนังสือ', 'ได้ใช้', 'ไม่ได้ใช้', 'พึงพอใจ', 'เฉยๆ', 'ไม่พึงพอใจ');
+		$pdf->statisticTable("วิชาวิทยาศาสตร์", $tableHeader, $scienceStatistic);
+		
+		$pdf->Ln(20);
+		$pdf->statisticTable("วิชาคณิตศาสตร์", $tableHeader, $mathStatistic);
+		
+		$pdf->Ln(20);
+		$pdf->statisticTable("วิชาเทคโนโลยี", $tableHeader, $technologyStatistic);
+		
+		$pdf->Ln(20);
+		$pdf->statisticTable("วิชาออกแบบ", $tableHeader, $designStatistic);
 	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

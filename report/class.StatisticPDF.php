@@ -707,7 +707,11 @@ class StatisticPDF extends TCPDF {
 	}
 	
 	// Colored table
-    public function statisticTable($header,$data) {
+    public function statisticTable($titleTable, $header,$data) {
+		
+		$this->SetFont('', 'B', 16);
+		$this->Cell(0, 14, $titleTable, 0, 2, 'C', 0, '', 0, false, 'B', 'C');
+		
         // Colors, line width and bold font
         $this->SetFillColor(255, 0, 0);
         $this->SetTextColor(255);
@@ -724,7 +728,7 @@ class StatisticPDF extends TCPDF {
         // Color and font restoration
         $this->SetFillColor(224, 235, 255);
         $this->SetTextColor(0);
-        $this->SetFont('');
+        $this->SetFont('', '', 12);
         // Data
         $fill = 0;
 		
@@ -744,7 +748,7 @@ class StatisticPDF extends TCPDF {
 		
 		$fill=!$fill;
 		$this->Cell($w[0], 6, substr($bookName[0], 11), 'LR', 0, 'L', $fill);
-		
+		$dataSize = count($data);
         foreach($data as $key => $value) {
 			
 			if($pos > 0 && $pos % 5 == 0){
@@ -766,7 +770,13 @@ class StatisticPDF extends TCPDF {
 				
 				$this->Ln();
 				$fill=!$fill;
-				$this->Cell($w[0], 6, substr($key, 11), 'LR', 0, 'L', $fill);
+				
+				$borderStyle = 'LR';
+				if($dataSize - 5 === $pos){
+					$borderStyle = 'LRB';
+				}
+				
+				$this->Cell($w[0], 6, substr($key, 11), $borderStyle, 0, 'L', $fill);
 			}
             
             $temp[$pos % 5] = $value;
@@ -783,11 +793,11 @@ class StatisticPDF extends TCPDF {
 		$participantBookUsage = $usage + $notUsage;
 		$participantBookSatisfy = $like + $indifferent + $dislike;
 		
-		$this->Cell($w[1], 6, $usage . ':' . $participantBookUsage . ' = ' . self::generatePercent($usage, $participantBookUsage).'%', 'LR', 0, 'R', $fill);
-		$this->Cell($w[2], 6, $notUsage . ':' . $participantBookUsage . ' = ' . self::generatePercent($notUsage, $participantBookUsage).'%', 'LR', 0, 'R', $fill);
-		$this->Cell($w[3], 6, $like . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($like, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
-		$this->Cell($w[4], 6, $indifferent . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($indifferent, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
-		$this->Cell($w[5], 6, $dislike . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($dislike, $participantBookSatisfy).'%', 'LR', 0, 'R', $fill);
+		$this->Cell($w[1], 6, $usage . ':' . $participantBookUsage . ' = ' . self::generatePercent($usage, $participantBookUsage).'%', 'LRB', 0, 'R', $fill);
+		$this->Cell($w[2], 6, $notUsage . ':' . $participantBookUsage . ' = ' . self::generatePercent($notUsage, $participantBookUsage).'%', 'LRB', 0, 'R', $fill);
+		$this->Cell($w[3], 6, $like . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($like, $participantBookSatisfy).'%', 'LRB', 0, 'R', $fill);
+		$this->Cell($w[4], 6, $indifferent . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($indifferent, $participantBookSatisfy).'%', 'LRB', 0, 'R', $fill);
+		$this->Cell($w[5], 6, $dislike . ':' . $participantBookSatisfy . ' = ' . self::generatePercent($dislike, $participantBookSatisfy).'%', 'LRB', 0, 'R', $fill);
 		
 		$this->Ln();
 		$fill=!$fill;

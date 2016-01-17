@@ -93,9 +93,13 @@ include DOCUMENT_ROOT.'include/permission.php';
 							<br/>
 							<label class="checkbox-inline"><input type="checkbox" value="R" name="rememberme" checked>จดจำฉันไว้ในระบบ</label>
 						</div>
-						<div class="g-recaptcha" 
-							data-sitekey="<?php echo SITE_KEY;?>">
-						</div>
+						<?php
+							if(VERIFY_CAPTCHA){
+								echo '<div class="g-recaptcha" 
+											data-sitekey="'.SITE.KEY.'">
+										</div>';
+							}
+						?>
 						<br/>
 						<button class="btn btn-primary btn-block" name="nigol" id="nigol" type="button">เข้าสู่ระบบ</button>
 					</div>

@@ -42,10 +42,14 @@ aria-hidden="true">
 					<input type="password" name="password" class="form-control" placeholder="รหัสผ่าน" required>
 					<label class="checkbox-inline"><input type="checkbox" value="R" name="rememberme" checked>จดจำฉันไว้ในระบบ</label>
 				</div>
-				<div class="g-recaptcha" 
-					data-sitekey="6Lf6VQ8TAAAAACP8DHRvi33oZb7rbnCdUv8wKGDn"
-					style="transform:scale(0.88);-webkit-transform:scale(0.88);transform-origin:0 0;-webkit-transform-origin:0 0;">
-				</div>
+				<?php
+					if(VERIFY_CAPTCHA){
+						echo '<div class="g-recaptcha" 
+									data-sitekey="'. SITE_KEY .'"
+									style="transform:scale(0.88);-webkit-transform:scale(0.88);transform-origin:0 0;-webkit-transform-origin:0 0;">
+								</div>';
+					}
+				?>
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-primary btn-block" name="nigol" id="nigol" type="button">เข้าสู่ระบบ</button>
