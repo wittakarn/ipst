@@ -18,7 +18,7 @@ require_once('config.php');
     <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo ROOT; ?>/style/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="<?php echo ROOT; ?>style/sticky-footer-navbar.css" rel="stylesheet">
   </head>
 
   <body>

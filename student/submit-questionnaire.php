@@ -36,8 +36,8 @@ $resp = recaptcha_check_answer ($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["re
     <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo ROOT; ?>/style/header-template.css" rel="stylesheet">
-	<link href="<?php echo ROOT; ?>/style/template.css" rel="stylesheet">
+    <link href="<?php echo ROOT; ?>style/header-template.css" rel="stylesheet">
+	<link href="<?php echo ROOT; ?>style/template.css" rel="stylesheet">
     
     
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT; ?>style/error.message.css" />

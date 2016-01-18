@@ -28,7 +28,7 @@
 						$('#exportButton').click(function() {
 							var insId = $(this).attr('insId');
 							
-							var cvsUrl = '<?php echo ROOT; ?>/report/contribute-information.php';
+							var cvsUrl = '<?php echo ROOT; ?>report/contribute-information.php';
 							$('#contributeForm').attr('action', cvsUrl);
 							$('#contributeForm').attr('target', '_blank');
 							$('#contributeForm').submit();

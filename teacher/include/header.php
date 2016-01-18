@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-2 col-sm-3"> 
 				<a class="navbar-brand" href="<?php echo WEB_ROOT;?>index.php">
-					<img src="<?php echo ROOT;?>/image/logo-ipst-burned.png" width="70" height="70">
+					<img src="<?php echo ROOT;?>image/logo-ipst-burned.png" width="70" height="70">
 				</a>
 			</div>
 			<div class="col-md-10 col-sm-9"> 

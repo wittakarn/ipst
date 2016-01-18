@@ -24,8 +24,8 @@ include DOCUMENT_ROOT.'include/permission.php';
     <link href="<?php echo ROOT; ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
-	<link href="<?php echo ROOT; ?>/style/template.css" rel="stylesheet">
-    <link href="<?php echo ROOT; ?>/style/jquery-ui.min.css" rel="stylesheet">
+	<link href="<?php echo ROOT; ?>style/template.css" rel="stylesheet">
+    <link href="<?php echo ROOT; ?>style/jquery-ui.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo ROOT; ?>style/error.message.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo ROOT; ?>style/custom.datepicker.css" />
     

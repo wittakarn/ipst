@@ -107,7 +107,7 @@
 						$('#csvButton').click(function() {
 							var insId = $(this).attr('insId');
 							
-							var cvsUrl = '<?php echo ROOT; ?>/report/questionnaire-history.php';
+							var cvsUrl = '<?php echo ROOT; ?>report/questionnaire-history.php';
 							$('#historyForm').attr('action', cvsUrl);
 							$('#historyForm').attr('target', '_blank');
 							$('#historyForm').submit();
