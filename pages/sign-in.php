@@ -96,7 +96,7 @@ include DOCUMENT_ROOT.'include/permission.php';
 						<?php
 							if(VERIFY_CAPTCHA){
 								echo '<div class="g-recaptcha" 
-											data-sitekey="'.SITE.KEY.'">
+											data-sitekey="'.SITE_KEY.'">
 										</div>';
 							}
 						?>
