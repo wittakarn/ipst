@@ -57,6 +57,12 @@ session_start();
 			dynamicHead.after(liElement);
 			dynamicHead = liElement;
 			
+			if(degree > 9){					
+				liElement = createBookTab(length++, "#scienceBookExtra");
+				dynamicHead.after(liElement);
+				dynamicHead = liElement;
+			}
+			
 			liElement = createBookTab(length++, "#mathBook");
 			dynamicHead.after(liElement);
 			dynamicHead = liElement;
@@ -108,9 +114,17 @@ session_start();
 		function loadScienceBookQuestionnair(degree, def){
 			var loadPage = contextRoot.concat("include/science-");
 			loadPage = loadPage.concat(degree);
-			loadPage = loadPage.concat(".php");
+			loadPage = loadPage.concat(".php?part=12");
 			
 			$("#scienceBookSection" + degree).load(loadPage, function() {def.resolve()});
+		}
+		
+		function loadScienceBookExtraQuestionnair(degree, def){
+			var loadPage = contextRoot.concat("include/science-");
+			loadPage = loadPage.concat(degree);
+			loadPage = loadPage.concat(".php?part=345");
+			
+			$("#scienceBookSection" + degree + "Extra").load(loadPage, function() {def.resolve()});
 		}
 		
 		function loadMathBookQuestionnair(degree, def){
@@ -420,6 +434,11 @@ session_start();
 				<div role="tabpanel" class="tab-pane" id="scienceBook">
 					<?php
 						include DOCUMENT_ROOT.'include/science-book.php';
+					?>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="scienceBookExtra">
+					<?php
+						include DOCUMENT_ROOT.'student/include/science-book-extra.php';
 					?>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="mathBook">

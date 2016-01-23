@@ -2,7 +2,6 @@ $(document)
 		.ready(
 				function() {
                         var tempDesignTab;
-						var isLoad101112Science;
 						var isLoad789ScienceAdditional;
 						
 						var isLoad101112Math;
@@ -28,23 +27,30 @@ $(document)
 								$(href).collapse('show');
 							} else {
 								$(href).collapse('hide');
+                                $(href).find(":input[type='checkbox']").attr("checked", false);
 							}
 							
 							removeAllBookTab();
 							populateBookTabs();
+                            reloadScienceBookContent();
                             reBindingTabEvent();
 						});
 						
 						$(".s-degree").click(function (e) {
-							var scienceDegrees = $(".s-degree").filter(":checked");
+							reloadScienceBookContent();
+						});
+                        
+                        function reloadScienceBookContent() {
+                            var scienceDegrees = $(".s-degree").filter(":checked");
 							var fieldName;
 							var degree;
 							var splitArray;
 							var splitSize;
 							var defs = [];
 							var defsIndex = 0;
+                            var part = "";
 							
-							isLoad101112Science = false;
+                            isLoad101112Science = false;
 							isLoad789ScienceAdditional = false;
 							$(".science-book-category").html("");
 							
@@ -67,17 +73,17 @@ $(document)
 										defsIndex++;
 									}
 								}else{
-									if(degree > 9 && !isLoad101112Science){
-										defs[defsIndex] = $.Deferred();
-										loadScienceBookQuestionnair(degree, defs[defsIndex]);
-										isLoad101112Science = true;
-										defsIndex++;
+									if(degree > 9){
+										part += $(this).attr("part");
 									}
 								}
 							});
+                            
+                            defs[defsIndex] = $.Deferred();
+                            loadScienceBook101112Questionnair(degree, part, defs[defsIndex]);
 							
 							$.when.apply($,defs).done(function() {setBookSatisfactionEvent();});
-						});
+                        }
 						
 						$(".m-degree").click(function (e) {
 							var mathDegrees = $(".m-degree").filter(":checked");

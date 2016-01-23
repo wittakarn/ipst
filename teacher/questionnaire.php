@@ -57,29 +57,45 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			var tabRef;
 			var liElement;
 			var checkboxs = $(".subject-selected").filter( ":checked" );
-			var length = $(".nav-pills").children().length;
 			var dynamicHead = $(".head-of-dynamic-tab");
 			checkboxs.each(function() {
 				tabRef = $(this).attr("tabRef");
-				if (tabRef != "designBook") {
-					liElement = createBookTab(length, "#" + tabRef);
+				
+				if (tabRef === "designBook") {
+					dynamicHead = reRenderDesignBookTabs(dynamicHead);
+				}else if (tabRef === "scienceBook") {
+					dynamicHead = renderScienceBookTabs(dynamicHead);
+				}else{
+					liElement = createBookTab($(".nav-pills").children().length, "#" + tabRef);
 					dynamicHead.after(liElement);
 					dynamicHead = liElement;
 					length++;
-				}else{
-					reRenderDesignBookTabs();
 				}
 			});
 		}
 		
-		function reRenderDesignBookTabs(){
+		function renderScienceBookTabs(dynamicHead){
+			var tabRef = "#scienceBook";
+			var scienceTab = $("a[ref='#scienceBook']");
+			var liElement;
+			var checkboxs = $(".s-degree").filter( ":checked" );
+			var length = $(".nav-pills").children().length;
+
+			if (scienceTab.length == 0) {
+				liElement = createBookTab(length, tabRef);
+				dynamicHead.after(liElement);
+				dynamicHead = liElement;
+			}
+			return dynamicHead;
+		}
+		
+		function reRenderDesignBookTabs(dynamicHead){
 			var renderTab = false;
 			var tabRef = "#designBook";
 			var designTab = $("a[ref='#designBook']");
 			var liElement;
 			var checkboxs = $(".d-degree").filter( ":checked" );
 			var length = $(".nav-pills").children().length;
-			var dynamicTail = $(".tail-of-dynamic-tab");
 			var fieldName;
 			var splitArray;
 			var splitSize;
@@ -97,12 +113,13 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 				
 				if (designTab.length == 0) {
                     liElement = createBookTab(length, tabRef);
-					dynamicTail.before(liElement);
-					dynamicTail = liElement;
+					dynamicHead.after(liElement);
+					dynamicHead = liElement;
                 }
             }else{
 				designTab.parent().remove();
 			}
+			return dynamicHead;
 		}
 		
 		function reBindingTabEvent() {
@@ -142,6 +159,14 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			var loadPage = contextRoot.concat("include/science-");
 			loadPage = loadPage.concat(degree);
 			loadPage = loadPage.concat(".php?type=t");
+			$("#scienceBookSection" + degree).load(loadPage, function() {def.resolve()});
+		}
+		
+		function loadScienceBook101112Questionnair(degree, part, def){
+			var loadPage = contextRoot.concat("include/science-");
+			loadPage = loadPage.concat(degree);
+			loadPage = loadPage.concat(".php?type=t&part=");
+			loadPage = loadPage.concat(part);
 			$("#scienceBookSection" + degree).load(loadPage, function() {def.resolve()});
 		}
 		

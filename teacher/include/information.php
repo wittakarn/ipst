@@ -110,7 +110,7 @@
 							name="c_s"
 							ref="scienceSubjectSelectedCollapse"
 							tabRef="scienceBook"/>
-					วิทยาศาสตร์
+					วิทยาศาสตร์พื้นฐาน
 				  </label>
 				</div>
 				<div class="collapse" id="scienceSubjectSelectedCollapse">
@@ -176,19 +176,187 @@
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_10" value="1"/>
+									<input class="s-degree" type="checkbox" name="c_s_10" part="1" value="1"/>
 									มัธยมศึกษาปีที่ 4
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_11" value="1"/>
+									<input class="s-degree" type="checkbox" name="c_s_11" part="1" value="1"/>
 									มัธยมศึกษาปีที่ 5
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_12" value="1"/>
+									<input class="s-degree" type="checkbox" name="c_s_12" part="1" value="1"/>
+									มัธยมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="subject-selected subject-group" 
+							type="checkbox" 
+							id="physicSubjectSelected" 
+							value="1" 
+							name="c_sp"
+							ref="physicSubjectSelectedCollapse"
+							tabRef="scienceBook"/>
+					ฟิสิกส์
+				  </label>
+				</div>
+				<div class="collapse" id="physicSubjectSelectedCollapse">
+					<div class="well">
+						<span for="c_sp_10" class="glyphicon glyphicon-asterisk"></span>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sp-degree" type="checkbox" name="c_sp_10" part="2" value="1"/>
+									มัธยมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sp-degree" type="checkbox" name="c_sp_11" part="2" value="1"/>
+									มัธยมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sp-degree" type="checkbox" name="c_sp_12" part="2" value="1"/>
+									มัธยมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="subject-selected subject-group" 
+							type="checkbox" 
+							id="chemistrySubjectSelected" 
+							value="1" 
+							name="c_sc"
+							ref="chemistrySubjectSelectedCollapse"
+							tabRef="scienceBook"/>
+					เคมี
+				  </label>
+				</div>
+				<div class="collapse" id="chemistrySubjectSelectedCollapse">
+					<div class="well">
+						<span for="c_sc_10" class="glyphicon glyphicon-asterisk"></span>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sc-degree" type="checkbox" name="c_sc_10" part="3" value="1"/>
+									มัธยมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sc-degree" type="checkbox" name="c_sc_11" part="3" value="1"/>
+									มัธยมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sc-degree" type="checkbox" name="c_sc_12" part="3" value="1"/>
+									มัธยมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="subject-selected subject-group" 
+							type="checkbox" 
+							id="bioSubjectSelected" 
+							value="1" 
+							name="c_sb"
+							ref="bioSubjectSelectedCollapse"
+							tabRef="scienceBook"/>
+					ชีววิทยา
+				  </label>
+				</div>
+				<div class="collapse" id="bioSubjectSelectedCollapse">
+					<div class="well">
+						<span for="c_sb_10" class="glyphicon glyphicon-asterisk"></span>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sb-degree" type="checkbox" name="c_sb_10" part="4" value="1"/>
+									มัธยมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sb-degree" type="checkbox" name="c_sb_11" part="4" value="1"/>
+									มัธยมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree sb-degree" type="checkbox" name="c_sb_12" part="4" value="1"/>
+									มัธยมศึกษาปีที่ 6
+								  </label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox">
+				  <label>
+					<input class="subject-selected subject-group" 
+							type="checkbox" 
+							id="earthSubjectSelected" 
+							value="1" 
+							name="c_se"
+							ref="earthSubjectSelectedCollapse"
+							tabRef="scienceBook"/>
+					โลก ดาราศาสตร์ และอวกาศ
+				  </label>
+				</div>
+				<div class="collapse" id="earthSubjectSelectedCollapse">
+					<div class="well">
+						<span for="c_se_10" class="glyphicon glyphicon-asterisk"></span>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree se-degree" type="checkbox" name="c_se_10" part="5" value="1"/>
+									มัธยมศึกษาปีที่ 4
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree se-degree" type="checkbox" name="c_se_11" part="5" value="1"/>
+									มัธยมศึกษาปีที่ 5
+								  </label>
+								</div>
+								<div class="checkbox">
+								  <label>
+									<input class="s-degree se-degree" type="checkbox" name="c_se_12" part="5" value="1"/>
 									มัธยมศึกษาปีที่ 6
 								  </label>
 								</div>
