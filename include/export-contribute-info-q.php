@@ -77,15 +77,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-2 col-sm-2 col-xs-6">ตั้งแต่ลำดับที่</div>
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<input class="form-control" 
-								type="text"
-								id="startIndex"
-								name="start_index"
-								digits="true"/>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-6">ถึงลำดับที่</div>
+						<div class="col-md-2 col-sm-2 col-xs-6">จำนวน</div>
 						<div class="col-md-3 col-sm-3 col-xs-6">
 							<input class="form-control" 
 								type="text"

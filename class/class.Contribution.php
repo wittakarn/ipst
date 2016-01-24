@@ -88,8 +88,26 @@ class Contribution
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 	
+	/*
+	 *	
+		SELECT a.*, c.name book_name 
+		FROM contribute a 
+		INNER JOIN participant b ON a.id = b.id 
+		INNER JOIN contribute_list c ON a.r_contribute_book_selected = c.id
+		WHERE b.status = 'a'
+	 *
+	 *	SELECT * FROM
+		(SELECT a.*, c.name book_name 
+		FROM contribute a 
+		INNER JOIN participant b ON a.id = b.id 
+		INNER JOIN contribute_list c ON a.r_contribute_book_selected = c.id
+		WHERE b.status = 'a'
+		LIMIT 3
+		OFFSET 0) as custom
+		WHERE custom.r_contribute_book_category_selected = 2
+	 *	
+	 */
 	public static function searchControbutionBook($conn, $params){
-		$firstCondition = true;
 		
 		$selectQuery = "SELECT a.*, c.name book_name ";
 		$fromQuery = "FROM contribute a ";
@@ -101,24 +119,25 @@ class Contribution
 			$whereQuery .= "AND b.type = '".$params['participant_type']."' ";
 		}
 		
-		if(isset($params['category'])){
-			$whereQuery .= "AND a.r_contribute_book_category_selected = '".$params['category']."' ";
-		}
-		
-		if(isset($params['contribute_selected'])){
-			$whereQuery .= "AND a.r_contribute_book_selected = '".$params['contribute_selected']."' ";
-		}
-
 		$orderQuery = " ORDER BY a.id ";
 		
-		$limit = "";
-		if(isset($params['start_index']) && isset($params['count']) && $params['start_index'] !== '' && $params['count'] !== ''){
-			$limit .= " LIMIT ".$params['count'];
-			$offset = ($params['start_index'] - 1) > 0 ? ($params['start_index'] - 1) : 0;
-			$limit .= " OFFSET ".($offset);
+		$limit = " LIMIT ".$params['count'];
+		$limit .= " OFFSET 0";
+		
+		$subQuery = $selectQuery.$fromQuery.$whereQuery.$orderQuery.$limit;
+		
+		$selectQuery = "SELECT * FROM ";
+		$selectQuery .= "(";
+		$selectQuery .= $subQuery;
+		$selectQuery .= ") as custom ";
+		
+		$whereQuery = '';
+		
+		if(isset($params['contribute_selected'])){
+			$whereQuery .= "WHERE custom.r_contribute_book_selected = '".$params['contribute_selected']."' ";
 		}
 		
-		$query = $selectQuery.$fromQuery.$whereQuery.$orderQuery.$limit;
+		$query = $selectQuery.$whereQuery;
 		
 		$stmt = $conn->prepare($query);
 		$stmt->execute();
