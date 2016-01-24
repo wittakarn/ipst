@@ -77,6 +77,56 @@ session_start();
 				dynamicHead = liElement;
 			}
 		}
+		
+		function genereteDeferredBook(degree) {
+            var defs = [];
+			
+			var defCount = 0;
+			
+			defs[defCount] = $.Deferred();
+			loadScienceBookQuestionnair(degree, defs[defCount]);
+			defCount++;
+			
+			defs[defCount] = $.Deferred();
+			loadMathBookQuestionnair(degree, defs[defCount]);
+			defCount++;
+			defs[defCount] = $.Deferred();
+			loadTechnologyBookQuestionnair(degree, defs[defCount]);
+			defCount++;
+			
+			defs[defCount] = $.Deferred();
+			loadDesignBookQuestionnair(degree, defs[defCount]);
+			defCount++;
+			
+			if(degree > 6 && degree < 10){
+				defs[defCount] = $.Deferred();
+				loadScienceBookQuestionnair("789-additional", defs[defCount]);
+				defCount++;
+				
+				defs[defCount] = $.Deferred();
+				loadTechnologyBookQuestionnair("789-additional", defs[defCount]);
+				defCount++
+				
+				if(degree > 7 && degree < 10){
+					defs[defCount] = $.Deferred();
+					loadDesignBookQuestionnair("89", defs[defCount]);
+					defCount++;
+				}
+			}
+			
+			if(degree > 9){
+				defs[defCount] = $.Deferred();
+				loadScienceBookExtraQuestionnair(degree, defs[defCount]);
+				defCount++;
+			}
+			
+			if(degree != 1 || degree != 4 || degree != 7){
+				defs[defCount] = $.Deferred();
+				loadDesignBookQuestionnair("all", defs[defCount]);
+			}
+			
+			return defs;
+        }
 	
 		function createBookTab(index, ref){
 			var tabName = "ส่วนที่" + index;
@@ -179,7 +229,7 @@ session_start();
 					
 					$conn = DataBaseConnection::createConnect();
 					$participant = Participant::get($conn, $_GET['id']);
-					
+					echo 'var contribureDef = null;';
 					if(isset($participant)){
 						$scienceBook = ScienceBook::get($conn, $_GET['id']);
 						$mathBook = MathBook::get($conn, $_GET['id']);
@@ -190,53 +240,22 @@ session_start();
 							$contribution = Contribution::get($conn, $_GET['id']);
 							
 							echo '$("#receiveBookSelectedCollapse").collapse("show");';
+							echo '$("#contributeBookSelectedCollapse").collapse("show");';
 							echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
 							echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
 							echo 'loadContributePage = loadContributePage.concat(".php");';
-							
+							echo 'contribureDef = $.Deferred();';
+							echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){contribureDef.resolve()});';
 						}
 					}
-					echo 'var defs = [];';
+					
 					echo 'var degree = '.$participant["s_degree"].';';
 					echo 'populateBookTabs(degree);';
-						
-					echo 'defs[0] = $.Deferred();';
-					echo 'defs[1] = $.Deferred();';
-					echo 'defs[2] = $.Deferred();';
-					echo 'defs[3] = $.Deferred();';
+					echo 'var defs = genereteDeferredBook(degree);';
 					
-					echo 'loadScienceBookQuestionnair(degree, defs[0]);';
-					echo 'loadMathBookQuestionnair(degree, defs[1]);';
-					echo 'loadTechnologyBookQuestionnair(degree, defs[2]);';
-					echo 'loadDesignBookQuestionnair(degree, defs[3]);';
-					
-					echo 'if(degree > 6 && degree < 10){';
-					echo 'defs[4] = $.Deferred();';
-					echo 'loadScienceBookQuestionnair("789-additional", defs[4]);';
-
-					echo 'defs[5] = $.Deferred();';
-					echo 'loadTechnologyBookQuestionnair("789-additional", defs[5]);';
-						
-					echo 'if(degree > 7 && degree < 10){';
-					echo 'defs[6] = $.Deferred();';
-					echo 'loadDesignBookQuestionnair("89", defs[6]);';
-					echo '}';
-					echo '}';
-					
-					echo 'if(degree != 1 && degree != 4 && degree != 7){';
-					echo 'defs[7] = $.Deferred();';
-					echo 'loadDesignBookQuestionnair("all", defs[7]);';
-					echo '}';
-					
-					if($participant['r_receive_contribute_book'] === '1'){
-						echo 'defs[8] = $.Deferred();';	
-						echo '$("#contributeBookSelectedCollapse").collapse("show");';
-						echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
-						echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
-						echo 'loadContributePage = loadContributePage.concat(".php?type=s");';
-  
-						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs[8].resolve()});';
-					}
+					echo 'alert(defs.length);';
+					echo 'if(contribureDef != null){defs[defs.length] = contribureDef;}';
+					echo 'alert(defs.length);';
 					
 					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();showWellOfBookUsageSelected();reBindingTabEvent();setBookSatisfactionEvent();});';
 					

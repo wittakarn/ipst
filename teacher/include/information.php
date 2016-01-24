@@ -120,37 +120,37 @@
 							<div class="col-md-6">
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_1" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_1" value="1"/>
 									ประถมศึกษาปีที่ 1
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_2" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_2" value="1"/>
 									ประถมศึกษาปีที่ 2
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_3" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_3" value="1"/>
 									ประถมศึกษาปีที่ 3
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_4" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_4" value="1"/>
 									ประถมศึกษาปีที่ 4
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_5" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_5" value="1"/>
 									ประถมศึกษาปีที่ 5
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_6" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_6" value="1"/>
 									ประถมศึกษาปีที่ 6
 								  </label>
 								</div>
@@ -158,37 +158,37 @@
 							<div class="col-md-6">
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_7" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_7" value="1"/>
 									มัธยมศึกษาปีที่ 1
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_8" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_8" value="1"/>
 									มัธยมศึกษาปีที่ 2
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_9" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_9" value="1"/>
 									มัธยมศึกษาปีที่ 3
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_10" part="1" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_10" part="1" value="1"/>
 									มัธยมศึกษาปีที่ 4
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_11" part="1" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_11" part="1" value="1"/>
 									มัธยมศึกษาปีที่ 5
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree" type="checkbox" name="c_s_12" part="1" value="1"/>
+									<input class="s-group-degree s-degree" type="checkbox" name="c_s_12" part="1" value="1"/>
 									มัธยมศึกษาปีที่ 6
 								  </label>
 								</div>
@@ -217,19 +217,19 @@
 							<div class="col-md-6">
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sp-degree" type="checkbox" name="c_sp_10" part="2" value="1"/>
+									<input class="s-group-degree sp-degree" type="checkbox" name="c_sp_10" part="2" value="1"/>
 									มัธยมศึกษาปีที่ 4
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sp-degree" type="checkbox" name="c_sp_11" part="2" value="1"/>
+									<input class="s-group-degree sp-degree" type="checkbox" name="c_sp_11" part="2" value="1"/>
 									มัธยมศึกษาปีที่ 5
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sp-degree" type="checkbox" name="c_sp_12" part="2" value="1"/>
+									<input class="s-group-degree sp-degree" type="checkbox" name="c_sp_12" part="2" value="1"/>
 									มัธยมศึกษาปีที่ 6
 								  </label>
 								</div>
@@ -260,19 +260,19 @@
 							<div class="col-md-6">
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sc-degree" type="checkbox" name="c_sc_10" part="3" value="1"/>
+									<input class="s-group-degree sc-degree" type="checkbox" name="c_sc_10" part="3" value="1"/>
 									มัธยมศึกษาปีที่ 4
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sc-degree" type="checkbox" name="c_sc_11" part="3" value="1"/>
+									<input class="s-group-degree sc-degree" type="checkbox" name="c_sc_11" part="3" value="1"/>
 									มัธยมศึกษาปีที่ 5
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sc-degree" type="checkbox" name="c_sc_12" part="3" value="1"/>
+									<input class="s-group-degree sc-degree" type="checkbox" name="c_sc_12" part="3" value="1"/>
 									มัธยมศึกษาปีที่ 6
 								  </label>
 								</div>
@@ -301,19 +301,19 @@
 							<div class="col-md-6">
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sb-degree" type="checkbox" name="c_sb_10" part="4" value="1"/>
+									<input class="s-group-degree sb-degree" type="checkbox" name="c_sb_10" part="4" value="1"/>
 									มัธยมศึกษาปีที่ 4
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sb-degree" type="checkbox" name="c_sb_11" part="4" value="1"/>
+									<input class="s-group-degree sb-degree" type="checkbox" name="c_sb_11" part="4" value="1"/>
 									มัธยมศึกษาปีที่ 5
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree sb-degree" type="checkbox" name="c_sb_12" part="4" value="1"/>
+									<input class="s-group-degree sb-degree" type="checkbox" name="c_sb_12" part="4" value="1"/>
 									มัธยมศึกษาปีที่ 6
 								  </label>
 								</div>
@@ -344,19 +344,19 @@
 							<div class="col-md-6">
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree se-degree" type="checkbox" name="c_se_10" part="5" value="1"/>
+									<input class="s-group-degree se-degree" type="checkbox" name="c_se_10" part="5" value="1"/>
 									มัธยมศึกษาปีที่ 4
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree se-degree" type="checkbox" name="c_se_11" part="5" value="1"/>
+									<input class="s-group-degree se-degree" type="checkbox" name="c_se_11" part="5" value="1"/>
 									มัธยมศึกษาปีที่ 5
 								  </label>
 								</div>
 								<div class="checkbox">
 								  <label>
-									<input class="s-degree se-degree" type="checkbox" name="c_se_12" part="5" value="1"/>
+									<input class="s-group-degree se-degree" type="checkbox" name="c_se_12" part="5" value="1"/>
 									มัธยมศึกษาปีที่ 6
 								  </label>
 								</div>

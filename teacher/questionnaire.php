@@ -78,7 +78,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			var tabRef = "#scienceBook";
 			var scienceTab = $("a[ref='#scienceBook']");
 			var liElement;
-			var checkboxs = $(".s-degree").filter( ":checked" );
+			var checkboxs = $(".s-group-degree").filter( ":checked" );
 			var length = $(".nav-pills").children().length;
 
 			if (scienceTab.length == 0) {
@@ -254,14 +254,19 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 					
 					echo 'var defs = [];';
 					$defCount = 0;
+					$isScienceBookChecked = isset($participant['c_s']) && $participant['c_s'] === '1';
+					$isPhysicBookChecked = isset($participant['c_sp']) && $participant['c_sp'] === '1';
+					$isChemistryBookChecked = isset($participant['c_sc']) && $participant['c_sc'] === '1';
+					$isBoiBookChecked = isset($participant['c_sb']) && $participant['c_sb'] === '1';
+					$isEarthBookChecked = isset($participant['c_se']) && $participant['c_se'] === '1';
 					
-					if(isset($participant['c_s']) && $participant['c_s'] === '1'){
-						echo '$("#scienceSubjectSelectedCollapse").collapse("show");';
-						$isLoad101112Science = false;
+					if($isScienceBookChecked || $isPhysicBookChecked || $isChemistryBookChecked || $isBoiBookChecked || $isBoiBookChecked || $isEarthBookChecked){
 						$isLoad789ScienceAdditional = false;
+						$part = '';
 						for($i=1;$i<=12;$i++){
-							if(isset($participant['c_s_'.$i]) && $participant['c_s_'.$i] === '1'){
-								if($i <= 9){
+							if($i < 10){
+								if(isset($participant['c_s_'.$i]) && $participant['c_s_'.$i] === '1'){
+									echo '$("#scienceSubjectSelectedCollapse").collapse("show");';
 									echo 'defs['.$defCount.'] = $.Deferred();';
 									echo 'loadScienceBookQuestionnair('.$i.', defs['.$defCount.']);';
 									$defCount++;
@@ -272,15 +277,40 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 										$isLoad789ScienceAdditional = true;
 										$defCount++;
 									}
-								}else{
-									if($i > 9 && !$isLoad101112Science){
-										echo 'defs['.$defCount.'] = $.Deferred();';
-										echo 'loadScienceBookQuestionnair('.$i.', defs['.$defCount.']);';
-										$isLoad101112Science = true;
-										$defCount++;
-									}
+								}
+							}else{
+								
+								if(isset($participant['c_s_'.$i]) && $participant['c_s_'.$i] === '1'){
+									echo '$("#scienceSubjectSelectedCollapse").collapse("show");';
+									$part .= '1';
+								}
+								
+								if(isset($participant['c_sp_'.$i]) && $participant['c_sp_'.$i] === '1'){
+									echo '$("#physicSubjectSelectedCollapse").collapse("show");';
+									$part .= '2';
+								}
+								
+								if(isset($participant['c_sc_'.$i]) && $participant['c'.$i] === '1'){
+									echo '$("#chemistrySubjectSelectedCollapse").collapse("show");';
+									$part .= '3';
+								}
+								
+								if(isset($participant['c_sb_'.$i]) && $participant['c_sb_'.$i] === '1'){
+									echo '$("#bioSubjectSelectedCollapse").collapse("show");';
+									$part .= '4';
+								}
+								
+								if(isset($participant['c_se_'.$i]) && $participant['c_se_'.$i] === '1'){
+									echo '$("#earthSubjectSelectedCollapse").collapse("show");';
+									$part .= '5';
 								}
 							}
+						}
+						
+						//echo 'alert(' . $part . ');';
+						if($part !== ''){
+							echo 'defs['.$defCount.'] = $.Deferred();';
+							echo 'loadScienceBook101112Questionnair(10, ' . $part . ', defs['.$defCount.']);';
 						}
 					}
 					
@@ -378,7 +408,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						echo 'var loadContributePage = "'.ROOT.'include/contribute-";';
 						echo 'loadContributePage = loadContributePage.concat('.$contribution['r_contribute_book_category_selected'].');';
 						echo 'loadContributePage = loadContributePage.concat(".php?type=t");';
-
+						
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs['.$defCount.'].resolve()});';
 					}
 					

@@ -36,12 +36,12 @@ $(document)
                             reBindingTabEvent();
 						});
 						
-						$(".s-degree").click(function (e) {
+						$(".s-group-degree").click(function (e) {
 							reloadScienceBookContent();
 						});
                         
                         function reloadScienceBookContent() {
-                            var scienceDegrees = $(".s-degree").filter(":checked");
+                            var scienceDegrees = $(".s-group-degree").filter(":checked");
 							var fieldName;
 							var degree;
 							var splitArray;
