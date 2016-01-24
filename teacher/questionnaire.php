@@ -290,7 +290,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 									$part .= '2';
 								}
 								
-								if(isset($participant['c_sc_'.$i]) && $participant['c'.$i] === '1'){
+								if(isset($participant['c_sc_'.$i]) && $participant['c_sc_'.$i] === '1'){
 									echo '$("#chemistrySubjectSelectedCollapse").collapse("show");';
 									$part .= '3';
 								}
@@ -310,7 +310,8 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						//echo 'alert(' . $part . ');';
 						if($part !== ''){
 							echo 'defs['.$defCount.'] = $.Deferred();';
-							echo 'loadScienceBook101112Questionnair(10, ' . $part . ', defs['.$defCount.']);';
+							echo 'loadScienceBook101112Questionnair(12, ' . $part . ', defs['.$defCount.']);';
+							$defCount++;
 						}
 					}
 					
