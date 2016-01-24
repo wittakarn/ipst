@@ -92,7 +92,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-8">
-								<input type="text" name="i_receiver_postcode" class="form-control receive-information" digits="true"/>
+								<input type="text" name="i_receiver_postcode" class="form-control receive-information" digits="true" minlength="5"/>
 							</div>
 						</div>
 						<br/>
