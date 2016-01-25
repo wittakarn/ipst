@@ -41,7 +41,7 @@ require_once("../config.php");
     <!-- Begin page content -->
     <div class="container">
 		<div class="jumbotron">
-			<h3 class="text-center">ร่วมตอบแบบสอบถามความคิดเห็นเกี่ยวกับการใช้สื่อการเรียนรู้ สสวท.</h3>
+			<h3 class="text-center"><strong>ร่วมตอบแบบสอบถามความคิดเห็นเกี่ยวกับการใช้สื่อการเรียนรู้ สสวท.<strong></h3>
 			<br/>
 			<br/>
 			<h4 style="text-indent: 50px;">
@@ -55,7 +55,8 @@ require_once("../config.php");
 			     เว็บไซต์แบบสอบถามความคิดเห็นของนักเรียน    <a href="http://ipst.research-education.com/student">http://ipst.research-education.com/student</a>
 			</h4>
 			<br/>
-			<h4 style="text-indent: 50px;">
+			<br/>
+			<h4 class="text-center" style="color:red;">
 				ประกาศรายชื่อผู้ได้รับรางวัลในวันที่ 1 พฤษภาคม 2559 ที่เว็บไซต์  <a href="https://research.ipst.ac.th">https://research.ipst.ac.th</a>
 			</h4>
 		</div>
