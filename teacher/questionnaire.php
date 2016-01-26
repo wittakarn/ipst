@@ -90,6 +90,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 		}
 		
 		function reRenderDesignBookTabs(dynamicHead){
+			
 			var renderTab = false;
 			var tabRef = "#designBook";
 			var designTab = $("a[ref='#designBook']");
@@ -100,6 +101,11 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 			var splitArray;
 			var splitSize;
 			var degree;
+			
+			if (dynamicHead == null) {
+                dynamicHead = $(".section-tab:eq(" + (length - 2)  + ")").parent();
+            }
+			
 			checkboxs.each(function() {
 				fieldName = $(this).attr("name");
 				splitArray = fieldName.split("_");
@@ -109,8 +115,8 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
                     renderTab = true;
                 }
 			});
+			
 			if (renderTab) {
-				
 				if (designTab.length == 0) {
                     liElement = createBookTab(length, tabRef);
 					dynamicHead.after(liElement);
@@ -413,7 +419,7 @@ $_SESSION['SUBMIT_INFORMATION'] = $_POST;
 						echo '$("#contributeBookSelectedSection").load(loadContributePage, function(){defs['.$defCount.'].resolve()});';
 					}
 					
-					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();reRenderDesignBookTabs();reBindingTabEvent();disableBookSatisfyGroup();setBookSatisfactionEvent();});';
+					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();populateBookTabs();showWellOfBookUsageSelected();reRenderDesignBookTabs(null);reBindingTabEvent();disableBookSatisfyGroup();setBookSatisfactionEvent();});';
 				}
 			?>
 		}

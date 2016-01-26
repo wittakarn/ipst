@@ -253,9 +253,7 @@ session_start();
 					echo 'populateBookTabs(degree);';
 					echo 'var defs = genereteDeferredBook(degree);';
 					
-					echo 'alert(defs.length);';
 					echo 'if(contribureDef != null){defs[defs.length] = contribureDef;}';
-					echo 'alert(defs.length);';
 					
 					echo '$.when.apply($,defs).done(function() {initialSelectedQuestionnaire();showWellOfBookUsageSelected();reBindingTabEvent();setBookSatisfactionEvent();});';
 					

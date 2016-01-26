@@ -216,8 +216,8 @@ $(document)
 									defsIndex++;
 								}
 							});
-							
-                            reRenderDesignBookTabs();
+                            
+                            reRenderDesignBookTabs(null);
                             
 							$.when.apply($,defs).done(function() {reBindingTabEvent();setBookSatisfactionEvent();});
 						});
