@@ -416,27 +416,39 @@ class StatisticPDF extends TCPDF {
 			$this->SetFont('', '', 12);
 			$this->Ln();
 			
-			$allCount = $data['all_count'];
-			$scienceCount = $data['s_count'];
-			$mathCount = $data['m_count'];
-			$technologyCount = $data['t_count'];
-			$designCount = $data['d_count'];
+			$allCount = self::convertNullToZero($data['all_count']);
+			$scienceCount = self::convertNullToZero($data['s_count']);
+			$physicCount = self::convertNullToZero($data['sp_count']);
+			$chemistryCount = self::convertNullToZero($data['sc_count']);
+			$bioCount = self::convertNullToZero($data['sb_count']);
+			$earthCount = self::convertNullToZero($data['se_count']);
+			$mathCount = self::convertNullToZero($data['m_count']);
+			$technologyCount = self::convertNullToZero($data['t_count']);
+			$designCount = self::convertNullToZero($data['d_count']);
 			
 			$sciencePercent = static::generatePercent($scienceCount, $allCount);
+			$physicPercent = static::generatePercent($physicCount, $allCount);
+			$chemistryPercent = static::generatePercent($chemistryCount, $allCount);
+			$bioPercent = static::generatePercent($bioCount, $allCount);
+			$earthPercent = static::generatePercent($earthCount, $allCount);
 			$mathPercent = static::generatePercent($mathCount, $allCount);
 			$technologyPercent = static::generatePercent($technologyCount, $allCount);
 			$designPercent = static::generatePercent($designCount, $allCount);
 			
 			$scienceResult = 'สอนวิทยาศาสตร์ : '.$scienceCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$sciencePercent.' %';
+			$physicResult = 'สอนฟิสิกส์ : '.$physicCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$physicPercent.' %';
+			$chemistryResult = 'สอนเคมี : '.$chemistryCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$chemistryPercent.' %';
+			$bioResult = 'สอนชีวะ : '.$bioCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$bioPercent.' %';
+			$earthResult = 'สอนโลก ดาราศาสตร์ : '.$earthCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$earthPercent.' %';
 			$mathResult = 'สอนคณิตศาสตร์ : '.$mathCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$mathPercent.' %';
 			$technologyResult = 'สอนเทคโนโลยี : '.$technologyCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$technologyPercent.' %';
 			$designResult = 'สอนออกแบบ : '.$designCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$designPercent.' %';
 			
-			$colours = array('#0000FF', '#00FF00', '#FF0000', '#FF00FF');
+			$colours = array('#0000FF', '#00FFFF', '#FFFF00', '#FFBF00', '#00FFBF', '#00FF00', '#FF0000', '#FF00FF');
 			$graph = new SVGGraph(400, 300, self::$svgSettings);
 			$graph->colours = $colours;
 			 
-			$values = array('วิทยศาสตร์' => $sciencePercent, 'คณิตศาสตร์' => $mathPercent, 'เทคโนโลยี' => $technologyPercent, 'ออกแบบ' => $designPercent);
+			$values = array('วิทย์' => $sciencePercent, 'ฟิสิกส์ ' => $physicPercent, 'เคมี' => $chemistryPercent, 'ชีวะ' => $bioPercent, 'โลก' => $earthPercent, 'คณิต' => $mathPercent, 'เทคโน' => $technologyPercent, 'ออกแบบ' => $designPercent);
 			 
 			$graph->Values($values);
 			$outputSvg = $graph->fetch('BarGraph');
@@ -450,6 +462,37 @@ class StatisticPDF extends TCPDF {
 			$this->MultiCell(0, 0, $scienceResult, '', 'L', $fill, 0, '', '', true, 0);
 			
 			$this->Ln();
+			
+			$this->SetFillColor(0, 255, 255);
+			$fill = 1;
+			$this->MultiCell(5, 5, '', 1, 'L', $fill, 0, '', '', true, 0);
+			$fill = 0;
+			$this->MultiCell(0, 0, $physicResult, '', 'L', $fill, 0, '', '', true, 0);
+			
+			$this->Ln();
+			
+			$this->SetFillColor(255, 255, 0);
+			$fill = 1;
+			$this->MultiCell(5, 5, '', 1, 'L', $fill, 0, '', '', true, 0);
+			$fill = 0;
+			$this->MultiCell(0, 0, $chemistryResult, '', 'L', $fill, 0, '', '', true, 0);
+			
+			$this->Ln();
+			
+			$this->SetFillColor(255, 191, 0);
+			$fill = 1;
+			$this->MultiCell(5, 5, '', 1, 'L', $fill, 0, '', '', true, 0);
+			$fill = 0;
+			$this->MultiCell(0, 0, $bioResult, '', 'L', $fill, 0, '', '', true, 0);
+			
+			$this->Ln();
+			
+			$this->SetFillColor(0, 255, 191);
+			$fill = 1;
+			$this->MultiCell(5, 5, '', 1, 'L', $fill, 0, '', '', true, 0);
+			$fill = 0;
+			$this->MultiCell(0, 0, $earthResult, '', 'L', $fill, 0, '', '', true, 0);
+			
 			$this->Ln();
 			
 			$this->SetFillColor(0, 255, 0);
@@ -459,7 +502,6 @@ class StatisticPDF extends TCPDF {
 			$this->MultiCell(0, 0, $mathResult, '', 'L', $fill, 0, '', '', true, 0);
 			
 			$this->Ln();
-			$this->Ln();
 			
 			$this->SetFillColor(255, 0, 0);
 			$fill = 1;
@@ -467,7 +509,6 @@ class StatisticPDF extends TCPDF {
 			$fill = 0;
 			$this->MultiCell(0, 0, $technologyResult, '', 'L', $fill, 0, '', '', true, 0);
 			
-			$this->Ln();
 			$this->Ln();
 			
 			$this->SetFillColor(255, 0, 255);

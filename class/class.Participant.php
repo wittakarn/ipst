@@ -299,7 +299,7 @@ class Participant
 	}
 	
 	public static function getTeacherSubjectStatistic($conn){
-		$selectQuery = "SELECT SUM(c_s = '1') AS s_count, SUM(c_m = '1') AS m_count, SUM(c_t = '1') AS t_count, SUM(c_d = '1') AS d_count, count(id) AS all_count ";
+		$selectQuery = "SELECT SUM(c_s = '1') AS s_count, SUM(c_sp = '1') AS sp_count, SUM(c_sc = '1') AS sc_count, SUM(c_sb = '1') AS sb_count, SUM(c_se = '1') AS se_count, SUM(c_m = '1') AS m_count, SUM(c_t = '1') AS t_count, SUM(c_d = '1') AS d_count, count(id) AS all_count ";
 		$fromQuery = "FROM participant ";
 		$whereQuery = "WHERE status = 'a' ";
 		$whereQuery .= "AND type = 't' ";
