@@ -472,6 +472,34 @@ class Participant
 		
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
+	
+	public static function getSummaryOfAgeAndExp($conn){
+		$selectQuery = "SELECT MIN(s_age) min_age, MAX(s_age) max_age, MIN(s_experience) min_exp, MAX(s_experience) max_exp, SUM(s_age) sum_age, SUM(s_experience) sum_exp, COUNT(s_age) count_age, COUNT(s_experience) count_exp ";
+		$fromQuery = "FROM participant a ";
+		$whereQuery = "WHERE a.status = 'a' ";
+		$whereQuery .= "AND a.type = 't' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getAllAgeAndExp($conn){
+		$selectQuery = "SELECT s_age, s_experience ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = 't' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 }
 
 ?>

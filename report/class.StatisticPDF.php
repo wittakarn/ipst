@@ -687,8 +687,70 @@ class StatisticPDF extends TCPDF {
 		}
 	}
 	
+	public function generateAgeAndExperienceStatisticTable($data, $datas) {
+		
+		$this->SetFont('', 'B', 16);
+		$this->Cell(0, 14, 'สถิติอายุและประสบการณ์ในการสอน', 0, 2, 'C', 0, '', 0, false, 'B', 'C');
+		
+        // Colors, line width and bold font
+        $this->SetFillColor(255, 0, 0);
+        $this->SetTextColor(255);
+        $this->SetDrawColor(128, 0, 0);
+        $this->SetLineWidth(0.3);
+        $this->SetFont('', 'B');
+		
+        // Header
+        $this->Cell(60, 7, 'รายการ', 1, 0, 'C', 1);
+		$this->Cell(30, 7, 'Mean', 1, 0, 'C', 1);
+		$this->Cell(30, 7, 'SD', 1, 0, 'C', 1);
+		$this->Cell(30, 7, 'Min', 1, 0, 'C', 1);
+		$this->Cell(30, 7, 'Max', 1, 0, 'C', 1);
+		
+        // Color and font restoration
+        $this->SetFillColor(224, 235, 255);
+        $this->SetTextColor(0);
+        $this->SetFont('', '', 12);
+        
+		$this->Ln();
+		
+		$minAge = $data['min_age'];
+		$maxAge = $data['max_age'];
+		$countAge = $data['count_age'];
+		$sumAge = $data['sum_age'];
+		$avgAge = self::devide($sumAge, $countAge);
+		$minExp = $data['min_exp'];
+		$maxExp = $data['max_exp'];
+		$countExp = $data['count_exp'];
+		$sumExp = $data['sum_exp'];
+		$avgExp = self::devide($sumExp, $countExp);
+		
+		$variance['age'] = 0;
+		$variance['s_experience'] = 0;
+		foreach($datas as $row) {
+			$variance['age'] = $variance['age'] + pow(($row["s_age"] - $avgAge), 2);
+			$variance['s_experience'] = $variance['s_experience'] + pow(($row["s_experience"] - $avgExp), 2);
+		}
+		
+		// Data
+        $fill = 0;
+		$this->Cell(60, 6, 'อายุ', 'LR', 0, 'L', $fill);
+		$this->Cell(30, 6, $avgAge, 'LR', 0, 'R', $fill);
+		$this->Cell(30, 6, round(sqrt($variance['age']), 2), 'LR', 0, 'R', $fill);
+		$this->Cell(30, 6, $minAge, 'LR', 0, 'R', $fill);
+		$this->Cell(30, 6, $maxAge, 'LR', 0, 'R', $fill);
+		
+		$this->Ln();
+		
+		$fill = 1;
+		$this->Cell(60, 6, 'ประสบการณ์สอน', 'LRB', 0, 'L', $fill);
+		$this->Cell(30, 6, $avgExp, 'LRB', 0, 'R', $fill);
+		$this->Cell(30, 6, round(sqrt($variance['s_experience']), 2), 'LRB', 0, 'R', $fill);
+		$this->Cell(30, 6, $minExp, 'LRB', 0, 'R', $fill);
+		$this->Cell(30, 6, $maxExp, 'LRB', 0, 'R', $fill);
+    }
+	
 	// Colored table
-    public function statisticTable($titleTable, $header,$data) {
+    public function statisticTable($titleTable, $header, $data) {
 		
 		$this->SetFont('', 'B', 16);
 		$this->Cell(0, 14, $titleTable, 0, 2, 'C', 0, '', 0, false, 'B', 'C');
@@ -783,6 +845,15 @@ class StatisticPDF extends TCPDF {
 		$this->Ln();
 		$fill=!$fill;
     }
+	
+	public static function devide($val1, $val2){
+		$divisor = 0;
+		if($val2 > 0){
+			$divisor = $val2;
+		}
+		
+		return $val1/$divisor;
+	}
 	
 	public static function generatePercent($count, $total){
 		$percent = 0;

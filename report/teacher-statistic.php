@@ -28,6 +28,8 @@ if (isset($_SESSION['user_id'])){
 		$technologyInstructorStatistic = Participant::getTechnologyBookInstructorStatistic($conn);
 		$designStatistic = Participant::getDesignBookStatistic($conn, 't');
 		$designInstructorStatistic = Participant::getDesignBookInstructorStatistic($conn);
+		$summaryAgeAndExp = Participant::getSummaryOfAgeAndExp($conn);
+		$ageAndExps = Participant::getAllAgeAndExp($conn);
 		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -78,6 +80,9 @@ if (isset($_SESSION['user_id'])){
 		
 		// add a page
 		$pdf->AddPage();
+		
+		$pdf->generateAgeAndExperienceStatisticTable($summaryAgeAndExp, $ageAndExps);
+		$pdf->Ln(20);
 		
 		// column titles
 		$tableHeader = array('รายชื่อหนังสือ', 'ได้ใช้', 'ไม่ได้ใช้', 'พึงพอใจ', 'เฉยๆ', 'ไม่พึงพอใจ');
