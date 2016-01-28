@@ -1,0 +1,1 @@
+﻿log folder is applied to storage error log from the ipst application.

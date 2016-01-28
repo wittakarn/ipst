@@ -222,76 +222,16 @@ class StatisticPDF extends TCPDF {
 			$degree11Percent = static::generatePercent($degree11Count, $allCount);
 			$degree12Percent = self::getRemainResult(100, $degree1Percent + $degree2Percent + $degree3Percent + $degree4Percent + $degree5Percent + $degree6Percent + $degree7Percent + $degree8Percent + $degree9Percent + $degree10Percent + $degree11Percent);
 			
-			$degree1Degree = static::generateDegree($degree1Count, $allCount);
-			$degree2Degree = static::generateDegree($degree2Count, $allCount);
-			$degree3Degree = static::generateDegree($degree3Count, $allCount);
-			$degree4Degree = static::generateDegree($degree4Count, $allCount);
-			$degree5Degree = static::generateDegree($degree5Count, $allCount);
-			$degree6Degree = static::generateDegree($degree6Count, $allCount);
-			$degree7Degree = static::generateDegree($degree7Count, $allCount);
-			$degree8Degree = static::generateDegree($degree8Count, $allCount);
-			$degree9Degree = static::generateDegree($degree9Count, $allCount);
-			$degree10Degree = static::generateDegree($degree10Count, $allCount);
-			$degree11Degree = static::generateDegree($degree11Count, $allCount);
-			$degree12Degree = self::getRemainResult(360, $degree1Degree + $degree2Degree + $degree3Degree + $degree4Degree + $degree5Degree + $degree6Degree + $degree7Degree + $degree8Degree + $degree9Degree + $degree10Degree + $degree11Degree);
+			$colours = array_reverse(array('#0000FF', '#FF00FF', '#FF0080', '#0080FF', '#3d3dFF', '#FF0000', '#00FFFF', '#FFFF70', '#FF8000', '#00FF80', '#80FF00', '#FFFF00'));
+			$graph = new SVGGraph(400, 300, self::$svgSettings);
+			$graph->colours = $colours;
 			
-			$this->SetFillColor(0, 0, 255);
-			$this->PieSector($xc, $yc, $r, 0, $degree1Degree, 'FD', false, 0, 2);
+			$values = array_reverse(array('ป.1' => $degree1Percent, 'ป.2' => $degree2Percent, 'ป.3' => $degree3Percent, 'ป.4' => $degree4Percent, 'ป.5' => $degree5Percent, 'ป.6' => $degree6Percent, 'ม.1' => $degree7Percent, 'ม.2' => $degree8Percent, 'ม.3' => $degree9Percent, 'ม.4' => $degree10Percent, 'ม.5' => $degree11Percent, 'ม.6' => $degree12Percent));
+			 
+			$graph->Values($values);
+			$outputSvg = $graph->fetch('HorizontalBarGraph');
 			
-			$degree2Degree += $degree1Degree;
-			
-			$this->SetFillColor(255, 0, 255);
-			$this->PieSector($xc, $yc, $r, $degree1Degree, $degree2Degree, 'FD', false, 0, 2);
-			
-			$degree3Degree += $degree2Degree;
-			
-			$this->SetFillColor(255, 0, 128);
-			$this->PieSector($xc, $yc, $r, $degree2Degree, $degree3Degree, 'FD', false, 0, 2);
-			
-			$degree4Degree += $degree3Degree;
-			
-			$this->SetFillColor(0, 128, 255);
-			$this->PieSector($xc, $yc, $r, $degree3Degree, $degree4Degree, 'FD', false, 0, 2);
-			
-			$degree5Degree += $degree4Degree;
-			
-			$this->SetFillColor(61, 61, 255);
-			$this->PieSector($xc, $yc, $r, $degree4Degree, $degree5Degree, 'FD', false, 0, 2);
-			
-			$degree6Degree += $degree5Degree;
-			
-			$this->SetFillColor(255, 0, 0);
-			$this->PieSector($xc, $yc, $r, $degree5Degree, $degree6Degree, 'FD', false, 0, 2);
-			
-			$degree7Degree += $degree6Degree;
-			
-			$this->SetFillColor(0, 255, 255);
-			$this->PieSector($xc, $yc, $r, $degree6Degree, $degree7Degree, 'FD', false, 0, 2);
-			
-			$degree8Degree += $degree7Degree;
-			
-			$this->SetFillColor(255, 255, 112);
-			$this->PieSector($xc, $yc, $r, $degree7Degree, $degree8Degree, 'FD', false, 0, 2);
-			
-			$degree9Degree += $degree8Degree;
-			
-			$this->SetFillColor(255, 128, 0);
-			$this->PieSector($xc, $yc, $r, $degree8Degree, $degree9Degree, 'FD', false, 0, 2);
-			
-			$degree10Degree += $degree9Degree;
-			
-			$this->SetFillColor(0, 255, 128);
-			$this->PieSector($xc, $yc, $r, $degree9Degree, $degree10Degree, 'FD', false, 0, 2);
-			
-			$degree11Degree += $degree10Degree;
-			
-			$this->SetFillColor(128, 255, 0);
-			$this->PieSector($xc, $yc, $r, $degree10Degree, $degree11Degree, 'FD', false, 0, 2);
-			
-			$degree12Degree += $degree11Degree;
-			
-			$this->SetFillColor(255, 255, 0);
-			$this->PieSector($xc, $yc, $r, $degree11Degree, $degree12Degree, 'FD', false, 0, 2);
+			$this->ImageSVG('@'.$outputSvg, $x=self::$horizontalOfBarGraph, $y=$verticalLength - self::$svgGraphPadding, $w='', $h='', $link='', $align='', $palign='', $border=0, $fitonpage=false);
 			
 			$degree1Result = 'ป.1 : '.$degree1Count.' คน จาก '.$allCount.' คน คิดเป็น : '.$degree1Percent.' %';
 			$degree2Result = 'ป.2 : '.$degree2Count.' คน จาก '.$allCount.' คน คิดเป็น : '.$degree2Percent.' %';
