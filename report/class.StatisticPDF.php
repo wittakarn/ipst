@@ -435,14 +435,14 @@ class StatisticPDF extends TCPDF {
 			$technologyPercent = static::generatePercent($technologyCount, $allCount);
 			$designPercent = static::generatePercent($designCount, $allCount);
 			
-			$scienceResult = 'สอนวิทยาศาสตร์ : '.$scienceCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$sciencePercent.' %';
-			$physicResult = 'สอนฟิสิกส์ : '.$physicCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$physicPercent.' %';
-			$chemistryResult = 'สอนเคมี : '.$chemistryCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$chemistryPercent.' %';
-			$bioResult = 'สอนชีวะ : '.$bioCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$bioPercent.' %';
-			$earthResult = 'สอนโลก ดาราศาสตร์ : '.$earthCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$earthPercent.' %';
-			$mathResult = 'สอนคณิตศาสตร์ : '.$mathCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$mathPercent.' %';
-			$technologyResult = 'สอนเทคโนโลยี : '.$technologyCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$technologyPercent.' %';
-			$designResult = 'สอนออกแบบ : '.$designCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$designPercent.' %';
+			$scienceResult = 'วิทยาศาสตร์ : '.$scienceCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$sciencePercent.' %';
+			$physicResult = 'ฟิสิกส์ : '.$physicCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$physicPercent.' %';
+			$chemistryResult = 'เคมี : '.$chemistryCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$chemistryPercent.' %';
+			$bioResult = 'สีวะ : '.$bioCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$bioPercent.' %';
+			$earthResult = 'โลก ดาราศาสตร์ : '.$earthCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$earthPercent.' %';
+			$mathResult = 'คณิตศาสตร์ : '.$mathCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$mathPercent.' %';
+			$technologyResult = 'เทคโนโลยี : '.$technologyCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$technologyPercent.' %';
+			$designResult = 'ออกแบบ : '.$designCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$designPercent.' %';
 			
 			$colours = array('#0000FF', '#00FFFF', '#FFFF00', '#FFBF00', '#00FFBF', '#00FF00', '#FF0000', '#FF00FF');
 			$graph = new SVGGraph(400, 300, self::$svgSettings);
@@ -866,11 +866,11 @@ class StatisticPDF extends TCPDF {
 	
 	public static function getRemainResult($total, $theRest){
 		$resultVal = $total - $theRest;
-		if($resultVal < 0){
+		if($resultVal < 0.02){
 			$resultVal = 0;
 		}
 		
-		return $resultVal;
+		return round($resultVal, 2);
 	}
 	
 	public static function convertNullToZero($data){
