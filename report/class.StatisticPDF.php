@@ -734,7 +734,7 @@ class StatisticPDF extends TCPDF {
 		// Data
         $fill = 0;
 		$this->Cell(60, 6, 'อายุ(ปี)', 'LR', 0, 'L', $fill);
-		$this->Cell(30, 6, $avgAge, 'LR', 0, 'R', $fill);
+		$this->Cell(30, 6, round($avgAge, 2), 'LR', 0, 'R', $fill);
 		$this->Cell(30, 6, round(sqrt($variance['age']), 2), 'LR', 0, 'R', $fill);
 		$this->Cell(30, 6, $minAge, 'LR', 0, 'R', $fill);
 		$this->Cell(30, 6, $maxAge, 'LR', 0, 'R', $fill);
@@ -743,7 +743,7 @@ class StatisticPDF extends TCPDF {
 		
 		$fill = 1;
 		$this->Cell(60, 6, 'ประสบการณ์สอน(ปี)', 'LRB', 0, 'L', $fill);
-		$this->Cell(30, 6, $avgExp, 'LRB', 0, 'R', $fill);
+		$this->Cell(30, 6, round($avgExp, 2), 'LRB', 0, 'R', $fill);
 		$this->Cell(30, 6, round(sqrt($variance['s_experience']), 2), 'LRB', 0, 'R', $fill);
 		$this->Cell(30, 6, $minExp, 'LRB', 0, 'R', $fill);
 		$this->Cell(30, 6, $maxExp, 'LRB', 0, 'R', $fill);
