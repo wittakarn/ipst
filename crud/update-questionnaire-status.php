@@ -29,7 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$conn->commit();
 	} catch (PDOException $e) {
 		$conn->rollBack();
-		echo "Failed: " . $e->getMessage();
+		$error = " Failed: " . $e->getMessage();
+		echo $error;
+		error_log(date('Y/m/d H:i:s').$error.PHP_EOL, 3, APP_LOG);
 	}
 	$conn = null;
 }

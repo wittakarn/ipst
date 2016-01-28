@@ -2,6 +2,7 @@
 define('MAIN_APP_ROOT', '/ipst');
 define('ROOT', '/ipst/');
 define('DOCUMENT_ROOT', realpath($_SERVER['DOCUMENT_ROOT']).ROOT);
+define('APP_LOG', DOCUMENT_ROOT.'log/error.log');
 define('APP_DOMAIN', $_SERVER['HTTP_HOST']);
 define('WEB_ROOT', 'http://'.APP_DOMAIN.ROOT);
 define('REFRESH_DELAY', 60);
