@@ -847,7 +847,7 @@ class StatisticPDF extends TCPDF {
     }
 	
 	public static function devide($val1, $val2){
-		$divisor = 0;
+		$divisor = 1;
 		if($val2 > 0){
 			$divisor = $val2;
 		}
