@@ -121,8 +121,11 @@ class Contribution
 		
 		$orderQuery = " ORDER BY a.id ";
 		
-		$limit = " LIMIT ".$params['count'];
-		$limit .= " OFFSET 0";
+		$limit = '';
+		if(isset($params['count']) && $params['count'] !== ''){
+			$limit = " LIMIT ".$params['count'];
+			$limit .= " OFFSET 0";	
+		}
 		
 		$subQuery = $selectQuery.$fromQuery.$whereQuery.$orderQuery.$limit;
 		

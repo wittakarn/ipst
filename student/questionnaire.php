@@ -278,7 +278,7 @@ session_start();
 							}if(startsWith($key, 's_')){
 								echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
 							}if(startsWith($key, 't_')){
-								echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+								echo '$("textarea[name=\''.$key,'\']").val("'.removeNewLines($value).'");';
 							}
 						}
 					}
@@ -304,7 +304,7 @@ session_start();
 								}if(startsWith($key, 's_')){
 									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
 								}if(startsWith($key, 't_')){
-									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+									echo '$("textarea[name=\''.$key,'\']").val("'.removeNewLines($value).'");';
 								}
 							}
 						}
@@ -331,7 +331,7 @@ session_start();
 								}if(startsWith($key, 's_')){
 									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
 								}if(startsWith($key, 't_')){
-									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+									echo '$("textarea[name=\''.$key,'\']").val("'.removeNewLines($value).'");';
 								}
 							}
 						}
@@ -358,7 +358,7 @@ session_start();
 								}if(startsWith($key, 's_')){
 									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
 								}if(startsWith($key, 't_')){
-									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+									echo '$("textarea[name=\''.$key,'\']").val("'.removeNewLines($value).'");';
 								}
 							}
 						}
@@ -385,7 +385,7 @@ session_start();
 								}if(startsWith($key, 's_')){
 									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
 								}if(startsWith($key, 't_')){
-									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+									echo '$("textarea[name=\''.$key,'\']").val("'.removeNewLines($value).'");';
 								}
 							}
 						}
@@ -405,7 +405,7 @@ session_start();
 								}if(startsWith($key, 's_')){
 									echo '$("select[name=\''.$key,'\']").val("'.$value.'");';
 								}if(startsWith($key, 't_')){
-									echo '$("textarea[name=\''.$key,'\']").val("'.$value.'");';
+									echo '$("textarea[name=\''.$key,'\']").val("'.removeNewLines($value).'");';
 								}
 							}
 						}
@@ -414,6 +414,10 @@ session_start();
 				
 				function startsWith($pattern, $startWith) {
 					return $startWith === "" || strrpos($pattern, $startWith, -strlen($pattern)) !== FALSE;
+				}
+				
+				function removeNewLines($value){
+				  return trim(preg_replace('/\s\s+/', ' ', $value));
 				}
 			?>
 		}
