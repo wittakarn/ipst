@@ -378,7 +378,7 @@ class StatisticPDF extends TCPDF {
 			$scienceResult = 'วิทยาศาสตร์ : '.$scienceCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$sciencePercent.' %';
 			$physicResult = 'ฟิสิกส์ : '.$physicCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$physicPercent.' %';
 			$chemistryResult = 'เคมี : '.$chemistryCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$chemistryPercent.' %';
-			$bioResult = 'สีวะ : '.$bioCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$bioPercent.' %';
+			$bioResult = 'ชีวะ : '.$bioCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$bioPercent.' %';
 			$earthResult = 'โลก ดาราศาสตร์ : '.$earthCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$earthPercent.' %';
 			$mathResult = 'คณิตศาสตร์ : '.$mathCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$mathPercent.' %';
 			$technologyResult = 'เทคโนโลยี : '.$technologyCount.' คน จาก '.$allCount.' คน คิดเป็น : '.$technologyPercent.' %';
@@ -747,6 +747,68 @@ class StatisticPDF extends TCPDF {
 		$this->Cell(30, 6, round(sqrt($variance['s_experience']), 2), 'LRB', 0, 'R', $fill);
 		$this->Cell(30, 6, $minExp, 'LRB', 0, 'R', $fill);
 		$this->Cell(30, 6, $maxExp, 'LRB', 0, 'R', $fill);
+    }
+	
+	// Colored table
+    public function subjectStatisticTable($titleTable, $header, $generalsData, $specialsData) {
+		
+		$this->SetFont('', 'B', 16);
+		$this->Cell(0, 14, $titleTable, 0, 2, 'C', 0, '', 0, false, 'B', 'C');
+		
+        // Colors, line width and bold font
+        $this->SetFillColor(255, 0, 0);
+        $this->SetTextColor(255);
+        $this->SetDrawColor(128, 0, 0);
+        $this->SetLineWidth(0.3);
+        $this->SetFont('', 'B');
+        // Header
+        $w = array(20, 20, 20, 20, 20, 20, 20, 20, 20);
+        $num_headers = count($header);
+        for($i = 0; $i < $num_headers; ++$i) {
+            $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+        }
+		
+        // Color and font restoration
+        $this->SetFillColor(224, 235, 255);
+        $this->SetTextColor(0);
+        $this->SetFont('', '', 12);
+        // Data
+        $fill = 0;
+		
+		$this->Ln();
+		
+		$generalData;
+		$genScience;
+		$math;
+		$technology;
+		$design;
+		
+		$physic;
+		$chemistry;
+		$biology;
+		$earth;
+		
+		for ($degree = 1; $degree < 7; $degree++) {
+			$generalData = $generalsData[$degree - 1];
+			
+			$genScience = self::convertNullToZero($generalData['gen_science']);
+			$math = self::convertNullToZero($generalData['math']);
+			$technology = self::convertNullToZero($generalData['technology']);
+			$design = self::convertNullToZero($generalData['design']);
+			
+			$this->Cell(20, 6, 'ป.'.$degree, 'LR', 0, 'L', $fill);
+			$this->Cell(20, 6, $genScience, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, $math, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, $technology, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, $design, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, 0, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, 0, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, 0, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, 0, 'LR', 0, 'R', $fill);
+			
+			$this->Ln();
+			$fill=!$fill;
+		}
     }
 	
 	// Colored table

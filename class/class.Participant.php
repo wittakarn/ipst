@@ -500,6 +500,54 @@ class Participant
 		
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+	
+	public static function getSummaryGeneralSubjectByDegree($conn, $degree){
+		
+		$genScience = "c_s_".$degree;
+		$math = "c_m_".$degree;
+		$technology = "c_t_".$degree;
+		$design = "c_d_".$degree;
+		
+		$selectQuery = "SELECT ";
+		$selectQuery .= "SUM(".$genScience.") AS gen_science, ";
+		$selectQuery .= "SUM(".$math.") AS math, ";
+		$selectQuery .= "SUM(".$technology.") AS technology, ";
+		$selectQuery .= "SUM(".$design.") AS design ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = 't' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public static function getSummarySpecialSubjectByDegree($conn, $degree){
+		
+		$physic = "c_sp_".$degree;
+		$chemistry = "c_sc_".$degree;
+		$biology = "c_sb_".$degree;
+		$earth = "c_se_".$degree;
+		
+		$selectQuery = "SELECT ";
+		$selectQuery .= "SUM(".$physic.") AS physic, ";
+		$selectQuery .= "SUM(".$chemistry.") AS chemistry, ";
+		$selectQuery .= "SUM(".$biology.") AS biology, ";
+		$selectQuery .= "SUM(".$earth.") AS earth ";
+		$fromQuery = "FROM participant ";
+		$whereQuery = "WHERE status = 'a' ";
+		$whereQuery .= "AND type = 't' ";
+		
+		$query = $selectQuery.$fromQuery.$whereQuery;
+		
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
 }
 
 ?>

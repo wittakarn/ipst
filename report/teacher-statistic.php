@@ -31,6 +31,15 @@ if (isset($_SESSION['user_id'])){
 		$summaryAgeAndExp = Participant::getSummaryOfAgeAndExp($conn);
 		$ageAndExps = Participant::getAllAgeAndExp($conn);
 		
+		for ($degree = 1; $degree < 10; $degree++) {
+			$generalSubject[$degree - 1] = Participant::getSummaryGeneralSubjectByDegree($conn, $degree);
+		}
+		
+		for ($degree = 10; $degree < 13; $degree++) {
+			$generalSubject[$degree - 1] = Participant::getSummaryGeneralSubjectByDegree($conn, $degree);
+			$specialSubject[$degree - 1] = Participant::getSummarySpecialSubjectByDegree($conn, $degree);
+		}
+		
 		// create new PDF document
 		$pdf = new StatisticPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		$pdf->titleHeader = 'สถิติจากแบบประเมินฯของครู';
@@ -85,8 +94,14 @@ if (isset($_SESSION['user_id'])){
 		$pdf->Ln(20);
 		
 		// column titles
+		$tableHeader = array('ระดับชั้น', 'วิทยาศาสตร์', 'คณิตศาสตร์', 'เทคโนโลยี', 'ออกแบบ', 'ฟิสิกส์', 'เคมี', 'ชีวะ', 'ดาราศาสตร์');
+		$pdf->subjectStatisticTable("สถิติแยกตามชั้นปีที่สอน", $tableHeader, $generalSubject, $specialSubject);
+		$pdf->Ln(20);
+		
+		// column titles
 		$tableHeader = array('รายชื่อหนังสือ', 'ได้ใช้', 'ไม่ได้ใช้', 'พึงพอใจ', 'เฉยๆ', 'ไม่พึงพอใจ');
 		$pdf->statisticTable("วิชาวิทยาศาสตร์", $tableHeader, $scienceStatistic);
+		$pdf->Ln(20);
 		
 		$pdf->Ln(20);
 		$pdf->statisticTable("คู่มือครูวิชาวิทยาศาสตร์", $tableHeader, $scienceInstructorStatistic);
