@@ -809,6 +809,60 @@ class StatisticPDF extends TCPDF {
 			$this->Ln();
 			$fill=!$fill;
 		}
+		
+		for ($degree = 7; $degree < 10; $degree++) {
+			$generalData = $generalsData[$degree - 1];
+			
+			$genScience = self::convertNullToZero($generalData['gen_science']);
+			$math = self::convertNullToZero($generalData['math']);
+			$technology = self::convertNullToZero($generalData['technology']);
+			$design = self::convertNullToZero($generalData['design']);
+			
+			$this->Cell(20, 6, 'ม.'.($degree - 6), 'LR', 0, 'L', $fill);
+			$this->Cell(20, 6, $genScience, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, $math, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, $technology, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, $design, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, 0, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, 0, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, 0, 'LR', 0, 'R', $fill);
+			$this->Cell(20, 6, 0, 'LR', 0, 'R', $fill);
+			
+			$this->Ln();
+			$fill=!$fill;
+		}
+		
+		$borderType = 'LR';
+		for ($degree = 10; $degree < 13; $degree++) {
+			$generalData = $generalsData[$degree - 1];
+			$specialData = $specialsData[$degree - 1];
+			
+			$genScience = self::convertNullToZero($generalData['gen_science']);
+			$math = self::convertNullToZero($generalData['math']);
+			$technology = self::convertNullToZero($generalData['technology']);
+			$design = self::convertNullToZero($generalData['design']);
+			$physic = self::convertNullToZero($specialData['physic']);
+			$chemistry = self::convertNullToZero($specialData['chemistry']);
+			$biology = self::convertNullToZero($specialData['biology']);
+			$earth = self::convertNullToZero($specialData['earth']);
+			
+			if($degree === 12){
+				$borderType = 'LBR';
+			}
+			
+			$this->Cell(20, 6, 'ม.'.($degree - 6), $borderType, 0, 'L', $fill);
+			$this->Cell(20, 6, $genScience, $borderType, 0, 'R', $fill);
+			$this->Cell(20, 6, $math, $borderType, 0, 'R', $fill);
+			$this->Cell(20, 6, $technology, $borderType, 0, 'R', $fill);
+			$this->Cell(20, 6, $design, $borderType, 0, 'R', $fill);
+			$this->Cell(20, 6, $physic, $borderType, 0, 'R', $fill);
+			$this->Cell(20, 6, $chemistry, $borderType, 0, 'R', $fill);
+			$this->Cell(20, 6, $biology, $borderType, 0, 'R', $fill);
+			$this->Cell(20, 6, $earth, $borderType, 0, 'R', $fill);
+			
+			$this->Ln();
+			$fill=!$fill;
+		}
     }
 	
 	// Colored table

@@ -95,7 +95,7 @@ if (isset($_SESSION['user_id'])){
 		
 		// column titles
 		$tableHeader = array('ระดับชั้น', 'วิทยาศาสตร์', 'คณิตศาสตร์', 'เทคโนโลยี', 'ออกแบบ', 'ฟิสิกส์', 'เคมี', 'ชีวะ', 'ดาราศาสตร์');
-		$pdf->subjectStatisticTable("สถิติแยกตามชั้นปีที่สอน", $tableHeader, $generalSubject, $specialSubject);
+		$pdf->subjectStatisticTable("สถิติแยกตามชั้นปีที่สอน(แสดงจำนวนคน)", $tableHeader, $generalSubject, $specialSubject);
 		$pdf->Ln(20);
 		
 		// column titles
