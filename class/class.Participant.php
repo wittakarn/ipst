@@ -185,6 +185,8 @@ class Participant
 		$fromQuery .= "LEFT JOIN technology_book_instructor g ON a.id = g.id ";
 		$fromQuery .= "LEFT JOIN design_book h ON a.id = h.id ";
 		$fromQuery .= "LEFT JOIN design_book_instructor i ON a.id = i.id ";
+		$fromQuery .= "LEFT JOIN contribute j ON a.id = j.id ";
+		$fromQuery .= "LEFT JOIN contribute_list k ON j.r_contribute_book_selected = k.id ";
 		$whereQuery = "";
 		
 		if(isset($params['participant_type']) && $params['participant_type'] !== ''){
