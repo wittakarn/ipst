@@ -57,13 +57,13 @@ class ReceiverContributeInfoPDF extends TCPDF {
         // Data
         $fill = 0;
         foreach($datas as $data) {
-            $this->MultiCell(0, 0, 'ชื่อ-นามสกุล :  '.$data['i_receiver_fullname'], '', 'L', $fill, 0, '', '', true, 0);
+            $this->Cell(0, 0, 'ชื่อ-นามสกุล :  '.$data['i_receiver_fullname'], '', 0, 'L', $fill);
             $this->Ln();
-			$this->MultiCell(0, 0, 'ที่อยู่ :  '.$data['t_receiver_address'], '', 'L', $fill, 0, '', '', true, 0);
+			$this->Cell(0, 0, 'ที่อยู่ :  '.$data['t_receiver_address'], '', 0, 'L', $fill);
             $this->Ln();
-			$this->MultiCell(0, 0, 'รหัสไปรษณีย์ :  '.$data['i_receiver_postcode'], '', 'L', $fill, 0, '', '', true, 0);
+			$this->Cell(0, 0, 'รหัสไปรษณีย์ :  '.$data['i_receiver_postcode'], '', 0, 'L', $fill);
             $this->Ln();
-			$this->MultiCell(0, 0, 'สื่อเสริมการเรียนรู้ :  '.$data['book_name'], '', 'L', $fill, 0, '', '', true, 0);
+			$this->Cell(0, 0, 'สื่อเสริมการเรียนรู้ :  '.$data['book_name'], '', 0, 'L', $fill);
             $this->Ln();
 			$this->MultiCell(220, 0, '', 'B', 'L', $fill, 0, 0, '', '', '', true, 0);
 			$this->Ln(13);
