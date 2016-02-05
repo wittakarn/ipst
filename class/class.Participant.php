@@ -157,8 +157,9 @@ class Participant
 		$orderQuery = " ORDER BY id ";
 		$limit = "";
 		if(isset($params['start_index']) && isset($params['count']) && $params['start_index'] !== '' && $params['count'] !== ''){
-			$limit .= " LIMIT ".$params['count'];
 			$offset = ($params['start_index'] - 1) > 0 ? ($params['start_index'] - 1) : 0;
+			
+			$limit .= " LIMIT ".($params['count'] - $offset);
 			$limit .= " OFFSET ".($offset);
 		}
 		

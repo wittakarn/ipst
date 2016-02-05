@@ -731,6 +731,9 @@ class StatisticPDF extends TCPDF {
 			$variance['s_experience'] = $variance['s_experience'] + pow(($row["s_experience"] - $avgExp), 2);
 		}
 		
+		$variance['age'] = $variance['age'] / ($countAge - 1);
+		$variance['s_experience'] = $variance['s_experience'] / ($countExp - 1);
+		
 		// Data
         $fill = 0;
 		$this->Cell(60, 6, 'อายุ(ปี)', 'LR', 0, 'L', $fill);
