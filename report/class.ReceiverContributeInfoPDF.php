@@ -47,10 +47,8 @@ class ReceiverContributeInfoPDF extends TCPDF {
 		$this->Line(220, 70, 0, 70, $lineStyleBlack);
 	}
 
-    // Colored table
     public function generateReceiverInfo($datas) {
-		$rowLimit = 28;
-
+		
         //$this->Ln();
         // Color and font restoration
 		$this->SetFont('', '', 17);
@@ -69,6 +67,25 @@ class ReceiverContributeInfoPDF extends TCPDF {
 			$this->Ln(13);
         }
     }
+	
+	public function generateReceiverName($datas) {
+		
+        //$this->Ln();
+        // Color and font restoration
+		$this->SetFont('', '', 17);
+		$this->SetLineWidth(0.1);
+		$this->SetFillColor(224, 235, 255);
+        // Data
+        $fill = 0;
+		$count = 1;
+        foreach($datas as $data) {
+            $this->Cell(0, 0, 'ลำดับที่ '.$count.'.    '.$data['i_receiver_fullname'], 'LTRB', 0, 'L', $fill);
+            $this->Ln();
+			$fill=!$fill;
+			$count++;
+        }
+    }
+	
 	public static function formatDateThai($strDate){
 		$dmy = explode('-', $strDate);
 		$y = $dmy[0];
