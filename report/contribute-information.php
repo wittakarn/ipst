@@ -59,7 +59,11 @@ if (isset($_SESSION['user_id'])){
 		$pdf->generateContributeInfo($contributionInfo, $type);
 		
 		// print recever information
-		$pdf->generateReceiverInfo($results);
+		if(isset($_REQUEST['not_show_address']) && $_REQUEST['not_show_address'] === 'T'){
+			$pdf->generateReceiverName($results);
+		}else{
+			$pdf->generateReceiverInfo($results);
+		}
 	
 		// close and output PDF document
 		$pdf->Output('quotation-detail.pdf', 'I');

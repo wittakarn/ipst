@@ -47,28 +47,45 @@ class ReceiverContributeInfoPDF extends TCPDF {
 		$this->Line(220, 70, 0, 70, $lineStyleBlack);
 	}
 
-    // Colored table
     public function generateReceiverInfo($datas) {
-		$rowLimit = 28;
-
+		
         //$this->Ln();
         // Color and font restoration
 		$this->SetFont('', '', 17);
         // Data
         $fill = 0;
         foreach($datas as $data) {
-            $this->MultiCell(0, 0, 'ชื่อ-นามสกุล :  '.$data['i_receiver_fullname'], '', 'L', $fill, 0, '', '', true, 0);
+            $this->Cell(0, 0, 'ชื่อ-นามสกุล :  '.$data['i_receiver_fullname'], '', 0, 'L', $fill);
             $this->Ln();
-			$this->MultiCell(0, 0, 'ที่อยู่ :  '.$data['t_receiver_address'], '', 'L', $fill, 0, '', '', true, 0);
+			$this->Cell(0, 0, 'ที่อยู่ :  '.$data['t_receiver_address'], '', 0, 'L', $fill);
             $this->Ln();
-			$this->MultiCell(0, 0, 'รหัสไปรษณีย์ :  '.$data['i_receiver_postcode'], '', 'L', $fill, 0, '', '', true, 0);
+			$this->Cell(0, 0, 'รหัสไปรษณีย์ :  '.$data['i_receiver_postcode'], '', 0, 'L', $fill);
             $this->Ln();
-			$this->MultiCell(0, 0, 'สื่อเสริมการเรียนรู้ :  '.$data['book_name'], '', 'L', $fill, 0, '', '', true, 0);
+			$this->Cell(0, 0, 'สื่อเสริมการเรียนรู้ :  '.$data['book_name'], '', 0, 'L', $fill);
             $this->Ln();
 			$this->MultiCell(220, 0, '', 'B', 'L', $fill, 0, 0, '', '', '', true, 0);
 			$this->Ln(13);
         }
     }
+	
+	public function generateReceiverName($datas) {
+		
+        //$this->Ln();
+        // Color and font restoration
+		$this->SetFont('', '', 17);
+		$this->SetLineWidth(0.1);
+		$this->SetFillColor(224, 235, 255);
+        // Data
+        $fill = 0;
+		$count = 1;
+        foreach($datas as $data) {
+            $this->Cell(0, 0, 'ลำดับที่ '.$count.'.    '.$data['i_receiver_fullname'], 'LTRB', 0, 'L', $fill);
+            $this->Ln();
+			$fill=!$fill;
+			$count++;
+        }
+    }
+	
 	public static function formatDateThai($strDate){
 		$dmy = explode('-', $strDate);
 		$y = $dmy[0];

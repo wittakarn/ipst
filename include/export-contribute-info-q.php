@@ -85,6 +85,14 @@
 								name="count"
 								digits="true"/>
 						</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" value="T" name="not_show_address"/>
+									ไม่แสดงที่อยู่
+								</label>
+							</div>
+						</div>
 					</div>
 				</form>
 			</div>
