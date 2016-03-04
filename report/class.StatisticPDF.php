@@ -881,7 +881,7 @@ class StatisticPDF extends TCPDF {
         $this->SetLineWidth(0.3);
         $this->SetFont('', 'B');
         // Header
-        $w = array(80, 20, 20, 20, 20, 20);
+        $w = array(40, 28, 28, 28, 28, 28);
         $num_headers = count($header);
         for($i = 0; $i < $num_headers; ++$i) {
             $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
