@@ -16,6 +16,7 @@ function setBookSatisfactionEvent(){
 			$(href).collapse('show');
 		} else {
 			$(href).collapse('hide');
+			$(href).find("input:radio").prop("checked", false);
 		}
 	});
 	
