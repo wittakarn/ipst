@@ -31,8 +31,8 @@ class ReceiverContributeInfoPDF extends TCPDF {
     }
 	
 	public function generateContributeInfo($contributionInfo, $type) {
-		$image_file = K_PATH_IMAGES.$contributionInfo['id'].'.jpg';
-        $this->Image($image_file, PDF_MARGIN_LEFT, 8, 35, '', 'JPEG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+//		$image_file = K_PATH_IMAGES.$contributionInfo['id'].'.jpg';
+//        $this->Image($image_file, PDF_MARGIN_LEFT, 8, 35, '', 'JPEG', '', 'T', false, 300, '', false, false, 0, false, false, false);
 		
 		if($type != null){
 			$this->Cell(0, 0, $type==='t' ? 'ครู' : 'นักเรียน', 0, 2, 'R', 0, '', 0, false, 'M', 'B');	
@@ -41,10 +41,12 @@ class ReceiverContributeInfoPDF extends TCPDF {
         // Set font
         $this->SetFont('', 'B', 18);
         // Title
-        $this->Cell(0, 50, $contributionInfo['name'], 0, 2, 'L', 0, '', 0, false, 'M', 'B');
-		$this->Ln(42);
-		$lineStyleBlack = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
-		$this->Line(220, 70, 0, 70, $lineStyleBlack);
+        $this->Cell(0, 0, $contributionInfo['name'], 0, 2, 'L', 0, '', 0, false, 'M', 'B');
+		$this->Ln();
+		$this->MultiCell(220, 0, '', 'B', 'L', 0, 0, 0, '', '', '', true, 0);
+		$this->Ln(13);
+		//$lineStyleBlack = array('width' => 0.5, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+		//$this->Line(220, 70, 0, 70, $lineStyleBlack);
 	}
 
     public function generateReceiverInfo($datas) {
@@ -54,14 +56,24 @@ class ReceiverContributeInfoPDF extends TCPDF {
 		$this->SetFont('', '', 17);
         // Data
         $fill = 0;
+		$count = 0;
         foreach($datas as $data) {
+			$count++;
+			if($count > 6){
+				$count = 0;
+				$this->AddPage();
+			}
             $this->Cell(0, 0, 'ชื่อ-นามสกุล :  '.$data['i_receiver_fullname'], '', 0, 'L', $fill);
             $this->Ln();
-			$this->Cell(0, 0, 'ที่อยู่ :  '.$data['t_receiver_address'], '', 0, 'L', $fill);
+			
+			$address = str_replace("\n", " ", $data['t_receiver_address']);
+			$address = str_replace("\r", " ", $address);
+			
+			$this->Cell(0, 0, 'ที่อยู่ :  '.$address, '', 0, 'L', $fill);
             $this->Ln();
 			$this->Cell(0, 0, 'รหัสไปรษณีย์ :  '.$data['i_receiver_postcode'], '', 0, 'L', $fill);
-            //$this->Ln();
-			//$this->Cell(0, 0, 'สื่อเสริมการเรียนรู้ :  '.$data['book_name'], '', 0, 'L', $fill);
+//            $this->Ln();
+//			$this->Cell(0, 0, 'สื่อเสริมการเรียนรู้ :  '.$data['book_name'], '', 0, 'L', $fill);
             $this->Ln();
 			$this->MultiCell(220, 0, '', 'B', 'L', $fill, 0, 0, '', '', '', true, 0);
 			$this->Ln(13);
