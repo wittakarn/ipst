@@ -113,7 +113,7 @@ class Contribution
 		$fromQuery = "FROM contribute a ";
 		$fromQuery .= "INNER JOIN participant b ON a.id = b.id ";
 		$fromQuery .= "INNER JOIN contribute_list c ON a.r_contribute_book_selected = c.id ";
-		$whereQuery = "WHERE b.status = 'a' ";
+		$whereQuery = "WHERE b.status = 'a' AND b.r_receive_contribute_book = 1 ";
 		
 		if(isset($params['participant_type']) && $params['participant_type'] !== ''){
 			$whereQuery .= "AND b.type = '".$params['participant_type']."' ";
@@ -140,7 +140,7 @@ class Contribution
 			$whereQuery .= "WHERE custom.r_contribute_book_selected = '".$params['contribute_selected']."' ";
 		}
 		
-		$query = $selectQuery.$whereQuery;
+		$query = $selectQuery.$whereQuery."ORDER BY id";
 		
 		$stmt = $conn->prepare($query);
 		$stmt->execute();
